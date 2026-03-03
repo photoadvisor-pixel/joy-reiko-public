@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy講座構成案 - AI時代を生き抜く「5つの非認知能力」の育て方</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8BA7;
+            --primary-light: #FFC6C6;
+            --accent: #FFD56F;
+            --text: #555555;
+            --text-light: #888888;
+            --bg: #FFFFFF;
+            --bg-card: #FAFAFA;
+            --border: #F0F0F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(120deg, #fff0f3 0%, #fff 100%);
+            border-radius: 20px;
+            border: 2px solid #ffeef1;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .concept {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(255, 139, 167, 0.08);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .concept blockquote {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .concept p {
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #d16d86;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .smile-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .smile-item {
+            background: #fff;
+            padding: 1.2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid #ffeef1;
+            transition: transform 0.2s;
+        }
+
+        .smile-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 139, 167, 0.15);
+        }
+
+        .smile-item .letter {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+            line-height: 1;
+        }
+
+        .smile-item .label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .table-wrap {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .target-table,
+        .bonus-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .target-table th,
+        .bonus-table th {
+            background: #fff9fa;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #d16d86;
+            width: 25%;
+            vertical-align: top;
+            border-bottom: 1px solid #ffeef1;
+        }
+
+        .target-table td,
+        .bonus-table td {
+            padding: 1rem 1.5rem;
+            color: var(--text);
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .target-table tr:last-child th,
+        .target-table tr:last-child td,
+        .bonus-table tr:last-child th,
+        .bonus-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Section Styles */
+        .section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.2rem 1.5rem;
+            background: #fff9fa;
+            border-bottom: 1px solid #ffeef1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-icon {
+            font-size: 1.4rem;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .section-benefit {
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            color: #777;
+            background: #ffffff;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .section-benefit strong {
+            color: var(--primary);
+            background: #fff0f3;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .lecture-list {
+            padding: 0.5rem 0;
+        }
+
+        .lecture-item {
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-header {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lecture-header:hover {
+            background: #fff9fa;
+        }
+
+        .lecture-header.has-script::after {
+            content: '▼';
+            font-size: 0.7rem;
+            color: #ccc;
+            margin-left: auto;
+            padding-left: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .lecture-header.has-script.open::after {
+            transform: rotate(180deg);
+        }
+
+        .l-num {
+            font-weight: 700;
+            color: #FF8BA7;
+            width: 40px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .l-body {
+            flex-grow: 1;
+        }
+
+        .l-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: #555;
+        }
+
+        .l-desc {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .l-time {
+            font-size: 0.8rem;
+            color: #aaa;
+            background: #f5f5f5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* Script Panel */
+        .script-panel {
+            display: none;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fffbfc 0%, #fff 100%);
+            border-top: 1px solid #ffeef1;
+            animation: slideDown 0.3s ease;
+        }
+
+        .script-panel.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .script-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .script-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .script-section h4 {
+            font-size: 0.9rem;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #ffeef1;
+        }
+
+        .script-section p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.8rem;
+            line-height: 1.9;
+        }
+
+        .script-section .highlight {
+            background: linear-gradient(transparent 60%, #fff0f3 60%);
+            font-weight: 700;
+        }
+
+        .script-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .script-section li {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
+
+        .script-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+
+        .total-time-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff8e1;
+            color: #8a6c1e;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .smile-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .target-table th,
+            .target-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .target-table th {
+                background: #fff0f3;
+                border-bottom: none;
+                padding-bottom: 0.2rem;
+            }
+
+            .target-table td {
+                padding-top: 0.2rem;
+            }
+        }
+    </style>
+
+    <style>
+        .comparison-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 1rem;
+        }
+        .comparison-col {
+            flex: 1;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ffeef1;
+            min-width: 0;
+        }
+        .comparison-col.original {
+            background-color: #fff9fa;
+        }
+        .comparison-col.new {
+            background-color: #f0f8ff; 
+        }
+        .col-header {
+            font-weight: 700;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        .col-header.badge-orig { color: #d16d86; }
+        .col-header.badge-new { color: #007bff; }
+        
+        .script-panel {
+            display: block !important; /* Force show for comparison */
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>AI時代を生き抜く「5つの非認知能力」の育て方</h1>
+            <p class="subtitle">シリコンバレー式・家庭でできるJOY活知育メソッド</p>
+            <br>
+            <span class="total-time-badge">⏱️ 全1.5時間 凝縮プログラム</span>
+        </header>
+
+        <section class="concept">
+            <blockquote>「ChatGPTが東大の問題を解ける時代。<br>親として、子どもに本当に残せるものは何でしょうか？」</blockquote>
+            <p>AIが90%の仕事を変えると言われる時代。「テストの点数（認知能力）」だけでは、もう通用しません。</p>
+            <p>本講座では、シリコンバレーで20年以上実践されてきた「SMILEメソッド」と、忙しいママでも家庭で無理なくできる「JOY活」をお伝えします。</p>
+        </section>
+
+        <div class="smile-grid">
+            <div class="smile-item">
+                <div class="letter">S</div>
+                <div class="label">Social Skills<br>社会性</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">M</div>
+                <div class="label">Manners<br>品格</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">I</div>
+                <div class="label">Interests<br>探究心</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">L</div>
+                <div class="label">Languages<br>表現力</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">E</div>
+                <div class="label">Enthusiasm<br>情熱</div>
+            </div>
+        </div>
+
+        <h2>👤 ターゲット・悩み</h2>
+        <div class="table-wrap">
+            <table class="target-table">
+                <tr>
+                    <th>対象</th>
+                    <td>30〜45歳、都市部在住、教育に関心が高いママ</td>
+                </tr>
+                <tr>
+                    <th>子どもの年齢</th>
+                    <td>3〜8歳がコア（0〜10歳まで応用可能）</td>
+                </tr>
+                <tr>
+                    <th>悩み</th>
+                    <td>「偏差値教育だけでいいの？」「習い事ばかりで効果が見えない」「イライラして自己嫌悪」</td>
+                </tr>
+                <tr>
+                    <th>ゴール</th>
+                    <td>AI時代に必要な力の正体を知り、今日から家庭でできる具体的な「関わり方」を持ち帰る</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>📚 カリキュラム（全8セクション・約1.5時間）</h2>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h3>セクション1：AI時代に「本当に」必要な力とは（約10分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 親の不安を「明確な目標」に変え、SMILEメソッドの全体像を掴みます。</div>
+            <div class="lecture-list">
+                <!-- L1 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L1</div>
+                        <div class="l-body">
+                            <div class="l-title">10年後の未来予測と、シリコンバレー流・能力の定義<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">AIに奪われる仕事、残る仕事。エリート層が重視する力。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+                    <div class="script-panel">
+            <div class="comparison-container">
+                <div class="comparison-col original">
+                    <div class="col-header badge-orig">Original (Current)</div>
+                    
+                        <div class="script-section">
+                            <h4>🎬 導入（フック）</h4>
+                            <p>皆さん、こんにちは。玲子です。</p>
+                            <p>この講座を手に取ってくださって、ありがとうございます。</p>
+                            <p>きっと皆さんは、お子さんの将来のことを真剣に考えていらっしゃる方だと思います。</p>
+                            <p>「グローバルに活躍できる子に育てたいけど、何をすればいいの？」<br>
+                                「周りのママはみんな習い事をたくさんさせてる……うちはこれで大丈夫かな？」<br>
+                                「つい感情的に怒っちゃって、寝顔を見ながら自己嫌悪してしまう……」<br>
+                                「私のしつけって、合ってるのかな……」</p>
+                            <p>そんなふうに、いろいろ考えて、悩んで、調べて——この講座にたどり着いてくださったんじゃないかな、と思います。</p>
+                            <p>その気持ち、すごくよく分かります。</p>
+                            <p>私も3人の子どもを育ててきた母親です。同じように悩んできました。</p>
+                            <p>だからこそ、最初に一つだけ考えてみてほしいことがあるんです。</p>
+                            <p>ChatGPTって、使ったことありますか？</p>
+                            <p>ここ数年で一気に広がったAIが、東大の入試問題を普通に解けるって知ってましたか？</p>
+                            <p>これ、衝撃的なんですよね。</p>
+                            <p>私たちが「頭がいい」と思っていたこと——計算ができる、暗記ができる、テストで高得点が取れる——そういう「認知能力」は、もうAIがやってくれる時代になったんです。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>じゃあ、親として子どもに本当に残せるものって、何でしょうか？</p>
+                            <p>私はシリコンバレーで20年以上、幼稚園を経営してきました。</p>
+                            <p>シリコンバレーって、GoogleやAppleの本社があって、世界中から超優秀な人たちが集まる場所です。</p>
+                            <p>そこで何百人もの子どもたちを見てきて、気づいたことがあるんです。</p>
+                            <p><span class="highlight">勉強ができることと、幸せになることは、イコールじゃない。</span></p>
+                            <p>実際に、こういう子を見てきました。</p>
+                            <p>両親がすごく優秀で、大きい会社の社長さん。子どもも「勉強しなさい」と言われなくても、暗黙の了解でエリートコースを歩んで、いい大学に入った。</p>
+                            <p>でも、30歳を過ぎた今も、ちゃんとした職につけていないんです。</p>
+                            <p>なぜか？</p>
+                            <p><span class="highlight">「自分が何をやりたいか」が分からないまま、大人になってしまったから。</span></p>
+                            <p>勉強は「できた」んじゃなくて、「させられた」んです。</p>
+                            <p>自分らしい生き方をしてこなかったから、途中でふと「あれ？本当は何やりたいんだろう」ってなってしまう。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>これからの時代、テストの点数だけでは通用しません。</p>
+                            <p>必要なのは、<span class="highlight">自分で考え、自分で感じ、自分らしく生きる力</span>。</p>
+                            <p>これを「非認知能力」と呼びます。</p>
+                            <p>そして、この講座でお伝えするのが、私がシリコンバレーで体系化した<span
+                                    class="highlight">「SMILEメソッド」</span>——5つの非認知能力の育て方です。</p>
+                        </div>
+                    
+                </div>
+                <div class="comparison-col new">
+                    <div class="col-header badge-new">New (Gemini)</div>
+                    <h4>L1：10年後の未来予測と、シリコンバレー流・能力の定義</h4>
+<strong>（講師：穏やかだが自信に満ちたトーンで）</strong>
+<p>「皆さん、こんにちは。突然ですが、想像してみてください。あなたのお子さんが社会に出る10年後、20年後、世界はどうなっているでしょうか？</p>
+<p>[cite_start]今、ChatGPTをはじめとするAIが、東大の入試問題を解き、数秒でプログラミングを書き上げる時代です [cite: 2690, 2696][cite_start]。これまでの『正解を早く出す』『知識を詰め込む』という教育は、AIという最強のライバルには勝てません [cite: 2699]。</p>
+<p>[cite_start]シリコンバレーの親たちが今、何に投資しているか。それは、テストの点数で測れる『認知能力』ではなく、目に見えない『非認知能力』です [cite: 2924, 2925][cite_start]。変化の激しい時代に、何度でも立ち上がり、自分らしい幸せをデザインできる力。それこそが、親が子に残せる唯一の、そして最強のギフトなのです [cite: 2473, 2551]。」</p>
+                </div>
+            </div>
+            </div>
+                </div>
+
+                <!-- L2 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L2</div>
+                        <div class="l-body">
+                            <div class="l-title">人生を切り拓く5つの武器「SMILE」<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">S(社会性) M(品格) I(探究心) L(表現力) E(情熱) の概要。</div>
+                        </div>
+                        <div class="l-time">3分</div>
+                    </div>
+                    <div class="script-panel">
+            <div class="comparison-container">
+                <div class="comparison-col original">
+                    <div class="col-header badge-orig">Original (Current)</div>
+                    
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>SMILEメソッドって、何だと思いますか？</p>
+                            <p>実はこれ、5つの非認知能力の頭文字を取ったものなんです。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>一つずつ紹介しますね。</p>
+                            <p><strong>S — Social Skills（社会性）</strong><br>他者と真心で関わり、自分の思いを伝えながらも相手を尊重する力。</p>
+                            <p><strong>M — Manners（マナー・自律）</strong><br>あいさつや食事など、日常を通じて自然と身につける「人としての基本」。</p>
+                            <p><strong>I — Interests（探究心）</strong><br>「なぜ？」「やってみたい！」という好奇心を学びの原動力に変える力。</p>
+                            <p><strong>L — Languages（語学・対話力）</strong><br>英語や異文化にふれる中で、世界との接点を広げる柔軟な感性。</p>
+                            <p><strong>E — Enthusiasm（情熱・やり抜く力）</strong><br>自分の選んだことに夢中になり、あきらめずにやり抜く心の強さ。</p>
+                            <p>この5つ、頭文字を並べると<span class="highlight">「SMILE」</span>になります。</p>
+                            <p>子どもが笑顔で生きていくために必要な力。覚えやすいですよね。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>💡 ポイント</h4>
+                            <p>ここで大事なことを一つ。</p>
+                            <p>この5つの力って、塾に行かせたら身につくものじゃないんです。</p>
+                            <p>一斉に何かをやらせたって、本当の意味では育たない。</p>
+                            <p>5歳前の子どもって、何をやらせてもできちゃうんですよ。フラッシュカードでも、計算でも。</p>
+                            <p>でも、好きでやってる子が伸びるのと、「やらされてる」子が同じことをするのは、全然違うんです。</p>
+                            <p>10人いたら、1〜2人はその道に行く子がいるかもしれない。でも、8人は本当はやりたくないかもしれない。</p>
+                            <p><span class="highlight">一番幸せな状態って、魂が自分らしく生きる状態なんです。</span></p>
+                            <p>SMILEは、子どもが自分らしく輝くための力。これを家庭で育てていきましょう。</p>
+                        </div>
+                    
+                </div>
+                <div class="comparison-col new">
+                    <div class="col-header badge-new">New (Gemini)</div>
+                    <h4>L2：人生を切り拓く5つの武器「SMILE」</h4>
+<p>[cite_start]「本講座では、私がシリコンバレーで20年以上、モンテッソーリ教育やレッジョ・エミリア教育、そして最新のSTEAM教育を研究し、3人の子育てを通じて磨き上げたエッセンスを<strong>『SMILEメソッド』</strong>としてまとめました [cite: 2287, 2290, 2293]。</p>
+<ul>
+<li>[cite_start]<strong>S — Social Skills（社会性）</strong>：他者と協働し、共感する力 [cite: 3090]。</li>
+<li><strong>M — Manners（品格）</strong>：信頼を勝ち取る振る舞いと自尊心。</li>
+<li>[cite_start]<strong>I — Interests（探究心）</strong>：「なぜ？」を突き詰める内発的動機 [cite: 2472]。</li>
+<li>[cite_start]<strong>L — Languages（表現力）</strong>：自分の想いを言葉にし、多様性を認める力 [cite: 3112]。</li>
+<li>[cite_start]<strong>E — Enthusiasm（情熱）</strong>：失敗を恐れず、目的をやり遂げる意志力 [cite: 3088]。</li>
+</ul>
+<p>[cite_start]この5つが揃ったとき、お子さんはどこへ行っても、誰といても、自分らしく輝くことができます [cite: 3080]。」</p>
+                </div>
+            </div>
+            </div>
+                </div>
+
+                <!-- L3 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L3</div>
+                        <div class="l-body">
+                            <div class="l-title">家庭こそが最高の教室である理由<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">習い事より大切な、日常の「JOY」の力。</div>
+                        </div>
+                        <div class="l-time">3分</div>
+                    </div>
+                    <div class="script-panel">
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>「うちの子、習い事いくつ通わせればいいですか？」</p>
+                            <p>よく聞かれる質問です。</p>
+                            <p>でも私の答えは、いつも同じ。</p>
+                            <p><span class="highlight">「習い事より、日常のJOYの方が大事ですよ」</span></p>
+                            <p>JOY——悦びっていうのは、単なる「楽しい」「嬉しい」っていう一時的な感情じゃないんです。</p>
+                            <p>本当の自分とつながった時に、内側からじわっと湧き上がってくる、深い喜びのこと。</p>
+                            <p>子どもが「楽しい！」「もっとやりたい！」って目を輝かせている瞬間——それがJOYです。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>シリコンバレーのエリート家庭を見ていると、子どもの予定がびっちり埋まってることが多いんです。</p>
+                            <p>月曜はピアノ、火曜は水泳、水曜は塾、木曜はサッカー……。</p>
+                            <p>でも、本当にその子はそれを「やりたい」のでしょうか？</p>
+                            <p>私が見てきた中で、「この子は幸せになるだろうな」と確信した子たちには、共通点がありました。</p>
+                            <p>それは、<span class="highlight">自分が何が好きか、クリアに分かっている</span>こと。</p>
+                            <p>ある先生の子どもは、塾に行かせる余裕もなく、ある意味「野放し」で育てられたんです。</p>
+                            <p>でも、圧がない分、自分が何が好きかすごくクリアだった。</p>
+                            <p>その子は今、ライターになって、本当に自分らしく生きています。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>🌟 JOY活とは</h4>
+                            <p>JOY活っていうのは、日常の中でJOY（喜び）を感じる瞬間を大切にする習慣のことです。</p>
+                            <p>特別なことじゃなくていいんです。</p>
+                            <ul>
+                                <li>一緒にごはんを作る</li>
+                                <li>寝る前に「今日うれしかったこと」を3つ話す</li>
+                                <li>落ち葉で遊ぶ</li>
+                                <li>お絵かきをじっくりさせてあげる</li>
+                            </ul>
+                            <p>そういう何気ない日常の中に、SMILEを育てるチャンスがたくさんあるんです。</p>
+                        </div>
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>習い事を増やす前に、まず考えてほしいのは——</p>
+                            <p><span class="highlight">「うちの子は今、JOYを感じているかな？」</span></p>
+                            <p>家庭こそが、最高の教室。</p>
+                            <p>親の関わり方ひとつで、子どもの非認知能力は育っていきます。</p>
+                            <p>次のセクションからは、SMILEを育てる土台となる「親のマインドセット」についてお話しします。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💎</span>
+                <h3>セクション2：すべての能力は「親のJOY」から始まる（約15分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> テクニックの前に不可欠な「親のマインドセット」を整えます。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L4</div>
+                        <div class="l-body">
+                            <div class="l-title">あなたの不安は、子どもに伝染する</div>
+                            <div class="l-desc">ミラーニューロンの科学と「心配」の弊害。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+            <div class="script-panel open">
+                <div class="comparison-container">
+                    <div class="comparison-col original">
+                        <div class="col-header badge-orig">Original (Current)</div>
+                        <p><em>(No script initially)</em></p>
+                    </div>
+                    <div class="comparison-col new">
+                        <div class="col-header badge-new">New (Gemini)</div>
+                        <h4>L4：あなたの不安は、子どもに伝染する</h4>
+<p>[cite_start]「子育てのテクニックの前に、一番大切なことをお伝えします。それは<strong>『お母さん自身の心の状態』</strong>です [cite: 2731, 2736]。</p>
+<p>[cite_start]脳には『ミラーニューロン』という、相手の感情を写し取る仕組みがあります。親が『将来が不安だ』『うちの子は大丈夫かしら』と眉間にシワを寄せていると、子どもは本能的にその不安を感じ取り、脳の成長を妨げてしまいます [cite: 2736, 2737]。</p>
+<p>[cite_start]かつて私は、イライラしながらラーメンを作ったことがあります。すると10歳の長男が『ママが怒っている味がする』と言い、本当にお腹を壊してしまったのです [cite: 2737][cite_start]。子育ては『自分育て』。まずは、あなた自身が人生を楽しみ、満たされていることが、最高の英才教育になるのです [cite: 2721, 2738]。」</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L5</div>
+                        <div class="l-body">
+                            <div class="l-title">イライラ激減！「思考分離」の魔法</div>
+                            <div class="l-desc">アドラー心理学に学ぶ、親と子の課題の分け方。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L6</div>
+                        <div class="l-body">
+                            <div class="l-title">【ワーク】今日から自分を満たす「親のJOY」習慣</div>
+                            <div class="l-desc">1日5分でできる、親自身の自己肯定感アップ術。</div>
+                        </div>
+                        <div class="l-time">6分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🤝</span>
+                <h3>セクション3：【S】AIには真似できない「つながる力」（約10分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 表面的な協調性ではなく、心地よい人間関係を築く力を育てます。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L7</div>
+                        <div class="l-body">
+                            <div class="l-title">「みんな仲良く」の呪いを解こう</div>
+                            <div class="l-desc">距離感の知性が、本当の社会性を作る。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L8</div>
+                        <div class="l-body">
+                            <div class="l-title">【JOY活】聴く力が育つ「家族会議」</div>
+                            <div class="l-desc">違いを楽しむ、週末の対話アクション。</div>
+                        </div>
+                        <div class="l-time">6分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎩</span>
+                <h3>セクション4：【M】世界のどこでも愛される「品格」（約10分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 相手へのリスペクトとしての振る舞いと、自己肯定感を育てます。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L9</div>
+                        <div class="l-body">
+                            <div class="l-title">マナーは自分を守る「信頼のパスポート」</div>
+                            <div class="l-desc">厳しさではなく、誇りとして教えるマナー。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L10</div>
+                        <div class="l-body">
+                            <div class="l-title">【JOY活】脳を変える「ありがとう」の食卓</div>
+                            <div class="l-desc">感謝と自己肯定感を同時に高める食事の時間。</div>
+                        </div>
+                        <div class="l-time">6分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔍</span>
+                <h3>セクション5：【I】「好き」が「才能」に変わる探究心（約15分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 偏差値ではなく「没頭値」を高め、内発的なやる気を引き出します。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L11</div>
+                        <div class="l-body">
+                            <div class="l-title">偏差値より「没頭値」！ぼーっとする時間の効用</div>
+                            <div class="l-desc">脳のDMN（創造性回路）を起動させる余白の力。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+            <div class="script-panel open">
+                <div class="comparison-container">
+                    <div class="comparison-col original">
+                        <div class="col-header badge-orig">Original (Current)</div>
+                        <p><em>(No script initially)</em></p>
+                    </div>
+                    <div class="comparison-col new">
+                        <div class="col-header badge-new">New (Gemini)</div>
+                        <h4>L11：偏差値より「没頭値」！ぼーっとする時間の効用</h4>
+<p>[cite_start]「『何かさせなきゃ』と習い事でスケジュールを埋めていませんか？実は、幼児期に最も大切なのは、何かに深く『没頭する時間』です [cite: 2906]。</p>
+<p>[cite_start]脳科学では、何もしていないように見える『ぼーっとしている時間』に、創造性を司るネットワークが活性化されることがわかっています。シリコンバレーでは、先取り学習で知識を詰め込むことよりも、自由な遊びの中で試行錯誤することを重視します [cite: 2901, 2907]。</p>
+<p>[cite_start]研究によれば、早期教育のメリットは3年程度で消えてしまいますが、遊びを通じて培った語彙力や探究心は、一生の財産になります [cite: 2836, 2843]。今こそ、お子さんの『没頭値』を信じてみましょう。」</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L12</div>
+                        <div class="l-body">
+                            <div class="l-title">教えるな、置いておけ</div>
+                            <div class="l-desc">モンテッソーリ流・興味を引き出す環境設定。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+            <div class="script-panel open">
+                <div class="comparison-container">
+                    <div class="comparison-col original">
+                        <div class="col-header badge-orig">Original (Current)</div>
+                        <p><em>(No script initially)</em></p>
+                    </div>
+                    <div class="comparison-col new">
+                        <div class="col-header badge-new">New (Gemini)</div>
+                        <h4>L12：教えるな、置いておけ</h4>
+<p>[cite_start]「モンテッソーリ教育の基本は『環境を整えること』です [cite: 2792][cite_start]。親が『これをやりなさい』と指示するのではなく、子どもが自分から手を伸ばしたくなるような環境を、家庭の中に用意するのです [cite: 2471]。</p>
+<p>[cite_start]例えば、興味がありそうな本や道具を、子どもの目線にそっと置いておく。ただそれだけです。子どもが自分で選び、繰り返し取り組む中で、自律性と自信が育まれます [cite: 2793][cite_start]。親の役割は、教え込む『先生』ではなく、環境を耕す『農夫』なのです [cite: 2488]。」</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L13</div>
+                        <div class="l-body">
+                            <div class="l-title">【JOY活】「なんで？」探検隊ごっこ</div>
+                            <div class="l-desc">子どもの質問を学びに変える関わり方。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🌍</span>
+                <h3>セクション6：【L】世界とつながる「表現力と柔軟性」（約10分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 英語力以上に大切な、異文化受容と思いを伝える情熱を育てます。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L14</div>
+                        <div class="l-body">
+                            <div class="l-title">「英語が話せる」より大切なこと</div>
+                            <div class="l-desc">正しさよりパッション。違いを面白がる感性。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L15</div>
+                        <div class="l-body">
+                            <div class="l-title">【JOY活】五感で旅する「おうち世界旅行」</div>
+                            <div class="l-desc">料理や音楽で多様性を楽しむ週末イベント。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔥</span>
+                <h3>セクション7：【E】困難を乗り越える「情熱とGRIT」（約15分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 失敗を恐れずやり抜く力（GRIT）と回復力を育みます。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L16</div>
+                        <div class="l-body">
+                            <div class="l-title">「失敗」はただのデータ収集</div>
+                            <div class="l-desc">エジソン思考でチャレンジへの恐怖を消す。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+            <div class="script-panel open">
+                <div class="comparison-container">
+                    <div class="comparison-col original">
+                        <div class="col-header badge-orig">Original (Current)</div>
+                        <p><em>(No script initially)</em></p>
+                    </div>
+                    <div class="comparison-col new">
+                        <div class="col-header badge-new">New (Gemini)</div>
+                        <h4>L16：「失敗」はただのデータ収集</h4>
+<p>[cite_start]「シリコンバレーでは『Fail Forward（前向きに失敗せよ）』という言葉が合言葉です [cite: 2665, 2674][cite_start]。失敗は、成功への貴重な『データ』に過ぎません [cite: 2680]。</p>
+<p>[cite_start]わが家の長男は、漢字テストで100問中1問しか正解できなかったことがあります [cite: 3187]。それでも彼は『so what? (だから何?)[cite_start]』と笑っていました [cite: 3185][cite_start]。自分を否定しない強さ、つまり自己肯定感があるからこそ、何度でも挑戦できるのです [cite: 3180, 3186]。</p>
+<p>[cite_start]お子さんが失敗したとき、『なんでできないの？』ではなく、『いいデータが取れたね！次はどうしてみる？』。その問いかけが、AI時代に最も必要な『折れない心（GRIT）』を育てます [cite: 2509, 2550]。」</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L17</div>
+                        <div class="l-body">
+                            <div class="l-title">100点より「工夫」を愛そう</div>
+                            <div class="l-desc">プロセス志向の褒め方と、親の背中の見せ方。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+                <div class="lecture-item">
+                    <div class="lecture-header">
+                        <div class="l-num">L18</div>
+                        <div class="l-body">
+                            <div class="l-title">【JOY活】失敗を「プラス」に変換する思考法</div>
+                            <div class="l-desc">コントロールできないことは即変換、主張すべきは主張する。長男の実践例。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎁</span>
+                <h3>セクション8：JOYの循環が、未来を創る（約5分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 全体の振り返りと、明日からの第一歩。</div>
+            <div class="lecture-list">
+                <div class="lecture-item">
+                    <div class="lecture-header has-script" onclick="toggleScript(this)">
+                        <div class="l-num">L19</div>
+                        <div class="l-body">
+                            <div class="l-title">あなたの子育ては、すでに素晴らしい</div>
+                            <div class="l-desc">「足るを知る」視点で、今の幸せに気づく。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+            <div class="script-panel open">
+                <div class="comparison-container">
+                    <div class="comparison-col original">
+                        <div class="col-header badge-orig">Original (Current)</div>
+                        <p><em>(No script initially)</em></p>
+                    </div>
+                    <div class="comparison-col new">
+                        <div class="col-header badge-new">New (Gemini)</div>
+                        <h4>L19：あなたの子育ては、すでに素晴らしい</h4>
+<p>「最後に。この講座を受けてくださった皆さんに、この言葉を贈ります。</p>
+<strong>Work hard. Have fun. Be kind.</strong>
+<p>[cite_start]（一生懸命に、楽しみながら、人に親切に） [cite: 3145, 3150]</p>
+<p>[cite_start]これは長男の学校のスローガンですが、これこそが最高の人生を送るための魔法の言葉です [cite: 3145]。</p>
+<p>[cite_start]今日から、完璧な親を目指すのはやめましょう。1日15分、自分の心が満たされる時間を持ってください [cite: 2741][cite_start]。あなたが笑えば、子どもも笑います。その『JOY』の循環こそが、お子さんの才能を伸ばす最高の土壌になります [cite: 2488, 2731]。</p>
+<p>お子さんの未来は、明るい。そう信じて、一歩ずつ進んでいきましょう。</p>
+<p>本講座をご受講いただき、本当にありがとうございました。」</p>
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+
+        <h2>🎁 受講特典</h2>
+        <div class="table-wrap">
+            <table class="bonus-table">
+                <tr>
+                    <th>1</th>
+                    <td><strong>我が家のSMILE診断シート</strong> — 5つの能力の現状と伸びしろを可視化</td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><strong>思考分離ワークシート</strong> — 親のイライラを整理するテンプレート</td>
+                </tr>
+                <tr>
+                    <th>3</th>
+                    <td><strong>JOY活習慣カレンダー</strong> — 親子のJOYを毎日記録</td>
+                </tr>
+                <tr>
+                    <th>4</th>
+                    <td><strong>「うれしいこと3つ」寝る前カード</strong> — 幸福度向上ワークを子ども向けにアレンジ</td>
+                </tr>
+            </table>
+        </div>
+
+        <footer>
+            <p>JOY活 Udemy講座構成案 | 2026年1月27日更新</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleScript(header) {
+            const panel = header.nextElementSibling;
+            const isOpen = panel.classList.contains('open');
+
+            // Close all panels first
+            document.querySelectorAll('.script-panel').forEach(p => p.classList.remove('open'));
+            document.querySelectorAll('.lecture-header').forEach(h => h.classList.remove('open'));
+
+            // Toggle current panel
+            if (!isOpen) {
+                panel.classList.add('open');
+                header.classList.add('open');
+            }
+        }
+    </script>
+</body>
+
+</html>

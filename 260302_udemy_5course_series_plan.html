@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy講座シリーズ 全5講座 企画案</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-light: #fce7f3;
+            --primary-dark: #be185d;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            --white: #ffffff;
+            --border: #ffe4e6;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.15);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Series Overview */
+        .series-overview {
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .series-overview h2 {
+            color: var(--primary-dark);
+            font-size: 1.3rem;
+            margin: 0 0 1.2rem 0;
+            text-align: center;
+        }
+
+        .series-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .flow-item {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            text-align: center;
+            min-width: 130px;
+        }
+
+        .flow-item.completed {
+            background: var(--primary);
+            color: white;
+        }
+
+        .flow-arrow {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .series-desc {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Course Card */
+        .course-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .course-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .course-number {
+            font-size: 1.8rem;
+            font-weight: 900;
+            min-width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .course-header-text {
+            flex: 1;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .course-tagline {
+            font-size: 0.88rem;
+            color: #888;
+            margin: 0;
+        }
+
+        .badge-completed {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        .badge-new {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        /* Color themes per course */
+        .course-1 .course-header { background: linear-gradient(135deg, #fce7f3, #fff0f7); }
+        .course-1 .course-number { background: var(--primary); }
+        .course-1 .course-title { color: var(--primary-dark); }
+
+        .course-2 .course-header { background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
+        .course-2 .course-number { background: #8b5cf6; }
+        .course-2 .course-title { color: #6d28d9; }
+
+        .course-3 .course-header { background: linear-gradient(135deg, #dbeafe, #eff6ff); }
+        .course-3 .course-number { background: #3b82f6; }
+        .course-3 .course-title { color: #1d4ed8; }
+
+        .course-4 .course-header { background: linear-gradient(135deg, #d1fae5, #ecfdf5); }
+        .course-4 .course-number { background: #10b981; }
+        .course-4 .course-title { color: #047857; }
+
+        .course-5 .course-header { background: linear-gradient(135deg, #fef3c7, #fffbeb); }
+        .course-5 .course-number { background: #f59e0b; }
+        .course-5 .course-title { color: #b45309; }
+
+        /* Section table */
+        .course-body {
+            padding: 1.5rem 2rem;
+        }
+
+        .section-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+
+        .section-table th {
+            background: #f9fafb;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: bold;
+            color: #6b7280;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .section-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .section-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .section-table .sec-num {
+            font-weight: bold;
+            color: #9ca3af;
+            white-space: nowrap;
+            width: 30px;
+        }
+
+        .section-table .sec-title {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .course-concept {
+            margin-top: 1rem;
+            padding: 1rem 1.2rem;
+            background: #fafafa;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            color: #666;
+            border-left: 3px solid #ddd;
+        }
+
+        .course-concept strong {
+            color: var(--text);
+        }
+
+        /* Design Philosophy */
+        .philosophy {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, #fdf2f8, #f5f3ff);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .philosophy h2 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin: 0 0 1.2rem 0;
+            text-align: center;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .philosophy-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.88rem;
+        }
+
+        .philosophy-item .label {
+            font-weight: bold;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .series-flow {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .course-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Udemy講座シリーズ 全5講座 企画案</h1>
+        <p class="subtitle">礼子先生の「JOY活」× SMILEメソッド ― 非認知能力を育む子育て講座シリーズ</p>
+
+        <!-- Series Overview -->
+        <div class="series-overview">
+            <h2>シリーズ全体構成</h2>
+            <div class="series-flow">
+                <div class="flow-item completed">講座1<br>SMILE概論</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座2<br>親のJOY活</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座3<br>探究心×社会性</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座4<br>表現力×英語力</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座5<br>GRIT×レジリエンス</div>
+            </div>
+            <p class="series-desc">
+                講座1で全体像を学び、講座2〜5で各テーマを深掘り。<br>
+                各講座は単体でも購入可能な独立構成。
+            </p>
+        </div>
+
+        <!-- Course 1 -->
+        <div class="course-card course-1">
+            <div class="course-header">
+                <div class="course-number">1</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        SMILEメソッドで育む5つの非認知能力<br>― AI時代に本当に必要な力とは
+                        <span class="badge-completed">完成済み</span>
+                    </p>
+                    <p class="course-tagline">SMILEメソッドの全体像を学ぶ入門講座（全8セクション・19レクチャー・約90分）</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>セクション見出し</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】AI時代に「本当に」必要な力とは</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【土台】すべての能力は「親のJOY」から始まる</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【S】AIには真似できない「つながる力」</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【M】世界のどこでも愛される「品格」</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【I】「好き」が「才能」に変わる探究心</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【L】世界とつながる「表現力と柔軟性」</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【E】困難を乗り越える「情熱とGRIT」</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】JOYの循環が、未来を創る</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-concept">
+                    <strong>コンセプト：</strong>SMILEメソッドの5つの非認知能力（Social・Manners・Interests・Languages・Enthusiasm）の全体像と「JOY活」の基本を伝える入口講座。
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card course-2">
+            <div class="course-header">
+                <div class="course-number">2</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        親のJOY活 実践講座<br>― 自分を満たすことから始める子育て革命
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">講座1のセクション2「親のJOY」を深掘り ― 親自身の変容にフォーカスする実践編</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>セクション見出し</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】なぜ「親のJOY」が子育ての最重要課題なのか</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【科学】ミラーニューロンと感情伝染 ― 親の状態が子どもに映る仕組み</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【診断】あなたのJOY度チェック ― 自分の「満たされ度」を知る</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【実践①】毎日5分のJOY活ワーク ― 小さな悦びを見つける習慣</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【実践②】「罪悪感」を手放す ― 完璧主義からの解放</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【実践③】パートナーシップとJOY ― 夫婦関係が子育てを変える</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【応用】JOY活を「家族の文化」にする仕組みづくり</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】「足るを知る」― 今の自分で十分であるということ</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-concept">
+                    <strong>コンセプト：</strong>すべての土台となる「親自身のJOY」に特化。ミラーニューロンの科学、罪悪感の手放し方、パートナーシップなど、親が自分を満たすための具体的な実践法を提供。
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card course-3">
+            <div class="course-header">
+                <div class="course-number">3</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        子どもの「好き」を才能に変える<br>― 探究心と社会性の育て方
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">SMILEの「S（社会性）」と「I（探究心）」を統合 ― 日常の関わり方・声かけに特化</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>セクション見出し</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】「勉強しなさい」が逆効果になる脳科学的理由</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【探究心の種】子どもの「なぜ？」を殺さない3つのルール</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【退屈の力】DMN（デフォルトモードネットワーク）と創造性の関係</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【声かけ術①】好奇心を伸ばす「問いかけ」の技術</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【声かけ術②】社会性を育てる「家族対話」の設計</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【環境づくり】「好き」が見つかる家庭環境のつくり方</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【実践】習い事・遊び・読書 ― 探究心を加速させる選び方</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】内発的動機づけが子どもの人生を変える</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-concept">
+                    <strong>コンセプト：</strong>知的好奇心と人間関係の力を同時に育てる実践講座。脳科学に基づく「声かけ」「環境設計」「退屈時間の活用」など、日常で使える具体的テクニックを提供。
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card course-4">
+            <div class="course-header">
+                <div class="course-number">4</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        シリコンバレー流・世界で通用する<br>子どもの表現力と英語力
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">SMILEの「L（表現力）」を中心に ― グローバル教育・英語・異文化理解を深掘り</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>セクション見出し</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】英語は「教科」ではなく「パスポート」である</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【現実】シリコンバレーで見た「本当に求められる力」</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【誤解】早期英語教育の落とし穴 ― 日本語力なくして英語力なし</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【表現力①】自分の意見を持ち、伝えられる子に育てる方法</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【表現力②】「プレゼン力」と「傾聴力」― 世界標準のコミュニケーション</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【英語実践】家庭でできるバイリンガル環境のつくり方</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【異文化】多様性を「当たり前」にする ― 家庭でできる国際感覚の育成</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】言語の先にある「つながる喜び」</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-concept">
+                    <strong>コンセプト：</strong>礼子先生のシリコンバレー20年以上の経験を最大限に活かした講座。英語を「教科」ではなく「コミュニケーションツール」として捉え、表現力・プレゼン力・異文化理解を家庭で育てる方法を伝える。
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-card course-5">
+            <div class="course-header">
+                <div class="course-number">5</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        折れない心の育て方<br>― GRIT・成長マインドセット・レジリエンス
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">SMILEの「E（情熱）」と「M（品格）」を発展 ― 逆境に強い子どもを育てる</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>セクション見出し</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】「失敗」を恐れる子どもが増えている理由</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【GRIT】やり抜く力の正体 ― 才能よりも大切なもの</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【マインドセット】「できない」を「まだできない」に変える声かけ</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【レジリエンス】立ち直る力は「安全基地」から生まれる</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【実践①】失敗を「データ収集」に変える ― エジソン思考の育て方</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【実践②】「感謝」と「品格」がGRITを支える理由</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【応用】受験・友人関係・挫折 ― 年齢別の困難との向き合い方</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】「情熱」の火を絶やさない親の在り方</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-concept">
+                    <strong>コンセプト：</strong>レジリエンスとGRITに特化した講座。Dweckの成長マインドセット、Duckworthのやり抜く力を土台に、「失敗を恐れない心」「感謝と品格」「年齢別の対応法」を具体的に伝える。
+                </div>
+            </div>
+        </div>
+
+        <!-- Design Philosophy -->
+        <div class="philosophy">
+            <h2>シリーズ全体の設計思想</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <span class="label">講座1 ― SMILE概論（入口）</span>
+                    SMILEメソッドの全体像を伝え、シリーズへの関心を喚起する
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座2 ― 親自身の変容（土台）</span>
+                    すべての能力の土台となる「親のJOY」を深く掘り下げる
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座3 ― S + I の深掘り</span>
+                    知的好奇心と人間関係 ― 日常の声かけ・環境設計の実践
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座4 ― L の深掘り</span>
+                    グローバル教育・表現力 ― シリコンバレー経験を最大活用
+                </div>
+            </div>
+            <div class="philosophy-grid" style="margin-top: 12px;">
+                <div class="philosophy-item" style="grid-column: 1 / -1; text-align: center;">
+                    <span class="label">講座5 ― E + M の深掘り</span>
+                    レジリエンス・GRIT・品格 ― 困難を乗り越える力を育てる
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy 5講座シリーズ企画案 v3（玲子先生フィードバック反映版）</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-light: #fce7f3;
+            --primary-dark: #be185d;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            --white: #ffffff;
+            --border: #ffe4e6;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --red: #ef4444;
+            --red-light: #fee2e2;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.15);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 1.9rem;
+            margin-bottom: 0.3rem;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            margin: 2.5rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        /* Research Summary */
+        .research-section {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .research-section h2 {
+            color: #334155;
+            border-bottom-color: #e2e8f0;
+            margin-top: 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: bold;
+            color: #475569;
+            border-bottom: 2px solid #cbd5e1;
+            font-size: 0.78rem;
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.72rem;
+            font-weight: bold;
+        }
+
+        .tag-hot { background: #fee2e2; color: #dc2626; }
+        .tag-high { background: #fef3c7; color: #d97706; }
+        .tag-mid { background: #e0e7ff; color: #4338ca; }
+        .tag-low { background: #f1f5f9; color: #64748b; }
+        .tag-zero { background: #d1fae5; color: #059669; }
+        .tag-rising { background: #dcfce7; color: #16a34a; }
+        .tag-plateau { background: #fef3c7; color: #ca8a04; }
+        .tag-peaked { background: #fee2e2; color: #dc2626; }
+
+        .insight-box {
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+            border: 1px solid #fde68a;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .insight-box strong {
+            color: #92400e;
+        }
+
+        .verdict-box {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border: 1px solid #6ee7b7;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .verdict-box strong {
+            color: #065f46;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 1px solid #fca5a5;
+            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+
+        .warning-box strong {
+            color: #991b1b;
+        }
+
+        /* Series Overview */
+        .series-overview {
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .series-overview h2 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            border-bottom-color: #f9a8d4;
+            text-align: center;
+        }
+
+        .series-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .flow-item {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-item.completed {
+            background: var(--primary);
+            color: white;
+        }
+
+        .flow-arrow {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .series-desc {
+            font-size: 0.88rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Course Card */
+        .course-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .course-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .course-number {
+            font-size: 1.8rem;
+            font-weight: 900;
+            min-width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .course-header-text { flex: 1; }
+
+        .course-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .course-tagline {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 0;
+        }
+
+        .badge-completed {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .badge-new {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        /* Color themes per course */
+        .course-1 .course-header { background: linear-gradient(135deg, #fce7f3, #fff0f7); }
+        .course-1 .course-number { background: var(--primary); }
+        .course-1 .course-title { color: var(--primary-dark); }
+
+        .course-2 .course-header { background: linear-gradient(135deg, #ede9fe, #f5f3ff); }
+        .course-2 .course-number { background: #8b5cf6; }
+        .course-2 .course-title { color: #6d28d9; }
+
+        .course-3 .course-header { background: linear-gradient(135deg, #d1fae5, #ecfdf5); }
+        .course-3 .course-number { background: #10b981; }
+        .course-3 .course-title { color: #047857; }
+
+        .course-4 .course-header { background: linear-gradient(135deg, #dbeafe, #eff6ff); }
+        .course-4 .course-number { background: #3b82f6; }
+        .course-4 .course-title { color: #1d4ed8; }
+
+        .course-5 .course-header { background: linear-gradient(135deg, #fef3c7, #fffbeb); }
+        .course-5 .course-number { background: #f59e0b; }
+        .course-5 .course-title { color: #b45309; }
+
+        .course-body { padding: 1.5rem 2rem; }
+
+        .section-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .section-table th {
+            background: #f9fafb;
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: bold;
+            color: #6b7280;
+            border-bottom: 2px solid #e5e7eb;
+            font-size: 0.78rem;
+        }
+
+        .section-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .section-table tr:last-child td { border-bottom: none; }
+        .section-table .sec-num { font-weight: bold; color: #9ca3af; width: 30px; }
+        .section-table .sec-title { font-weight: 600; color: var(--text); }
+
+        .course-rationale {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .rationale-item {
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+        }
+
+        .rationale-item .r-label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 2px;
+            font-size: 0.75rem;
+        }
+
+        .r-market { background: #f0fdf4; border: 1px solid #bbf7d0; }
+        .r-market .r-label { color: #166534; }
+
+        .r-usp { background: #fef3c7; border: 1px solid #fde68a; }
+        .r-usp .r-label { color: #92400e; }
+
+        .r-source { background: #f0f9ff; border: 1px solid #bae6fd; }
+        .r-source .r-label { color: #0c4a6e; }
+
+        .r-book { background: #fdf2f8; border: 1px solid #fbcfe8; }
+        .r-book .r-label { color: #9d174d; }
+
+        /* Mapping section */
+        .mapping-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+
+        .mapping-table th {
+            background: linear-gradient(135deg, #fdf2f8, #f5f3ff);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: bold;
+            color: var(--primary-dark);
+            border-bottom: 2px solid #f9a8d4;
+            font-size: 0.78rem;
+        }
+
+        .mapping-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f3f4f6;
+            vertical-align: top;
+        }
+
+        .mapping-table tr:last-child td { border-bottom: none; }
+
+        /* Decision box */
+        .decision-section {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid #7dd3fc;
+        }
+
+        .decision-section h2 {
+            color: #0c4a6e;
+            border-bottom-color: #7dd3fc;
+            margin-top: 0;
+        }
+
+        .vs-box {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .vs-option {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.2rem;
+            font-size: 0.85rem;
+        }
+
+        .vs-option.winner {
+            border: 3px solid var(--green);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .vs-option.loser {
+            border: 1px solid #e2e8f0;
+            opacity: 0.7;
+        }
+
+        .vs-label {
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .vs-divider {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .winner-badge {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: 6px;
+        }
+
+        /* Philosophy */
+        .philosophy {
+            margin-top: 2rem;
+            background: linear-gradient(135deg, #fdf2f8, #f5f3ff);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .philosophy h2 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            text-align: center;
+            border-bottom-color: #f9a8d4;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .philosophy-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.85rem;
+        }
+
+        .philosophy-item .label {
+            font-weight: bold;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.4rem; }
+            .series-flow { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .course-header { flex-direction: column; text-align: center; }
+            .course-rationale { grid-template-columns: 1fr; }
+            .philosophy-grid { grid-template-columns: 1fr; }
+            .vs-box { grid-template-columns: 1fr; }
+            .vs-divider { transform: rotate(90deg); }
+            .data-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Udemy 5講座シリーズ企画案 v3</h1>
+        <p class="subtitle">市場リサーチ ＋ 玲子先生フィードバック反映版 ― 2026年3月3日</p>
+
+        <!-- ===================== RESEARCH SUMMARY ===================== -->
+        <div class="research-section">
+            <h2>リサーチ結果サマリー</h2>
+
+            <h3>Udemy市場：子育て講座の競合状況</h3>
+            <p style="font-size:0.88rem; color:#555;">日本語の子育て講座は全体で12〜15本程度。<strong>ほぼ全キーワードがブルーオーシャン</strong>。</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>キーワード</th>
+                        <th>競合数</th>
+                        <th>最大受講者</th>
+                        <th>競合度</th>
+                        <th>機会</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>非認知能力</strong></td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td><span class="tag tag-zero">ゼロ</span></td>
+                        <td><span class="tag tag-hot">極めて高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>おうちモンテッソーリ</strong></td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td><span class="tag tag-zero">ゼロ</span></td>
+                        <td><span class="tag tag-hot">極めて高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>STEAM教育 子ども</strong></td>
+                        <td>0</td>
+                        <td>-</td>
+                        <td><span class="tag tag-zero">ゼロ</span></td>
+                        <td><span class="tag tag-hot">極めて高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>おうち英語</strong></td>
+                        <td>5-6</td>
+                        <td>97人</td>
+                        <td><span class="tag tag-low">低い</span></td>
+                        <td><span class="tag tag-hot">極めて高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>子ども 習慣・自律</strong></td>
+                        <td>1</td>
+                        <td>31人</td>
+                        <td><span class="tag tag-zero">ほぼゼロ</span></td>
+                        <td><span class="tag tag-high">高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>自己肯定感 子育て</strong></td>
+                        <td>3-4</td>
+                        <td>243人</td>
+                        <td><span class="tag tag-low">低い</span></td>
+                        <td><span class="tag tag-high">高い</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>声かけ・褒め方叱り方</strong></td>
+                        <td>2-3</td>
+                        <td>478人</td>
+                        <td><span class="tag tag-low">低い</span></td>
+                        <td><span class="tag tag-high">高い</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Googleトレンド：キーワード検索推移（2024-2026）</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>キーワード</th>
+                        <th>トレンド</th>
+                        <th>フェーズ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>非認知能力</strong></td>
+                        <td><span class="tag tag-rising">急上昇</span></td>
+                        <td>親の70%以上が重要性を認識。政府の教育振興基本計画にも明記</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>STEAM教育</strong></td>
+                        <td><span class="tag tag-rising">急上昇</span></td>
+                        <td>世界市場2030年に$255B予測。文科省が正式推進</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>おうち英語</strong></td>
+                        <td><span class="tag tag-rising">急上昇</span></td>
+                        <td>小学校英語必修化で親の需要爆発。日経も「活況」と報道</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>自己肯定感</strong></td>
+                        <td><span class="tag tag-plateau">高水準安定</span></td>
+                        <td>2018-2022にブレイク済み。今は主流化して成長鈍化</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>声かけ</strong></td>
+                        <td><span class="tag tag-plateau">安定</span></td>
+                        <td>書籍ベストセラーで継続的需要。リピート検索が多い</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><strong>おうちモンテ</strong></td>
+                        <td><span class="tag tag-peaked">ピーク過ぎ</span></td>
+                        <td>2020-2022のCOVID期にピーク。「古い」という記事も出始め</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><strong>グリット・やり抜く力</strong></td>
+                        <td><span class="tag tag-low">ニッチ</span></td>
+                        <td>非認知能力の一部として吸収。単独キーワードとしては弱い</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>重要な発見</h3>
+
+            <div class="insight-box">
+                <strong>発見1：「非認知能力」が最強キーワード</strong><br>
+                Udemy競合ゼロ、Googleトレンド#1、親の90%以上が学校教育への導入を望む。講座1はこのキーワードを押さえており、シリーズの入口として最適。
+            </div>
+
+            <div class="warning-box">
+                <strong>発見2：「自己肯定感」はタイトルに使うべきではない</strong><br>
+                需要は高いがUdemy以外の広域プラットフォームでは50+講座が乱立する激戦区。タイトルでは避け、「認め方・叱り方」「声かけ」など実践的な表現に置き換えるのが戦略的。
+            </div>
+
+            <div class="warning-box">
+                <strong>発見3：「おうちモンテ」はピーク過ぎ</strong><br>
+                2020-2022のCOVID期にブーム、現在は安定～下降。ただしUdemy上は競合ゼロ。タイトルは「おうちモンテ」だけに頼らず、「レッジョ」「五感」「環境づくり」で新鮮さを出す。
+            </div>
+
+            <div class="verdict-box">
+                <strong>発見4：「親の充足感ファースト」はブルーオーシャン</strong><br>
+                競合分析で判明：99%の競合は「子どもを変える」「親のスキルを上げる」アプローチ。「親が満たされれば子どもが変わる」という切り口は、玲子先生だけが占有できるポジション。
+            </div>
+        </div>
+
+        <!-- ===================== DECISION: 案1 vs 案2 ===================== -->
+        <div class="decision-section">
+            <h2>判定：玲子先生の案1（STEAM） vs 案2（意志力・習慣化）</h2>
+            <p style="font-size:0.88rem; color:#334155;">5本目のテーマをどちらにするか、リサーチ結果で判断します。</p>
+
+            <div class="vs-box">
+                <div class="vs-option winner">
+                    <div class="vs-label">案1：STEAM・探究学習 <span class="winner-badge">採用</span></div>
+                    <ul style="font-size:0.82rem; margin:0; padding-left:18px;">
+                        <li>Googleトレンド <strong>#2</strong>（急上昇）</li>
+                        <li>Udemy競合 <strong>ゼロ</strong></li>
+                        <li>文科省が正式推進、世界市場$255B予測</li>
+                        <li>YouTube上にも日本語コンテンツがほぼない</li>
+                        <li>レッジョ・アプローチとの親和性が高い</li>
+                    </ul>
+                </div>
+
+                <div class="vs-divider">VS</div>
+
+                <div class="vs-option loser">
+                    <div class="vs-label">案2：意志力・習慣化</div>
+                    <ul style="font-size:0.82rem; margin:0; padding-left:18px;">
+                        <li>Googleトレンド <strong>#9</strong>（ニッチ）</li>
+                        <li>Udemy競合 1本（31人）</li>
+                        <li>「グリット」は非認知能力に吸収された</li>
+                        <li>アプリ市場は伸びているが講座需要は不明</li>
+                        <li>講座2・4に要素を織り込み可能</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict-box">
+                <strong>結論：</strong>5本目は案1（STEAM・探究学習）を採用。玲子先生のレッジョ・アプローチ × JOY活 × SMILEメソッドを関連づける独自の切り口で差別化。案2の「自律・習慣」要素は講座3（自分でできる子の育て方）の中心テーマとして採用。
+            </div>
+        </div>
+
+        <!-- ===================== SERIES OVERVIEW ===================== -->
+        <div class="series-overview">
+            <h2>v3：5講座構成（玲子先生FB反映）</h2>
+            <div class="series-flow">
+                <div class="flow-item completed">講座1<br>非認知能力<br>×SMILE概論</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座2<br>思考分離<br>×足るを知る</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座3<br>自律×安心<br>×生きる力</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座4<br>モンテ×レッジョ<br>×環境づくり</div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-item">講座5<br>STEAM<br>×探究学習</div>
+            </div>
+            <p class="series-desc">
+                各講座はそれぞれ<strong>独立した別のテーマ・別の学び</strong>。書籍の未講座化チャプターを最大活用。<br>
+                単体でも購入でき、シリーズで揃えるとJOY活の全体像が立体的に身につく構成。
+            </p>
+        </div>
+
+        <!-- ===================== MAPPING TABLE ===================== -->
+        <h2>v2 → v3 の変更点と根拠</h2>
+
+        <div class="warning-box" style="margin-bottom: 1rem;">
+            <strong>玲子先生のフィードバック（v2に対して）：</strong><br>
+            ・講座4（モンテ×レッジョ）と講座5（STEAM）は <strong>OK</strong><br>
+            ・講座2（認め方・叱り方）→ ピンとこない<br>
+            ・講座3（おうち英語）→ <strong>却下</strong>「基本的に親が第2言語を子どもに話すのを勧めていない」<br>
+            ・「自律・習慣はすごく大事。ただ興味持たれるタイトル工夫しないと」
+        </div>
+
+        <table class="mapping-table">
+            <thead>
+                <tr>
+                    <th>v2</th>
+                    <th>→ v3</th>
+                    <th>変更理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>講座1：非認知能力 × SMILE</td>
+                    <td><strong>変更なし</strong> <span class="badge-completed">完成済み</span></td>
+                    <td>-</td>
+                </tr>
+                <tr style="background:#f5f3ff;">
+                    <td style="text-decoration:line-through; color:#999;">講座2：認め方・叱り方</td>
+                    <td><strong>講座2：思考分離 × 足るを知る × 金継ぎマインド</strong></td>
+                    <td>書籍第3・4章の未使用コンテンツを活用。「親の充足ファースト」ブルーオーシャンを確立</td>
+                </tr>
+                <tr style="background:#ecfdf5;">
+                    <td style="text-decoration:line-through; color:#999;">講座3：おうち英語 × 国際力</td>
+                    <td><strong>講座3：「自分でできる子」の育て方 ― 自律 × 安心 × 生きる力</strong></td>
+                    <td>おうち英語は却下。玲子先生が重要視する「自律・習慣」＋書籍第5・6章の未使用コンテンツを活用</td>
+                </tr>
+                <tr>
+                    <td>講座4：モンテ × レッジョ × 環境</td>
+                    <td><strong>変更なし</strong></td>
+                    <td>玲子先生「ピンとくる」とコメント</td>
+                </tr>
+                <tr>
+                    <td>講座5：STEAM × 探究学習</td>
+                    <td><strong>変更なし</strong></td>
+                    <td>玲子先生「ピンとくる」とコメント</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="verdict-box">
+            <strong>v3の特徴：</strong>書籍の第3〜6章を2講座に構成。講座2は「親の内面」（思考分離 + 足るを知る）、講座3は「子どもの内面 + 家庭文化」（自律 + あたたかい土壌）。講座4の「外側の環境づくり」と明確に差別化。
+        </div>
+
+        <!-- ===================== COURSE CARDS ===================== -->
+
+        <!-- Course 1 -->
+        <div class="course-card course-1">
+            <div class="course-header">
+                <div class="course-number">1</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        SMILEメソッドで育む5つの非認知能力<br>― AI時代に本当に必要な力とは
+                        <span class="badge-completed">完成済み</span>
+                    </p>
+                    <p class="course-tagline">全8セクション・19レクチャー・約90分</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead><tr><th>#</th><th>セクション見出し</th></tr></thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】AI時代に「本当に」必要な力とは</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【土台】すべての能力は「親のJOY」から始まる</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【S】AIには真似できない「つながる力」</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【M】世界のどこでも愛される「品格」</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【I】「好き」が「才能」に変わる探究心</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【L】世界とつながる「表現力と柔軟性」</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【E】困難を乗り越える「情熱とGRIT」</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】JOYの循環が、未来を創る</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-rationale">
+                    <div class="rationale-item r-market">
+                        <span class="r-label">市場データ</span>
+                        「非認知能力」はGoogleトレンド#1、Udemy競合ゼロ。親の90%+が学校での導入を望む
+                    </div>
+                    <div class="rationale-item r-usp">
+                        <span class="r-label">玲子先生のUSP</span>
+                        SMILEメソッドという独自フレームワークで非認知能力を体系化した唯一の講師
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 2 (v3: NEW) -->
+        <div class="course-card course-2">
+            <div class="course-header">
+                <div class="course-number">2</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        子育てのモヤモヤが晴れる「心の整え方」<br>― 思考分離 × 足るを知る × 金継ぎマインド
+                        <span class="badge-new">v3 NEW</span>
+                    </p>
+                    <p class="course-tagline">書籍 第3章「思考分離」＋ 第4章「足るを知る」― 親の内面変革に特化した講座</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead><tr><th>#</th><th>セクション見出し</th></tr></thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】なぜ「親の心の状態」がすべてを決めるのか</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【科学】感情伝染 ― あなたの心の天気が子どもに伝わる仕組み</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【思考分離①】モヤモヤを4つに分ける技術 ― 事実・感情・解釈・不安</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【思考分離②】「誰の課題か」を分ける ― アドラー式・課題分離の実践</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【足るを知る①】金継ぎマインド ― 「完璧じゃない私」が最高の私</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【足るを知る②】脳のセンサーを鍛える ― 「うれしいこと探し」の習慣</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【実践】引き算の子育て ― 「やらなくていい」を決めてラクになる</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】「足るを知る」親から「自分を好きな」子どもが育つ</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-rationale">
+                    <div class="rationale-item r-market">
+                        <span class="r-label">市場データ</span>
+                        「親の充足感ファースト」は競合分析でゼロ（ブルーオーシャン）。99%の競合が「子どもを変える」アプローチの中で唯一の「親が変わる」切り口
+                    </div>
+                    <div class="rationale-item r-usp">
+                        <span class="r-label">玲子先生のUSP</span>
+                        独自の「4要素思考分離」フレームワーク。金継ぎメタファーは日本文化に深く響く。$3/日からの復活実体験に裏打ちされた「足るを知る」の説得力
+                    </div>
+                    <div class="rationale-item r-book">
+                        <span class="r-label">書籍コンテンツ</span>
+                        第3章「思考分離」（4要素分離、課題分離、エネルギー管理）＋ 第4章「足るを知る」（金継ぎ、脳のセンサー、引き算アプローチ、息子さんの中国プリスクール実話）
+                    </div>
+                    <div class="rationale-item r-source">
+                        <span class="r-label">v3変更理由</span>
+                        v2「認め方・叱り方」は声かけ系講座と差別化が弱かった。書籍の最も豊かな未使用チャプターを活用し、玲子先生のブルーオーシャンポジションを確立
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 3 (v3: NEW) -->
+        <div class="course-card course-3">
+            <div class="course-header">
+                <div class="course-number">3</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        「自分でできる子」が育つ家庭のつくり方<br>― 自律 × 安心 × 生きる力
+                        <span class="badge-new">v3 NEW</span>
+                    </p>
+                    <p class="course-tagline">書籍 第5章「自律」＋ 第6章「あたたかい土壌」― 子どもの内面 ＋ 家庭文化の構築</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead><tr><th>#</th><th>セクション見出し</th></tr></thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】「自分でできる子」と「やらされる子」を分けるもの</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【自律】自律のほんとうの意味 ― 「厳しさ」ではなく「心地よいリズム」</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【安全基地】家庭の心理的安全性 ― 子どもの挑戦を支える「帰れる場所」</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【怒る vs 叱る】感情を分離して「伝わる叱り方」をマスターする</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【生活習慣】世界で通用する4つの基本ライフスキル</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【構造化された自由】やりたいことをやるための「枠」のつくり方</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【愛情表現】日本・アメリカ・中国の言葉から学ぶ「直接的に愛を伝える」技術</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】カーリングペアレントにならない「見守る勇気」</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-rationale">
+                    <div class="rationale-item r-market">
+                        <span class="r-label">市場データ</span>
+                        「子ども 自律・習慣」Udemy競合1本（31人）のみ。心理的安全性を家庭に応用する講座はゼロ。普遍的な親の悩み（言うこと聞かない、自分でやらない）にダイレクトに刺さるテーマ
+                    </div>
+                    <div class="rationale-item r-usp">
+                        <span class="r-label">玲子先生のUSP</span>
+                        「自律＝厳しさではなく心地よさ」という再定義は競合にない切り口。日米中の愛情表現比較はトリリンガル経験ならでは。Sora幼稚園での実践例を豊富に提供可能
+                    </div>
+                    <div class="rationale-item r-book">
+                        <span class="r-label">書籍コンテンツ</span>
+                        第5章「自律」（構造化された自由、自律vs自立、4つのライフスキル、カーリングペアレント問題）＋ 第6章「あたたかい土壌」（心理的安全性、怒るvs叱る、愛情表現の日米中比較、感情伝染）
+                    </div>
+                    <div class="rationale-item r-source">
+                        <span class="r-label">v3変更理由</span>
+                        「おうち英語」は玲子先生の方針と不一致（親が第2言語を話すことを非推奨）。玲子先生が「すごく大事」と明言した自律・習慣を、魅力的なタイトルで講座化
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-card course-4">
+            <div class="course-header">
+                <div class="course-number">4</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        シリコンバレー流「おうちモンテ＆レッジョ」入門<br>― 0歳からの才能を伸ばす環境づくりと五感あそび
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">玲子先生 案5ベース ― 実際にプリスクールを運営する講師だからこそ語れる実践編</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead><tr><th>#</th><th>セクション見出し</th></tr></thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】モンテッソーリとレッジョ・エミリア ― 2つの教育法の共通点と違い</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【環境設計】子どもの「やりたい」を引き出す部屋づくりの基本</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【五感】AI時代こそ「感じる力」― 五感を育てる日常のあそび</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【年齢別①】0-2歳：感覚の敏感期を活かした環境と関わり方</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【年齢別②】3-6歳：「自分でできる」を支える仕組みと自律の育て方</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【実践】家庭でできるモンテ＆レッジョの教具・あそびアイデア集</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【生活習慣】世界で通用する4つの基本ライフスキル</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】「見守る」ことが最高の教育である</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-rationale">
+                    <div class="rationale-item r-market">
+                        <span class="r-label">市場データ</span>
+                        Udemy「おうちモンテ」競合ゼロ。YouTubeも日本語チャンネルほぼなし。ただしGoogleトレンドはピーク過ぎ→「レッジョ」「五感」「環境づくり」で新鮮さを出す
+                    </div>
+                    <div class="rationale-item r-usp">
+                        <span class="r-label">玲子先生のUSP</span>
+                        モンテッソーリ＋レッジョ＋アドラーを統合した実際の園を14年以上運営。資格だけでなく「運営実績」がある唯一の講師
+                    </div>
+                    <div class="rationale-item r-source">
+                        <span class="r-label">案の出所</span>
+                        玲子先生・案5「おうちモンテ＆レッジョ」＋ 案2の「自律・生活習慣」要素をセクション5・7に統合
+                    </div>
+                    <div class="rationale-item r-book">
+                        <span class="r-label">書籍コンテンツ</span>
+                        第2章「五感アプローチ」「DMN」、第5章「自律と自立の違い」「4つの基本ライフスキル」を活用
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-card course-5">
+            <div class="course-header">
+                <div class="course-number">5</div>
+                <div class="course-header-text">
+                    <p class="course-title">
+                        AI時代を生き抜く「考える力」の育て方<br>― 家庭でできる探究学習とSTEAM教育
+                        <span class="badge-new">NEW</span>
+                    </p>
+                    <p class="course-tagline">玲子先生 案1ベース ― レッジョ・アプローチを通じた家庭STEAM</p>
+                </div>
+            </div>
+            <div class="course-body">
+                <table class="section-table">
+                    <thead><tr><th>#</th><th>セクション見出し</th></tr></thead>
+                    <tbody>
+                        <tr><td class="sec-num">1</td><td class="sec-title">【序章】「考える力」が最大の武器になる時代 ― AI vs 人間の本当の差</td></tr>
+                        <tr><td class="sec-num">2</td><td class="sec-title">【STEAM入門】Science〜Artsの5領域を家庭で実践する方法</td></tr>
+                        <tr><td class="sec-num">3</td><td class="sec-title">【探究心】子どもの「なぜ？」を殺さない3つのルール</td></tr>
+                        <tr><td class="sec-num">4</td><td class="sec-title">【創造性】退屈な時間がひらめきを生む ― DMNと創造性の科学</td></tr>
+                        <tr><td class="sec-num">5</td><td class="sec-title">【レッジョ式】プロジェクト型学習を家庭に取り入れる</td></tr>
+                        <tr><td class="sec-num">6</td><td class="sec-title">【実践】年齢別STEAM遊び ― キッチン・公園・おうちラボ</td></tr>
+                        <tr><td class="sec-num">7</td><td class="sec-title">【問いかけ】考える力を伸ばす親の「質問力」</td></tr>
+                        <tr><td class="sec-num">8</td><td class="sec-title">【終章】「好き」から始まる探究が未来を創る</td></tr>
+                    </tbody>
+                </table>
+                <div class="course-rationale">
+                    <div class="rationale-item r-market">
+                        <span class="r-label">市場データ</span>
+                        STEAM教育はGoogleトレンド#2急上昇、Udemy競合ゼロ、YouTube日本語チャンネルもほぼなし。文科省が正式推進中。最も未開拓な領域
+                    </div>
+                    <div class="rationale-item r-usp">
+                        <span class="r-label">玲子先生のUSP</span>
+                        レッジョ・エミリア・アプローチ（探究型学習の元祖）の実践者。「generic STEAM」ではなく「レッジョ式探究×STEAM」という独自ポジション
+                    </div>
+                    <div class="rationale-item r-source">
+                        <span class="r-label">案の出所</span>
+                        玲子先生・案1「思考力・STEAM」＋ きぬきぬの「探究心×声かけ」実践構成
+                    </div>
+                    <div class="rationale-item r-book">
+                        <span class="r-label">書籍コンテンツ</span>
+                        第2章「DMN＋五感」、SMILEの「I（Interests/探究心）」章、70-20-10学習モデルを活用
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== PHILOSOPHY ===================== -->
+        <div class="philosophy">
+            <h2>シリーズ全体の設計思想（v3）</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-item">
+                    <span class="label">講座1 ― 非認知能力 × SMILE概論（入口）</span>
+                    トレンド#1キーワードで集客。SMILEメソッドの全体像を伝え、シリーズへの関心を喚起
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座2 ― 思考分離 × 足るを知る（親の内面）</span>
+                    ブルーオーシャン「親が先に満たされる」を確立。金継ぎマインドで自己受容→子どもへの好循環
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座3 ― 自律 × 安心（子どもの内面＋家庭文化）</span>
+                    自律＝心地よさという再定義。心理的安全性で支える家庭づくり。普遍的な親の悩みにダイレクトに刺さる
+                </div>
+                <div class="philosophy-item">
+                    <span class="label">講座4 ― モンテ × レッジョ × 環境づくり（外側の環境）</span>
+                    0歳からの新規層開拓。実際の園運営者という圧倒的差別化。Sora幼稚園の具体例を多数収録
+                </div>
+            </div>
+            <div class="philosophy-grid" style="margin-top: 10px;">
+                <div class="philosophy-item" style="grid-column: 1 / -1; text-align: center;">
+                    <span class="label">講座5 ― 探究学習 × STEAM（知的好奇心）</span>
+                    トレンド#2 × 競合ゼロ。レッジョ式×JOY活×SMILEを関連づける高付加価値講座
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding: 1rem; background: white; border-radius: 10px; font-size: 0.85rem;">
+                <strong>書籍チャプターの講座への対応：</strong>
+                <table class="data-table" style="margin-top:0.5rem;">
+                    <thead>
+                        <tr><th>書籍</th><th>章タイトル</th><th>→ 対応講座</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>第1章</td><td>JOY活とは（五感・DMN）</td><td>講座1 + 講座4 + 講座5</td></tr>
+                        <tr><td>第2章</td><td>五感アプローチ</td><td>講座4（五感あそび）+ 講座5（DMN・創造性）</td></tr>
+                        <tr><td><strong>第3章</strong></td><td><strong>思考分離</strong></td><td><strong>講座2（メイン）</strong></td></tr>
+                        <tr><td><strong>第4章</strong></td><td><strong>足るを知る</strong></td><td><strong>講座2（メイン）</strong></td></tr>
+                        <tr><td><strong>第5章</strong></td><td><strong>自律</strong></td><td><strong>講座3（メイン）</strong></td></tr>
+                        <tr><td><strong>第6章</strong></td><td><strong>あたたかい土壌</strong></td><td><strong>講座3（メイン）</strong></td></tr>
+                        <tr><td>第7章</td><td>SMILEメソッド</td><td>講座1（メイン）+ 全講座で参照</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 10px; font-size: 0.85rem;">
+                <strong>v2 → v3 の主な変更点：</strong>
+                <ul style="margin: 0.5rem 0 0 0; padding-left: 20px;">
+                    <li>講座2：「認め方・叱り方」→ <strong>「思考分離 × 足るを知る × 金継ぎマインド」</strong>に変更（書籍第3・4章を活用）</li>
+                    <li>講座3：「おうち英語 × 国際力」→ <strong>「自分でできる子 × 自律 × 安心」</strong>に変更（玲子先生のFB反映＋書籍第5・6章を活用）</li>
+                    <li>講座2は<strong>親の内面</strong>、講座3は<strong>子どもの内面＋家庭文化</strong>、講座4は<strong>外側の環境</strong> ― 3層構造で明確に差別化</li>
+                    <li>書籍の第3〜6章（計4章分）の未使用コンテンツを講座2・3に配分し、<strong>書籍全7章をシリーズ全体でカバー</strong></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

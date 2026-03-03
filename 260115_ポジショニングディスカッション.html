@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy講座 ポジショニングディスカッション資料</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        header .date {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: var(--gray);
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin: 0.75rem 0;
+            color: var(--dark);
+        }
+
+        /* アジェンダ */
+        .agenda {
+            background: var(--primary-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .agenda h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .agenda ol {
+            margin-left: 1.5rem;
+        }
+
+        .agenda li {
+            margin: 0.5rem 0;
+        }
+
+        /* カード */
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.highlight {
+            border-left: 4px solid var(--primary);
+            background: #fafafa;
+        }
+
+        .card.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .card.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .card.danger {
+            border-left: 4px solid var(--danger);
+        }
+
+        /* テーブル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        /* タグ */
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag.blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag.green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag.purple {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .tag.orange {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .tag.red {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* 引用 */
+        blockquote {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--warning);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+        }
+
+        /* リスト */
+        ul,
+        ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        li {
+            margin: 0.3rem 0;
+        }
+
+        /* グリッド */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* 修正案カード */
+        .proposal-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .proposal-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .proposal-card .header {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .proposal-card .header.a {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .proposal-card .header.b {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .proposal-card .header.c {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        }
+
+        .proposal-card .header.d {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .proposal-card .body {
+            padding: 1.5rem;
+        }
+
+        .proposal-card h4 {
+            margin: 0;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .proposal-card h3 {
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+
+        .proposal-card .title-box {
+            background: #f3f4f6;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* スコアバー */
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .score-bar .label {
+            width: 100px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .score-bar .bar {
+            flex: 1;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .score-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .score-bar .fill.high {
+            background: var(--success);
+        }
+
+        .score-bar .fill.medium {
+            background: var(--warning);
+        }
+
+        .score-bar .fill.low {
+            background: var(--danger);
+        }
+
+        /* 推奨バッジ */
+        .recommend-badge {
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .proposal-wrapper {
+            position: relative;
+            margin-top: 1.5rem;
+        }
+
+        /* セクション区切り */
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            margin: 3rem 0;
+        }
+
+        /* 決定事項ボックス */
+        .decision-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fff7ed 100%);
+            border: 2px dashed var(--warning);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .decision-box h3 {
+            color: var(--warning);
+            margin-top: 0;
+        }
+
+        /* フッター */
+        footer {
+            background: var(--light);
+            padding: 2rem 3rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* 比較表のスタイル */
+        .comparison-table {
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            min-width: 800px;
+        }
+
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            position: sticky;
+            left: 0;
+            background: white;
+            z-index: 1;
+        }
+
+        /* 課題/機会マトリクス */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .matrix-item {
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .matrix-item.strength {
+            background: #d1fae5;
+        }
+
+        .matrix-item.weakness {
+            background: #fee2e2;
+        }
+
+        .matrix-item.opportunity {
+            background: #dbeafe;
+        }
+
+        .matrix-item.threat {
+            background: #fef3c7;
+        }
+
+        /* チェックリスト */
+        .checklist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Udemy講座 ポジショニングディスカッション資料</h1>
+            <p class="subtitle">玲子先生フィードバックに基づく講座設計の再検討</p>
+            <p class="date">2026年1月15日 ミーティング用</p>
+        </header>
+
+        <div class="content">
+            <!-- アジェンダ -->
+            <div class="agenda">
+                <h3>📋 本日のアジェンダ</h3>
+                <ol>
+                    <li><strong>市場分析</strong>：Udemy子育て講座の競合状況と売れるパターン</li>
+                    <li><strong>現状の課題</strong>：現プランに対するフィードバックの整理</li>
+                    <li><strong>4つの修正案</strong>：詳細カリキュラムと比較評価</li>
+                    <li><strong>ディスカッション</strong>：方向性の決定</li>
+                    <li><strong>ネクストアクション</strong>：具体的な次のステップ</li>
+                </ol>
+            </div>
+
+            <hr>
+
+            <!-- セクション1: 市場分析 -->
+            <h2>📊 1. Udemy子育て講座の市場分析</h2>
+
+            <h3>1-1. 市場規模</h3>
+            <div class="grid-2">
+                <div class="card highlight">
+                    <h4>育児カテゴリ全体</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: var(--primary);">622,763人</p>
+                    <p>学習者数（Udemy公式）</p>
+                </div>
+                <div class="card highlight">
+                    <h4>日本のUdemy利用者</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: var(--primary);">200万人以上</p>
+                    <p>ベネッセ提携後の累計</p>
+                </div>
+            </div>
+
+            <h3>1-2. 競合上位者のタイトル一覧</h3>
+            <p>以下は、子育て・幼児教育カテゴリで人気を集めている講座です。</p>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>講座タイトル</th>
+                            <th>評価</th>
+                            <th>売れるポイント</th>
+                            <th>タグ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>6歳までに伸ばしたい8つの知性</strong></td>
+                            <td>★4.3</td>
+                            <td>数字入り（8つ）、具体的スキル</td>
+                            <td><span class="tag green">ベストセラー</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>叱り方・褒め方セミナー</strong>（伊藤美佳）</td>
+                            <td>★4.5</td>
+                            <td>すぐ実践できる、シンプル</td>
+                            <td><span class="tag green">高評価</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3歳からのグローバル教育。5つの国際力の伸ばし方</strong></td>
+                            <td>★4.2</td>
+                            <td>数字入り（5つ）、グローバル</td>
+                            <td><span class="tag blue">人気</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>東大生を育てた親に学ぶ！自立脳を育てる子育てマスターコース</strong></td>
+                            <td>★4.2+</td>
+                            <td>権威性（東大）、具体的成果</td>
+                            <td><span class="tag purple">権威訴求</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>子どもを性暴力から守る方法</strong></td>
+                            <td>★4.9</td>
+                            <td>切実な悩み解決、即効性</td>
+                            <td><span class="tag green">高評価</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>【きょうだい喧嘩を8割減らす】アドラー心理学を軸にした子育て法</strong></td>
+                            <td>-</td>
+                            <td>数字で効果明示（8割）</td>
+                            <td><span class="tag orange">数字訴求</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>脳科学のコーチング理論で感情の力を味方につける</strong></td>
+                            <td>★4.2</td>
+                            <td>脳科学、科学的根拠</td>
+                            <td><span class="tag blue">科学訴求</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>子どもの自己肯定感育成コース【共感力】を使った</strong></td>
+                            <td>-</td>
+                            <td>人気ワード＋具体的手法</td>
+                            <td><span class="tag purple">自己肯定感</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>1-3. 売れる講座のパターン分析</h3>
+            <div class="card success">
+                <h4>✅ 共通する成功要因</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>パターン</th>
+                            <th>例</th>
+                            <th>効果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>📌 数字を入れる</strong></td>
+                            <td>「8つの知性」「5つの国際力」「8割減らす」</td>
+                            <td>具体性と信頼感が増す</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📌 すぐ使える</strong></td>
+                            <td>「叱り方・褒め方」「声のかけ方」</td>
+                            <td>即効性を感じる</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📌 悩みに直結</strong></td>
+                            <td>「きょうだい喧嘩」「イライラ」</td>
+                            <td>共感を得やすい</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📌 権威×科学</strong></td>
+                            <td>「東大生を育てた親」「脳科学」</td>
+                            <td>信頼性を担保</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card danger">
+                <h4>⚠️ 避けるべきパターン</h4>
+                <ul>
+                    <li><strong>抽象的なタイトル</strong>：何が得られるかわからない</li>
+                    <li><strong>思想論中心</strong>：「考え方」だけでは弱い</li>
+                    <li><strong>オリジナル用語のみ</strong>：「JOY活」だけでは検索されない</li>
+                    <li><strong>長すぎるタイトル</strong>：核心がぼやける</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <!-- セクション2: 玲子先生のフィードバック -->
+            <h2>💬 2. 玲子先生のフィードバック整理</h2>
+
+            <h3>2-1. 核心的な指摘</h3>
+            <blockquote>
+                「Udemyはもうちょっとノウハウ寄りで、すぐに試せる系の内容がいいかな」<br>
+                「思想論は売れなさそう」<br>
+                「このスキル知らないと！くらいのタイトルがいいね」
+            </blockquote>
+
+            <h3>2-2. 具体的な提案内容</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>💡 アプローチの提案</h4>
+                    <ul>
+                        <li>日常でもレッジョ方式の<strong>声のかけ方</strong></li>
+                        <li><strong>お家でモンテッソーリ</strong>実践</li>
+                        <li>モンテッソーリが人気ならJOY活に絡ませる</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🎯 ワーク系の提案</h4>
+                    <ul>
+                        <li>実際に<strong>五感を開くワーク</strong></li>
+                        <li><strong>自己肯定感ワーク</strong>（自分大好きワーク）</li>
+                        <li><strong>自動思考の止め方</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>2-3. 玲子先生が提案したタイトル案5つ</h3>
+            <div class="card highlight">
+                <ol>
+                    <li><strong>【思考の断捨離】</strong>親の「心配」を「信頼」に変える技術：子どもの自立を促す「課題の分離」実践メソッド</li>
+                    <li><strong>脳科学でイライラを強制終了！</strong>「自動思考」を手放し、5分で心に余白を作るJOY活ウォーミングアップ</li>
+                    <li><strong>シリコンバレー式「非認知能力」の育て方：</strong>先取り学習よりも大切な、AI時代に負けない5つの土台</li>
+                    <li><strong>親の自己肯定感が家庭を変える！</strong>「不足感」の連鎖を断ち切り、今ある幸せに気づく「脳のセンサー」強化術</li>
+                    <li><strong>迷いを即決に変える「直感」活用術：</strong>おしゃべりな「思考」に邪魔されない、自分軸で生きる親のライフスタイル</li>
+                </ol>
+            </div>
+
+            <hr>
+
+            <!-- セクション3: 現プランの課題 -->
+            <h2>⚠️ 3. 現プランの課題分析</h2>
+
+            <h3>3-1. 現在のタイトル</h3>
+            <div class="card">
+                <p style="font-size: 1.1rem; font-weight: 600;">『「世界のどこにいても幸せに生きる子」を育てる：シリコンバレー幼稚園経営者が実践するJOY活メソッド』</p>
+            </div>
+
+            <h3>3-2. SWOT分析</h3>
+            <div class="matrix-grid">
+                <div class="matrix-item strength">
+                    <h4>💪 強み (Strength)</h4>
+                    <ul>
+                        <li>シリコンバレー幼稚園経営の権威性</li>
+                        <li>17年の実績と4園経営</li>
+                        <li>JOY活書籍との連携</li>
+                        <li>3児の母としての実体験</li>
+                    </ul>
+                </div>
+                <div class="matrix-item weakness">
+                    <h4>😓 弱み (Weakness)</h4>
+                    <ul>
+                        <li>「JOY活」は初見で意味不明</li>
+                        <li>タイトルに数字がない</li>
+                        <li>具体的ノウハウが見えない</li>
+                        <li>思想論寄りの構成</li>
+                    </ul>
+                </div>
+                <div class="matrix-item opportunity">
+                    <h4>🚀 機会 (Opportunity)</h4>
+                    <ul>
+                        <li>モンテッソーリ×JOY活は競合なし</li>
+                        <li>自動思考ストップ術はユニーク</li>
+                        <li>非認知能力の需要増加中</li>
+                        <li>Udemy Business展開の可能性</li>
+                    </ul>
+                </div>
+                <div class="matrix-item threat">
+                    <h4>⚡ 脅威 (Threat)</h4>
+                    <ul>
+                        <li>「自己肯定感」市場は飽和</li>
+                        <li>伊藤美佳氏が強い競合</li>
+                        <li>東大ブランド講座多数</li>
+                        <li>短時間・即効性講座が人気</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>3-3. 現プランと売れるパターンの比較</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>売れるパターン</th>
+                        <th>現プラン</th>
+                        <th>評価</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>数字を入れる</td>
+                        <td>数字なし</td>
+                        <td><span class="tag red">要改善</span></td>
+                    </tr>
+                    <tr>
+                        <td>すぐ使える</td>
+                        <td>「在り方」中心で即効性弱い</td>
+                        <td><span class="tag red">要改善</span></td>
+                    </tr>
+                    <tr>
+                        <td>悩みに直結</td>
+                        <td>抽象的な「幸せに生きる」</td>
+                        <td><span class="tag orange">改善余地</span></td>
+                    </tr>
+                    <tr>
+                        <td>権威×科学</td>
+                        <td>「シリコンバレー幼稚園経営者」◎</td>
+                        <td><span class="tag green">良好</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <!-- セクション4: 4つの修正案 -->
+            <h2>✨ 4. 4つの修正案（詳細比較）</h2>
+
+            <!-- 修正案A -->
+            <div class="proposal-wrapper">
+                <div class="proposal-card">
+                    <div class="header a">
+                        <h4>修正案 A</h4>
+                        <h3 style="color: white;">モンテッソーリ × JOY活 路線</h3>
+                    </div>
+                    <div class="body">
+                        <div class="title-box">
+                            『お家でモンテッソーリ実践！シリコンバレー園長が教える「声のかけ方」7つのコツ』
+                        </div>
+                        <h4 style="margin-top: 1.5rem;">📚 講座構成（約1.5時間）</h4>
+                        <table>
+                            <tr>
+                                <td>セクション1</td>
+                                <td>なぜ「声のかけ方」が子どもを変えるのか</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション2</td>
+                                <td>モンテッソーリ×レッジョの基本原則</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション3</td>
+                                <td>7つの声かけテクニック実践</td>
+                                <td>30分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション4</td>
+                                <td>自立を促す環境づくり3ステップ</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション5</td>
+                                <td>失敗を恐れない子に育つ声かけワーク</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション6</td>
+                                <td>まとめとチェックリスト</td>
+                                <td>5分</td>
+                            </tr>
+                        </table>
+                        <h4>📊 評価</h4>
+                        <div class="score-bar">
+                            <span class="label">競合差別化</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">検索ニーズ</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">即効性訴求</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">玲子先生の強み活用</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <h4>✅ メリット</h4>
+                        <ul>
+                            <li>「モンテッソーリ」は検索ニーズが高い</li>
+                            <li>玲子先生の資格（モンテッソーリ×レッジョ）を最大活用</li>
+                            <li>「7つのコツ」で具体性◎</li>
+                        </ul>
+                        <h4>⚠️ デメリット</h4>
+                        <ul>
+                            <li>伊藤美佳氏との競合になる可能性</li>
+                            <li>JOY活の核心（親のマインド）が薄まる</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修正案B（推奨） -->
+            <div class="proposal-wrapper">
+                <span class="recommend-badge">🏆 推奨 ①</span>
+                <div class="proposal-card">
+                    <div class="header b">
+                        <h4>修正案 B</h4>
+                        <h3 style="color: white;">自動思考 × 脳科学 路線</h3>
+                    </div>
+                    <div class="body">
+                        <div class="title-box">
+                            『脳科学でイライラを止める！子育て疲れを5分でリセットする「自動思考」ストップ術』
+                        </div>
+                        <h4 style="margin-top: 1.5rem;">📚 講座構成（約1時間）</h4>
+                        <table>
+                            <tr>
+                                <td>セクション1</td>
+                                <td>なぜあなたは疲れるのか？自動思考の正体</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション2</td>
+                                <td>脳科学で解説：イライラのメカニズム</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション3</td>
+                                <td>今日から使える5つの自動思考ストップ法</td>
+                                <td>20分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション4</td>
+                                <td>五感を使ったリラックスワーク実践</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション5</td>
+                                <td>「ありがとう」100回チャレンジ</td>
+                                <td>5分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション6</td>
+                                <td>毎日続けるための習慣化のコツ</td>
+                                <td>5分</td>
+                            </tr>
+                        </table>
+                        <h4>📊 評価</h4>
+                        <div class="score-bar">
+                            <span class="label">競合差別化</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">検索ニーズ</span>
+                            <div class="bar">
+                                <div class="fill medium" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">即効性訴求</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">JOY活との整合性</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <h4>✅ メリット</h4>
+                        <ul>
+                            <li>「自動思考」は競合がほぼゼロ → ブルーオーシャン</li>
+                            <li>「5分」「5つ」で即効性を訴求</li>
+                            <li>JOY活の核心コンテンツをそのまま活用</li>
+                            <li>玲子先生の「1年半かけて自動思考を止めた」実体験が使える</li>
+                        </ul>
+                        <h4>⚠️ デメリット</h4>
+                        <ul>
+                            <li>「自動思考」という言葉の認知度が低い</li>
+                            <li>サブタイトルで補足説明が必要</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修正案C（推奨） -->
+            <div class="proposal-wrapper">
+                <span class="recommend-badge">🏆 推奨 ②</span>
+                <div class="proposal-card">
+                    <div class="header c">
+                        <h4>修正案 C</h4>
+                        <h3 style="color: white;">非認知能力 × シリコンバレー 路線</h3>
+                    </div>
+                    <div class="body">
+                        <div class="title-box">
+                            『シリコンバレー式「非認知能力」の育て方：AI時代に負けない子どもを育てる5つの土台』
+                        </div>
+                        <h4 style="margin-top: 1.5rem;">📚 講座構成（約1.5時間）</h4>
+                        <table>
+                            <tr>
+                                <td>セクション1</td>
+                                <td>なぜ今「非認知能力」なのか？学力より大事な力</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション2</td>
+                                <td>シリコンバレーで実践されている子育て法</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション3</td>
+                                <td>5つの土台：自己肯定感・考える力・意志力・社会性・国際力</td>
+                                <td>30分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション4</td>
+                                <td>家庭でできる非認知能力ワーク</td>
+                                <td>20分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション5</td>
+                                <td>先取り学習の落とし穴と本当の知育</td>
+                                <td>10分</td>
+                            </tr>
+                        </table>
+                        <h4>📊 評価</h4>
+                        <div class="score-bar">
+                            <span class="label">競合差別化</span>
+                            <div class="bar">
+                                <div class="fill medium" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">検索ニーズ</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">即効性訴求</span>
+                            <div class="bar">
+                                <div class="fill medium" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">シリコンバレー活用</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <h4>✅ メリット</h4>
+                        <ul>
+                            <li>「非認知能力」「AI時代」は旬のキーワード</li>
+                            <li>「シリコンバレー」の権威性を最大活用</li>
+                            <li>玲子先生の提案タイトルそのまま</li>
+                            <li>「5つの土台」で具体性◎</li>
+                        </ul>
+                        <h4>⚠️ デメリット</h4>
+                        <ul>
+                            <li>「非認知能力」講座は他にもある</li>
+                            <li>既存の競合と直接対決になる可能性</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 修正案D -->
+            <div class="proposal-wrapper">
+                <div class="proposal-card">
+                    <div class="header d">
+                        <h4>修正案 D</h4>
+                        <h3 style="color: white;">課題の分離 × アドラー 路線</h3>
+                    </div>
+                    <div class="body">
+                        <div class="title-box">
+                            『【思考の断捨離】親の「心配」を「信頼」に変える3ステップ：子どもが自立する「課題の分離」メソッド』
+                        </div>
+                        <h4 style="margin-top: 1.5rem;">📚 講座構成（約1時間）</h4>
+                        <table>
+                            <tr>
+                                <td>セクション1</td>
+                                <td>なぜ親は心配しすぎるのか？</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション2</td>
+                                <td>アドラー心理学「課題の分離」入門</td>
+                                <td>15分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション3</td>
+                                <td>心配を信頼に変える3ステップワーク</td>
+                                <td>20分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション4</td>
+                                <td>見守る勇気の育て方</td>
+                                <td>10分</td>
+                            </tr>
+                            <tr>
+                                <td>セクション5</td>
+                                <td>子どものレジリエンスを育てる具体策</td>
+                                <td>5分</td>
+                            </tr>
+                        </table>
+                        <h4>📊 評価</h4>
+                        <div class="score-bar">
+                            <span class="label">競合差別化</span>
+                            <div class="bar">
+                                <div class="fill medium" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">検索ニーズ</span>
+                            <div class="bar">
+                                <div class="fill medium" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">即効性訴求</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="score-bar">
+                            <span class="label">JOY活との整合性</span>
+                            <div class="bar">
+                                <div class="fill high" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <h4>✅ メリット</h4>
+                        <ul>
+                            <li>「課題の分離」はアドラー心理学で認知度あり</li>
+                            <li>「3ステップ」で実践しやすさを訴求</li>
+                            <li>JOY活「思考分離」セクションをそのまま活用</li>
+                        </ul>
+                        <h4>⚠️ デメリット</h4>
+                        <ul>
+                            <li>アドラー心理学系の講座は競合多数</li>
+                            <li>「思考の断捨離」が少し抽象的</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- セクション5: 4案の総合比較 -->
+            <h2>📋 5. 4案の総合比較表</h2>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>評価項目</th>
+                            <th>案A<br>モンテッソーリ</th>
+                            <th>案B<br>自動思考</th>
+                            <th>案C<br>非認知能力</th>
+                            <th>案D<br>課題の分離</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>競合の少なさ</strong></td>
+                            <td>○ 組み合わせで差別化</td>
+                            <td>◎ ほぼゼロ</td>
+                            <td>△ 競合あり</td>
+                            <td>△ 競合あり</td>
+                        </tr>
+                        <tr>
+                            <td><strong>検索ニーズ</strong></td>
+                            <td>◎ モンテッソーリ人気</td>
+                            <td>△ 認知度低め</td>
+                            <td>◎ 旬のワード</td>
+                            <td>○ アドラー認知</td>
+                        </tr>
+                        <tr>
+                            <td><strong>即効性の訴求</strong></td>
+                            <td>◎ 7つのコツ</td>
+                            <td>◎ 5分・5つ</td>
+                            <td>○ 5つの土台</td>
+                            <td>○ 3ステップ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>玲子先生の強み活用</strong></td>
+                            <td>◎ 資格フル活用</td>
+                            <td>◎ 実体験あり</td>
+                            <td>◎ シリコンバレー</td>
+                            <td>○</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JOY活との整合性</strong></td>
+                            <td>△ やや薄い</td>
+                            <td>◎ 核心コンテンツ</td>
+                            <td>○</td>
+                            <td>◎ 思考分離</td>
+                        </tr>
+                        <tr>
+                            <td><strong>制作の容易さ</strong></td>
+                            <td>○</td>
+                            <td>◎ 既存素材あり</td>
+                            <td>○</td>
+                            <td>◎ 既存素材あり</td>
+                        </tr>
+                        <tr style="background: #fef3c7;">
+                            <td><strong>総合評価</strong></td>
+                            <td><span class="tag blue">★★★☆☆</span></td>
+                            <td><span class="tag green">★★★★★</span></td>
+                            <td><span class="tag purple">★★★★☆</span></td>
+                            <td><span class="tag blue">★★★☆☆</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+
+            <!-- セクション6: ディスカッションポイント -->
+            <h2>🗣️ 6. ディスカッションポイント</h2>
+
+            <div class="decision-box">
+                <h3>📝 本日決めたいこと</h3>
+                <ul class="checklist">
+                    <li><strong>方向性の決定</strong>：4案の中からどの路線を選ぶか</li>
+                    <li><strong>タイトルの微調整</strong>：選んだ案のタイトルをブラッシュアップ</li>
+                    <li><strong>講座時間</strong>：1時間 or 1.5時間 or 2時間</li>
+                    <li><strong>ワークの追加</strong>：どのワークを入れるか</li>
+                    <li><strong>次のステップ</strong>：いつまでに何をするか</li>
+                </ul>
+            </div>
+
+            <h3>💭 検討すべき質問</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>1. 最初の1本目で何を達成したいですか？</h4>
+                    <ul>
+                        <li>A) ブランド認知（JOY活を広める）</li>
+                        <li>B) 受講者数最大化</li>
+                        <li>C) Udemy Businessへの採用</li>
+                        <li>D) 書籍への誘導</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>2. どの強みを最も活かしたいですか？</h4>
+                    <ul>
+                        <li>A) シリコンバレー幼稚園経営</li>
+                        <li>B) モンテッソーリ×レッジョ資格</li>
+                        <li>C) 自動思考を止めた実体験</li>
+                        <li>D) JOY活メソッド全体</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>3. 競合を避けるか、真っ向勝負か？</h4>
+                    <ul>
+                        <li>A) ブルーオーシャン狙い（案B：自動思考）</li>
+                        <li>B) 検索ニーズ狙い（案A,C）</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>4. 5講座展開の中での位置づけは？</h4>
+                    <ul>
+                        <li>A) これがフラッグシップ（代表作）</li>
+                        <li>B) まず入門編として出す</li>
+                        <li>C) 特化テーマの1つとして出す</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- セクション7: 推奨と次のステップ -->
+            <h2>🎯 7. 推奨と次のステップ</h2>
+
+            <h3>推奨</h3>
+            <div class="card success">
+                <h4>🏆 第1推奨：修正案B（自動思考×脳科学）</h4>
+                <p><strong>理由：</strong></p>
+                <ul>
+                    <li>競合がほぼゼロ → ブルーオーシャン</li>
+                    <li>JOY活の核心コンテンツをそのまま活用可能</li>
+                    <li>玲子先生の「1年半の実験」という強力な実体験がある</li>
+                    <li>制作が比較的容易（既存素材を再編集）</li>
+                    <li>「5分」「5つ」の即効性訴求で競合に差をつけられる</li>
+                </ul>
+            </div>
+
+            <div class="card highlight">
+                <h4>🥈 第2推奨：修正案C（非認知能力×シリコンバレー）</h4>
+                <p><strong>理由：</strong></p>
+                <ul>
+                    <li>「非認知能力」「AI時代」は検索ニーズが高い</li>
+                    <li>「シリコンバレー」の権威性を最大活用</li>
+                    <li>玲子先生ご自身が提案したタイトル</li>
+                </ul>
+            </div>
+
+            <h3>📅 ネクストアクション（案）</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ステップ</th>
+                        <th>内容</th>
+                        <th>期限（案）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>本ミーティングで方向性を決定</td>
+                        <td>本日</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>選んだ案の詳細カリキュラム作成</td>
+                        <td>1週間以内</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>スライド・台本の作成</td>
+                        <td>2週間以内</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>収録・編集</td>
+                        <td>3週間以内</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Udemyに公開</td>
+                        <td>1ヶ月以内</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>JOY活 Udemy講座 ポジショニングディスカッション資料</p>
+            <p>作成日：2026年1月15日</p>
+        </footer>
+    </div>
+</body>
+
+</html>

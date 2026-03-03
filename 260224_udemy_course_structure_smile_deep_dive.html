@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy講座構成案：SMILEメソッド×非認知能力（Deep Dive版）</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            /* Joy Reiko Pink */
+            --primary-light: #fce7f3;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            /* Light Pink BG */
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.15);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 1rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .section-block {
+            margin-bottom: 3rem;
+            border: 1px solid #ffe4e6;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #fff0f7 100%);
+            padding: 1.5rem;
+            border-bottom: 1px solid #f9a8d4;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #be185d;
+            /* Darker Pink */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 15px;
+        }
+
+        .lecture-item {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lecture-header:hover {
+            background-color: #fff1f2;
+        }
+
+        .lecture-header.has-script::after {
+            content: "▼ Script Inside";
+            font-size: 0.7rem;
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-left: auto;
+            align-self: center;
+        }
+
+        .l-num {
+            background: var(--primary);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            min-width: 35px;
+            text-align: center;
+        }
+
+        .l-body {
+            flex: 1;
+        }
+
+        .l-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            color: #333;
+        }
+
+        .l-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .l-time {
+            font-size: 0.85rem;
+            color: #999;
+            white-space: nowrap;
+        }
+
+        /* Script Panel */
+        .script-panel {
+            display: none;
+            background-color: #fffcfd;
+            /* Almost white */
+            padding: 2rem 3rem;
+            /* Wider padding for readability */
+            border-top: 1px dashed #fbcfe8;
+            font-size: 1rem;
+            line-height: 1.9;
+            /* Relaxed line height for reading */
+            color: #374151;
+        }
+
+        .script-section {
+            margin-bottom: 2rem;
+        }
+
+        .script-section h4 {
+            margin: 1.5rem 0 1rem 0;
+            color: #be185d;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .badge-research {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .script-content p {
+            margin-bottom: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+    <script>
+        function toggleScript(header) {
+            const panel = header.nextElementSibling;
+            if (panel.classList.contains('script-panel')) {
+                const isHidden = panel.style.display === 'none' || panel.style.display === '';
+                panel.style.display = isHidden ? 'block' : 'none';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>シリコンバレー式・家庭でできるJOY活知育メソッド</h1>
+        <p class="subtitle">AI時代を生き抜く「5つの非認知能力」の育て方 (SMILEメソッド)</p>
+
+        <!-- Section 1 (Recorded Script) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">✨ セクション1：AI時代に「本当に」必要な力とは</div>
+                <div class="section-meta">
+                    <span>⏱ 10分</span>
+                    <span>Point: 親の不安を「明確な目標」に変える</span>
+                </div>
+            </div>
+
+            <!-- L1 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L1</div>
+                    <div class="l-body">
+                        <div class="l-title">10年後の未来予測と、シリコンバレー流・能力の定義</div>
+                        <div class="l-desc">AIに奪われる仕事、残る仕事。エリート層が重視する力。</div>
+                    </div>
+                    <div class="l-time">4分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/tceveaxxc1g"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <h4>導入（フック）</h4>
+                        <p>皆さん、こんにちは。玲子です。<br>この講座を手に取ってくださって、ありがとうございます。</p>
+                        <p>きっと皆さんは、お子さんの将来のことを真剣に考えていらっしゃる方だと思います。<br>
+                            「グローバルに活躍できる子に育てたいけど、何をすればいいの？」<br>
+                            「つい感情的に怒っちゃって、寝顔を見ながら自己嫌悪してしまう……」</p>
+                        <p>そんなふうに、いろいろ考えて、悩んで、調べて——この講座にたどり着いてくださったんじゃないかな、と思います。<br>
+                            その気持ち、すごくよく分かります。私も3人の子どもを育ててきた母親です。同じように悩んできました。</p>
+                        <p>だからこそ、最初に一つだけ考えてみてほしいことがあるんです。<br>
+                            ChatGPTって、使ったことありますか？<br>
+                            ここ数年で一気に広がったAIが、東大の入試問題を普通に解けるって知ってましたか？</p>
+                        <p>これ、衝撃的なんですよね。<br>
+                            私たちが「頭がいい」と思っていたこと——計算ができる、暗記ができる、テストで高得点が取れる——そういう「認知能力」は、もうAIがやってくれる時代になったんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題</h4>
+                        <p>じゃあ、親として子どもに本当に残せるものって、何でしょうか？</p>
+                        <p>私はシリコンバレーで20年以上、幼稚園を経営してきました。<br>
+                            そこで何百人もの子どもたちを見てきて、気づいたことがあるんです。</p>
+                        <p><strong>勉強ができることと、幸せになることは、イコールじゃない。</strong></p>
+                        <p>実際に、こういう子を見てきました。<br>
+                            両親がすごく優秀で、エリートコースを歩んで、いい大学に入った。<br>
+                            でも、30歳を過ぎた今も、ちゃんとした職につけていないんです。<br>
+                            なぜか？ <strong>「自分が何をやりたいか」が分からないまま、大人になってしまったから。</strong></p>
+                        <p>勉強は「できた」んじゃなくて、「させられた」んです。<br>
+                            自分らしい生き方をしてこなかったから、途中でふと「あれ？本当は何やりたいんだろう」ってなってしまう。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>まとめ</h4>
+                        <p>これからの時代、テストの点数だけでは通用しません。<br>
+                            必要なのは、<strong>自分で考え、自分で感じ、自分らしく生きる力</strong>。</p>
+                        <p>これを「非認知能力」と呼びます。<br>
+                            そして、この講座でお伝えするのが、私がシリコンバレーで20年以上かけて体系化した<strong>「SORAメソッド」</strong>——5つの非認知能力「SMILE」の育て方です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L2 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L2</div>
+                    <div class="l-body">
+                        <div class="l-title">人生を切り拓く5つの武器「SMILE」</div>
+                        <div class="l-desc">S(社会性) M(品格) I(探究心) L(表現力) E(情熱) の概要。</div>
+                    </div>
+                    <div class="l-time">3分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/RQKai7KPfrM"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <h4>導入</h4>
+                        <p>SORAメソッドって、何だと思いますか？<br>
+                            「空」のように無限に広がる可能性を持つ子どもたちが、自分らしく輝くための5つの非認知能力を育てる方法です。<br>
+                            この5つの力を、私は<strong>「SMILE」</strong>と名付けました。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題</h4>
+                        <p>一つずつ紹介しますね。</p>
+                        <p><strong>S — Social Skills（社会性）</strong><br>
+                            他者と真心で関わり、自分の思いを伝えながらも相手を尊重する力。</p>
+                        <p><strong>M — Manners（マナー・自律）</strong><br>
+                            あいさつや食事など、日常を通じて自然と身につける「人としての基本」。</p>
+                        <p><strong>I — Interests（探究心）</strong><br>
+                            「なぜ？」「やってみたい！」という好奇心を学びの原動力に変える力。</p>
+                        <p><strong>L — Languages（語学・対話力）</strong><br>
+                            英語や異文化にふれる中で、世界との接点を広げる柔軟な感性。</p>
+                        <p><strong>E — Enthusiasm（情熱・やり抜く力）</strong><br>
+                            自分の選んだことに夢中になり、あきらめずにやり抜く心の強さ。</p>
+                        <p>この5つ、頭文字を並べると<strong>「SMILE」</strong>になります。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>ポイント</h4>
+                        <p>ここで大事なことを一つ。<br>
+                            この5つの力って、塾に行かせたら身につくものじゃないんです。<br>
+                            5歳前の子どもって、何をやらせてもできちゃうんですよ。でも、好きでやってる子が伸びるのと、「やらされてる」子が同じことをするのは、全然違うんです。</p>
+                        <p>研究によれば、<strong>早期教育のメリットは3年程度で消えてしまいます</strong>が、遊びを通じて培った語彙力や探究心は、一生の財産になります。</p>
+                        <p><strong>一番幸せな状態って、魂が自分らしく生きる状態なんです。</strong><br>
+                            SORAメソッドは、子どもが自分らしく輝くための力。これを家庭で育てていきましょう。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L3 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L3</div>
+                    <div class="l-body">
+                        <div class="l-title">家庭こそが最高の教室である理由</div>
+                        <div class="l-desc">習い事より大切な、日常の「JOY」の力。</div>
+                    </div>
+                    <div class="l-time">3分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/GsFPISoqG_Q"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <h4>導入</h4>
+                        <p>「うちの子、習い事いくつ通わせればいいですか？」<br>
+                            よく聞かれる質問です。でも私の答えは、いつも同じ。<br>
+                            <strong>「習い事より、日常のJOYの方が大事ですよ」</strong>
+                        </p>
+                        <p>JOY——悦びっていうのは、単なる「楽しい」「嬉しい」っていう一時的な感情じゃないんです。<br>
+                            本当の自分とつながった時に、内側からじわっと湧き上がってくる、深い喜びのこと。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題</h4>
+                        <p>シリコンバレーのエリート家庭では、子どもの予定がびっちり埋まってることが多いんです。<br>
+                            でも、本当にその子はそれを「やりたい」のでしょうか？</p>
+                        <p>私が見てきた中で、「この子は幸せになるだろうな」と確信した子たちには、共通点がありました。<br>
+                            それは、<strong>自分が何が好きか、クリアに分かっている</strong>こと。</p>
+                        <p>ある先生の子どもは、塾に行かせる余裕もなく、ある意味「野放し」で育てられたんです。<br>
+                            でも、圧がない分、自分が何が好きかすごくクリアだった。<br>
+                            その子は今、ライターになって、本当に自分らしく生きています。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>JOY活とは</h4>
+                        <p>JOY活っていうのは、日常の中でJOY（喜び）を感じる瞬間を大切にする習慣のことです。<br>
+                            特別なことじゃなくていいんです。</p>
+                        <p><strong>今日からできる具体的なJOY活（1日15分でOK）：</strong></p>
+                        <ul>
+                            <li>一緒にごはんを作る（話しながら5分でも）</li>
+                            <li>寝る前に「今日うれしかったこと」を3つ話す</li>
+                            <li>落ち葉で遊ぶ</li>
+                            <li>お絵かきをじっくりさせてあげる</li>
+                        </ul>
+                        <p>そういう何気ない日常の中に、SMILEを育てるチャンスがたくさんあるんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>まとめ</h4>
+                        <p>習い事を増やす前に、まず考えてほしいのは——<br>
+                            <strong>「うちの子は今、JOYを感じているかな？」</strong>
+                        </p>
+                        <p>まずは<strong>今週1週間、1日15分だけ</strong>お子さんと向き合う時間を作ってみてください。<br>
+                            家庭こそが、最高の教室。親の関わり方ひとつで、子どもの非認知能力は育っていきます。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Parent's JOY (Deep Dive / Expanded Script) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">👶 セクション2：すべての能力は「親のJOY」から始まる</div>
+                <div class="section-meta">
+                    <span>⏱ 15分</span>
+                    <span>Point: テクニックの前に不可欠な「親のマインドセット」</span>
+                </div>
+            </div>
+
+            <!-- L4 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L4</div>
+                    <div class="l-body">
+                        <div class="l-title">あなたの不安は、子どもに伝染する</div>
+                        <div class="l-desc">ミラーニューロンの科学と「心配」の弊害。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ykTUpbHANZc"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Mirror Neurons / Emotional Contagion</span>
+                        <h4>導入（約1分）</h4>
+                        <p>皆さん、こんにちは。玲子です。</p>
+                        <p>前のセクションで、「家庭こそが最高の教室だ」というお話をしました。<br>
+                            「えっ、家で私が教えるの？ 大変そう……」って思いましたか？</p>
+                        <p>安心してください。何か特別な授業をする必要はないんです。</p>
+                        <p>ただ一つ、すごく大事な条件があります。</p>
+                        <p>それは、「教室の空気」、つまり<strong>「お母さん・お父さんの機嫌が良いこと」</strong>なんです。</p>
+                        <p>今日は、なぜ「親の機嫌」が子どもの脳にとってそんなに大事なのか。<br>
+                            「精神論」ではなく、最新の<strong>脳科学</strong>を使ってお話しします。</p>
+                        <p>これを知ると、「自分の機嫌をとること」への罪悪感が、きっとなくなりますよ。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：脳はWi-Fiのように同期する（約3分）</h4>
+                        <p>皆さんは、<strong>「ミラーニューロン（Mirror Neurons）」</strong>という言葉を聞いたことがありますか？</p>
+                        <p>イタリアの神経生理学者が発見した、脳の中にある神経細胞のことです。</p>
+                        <p>これ、別名「モノマネ細胞」とも呼ばれています。<br>
+                            どういうことかというと、私たちは目の前の人の行動や感情を、まるで鏡（ミラー）のように、自分の脳内で再現してしまうんです。</p>
+                        <p>例えば、目の前で誰かが梅干しやレモンを食べていたら……どうなりますか？<br>
+                            口の中が酸っぱくなって、つばが出てきますよね。</p>
+                        <p>誰かが大あくびをしたら、自分も眠くなる。<br>
+                            誰かが痛そうに転んだら、「痛っ！」って自分も眉をひそめてしまう。</p>
+                        <p>これが、ミラーニューロンの働きです。</p>
+                        <p>そして怖いのは、これが<strong>「感情」でも起こる</strong>ということなんです。<br>
+                            これを心理学では<strong>「情動伝染（Emotional Contagion）」</strong>と言います。</p>
+                        <p>つまり、言葉で何も言わなくても、脳同士は【Wi-Fi】のように常につながっていて、感情を同期させているんです。</p>
+                        <p>想像してみてください。</p>
+                        <p>お母さんが、「あの子、全然勉強しないわ……将来大丈夫かしら」と、不安な気持ちで眉間にシワを寄せながら、キッチンで洗い物をしているとします。</p>
+                        <p>口では「ご飯できたわよー」と明るく言っても、脳のWi-Fiは正直です。</p>
+                        <p>子どもの脳のミラーニューロンは、お母さんの「不安・焦り・イライラ」を瞬時にキャッチします。<br>
+                            そして、子ども自身には何の問題もないのに、子どもの脳まで「不安モード（コルチゾールというストレスホルモンが出ている状態）」になってしまうんです。</p>
+                        <p>脳が「不安モード」になると、どうなるか？<br>
+                            「戦うか、逃げるか」という防衛反応が出るので、新しいことを学ぶ余裕がなくなります。<br>
+                            つまり、<strong>本来持っている能力が発揮できなくなる</strong>んです。</p>
+                        <p>私自身も、幼稚園の経営で悩んでいて、家でもずっとピリピリしていた時期がありました。<br>
+                            そうすると、不思議なことに、息子が急に爪を噛み始めたり、おねしょをしたり……精神的に不安定になったんです。</p>
+                        <p>「あぁ、私の不安が、言葉にしなくても全部伝わってしまっていたんだ」</p>
+                        <p>この理論を知った時、私は本当にハッとしました。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>まとめ（約1分）</h4>
+                        <p>「子どものために、私が我慢しなきゃ」<br>
+                            「私が辛くても、子どもの前では笑顔でいなきゃ」</p>
+                        <p>そう思っていらっしゃる優しい親御さんほど、伝えたいんです。</p>
+                        <p><strong>「親の笑顔」は、ただの表情ではありません。子どもの脳を育てる、最強の栄養素なんです。</strong></p>
+                        <p>親が心からリラックスして笑っているだけで、子どものミラーニューロンは「ここは安全だ」と認識します。<br>
+                            すると脳は「学習モード」に切り替わり、好奇心や探究心をどんどん発揮できるようになるんです。</p>
+                        <p>だから、今日からは堂々と、自分の機嫌をとってください。</p>
+                        <p>あなたが幸せであること（JOY）は、わがままではありません。<br>
+                            子どもの能力を伸ばすための、<strong>科学的に正しい「戦略」</strong>なのです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L5 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L5</div>
+                    <div class="l-body">
+                        <div class="l-title">イライラ激減！「思考分離」の魔法</div>
+                        <div class="l-desc">アドラー心理学に学ぶ、親と子の課題の分け方。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/AclVpdE7duM"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Adlerian Psychology (Separation of Tasks)</span>
+                        <h4>導入（約1分）</h4>
+                        <p>「宿題しなさい！」<br>
+                            「早くお風呂に入りなさい！」<br>
+                            「また部屋が散らかってる！」</p>
+                        <p>……毎日、こんなふうにガミガミ怒鳴ってしまっては、後で寝顔を見て「ごめんね……」と落ち込む。<br>
+                            そんな「イライラの悪循環」にハマっていませんか？</p>
+                        <p>かつての私も、まさにそうでした。</p>
+                        <p>でも、ある「魔法のツール」を手に入れてから、このイライラが劇的に減ったんです。</p>
+                        <p>今日は、アドラー心理学の奥義とも言える、そのツール——<strong>「課題の分離（思考分離）」</strong>についてお話しします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：それは誰の課題？（約3分）</h4>
+                        <p>「課題の分離」とは、シンプルに言うと、目の前の問題が<strong>「誰の課題か？」</strong>を切り分けることです。</p>
+                        <p>見分け方は簡単です。<br>
+                            <strong>「その結果、最終的に困るのは誰か？」</strong>と自分に問いかけてみてください。
+                        </p>
+                        <p>例えば、「子どもが宿題をしない」。<br>
+                            これで困るのは誰でしょうか？</p>
+                        <p>先生に叱られるのも、勉強についていけなくなるのも、希望の学校に行けなくなるかもしれないのも……<br>
+                            最終的には、子ども自身ですよね。</p>
+                        <p>親の私たちがテストを受けるわけではありません。<br>
+                            つまり、これは<strong>「子どもの課題」</strong>なんです。</p>
+                        <p>それなのに、親が「やりなさい！」と土足で踏み込んで、無理やりやらせてしまう。<br>
+                            これをアドラー心理学では<strong>「課題への介入」</strong>と言います。<br>
+                            これが、親子関係を悪化させる一番の原因なんです。</p>
+                        <p>さらに、脳科学的にも良くない理由があります。</p>
+                        <p>人間の脳には、おでこのあたりに<strong>「前頭前野（ぜんとうぜんや）」</strong>という場所があります。<br>
+                            ここは、「自分をコントロールする」「計画を立てる」「感情を抑制する」といった、人間らしい高度な働きをする司令塔です。</p>
+                        <p>子どもが「宿題やらなきゃな……でも面倒だな……いや、やっぱりやろう！」と葛藤して、自分で決断した時、この前頭前野が鍛えられます。</p>
+                        <p>ところが、親が先回りして「やりなさい！」と命令してしまうとどうなるか？</p>
+                        <p>子どもは「思考停止」します。<br>
+                            「親に言われたからやる（あるいは反発してやらない）」だけ。<br>
+                            自分で葛藤して決めるプロセスが奪われてしまうので、<strong>前頭前野という「脳の司令塔」が育つチャンスを失ってしまう</strong>んです。</p>
+                        <p>「じゃあ、放っておけばいいんですか？ ネグレクトになりませんか？」<br>
+                            そう不安になる方もいると思います。</p>
+                        <p>違います。「放任」と「見守る」は、似て非なるものです。</p>
+                        <p>放任は、「あなたに興味がない」こと。<br>
+                            見守るは、<strong>「あなたなら、自分で解決できると信じているよ」という、究極の信頼（リスペクト）</strong>なんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>実践：イライラの境界線（約1分）</h4>
+                        <p>今日から、イライラっとしたら、深呼吸して魔法の呪文を唱えてください。</p>
+                        <p><strong>「これは、誰の課題？」</strong></p>
+                        <p>もし「子どもの課題」だったら、心の中で境界線を引きます。<br>
+                            そして、実況中継をするように、ただ事実を見つめてください。</p>
+                        <p>「お、今日は宿題をやらない選択をしたんだな」<br>
+                            「明日、先生に叱られる経験をするんだな。それもまた勉強だ」</p>
+                        <p>手出し・口出しをぐっとこらえて、「失敗する権利」を子どもに返してあげてください。</p>
+                        <p>親が自分の課題（自分の機嫌をとること）に集中すれば、不思議なことに、子どもは自分から動き始めます。<br>
+                            信頼されていると感じると、人は期待に応えようとする生き物だからです。</p>
+                        <p>まずは今日一日、「これは誰の課題？」と問いかけることから始めてみませんか？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L6 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L6</div>
+                    <div class="l-body">
+                        <div class="l-title">【ワーク】今日から自分を満たす「親のJOY」習慣</div>
+                        <div class="l-desc">1日5分でできる、親自身の自己肯定感アップ術。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/FmTNz73VceI"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Self-Compassion / Positive Psychology</span>
+                        <h4>導入（約1分）</h4>
+                        <p>ここまで、<br>
+                            L4では「親の感情は伝染する（ミラーニューロン）」、<br>
+                            L5では「子どもの課題に踏み込まない（課題の分離）」、<br>
+                            というお話をしてきました。</p>
+                        <p>「頭では分かるけど、実行するのは難しい……」<br>
+                            そう思いませんでしたか？</p>
+                        <p>そうなんです。<br>
+                            自分が疲れていて余裕がない時に、子どものイライラを「あ、これは子どもの課題ね」なんて冷静に分離できるわけがありません。（笑）</p>
+                        <p>だからこそ、すべての土台となるのが、<strong>親自身のエネルギー（JOY）</strong>なんです。</p>
+                        <p>今日は、1日5分でできる、親自身の「自己肯定感」を高める具体的な習慣をお伝えします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：シャンパンタワーとセルフ・コンパッション（約3分）</h4>
+                        <p>よく結婚式で見かける「シャンパンタワー」を想像してみてください。</p>
+                        <p>一番上のグラスが「親（あなた）」です。<br>
+                            二段目が「子ども・家族」。<br>
+                            三段目が「仕事や友人」。</p>
+                        <p>もし、一番上のグラスが空っぽなのに、二段目や三段目に水を注ごうとしたら……どうなりますか？<br>
+                            無理ですよね。カラカラに乾いてしまいます。</p>
+                        <p>多くのお母さん・お父さんは、自分を犠牲にして、必死に子どものグラスに水を注ごうとしています。<br>
+                            でも、一番上が枯渇していたら、子どもに注がれるのは「愛情」という名の水ではなく、<strong>「見返りを求める執着」や「私のために頑張ってという重圧」</strong>という濁った水になってしまうんです。
+                        </p>
+                        <p>だから、まずは一番上のグラス——あなた自身を満たすことが、最優先なんです。</p>
+                        <p>これを心理学では<strong>「セルフ・コンパッション（Self-Compassion：自分への慈しみ）」</strong>と言います。</p>
+                        <p>研究によれば、セルフ・コンパッションが高い親の子どもは、ストレスに強く、幸福度も高いことが分かっています。<br>
+                            つまり、<strong>「親が自分の機嫌をとること」は、決して手抜きではなく、立派な「育児」</strong>なんです。</p>
+                        <p>では、どうやって満たすか？</p>
+                        <p>高い旅行に行ったり、高級エステに行く必要はありません。<br>
+                            脳科学的に、脳は「大きな幸せを一回」感じるより、<strong>「小さな幸せを頻繁に」感じる方が、幸福度が上がる</strong>ことが分かっています。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>ワーク：1日5分のJOYリスト（約1分）</h4>
+                        <p>ここで、ワークをやってみましょう。</p>
+                        <p>スマホのメモ機能か、手元の紙を出してください。<br>
+                            <strong>「これをすると、ちょっと気分が上がる（JOYになる）」</strong>という小さな行動を、5つ書き出してみてください。
+                        </p>
+                        <p>お金も時間もかからない、些細なことでOKです。</p>
+                        <p>私の例を紹介しますね。</p>
+                        <ol>
+                            <li>朝、コーヒーを淹れて、香りだけを10秒間楽しむ</li>
+                            <li>好きなK-POPアイドルの動画を1曲分（3分）見る</li>
+                            <li>コンビニで、新作のスイーツを買って帰る</li>
+                            <li>お風呂上がりに、お気に入りのアロマオイルを塗る</li>
+                            <li>寝る前に「今日もよく頑張った！」と自分をハグする</li>
+                        </ol>
+                        <p>ポイントは、<strong>「子どものため」「家族のため」ではなく、主語が「私（I am）」であること。</strong></p>
+                        <p>「私が」心地いいと感じること。<br>
+                            「私が」美味しいと感じること。</p>
+                        <p>これを、1日のスケジュールの中に、意識的に「点」として打っていってください。<br>
+                            忙しい方でも、コーヒーの香りをかぐ10秒なら取れますよね？</p>
+                        <p>その10秒間だけは、母親という役割を脱いで、一人の人間に戻る。<br>
+                            その積み重ねが、シャンパンタワーの一番上のグラスを満たし、結果として、家族全体にJOYが溢れ出すようになります。</p>
+                        <p>今日からぜひ、「私のためのJOY」、意識してみてくださいね。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: S - Social Skills (Deep Dive / Expanded Script) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🤝 セクション3：【S】AIには真似できない「つながる力」</div>
+                <div class="section-meta">
+                    <span>⏱ 11分</span>
+                    <span>Point: 表面的な協調性ではなく、心地よい人間関係を築く力</span>
+                </div>
+            </div>
+
+            <!-- L7 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L7</div>
+                    <div class="l-body">
+                        <div class="l-title">「みんな仲良く」の呪いを解こう</div>
+                        <div class="l-desc">距離感の知性が、本当の社会性を作る。</div>
+                    </div>
+                    <div class="l-time">6分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Obk7QnBUYDM"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Theory of Mind / Decentering</span>
+                        <h4>導入（約1分）</h4>
+                        <p>「お友達とは仲良くしなさい」<br>
+                            「ケンカしちゃダメでしょ」<br>
+                            「貸してあげなさい」</p>
+                        <p>……子育ての中で、こんな言葉をつい口にしていませんか？<br>
+                            私も、かつてはそうでした。</p>
+                        <p>でも、この「みんな仲良く」という言葉が、実はお子さんの「社会的スキル（ソーシャルスキル）」の育ちを邪魔しているとしたら、どうでしょうか？</p>
+                        <p>今日は、「みんな仲良く」の呪いを解き、「ケンカ」こそが子どもを賢くするという、少し意外なお話をします。</p>
+                        <p>これを聞けば、お子さんがケンカを始めた時、「あ、今チャンスだ！」と思えるようになりますよ。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：心の理論と脱中心化（約2分）</h4>
+                        <p>なぜ、子どもはケンカをするのでしょうか？<br>
+                            それは、単にわがままだからではありません。脳の発達段階による必然的なプロセスなのです。</p>
+                        <p>心理学に<strong>「心の理論 (Theory of Mind)」</strong>という概念があります。</p>
+                        <p>4歳くらいまでの子どもは、「自分が見ている世界」と「相手が見ている世界」が違うということを、まだ完全には理解できていません。<br>
+                            「自分が欲しいおもちゃは、当然相手も貸してくれるはずだ」<br>
+                            「自分が楽しいことは、相手も楽しいはずだ」</p>
+                        <p>このように、自分中心の世界に生きています（心理学者ピアジェはこれを<strong>「自己中心性」</strong>と呼びました）。</p>
+                        <p>しかし、幼稚園や公園で「貸して」「ヤダ！」という衝突（ケンカ）を経験することで、子どもは初めて気づくのです。</p>
+                        <p>「あれ？ ボクとは違う考えを持つ人がいるんだ！」</p>
+                        <p>この衝撃が、自分以外の視座を獲得する<strong>「脱中心化」</strong>の始まりであり、これこそが「社会的スキル」の第一歩なのです。</p>
+                        <p>つまり、大人が先回りして「仲良くね」とケンカを回避させてしまうと、子どもはこの重要な「他者理解」のチャンスを奪われてしまうことになります。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>事例：A君とB君（約1分）</h4>
+                        <p>私の幼稚園に、対照的な二人の男の子がいました。<br>
+                            いつも自分の意見をはっきり言うリーダータイプのA君と、優しくて相手に合わせてしまうB君です。</p>
+                        <p>一見、仲良しに見えましたが、ある日B君が突然泣き出してしまいました。<br>
+                            A君の強引さに、心の中でずっと我慢していて、疲れ果ててしまったのです。</p>
+                        <p>ここで大人が「A君、意地悪しちゃダメ！」「B君、かわいそうでしょ」とジャッジするのは簡単です。<br>
+                            しかし、これでは何の解決にもなりません。</p>
+                        <p>A君に必要なのは：「自分の意見を通すだけでなく、相手の反応を見る」スキル（<strong>柔軟性</strong>）<br>
+                            B君に必要なのは：「嫌なことは嫌だと伝える」スキル（<strong>自己主張/アサーション</strong>）</p>
+                        <p>私は介入しましたが、決して叱りはしませんでした。</p>
+                        <p>B君にはこっそり、「嫌な時は『嫌！』って言っていいんだよ。先生がついてるから」と教えました。<br>
+                            A君には、「B君が『嫌』って言ったら、それは本当に嫌なんだよ。本気なんだよ」と伝えました。</p>
+                        <p>それから数日後、B君が勇気を出して「やだ！」と言えた時、二人の関係が変わりました。<br>
+                            本当の意味で、対等に遊べるようになったんです。</p>
+                        <p>「みんな仲良く」という表面的な平和ではなく、<br>
+                            <strong>「意見が違っても、どう折り合いをつけるか」を学ぶことが、真の社会的スキル</strong>です。
+                        </p>
+                    </div>
+                    <div class="script-section">
+                        <h4>アクションプラン（約1分）</h4>
+                        <p>明日から、お子さんがお友達や兄弟とケンカを始めたら、こうしてみてください。</p>
+                        <p><strong>「ジャッジ（裁判官）をやめて、通訳（インタープリター）になる」</strong></p>
+                        <p>すぐに「こら！」「謝りなさい」と裁くのをやめます。<br>
+                            その代わり、黒子になって、お互いの気持ちを言葉にしてあげてください。</p>
+                        <p>「〇〇ちゃんは、まだこのおもちゃを使いたかったんだね（代弁）」<br>
+                            「□□くんは、どうしても貸してほしかったんだね（代弁）」</p>
+                        <p>「気持ちを言葉にする」だけで、子どもの脳の前頭葉（理性の脳）が働き出し、クールダウンします。</p>
+                        <p>解決策（どうするか）は、子どもたちに任せてみてください。<br>
+                            「じゃあ、どうする？」と問いかければ、意外と自分たちで「あとで貸す」「じゃあ違うので遊ぶ」と決められるものです。</p>
+                        <p>ケンカは「トラブル」ではありません。「社会的スキルのトレーニング中」です。<br>
+                            どうか、温かい目で見守ってあげてください。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L8 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L8</div>
+                    <div class="l-body">
+                        <div class="l-title">【JOY活】聴く力が育つ「家族会議」</div>
+                        <div class="l-desc">違いを楽しむ、週末の対話アクション。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/hqM0JsCH6iU"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Psychological Safety / Project Based Learning</span>
+                        <h4>導入（約1分）</h4>
+                        <p>「子どもが片付けない」<br>
+                            「言わないと勉強しない」</p>
+                        <p>毎日、同じことでガミガミ怒って、疲れていませんか？</p>
+                        <p>もし、家庭を「ひとつのプロジェクトチーム」と考えたらどうでしょうか。</p>
+                        <p>トップダウンで上司（親）が命令するチームと、メンバー（家族全員）が意見を出し合うチーム。<br>
+                            どちらが、優秀な人材（自律的な子）が育つでしょうか？</p>
+                        <p>今日は、Googleなどの革新的な企業も取り入れている手法を家庭に応用した、<strong>「家族会議（ファミリーミーティング）」</strong>についてお話しします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：心理的安全性とPBL（約2分）</h4>
+                        <p>なぜ、家族で話し合うことが重要なのでしょうか。</p>
+                        <p>一つ目の理由は、<strong>「心理的安全性 (Psychological Safety)」</strong>です。</p>
+                        <p>Googleの有名な研究「プロジェクト・アリストテレス」で、生産性が高いチームの唯一の共通点は「心理的安全性」だったことが証明されました。<br>
+                            「どんな意見を言っても、馬鹿にされない、否定されない」<br>
+                            この安心感がある場所でこそ、人は失敗を恐れずに挑戦し、成長できます。</p>
+                        <p>家庭こそが、世界で一番「心理的安全性」が高い場所であるべきです。</p>
+                        <p>二つ目の理由は、<strong>「プロジェクトベース学習（PBL）」</strong>です。<br>
+                            これは教育界で今一番注目されている、正解のない問いに対してチームで協力して答えを探す学習法です。</p>
+                        <p>家庭内の「困ったこと（リビングが散らかる等）」は、実は最高の実践型PBL教材なんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>事例：ママの誕生日プロジェクト（約1分）</h4>
+                        <p>我が家でも、まさにこれを実践しています。</p>
+                        <p>ある年、夫と子供たちが「ママの誕生日を祝う」という極秘プロジェクトを立ち上げました。<br>
+                            「いつやる？」「誰がケーキを買う？」「飾り付けは？」<br>
+                            3人の子供たちが役割分担をし、夫がサポートに回る。</p>
+                        <p>当日、なんとドローンでバースデーカードを届ける演出までしてくれました。</p>
+                        <p>これは単なるお祝いではなく、立派な「企画・運営力のトレーニング」です。<br>
+                            子どもたちは、「自分たちで考えて実行できた！」というものすごい自信（自己有用感）を感じていました。</p>
+                        <p>また、「リビング散らかり問題」が起きた時も、私は一方的に怒りませんでした。<br>
+                            「どうして散らかるんだろう？」と家族会議を開きました。</p>
+                        <p>「お姉ちゃんの教科書が置きっぱなし」<br>
+                            「パパの郵便物がそのまま」</p>
+                        <p>原因をみんなで出し合い、解決策もみんなで決めました。<br>
+                            <strong>「自分たちで決めたルール」だからこそ、子供たちは守ろうとします。</strong><br>
+                            （親が決めたルールは「押し付け」ですが、自分が決めたルールは「約束」になります）
+                        </p>
+                    </div>
+                    <div class="script-section">
+                        <h4>アクションプラン（約1分）</h4>
+                        <p>今週末、一度<strong>「家族会議」</strong>を開いてみませんか？<br>
+                            議題は簡単なもので構いません。<br>
+                            「週末どこに行く？」や「今夜のご飯何にする？」から始めましょう。</p>
+                        <p><strong>【家族会議の3つのグランドルール】</strong></p>
+                        <ol>
+                            <li><strong>否定しない</strong>：どんな意見が出ても「それはダメ」と言わない。「いいね！」「なるほど！」と受け止める。</li>
+                            <li><strong>全員発言</strong>：3歳の子でも一人のメンバーとして意見を聞く。</li>
+                            <li><strong>決めたことはやってみる</strong>：失敗してもOK。「やってみてどうだった？」とまた来週話せばいいのです。</li>
+                        </ol>
+                        <p>親は「司会者」に徹してください。<br>
+                            「あなたはどう思う？」と問いかけ、出た意見をホワイトボードや紙に書く。</p>
+                        <p>それだけで、子どもは「自分は家族というチームの大切な一員なんだ（所属感）」と感じ、自己肯定感と責任感がぐんぐん育ちます。</p>
+                        <p>さあ、あなたの家庭も、今日から「最強のチーム」への第一歩を踏み出しましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: M - Manners (Full Script) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🎩 セクション4：【M】世界のどこでも愛される「品格」</div>
+                <div class="section-meta">
+                    <span>⏱ 10分</span>
+                    <span>Point: 相手へのリスペクトとしての振る舞いと、自己肯定感を育てる</span>
+                </div>
+            </div>
+
+            <!-- L9 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L9</div>
+                    <div class="l-body">
+                        <div class="l-title">マナーの本質を伝える</div>
+                        <div class="l-desc">形ではなく「相手への想像力」としてのマナー。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/F-GFgA2G2wc"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Langer's "Reason" Effect / Oxytocin（Paul Zak）</span>
+                        <h4>導入（約1分）</h4>
+                        <p>「ちゃんと挨拶しなさい！」<br>
+                            「肘をついて食べないの！」<br>
+                            「靴を揃えなさいって何回言ったらわかるの！」<br>
+                            ……こんな言葉、毎日何回も言っていませんか？</p>
+                        <p>でも、言えば言うほど、子どもはやらなくなる。そして親はますますイライラする。</p>
+                        <p>この悪循環、実は「マナーの教え方」に根本的な問題があるのかもしれません。</p>
+                        <p>今日は、マナーの形を押し付けるのではなく、子どもが自分から「心地よい振る舞い」を選べるようになる――そんなお話をします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：マナーは「形式」ではなく「相手への想像力」（約3分）</h4>
+                        <p>多くの親御さんが「マナー」と聞くと、ナイフとフォークの使い方や、正しいお辞儀の角度といった「決まった形」を想像すると思います。</p>
+                        <p>しかし、世界を見渡せば、お弁当の中身がみんな違うように、マナーの形も文化によって千差万別です。<br>
+                            それでも、世界共通で変わらないマナーの本質。それは「形式」ではなく、相手や周りの人に対する<strong>「リスペクト（敬意）」</strong>です。</p>
+                        <p>例えば、食事の仕方を整えるのは、一緒に食べる人が不快にならないため。<br>
+                            トイレを綺麗に使うのは、次に使う人が気持ちよく過ごせるようにという配慮です。<br>
+                            こうした「次にその場所や物を使う人への意識」を持つことが、マナーの原点です。</p>
+                        <p>「なぜそうするのか」という理由（Why）を、相手への配慮として伝えることは、形を押し付けるよりもはるかに効果的です。<br>
+                            ハーバード大学の心理学者エレン・ランガー教授の実験によれば、理由を添えて頼み事をするだけで、承諾率は60%から94%に跳ね上がりました。人間の脳は、「理由」に納得すると、行動への抵抗感が劇的に下がるようにできているからです。
+                        </p>
+                        <p>つまり、子どもに対しても：</p>
+                        <ul>
+                            <li>「靴を揃えなさい」 → 形の押し付け（抵抗感が生まれる）</li>
+                            <li>「次に履く時、履きやすいと嬉しいよね。後ろにいる人も通りやすくなるよ」 → 理由の共有（自発的な行動につながる）</li>
+                        </ul>
+                        <p>このように、相手がどう感じるかを想像させることで、脳内では<strong>「オキシトシン」</strong>という絆を深めるホルモンが分泌されます。ポール・ザック教授の研究では、この分泌が高い人ほど他者への共感力や協力行動が強くなることが分かっています。<br>
+                            親が他者を大切に思って動く姿は、ミラーニューロンを通じて子どもの脳に自然とコピーされていくのです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>結び：マナーは「信頼のパスポート」（約1分）</h4>
+                        <p>マナーは、世界のどこに行っても通用する<strong>「信頼のパスポート」</strong>です。</p>
+                        <p>相手を尊重し、周りの状況を考えて動ける子は、どこへ行ってもまず信頼されます。<br>
+                            逆に、どんなに勉強ができても、相手を不快にさせる振る舞いをしていては、スタートラインにすら立てません。</p>
+                        <p>今日から意識してほしいのは、たった一つ。<br>
+                            「〇〇しなさい」を、「〇〇すると、周りの人が気持ちよく過ごせるよ」という視点に変えること。</p>
+                        <p>「挨拶しなさい」 → 「声をかけると、相手も安心してお話ししやすくなるんだよ」<br>
+                            「綺麗に使いなさい」 → 「次に使う人が『わあ、綺麗だな』って思えるように、バトンタッチしようね」</p>
+                        <p>理由が「相手のため」だと分かれば、子どもは誇りを持って自ら動くようになります。<br>
+                            マナーは押し付けるものではなく、自分と相手を大切にする「品格」として育てていきましょう。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L10 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L10</div>
+                    <div class="l-body">
+                        <div class="l-title">食卓は、親子の心を満たす「JOY活の場」</div>
+                        <div class="l-desc">マナーの練習は食事の時間が最短ルート。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/o6yrEP-htYc"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="script-section">
+                        <span class="badge-research">Research: Emmons Gratitude Study / Neuroplasticity / Mirror
+                            Neurons</span>
+                        <h4>導入：マナーの練習、実は「食事」が最短ルート（約1分）</h4>
+                        <p>「マナーを教えなきゃ」と思うと、ついつい「肘をつかない！」「静かに食べて！」と、ルールばかりを押し付けてしまいがちですよね。</p>
+                        <p>でも実は、そんなにガミガミ言わなくても、子どもの振る舞いが自然と美しくなる「魔法の時間」があるんです。<br>
+                            それが、毎日当たり前に行っている「食事の時間」。</p>
+                        <p>今日は、食卓を「マナーの特訓場」から、親子の心をエネルギーで満たす「JOY活の場」に変えるヒントをお話しします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：脳が「満たされる」と、子どもは勝手に育つ（約3分）</h4>
+                        <p>なぜ「食事の時間」が大切なのか。そこには驚くべき脳科学の秘密があります。</p>
+                        <p>カリフォルニア大学のエモンズ教授の研究によると、日常の中にある「いいこと」に目を向ける習慣がある人は、そうでない人に比べて幸福度が25％も高く、健康で、未来に対してポジティブになれることが分かっています。<br>
+                            また、別の研究では、こうした習慣を持つ子どもは、学校が楽しくなり、友達とも仲良くでき、何より「自分なら大丈夫！」という自己肯定感が高まるという結果も出ています。</p>
+                        <p>脳の仕組みで見ると、さらに面白いことが分かります。<br>
+                            「あ、これ美味しいな」「お母さんが作ってくれて嬉しいな」と心が動くとき、脳の<strong>「前頭前野」</strong>という場所が活性化します。ここは、感情をコントロールしたり、相手の気持ちを想像したりする「脳の司令塔」です。
+                        </p>
+                        <p>つまり、食卓で「心地よいな」と感じる習慣をつけることは、筋トレと同じ。<br>
+                            繰り返すうちに脳の神経回路が太くなり（神経可塑性）、教え込まなくても自然と<strong>「自分を律する力」や「相手を思いやるマナー」</strong>が育っていくのです。<br>
+                            マナーは「知識」ではなく、脳の「習慣」なんですね。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>JOY活：食卓を「宝探し」の場所にする（約1分）</h4>
+                        <p>では、具体的にどうすればいいのか。玲子先生も大切にされている「よかった探し」を、食卓でやってみましょう！</p>
+                        <p><strong>【「豊かさキャッチ」の実践ガイド】</strong></p>
+                        <p><strong>「デジタル・デトックス」で五感を開く</strong><br>
+                            まずはテレビを消して、スマホを置く。それだけで、料理の彩りや香りに気づく「脳の余裕」が生まれます。</p>
+                        <p><strong>「いただきます」にストーリーを添える</strong><br>
+                            「このお米、一粒一粒が光ってるね」「農家さんが一生懸命育ててくれたバトンが届いたね」。<br>
+                            食べ物の背景にある「誰かの想い」を少し想像するだけで、リスペクトの種が蒔かれます。</p>
+                        <p><strong>「今日、心が動いたこと」をシェアする</strong><br>
+                            「今日、公園で綺麗な花を見つけたよ」「給食のカレーが美味しかった！」。<br>
+                            一言でいいんです。ポジティブな感情を言葉にすると、脳に「報酬」が与えられ、心が安定します。</p>
+                        <p>エモンズ教授によれば、この習慣はたった1〜2週間で効果が見え始めます。<br>
+                            親が楽しそうに「美味しいね」「嬉しいね」と言っている姿は、ミラーニューロンを通じて子どもの脳にそのままコピーされます。</p>
+                        <p><strong>【今回のポイント（まとめ）】</strong></p>
+                        <ul>
+                            <li><strong>マナーの正体は「心の余裕」：</strong>脳が「満たされている」と感じる子は、自然と周りにも優しく（＝マナー良く）なれる。</li>
+                            <li><strong>「理由」があるから動ける：</strong>「〇〇しなさい」ではなく、「こうすると気持ちいいね」というポジティブな理由を脳に届ける。</li>
+                            <li><strong>食卓は「脳のトレーニングジム」：</strong>毎日のごはんで「心地よさ」を見つけるだけで、子どもの「品格」と「共感力」はぐんぐん育ちます。</li>
+                        </ul>
+                        <p>今日の夕食、まずは一口食べて「あ、おいしい！」と声に出すところから始めてみませんか？</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: I - Interests (Full Script) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🔍 セクション5：【I】「好き」が「才能」に変わる探究心</div>
+                <div class="section-meta">
+                    <span>⏱ 15分</span>
+                    <span>Point: 偏差値ではなく「没頭値」を高め、内発的なやる気を引き出す</span>
+                </div>
+            </div>
+
+            <!-- L11 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L11</div>
+                    <div class="l-body">
+                        <div class="l-title">子どもの才能は「何もしない時間」に育つ</div>
+                        <div class="l-desc">ぼーっとしている時間こそ、脳が創造性を爆発させる「ヒラメキモード」。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Default Mode Network (Raichle, 2001) / AAP 2019</span>
+                        <h4>導入：その「ぼーっと」は、脳がフル回転しているサイン（約1分）</h4>
+                        <p>「うちの子、何にも興味を示さないんです」<br>
+                            「すぐ飢きて、何をやっても続かない……」<br>
+                            そんなふうに、わが子の将来をちょっぴり不安に思うことはありませんか？<br>
+                            でも、安心してください。<br>
+                            お子さんは「やる気がない」のではなく、新しい興味が湧いてくるための「心のゆとり」が、今は少し足りないだけかもしれません。</p>
+                        <p>実は、最新の脳科学では、一見無駄に見える「ぼーっとしている時間」こそが、子どもの才能を爆発させる鍵であることが分かってきました。<br>
+                            今日は、スケジュールを詰め込むよりも大切な「空白の時間」の秘密をお話しします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：DMN（デフォルト・モード・ネットワーク）の科学（約3分）</h4>
+                        <p>皆さんは、<strong>「デフォルト・モード・ネットワーク（DMN）」</strong>という言葉を聞いたことがありますか？</p>
+                        <p>2001年、ワシントン大学の神経科学者マーカス・レイクル教授のチームが、脳画像研究で画期的な発見をしました。</p>
+                        <p>被験者が何のタスクも与えられていない「安静時」に、脳のある領域群がむしろ<strong>活発に活動している</strong>ことが分かったのです。</p>
+                        <p>これが「デフォルト・モード・ネットワーク（DMN）」と名付けられた神経回路です。</p>
+                        <p>驚くべきことに、<strong>ぼーっとしている時の脳は、集中しているときよりも20倍ものエネルギーを消費する領域がある</strong>ことも分かっています。</p>
+                        <p>DMNが活性化すると、脳の中で主に3つのことが行われています。</p>
+                        <ol>
+                            <li><strong>記憶の統合</strong>：バラバラに蓄積された記憶や経験を、脳が自動的に整理・結合します</li>
+                            <li><strong>自己参照的思考</strong>：「自分は何が好きなんだろう」という内省的な思考が自然に生まれ、アイデンティティの形成に不可欠</li>
+                            <li><strong>創造的思考</strong>：一見無関係な情報同士をつなぎ合わせて、新しいアイデアやひらめきを生み出します</li>
+                        </ol>
+                        <p>ニュートンがリンゴの木の下で、アルキメデスが入浴中に発見をしたのは、偶然ではなくDMNの働きによるものです。</p>
+                        <p>ところが、現代の子どもたちは朝から晩まで、習い事、塾、宿題、YouTube、ゲーム……。<strong>脳が「何もしない」時間が、ほとんどないんです。</strong></p>
+                        <p>2019年、米国小児科学会（AAP）も正式に、子どもの発達における<strong>「非構造化された遊びの時間（Unstructured Play
+                                Time）」の重要性</strong>を声明として発表しています。</p>
+                        <p>スケジュールが詰まりすぎた子どもは、DMNが起動する余地がなく、<strong>創造性と自己理解の発達が阻害される</strong>リスクがあるのです。</p>
+                        <p>玲子先生のフィードバックにもあったように、<strong>「あえて予定を入れない "空白の美学"」</strong>がここでも重要になってきます。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>アクションプラン（約1分）</h4>
+                        <p>今日から意識してほしいことは一つだけ。</p>
+                        <p><strong>「予定を入れない時間」を意識的に作ること。</strong></p>
+                        <ol>
+                            <li><strong>週末の午後を一つ「空白」にする</strong>：習い事もお出かけも入れない。子どもに「今日は何もないよ」と伝える。</li>
+                            <li><strong>「暇〜」と言われても、解決策を出さない</strong>：「じゃあ○○しよう」と提案したくなりますが、ぐっと堪えて「そっか、暇なんだね〜」とだけ返す。</li>
+                            <li><strong>待つ</strong>：不思議なことに、大体10〜15分もすれば、子どもは自分で何かを始めます。これこそがDMNから生まれた「主体的な遊び」です。</li>
+                        </ol>
+                        <p>退屈は「問題」ではありません。<strong>退屈は「創造性の種」</strong>です。</p>
+                        <p>お子さんの「ぼーっとしている時間」を、どうか奪わないであげてください。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L12 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L12</div>
+                    <div class="l-body">
+                        <div class="l-title">教えなくて大丈夫。才能は「環境」から芽吹く</div>
+                        <div class="l-desc">親が「先生」にならず、環境デザイナーになる。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Montessori Sensitive Periods / Self-Determination
+                            Theory</span>
+                        <h4>導入：教えようとするのを、一度お休みしてみませんか？（約1分）</h4>
+                        <p>「子どもには、いろいろなことを身につけてほしい」<br>
+                            親なら誰でもそう願いますよね。でも、良かれと思って教えようとすればするほど、子どもが嫌がったり、すぐに飢きたりして、がっかりすることはありませんか？</p>
+                        <p>でも、世界的に実績のある教育法の一つ——<strong>「モンテッソーリ教育」</strong>の創始者マリア・モンテッソーリは、こう言っています。</p>
+                        <p><strong>「子どもに教えるなかれ。子どもが自分で学ぶ環境を整えよ」</strong></p>
+                        <p>Google、Amazon、Wikipedia……これらの創業者たちが、幼少期にモンテッソーリ教育を受けていたことは有名です。<br>
+                            彼らに共通しているのは、「教えられた」のではなく、<strong>「自分で発見した」</strong>という成功体験を持っていること。</p>
+                        <p>今日は、モンテッソーリ教育の核心を家庭に応用する方法をお伝えします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「敏感期」と「準備された環境」（約3分）</h4>
+                        <p>モンテッソーリ教育で最も重要な概念が、<strong>「敏感期（Sensitive Period）」</strong>です。</p>
+                        <p>これは、子どもの発達段階において、<strong>ある特定の能力を身につけるのに最も適した時期が自然に訪れる</strong>という生物学的な法則です。</p>
+                        <p>神経科学的に言えば、敏感期とは、脳の特定領域の<strong>シナプス（神経接続）が爆発的に増加する時期</strong>のことです。この時期に適切な刺激を受けると、神経回路が効率よく形成されます。
+                        </p>
+                        <p>代表的な敏感期：</p>
+                        <ul>
+                            <li><strong>秩序の敏感期（1〜3歳）</strong>：いつもと同じ場所、同じ順番にこだわる → 「わがまま」ではなく、脳が秩序のルールを構築中</li>
+                            <li><strong>感覚の敏感期（0〜6歳）</strong>：色、形、音、手触りに夢中になる → 五感を通じた知覚の発達期</li>
+                            <li><strong>言語の敏感期（0〜6歳）</strong>：言葉をスポンジのように吸収する → 母語の神経回路が形成される時期</li>
+                            <li><strong>運動の敏感期（1〜4歳）</strong>：歩く、つかむ、注ぐなどの動作を繰り返す → 微細運動スキル（ファインモータースキル）の発達期</li>
+                        </ul>
+                        <p>子どもが急に「石を並べたがる」「水をずっと触っている」「虫ばかり見ている」……。<br>
+                            これは、ただの遊びではありません。<strong>脳が「今、これを吸収する準備ができた！」とシグナルを出している</strong>のです。</p>
+                        <p>ここで大人がやるべきことは、<strong>「教える」ことではなく「環境を整える」こと</strong>。</p>
+                        <p>モンテッソーリは、これを<strong>「準備された環境（Prepared Environment）」</strong>と呼びました。3つの原則があります：</p>
+                        <ol>
+                            <li><strong>子どもサイズにする</strong>：棚、テーブル、道具を子どもの手が届く高さに置く</li>
+                            <li><strong>選択肢を用意する</strong>：一つのものを押し付けるのではなく、2〜3の選択肢を用意する</li>
+                            <li><strong>さりげなく置く</strong>：子どもの興味に関連するものを、目に入る場所に置く。「これやってみたら」とは絶対に言わない</li>
+                        </ol>
+                        <p>なぜ「教えない」ことが大事なのか？</p>
+                        <p>発達心理学者のエドワード・デシとリチャード・ライアンが提唱した<strong>「自己決定理論（Self-Determination
+                                Theory）」</strong>によれば、人間のモチベーションは以下の3つの欲求が満たされた時に最大化します。</p>
+                        <ol>
+                            <li><strong>自律性（Autonomy）</strong>：自分で選び、自分で決めたという感覚</li>
+                            <li><strong>有能感（Competence）</strong>：自分にはできるという感覚</li>
+                            <li><strong>関係性（Relatedness）</strong>：誰かとつながっているという感覚</li>
+                        </ol>
+                        <p>大人が「教える」と、①と②が奪われます。子どもが<strong>自分で発見し、自分でやり遂げた</strong>時に、内発的モチベーションが最大になるのです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>アクションプラン（約1分）</h4>
+                        <p>今日のポイントは一つ。<strong>「教えないで、置いておく」</strong></p>
+                        <p><strong>【３ステップ実践ガイド】</strong></p>
+                        <ol>
+                            <li><strong>観察する：</strong> お子さんが最近、何を触っているか、何を見ているか、一週間だけじっくり観察してみてください。</li>
+                            <li><strong>「種」を蒔く：</strong>
+                                興味がありそうなものを、目に入る場所に「さりげなく」置いておく。例えば、虫に興味があるなら、図鑑を広げて置いておく。ハサミを使いたそうなら、切りやすい紙と一緒に棚に置いておく。
+                            </li>
+                            <li><strong>絶対に誘わない：</strong> 「これやってみたら？」は禁句です。子どもが自分から手を伸ばすまで、じーっと待ちます。</li>
+                        </ol>
+                        <p>もし手を伸ばさなければ、今はタイミングじゃなかっただけ。また別の「種」を蒔けばいいんです。</p>
+                        <p><strong>【今回のポイント（まとめ）】</strong></p>
+                        <ul>
+                            <li><strong>子どもの「こだわり」は才能のサイン：</strong>「わがまま」に見える行動こそ、脳が急成長している「敏感期」です。</li>
+                            <li><strong>「自分で選んだ」がやる気のスイッチ：</strong>教えるのをやめると、子どもは自ら学び始めます。</li>
+                            <li><strong>親の仕事は「環境づくり」：</strong>先生にならなくていいんです。お子さんの興味を支える「デザイナー」を楽しみましょう。</li>
+                        </ul>
+                        <p>親の役目は、無理に引っ張ることではなく、芽が出るのを信じて水をあげること。<br>
+                            さあ、今日はお子さんのために、どんな「種」を置いておきますか？</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- L13 -->
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L13</div>
+                    <div class="l-body">
+                        <div class="l-title">【JOY活】「なんで？」探検隊ごっこ</div>
+                        <div class="l-desc">子どもの質問を学びに変える関わり方。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Gopnik Direct Instruction Study (2011) / Tony
+                            Wagner</span>
+                        <h4>導入：その「なんで？」は、才能が開花する音（約1分）</h4>
+                        <p>「ママ、なんで空は青いの？」<br>
+                            「パパ、なんで月はついてくるの？」<br>
+                            忙しい時に繰り返される、お子さんの「なんで？ なんで？」のオンパレード。<br>
+                            つい「あとでね」と言いたくなったり、答えられなくて困ったりすること、ありますよね。</p>
+                        <p>でも、安心してください。実はこの「なんで？」こそが、これからの時代を生き抜くために最も価値のある「才能の原石」なんです。<br>
+                            なぜなら、これからのAI時代、答えを出すのはAIの仕事。人間にしかできないのは、新しい「問い」を立てることだからです。<br>
+                            今日は、お子さんの「なんで？」を、一生モノの「学びのエンジン」に変える楽しいコツをお伝えします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「質問力」の科学と「教えない」効果（約3分）</h4>
+                        <p>ハーバード大学の教育学者、トニー・ワグナー教授は著書『未来のイノベーターはどう育つのか』の中でこう述べています。</p>
+                        <p><strong>「これからの時代に必要なのは、正しい答えを知っていることではなく、正しい問いを立てられることだ」</strong></p>
+                        <p>これはAI時代にますます重要になっています。ChatGPTを使えば分かりますが、良い答えを得るには<strong>良い質問（プロンプト）</strong>が必要です。「質問力」こそが、これからの本当のリテラシーなのです。
+                        </p>
+                        <p>ところが、多くの大人は子どもの質問に対して「答え」を与えてしまいます。実は、これには脳科学的な問題があります。</p>
+                        <p>カリフォルニア大学バークレー校の発達心理学者、アリソン・ゴプニック教授の実験（2011年）をご紹介しましょう。</p>
+                        <p>4歳児を2グループに分け、新しいおもちゃの遊び方を学ばせました。</p>
+                        <ul>
+                            <li><strong>教示グループ</strong>：大人がおもちゃの使い方を教えた</li>
+                            <li><strong>探索グループ</strong>：おもちゃだけ渡して、子どもに自由に遊ばせた</li>
+                        </ul>
+                        <p>結果は驚くべきものでした。</p>
+                        <p><strong>教示グループの子どもは、教えられた1つの遊び方しかしなかった。</strong><br>
+                            <strong>探索グループの子どもは、教えられていない遊び方を複数発見し、おもちゃで遊ぶ時間も長かった。</strong>
+                        </p>
+                        <p>つまり、<strong>大人が「教える」ことで、子どもの探究範囲を狭めてしまっていた</strong>のです。</p>
+                        <p>ゴプニック教授はこう結論づけています。<br>
+                            <strong>「直接教えること（Direct Instruction）は、短期的な効率は良いが、子どもの好奇心と創造性を抑制する」</strong>
+                        </p>
+                        <p>これは、L5の「課題の分離」にも通じる話ですね。子どもの「なんで？」という課題に、親が答えを与えて踏み込んでしまうと、子どもが自分で考えるチャンスを奪ってしまうのです。</p>
+                        <p>では、「なんで？」にどう返せばいいのか？</p>
+                        <p><strong>「いい質問だね！ 〇〇ちゃんはどう思う？」</strong></p>
+                        <p>これだけで、子どもの脳は「受信モード」ではなく<strong>「探究モード」</strong>を維持します。</p>
+                        <p>間違っていても全然OK。<strong>「すごい！ そうかもしれないね。一緒に調べてみようか」</strong> — この一言が、探究心の爆発を引き起こします。</p>
+                        <p>L4のミラーニューロンの原理で、<strong>親が「学ぶことを楽しんでいる姿」</strong>を見せること自体が、子どもの探究心を育てる最も効果的な方法なのです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>JOY活：「なんで？」探検隊ごっこ（約1分）</h4>
+                        <p><strong>【実践ガイド】</strong></p>
+                        <ol>
+                            <li><strong>「なんで？」に即答しない</strong> — 「いい質問だね」「どう思う？」で子どもに考えさせる。これだけで前頭前野が鍛えられます</li>
+                            <li><strong>一緒に調べる</strong> — 図鑑、YouTube、Googleなんでも使ってOK。答えを見つけるプロセスを共有する</li>
+                            <li><strong>記録を残す</strong> — 絵日記でも写真でもメモでもOK。「発見したこと」を冷蔵庫に貼る。書くことで「自分は発見できる人間だ」という有能感が育ちます
+                            </li>
+                            <li><strong>親も「知らない」を楽しむ</strong> — 「ママも分からないなぁ」は最高のセリフ。一緒に発見する喜びを共有しましょう</li>
+                        </ol>
+                        <p>お子さんの次の「なんで？」を、どうか宝物のように受け止めてください。</p>
+                        <p>その「なんで？」の中に、未来のイノベーターの種が眠っているかもしれません。<br>
+                            今日から「なんで探検隊」、始めてみませんか？</p>
+                        <p><strong>【今回のポイント（まとめ）】</strong></p>
+                        <ul>
+                            <li><strong>「答え」よりも「問い」が宝物：</strong>AI時代、自分から疑問を持つ力こそが、将来の大きな武器になります。</li>
+                            <li><strong>「教えすぎ」は、思考のブレーキ：</strong>大人が正解を言わないことで、子どもの創造性はどこまでも広がります。</li>
+                            <li><strong>親は「探検のパートナー」：</strong>一緒に不思議がり、一緒に調べる。その「楽しむ背中」が最高の教科書です。</li>
+                        </ul>
+                        <p>お子さんの「なんで？」は、未来のイノベーターへの招待状です。<br>
+                            今日から「なんで探検隊」、親子で楽しんでみませんか？</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: L (Placeholder Structure) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🗣 セクション6：【L】世界とつながる「表現力と柔軟性」</div>
+                <div class="section-meta">
+                    <span>⏱ 10分</span>
+                    <span>Point: 正しさよりパッション。異文化受容。</span>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L14</div>
+                    <div class="l-body">
+                        <div class="l-title">「英語が話せる」よりも大切なこと</div>
+                        <div class="l-desc">文法よりパッション。非言語コミュニケーションの力。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Mehrabian's Rule / Growth Mindset (Dweck)</span>
+                        <h4>導入：英語を習わせれば安心、ではない理由（約1分）</h4>
+                        <p>「英語は早いうちから始めた方がいいですか？」<br>
+                            「英語教室に通わせているのに、全然話そうとしないんです」<br>
+                            「自分が英語が苦手だから、子どもには絶対身につけてほしい……」</p>
+                        <p>こうしたご相談、本当にたくさんいただきます。<br>
+                            気持ちはすごくよく分かります。グローバル化が進む今、英語の重要性を感じない親御さんはいないでしょう。</p>
+                        <p>でも、シリコンバレーで20年以上、バイリンガル幼稚園を運営してきた私の経験から、一つだけ断言できることがあります。<br>
+                            <strong>英語が「話せる」ことよりも、もっと大切な力がある</strong>んです。<br>
+                            今日は、世界で本当に通用するコミュニケーション力の「正体」についてお話しします。
+                        </p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：伝わるのは「正しさ」ではなく「パッション」（約3分）</h4>
+                        <p>シリコンバレーには世界中から人が集まっています。インド、中国、ヨーロッパ、南米……。<br>
+                            面白いのは、英語がペラペラなのに全然伝わらない人と、英語はたどたどしいのにものすごく伝わる人がいること。</p>
+                        <p>その違いは何か？<br>
+                            答えは<strong>「パッション（伝えたいという情熱）」</strong>です。</p>
+                        <p>文法が完璧でも、目を伏せてボソボソ話していたら、誰の心にも届きません。<br>
+                            逆に、目をキラキラさせながら身振り手振りで「これ、すごいんだよ！」と語る子は、たとえ文法がめちゃくちゃでも、周りが「えっ、何？ 教えて！」と引き込まれていく。</p>
+                        <p>これには脳科学的な裏付けもあります。<br>
+                            UCLAのメラビアン教授の研究によると、人がコミュニケーションで受け取る情報のうち、<strong>言語（言葉そのもの）はわずか7%</strong>。残りの93%は声のトーンや表情、ジェスチャーなどの<strong>非言語コミュニケーション</strong>が占めています。
+                        </p>
+                        <p>つまり、「何を話すか」よりも<strong>「どう話すか」</strong>の方が、はるかに大きなインパクトを持っているんです。</p>
+                        <p>さらに、スタンフォード大学のキャロル・ドゥエック教授の研究でも、<strong>「間違いを恐れずに挑戦する姿勢（成長マインドセット）」</strong>を持つ子どもほど、語学の上達が速いことが分かっています。<br>
+                            完璧主義の子は「間違ったらどうしよう」とブレーキがかかり、口を開けなくなってしまう。<br>
+                            でも、「間違って当たり前」「伝わったらラッキー！」というマインドの子は、どんどん場数を踏んで上達していく。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>今回のポイント（まとめ）</h4>
+                        <ul>
+                            <li><strong>「正しい英語」より「伝えたい気持ち」：</strong>コミュニケーションの93%は非言語。文法よりパッションが人を動かす。</li>
+                            <li><strong>「間違い」を歓迎するマインド：</strong>成長マインドセットを持つ子ほど、語学も上達する。完璧を求めない。</li>
+                            <li><strong>親は「勇気」を褒める：</strong>「正しく言えたか」ではなく「伝えようとしたか」に注目する。それが世界で通用する表現力の土台。</li>
+                        </ul>
+                        <p>英語力は、お子さんが「伝えたい！」と思える心があれば、いつからでも伸びます。<br>
+                            まずは日本語で、家庭の中で「自分の気持ちを伝えるって楽しい！」という体験を、たっぷり積ませてあげてくださいね。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L15</div>
+                    <div class="l-body">
+                        <div class="l-title">【JOY活】五感で旅する「おうち世界旅行」</div>
+                        <div class="l-desc">飛行機に乗らなくてもできる異文化体験。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Cognitive Flexibility / Harvard Diversity Study</span>
+                        <h4>導入：異文化体験は飛行機に乗らなくてもできる（約1分）</h4>
+                        <p>「子どもに世界を見せたい」<br>
+                            「いろんな文化に触れてほしいけど、海外旅行は難しい……」</p>
+                        <p>そう思っていませんか？<br>
+                            実は、世界を感じるのに、パスポートもチケットもいりません。<br>
+                            「食」「音」「色」「香り」——五感を使えば、お家のリビングが世界への扉に変わります。</p>
+                        <p>今日は、週末にお子さんと一緒に楽しめる「おうち世界旅行」の具体的なやり方をお伝えします。<br>
+                            この習慣が、お子さんの「違いを面白がる感性」――つまり、これからの時代に最も求められる<strong>「異文化受容力」</strong>を、遊びの中で自然と育てていきます。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「違いを面白がる力」は未来の最強スキル（約2分）</h4>
+                        <p>なぜ「異文化体験」がそんなに大事なのでしょうか？</p>
+                        <p>ハーバード・ビジネス・スクールの研究によると、<strong>異なる文化や背景を持つチームは、同質的なチームと比べて創造性が35%高い</strong>というデータがあります。</p>
+                        <p>GoogleやAppleなどのシリコンバレー企業が「ダイバーシティ（多様性）」を最重要課題に掲げているのも、まさにこの理由です。<br>
+                            異なる「当たり前」にふれることで、自分の「当たり前」が揺さぶられる。そこから新しい発想が生まれるんです。</p>
+                        <p>そして、この「違いを面白がる感性」は、大人になってから急に身につくものではありません。<br>
+                            発達心理学では、<strong>子ども時代に多様な経験にふれた子ほど、「認知的柔軟性（Cognitive Flexibility）」が高くなる</strong>ことが分かっています。
+                        </p>
+                        <p>ただし、ここでのポイントは<strong>「教え込む」のではなく「一緒に楽しむ」</strong>こと。<br>
+                            子どもは「これが正しい文化だよ」と言われても響きませんが、「わあ、こんな食べ方があるんだ！ 面白いね！」と親が驚いていると、自然と興味を持ちます。<br>
+                            ミラーニューロンの原理で、<strong>親の「面白がる姿」がそのまま子どもにコピー</strong>されるんですね。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>JOY活：「おうち世界旅行」実践ガイド（約2分）</h4>
+                        <p><strong>【実践ガイド：週末に1回、30分でできます】</strong></p>
+                        <ol>
+                            <li><strong>「今週はどこの国に行く？」と出発式をする</strong>：地球儀やGoogleマップを開いて、子どもに行き先を選ばせましょう。</li>
+                            <li><strong>五感で旅する</strong>：
+                                <ul>
+                                    <li><strong>味覚</strong>：その国のごはんを一品だけ作ってみる</li>
+                                    <li><strong>聴覚</strong>：その国の音楽をBGMにかける</li>
+                                    <li><strong>視覚</strong>：その国の写真や動画を一緒に見る</li>
+                                    <li><strong>触覚</strong>：その国の食べ方を真似してみる</li>
+                                </ul>
+                            </li>
+                            <li><strong>「発見シール」を貼る</strong>：世界地図のポスターを壁に貼って、行った国にシールを貼りましょう。</li>
+                        </ol>
+                        <p><strong>【今回のポイント（まとめ）】</strong></p>
+                        <ul>
+                            <li><strong>「違い」は怖いものではなく「面白い」もの：</strong>多様性にふれた子ほど、認知的柔軟性が育つ。</li>
+                            <li><strong>異文化体験に「本物」は必要ない：</strong>五感を使えば、リビングが世界への扉に変わる。</li>
+                            <li><strong>親の仕事は「一緒に驚く」こと：</strong>「面白がる姿」を見せることが最高の国際教育。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: E (Placeholder Structure) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🔥 セクション7：【E】困難を乗り越える「情熱とGRIT」</div>
+                <div class="section-meta">
+                    <span>⏱ 15分</span>
+                    <span>Point: 失敗を恐れずやり抜く力（GRIT）</span>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L16</div>
+                    <div class="l-body">
+                        <div class="l-title">「失敗」はただのデータ収集</div>
+                        <div class="l-desc">エジソン思考でチャレンジへの恐怖を消す。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Moser's Error Response Study (2011) / Fail Fast</span>
+                        <h4>導入：「失敗が怖い」のは、子どもだけじゃない（約1分）</h4>
+                        <p>「うちの子、ちょっと難しそうだと思うとすぐ諦めるんです」<br>
+                            「新しいことに挑戦しようとしない」<br>
+                            「間違えるのが嫌で、最初からやろうとしないんです……」</p>
+                        <p>こんなお悩み、ありませんか？<br>
+                            実は、これは子どもだけの問題ではありません。<br>
+                            私たち大人だって、「失敗したらどうしよう」「恥ずかしい思いをしたくない」と、新しい挑戦にブレーキをかけてしまうこと、ありますよね。</p>
+                        <p>でも、シリコンバレーでは、失敗に対するとらえ方がまったく違うんです。<br>
+                            今日は、お子さんの「失敗への恐怖」を根こそぎ取り除く、とっておきのマインドセットをお伝えします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：シリコンバレーの「失敗の定義」（約3分）</h4>
+                        <p>シリコンバレーでは、<strong>「Fail Fast, Fail Forward（早く失敗しろ、前に進むために失敗しろ）」</strong>が合言葉です。<br>
+                            GoogleもAppleも、数え切れないほどの失敗を経て、今の成功にたどり着いています。</p>
+                        <p>これは脳科学的な裏付けがあります。<br>
+                            ミシガン大学のモーザー教授の研究では、失敗を「学びのチャンス」と捉える人の脳では、失敗直後に<strong>前頭前野が強く活性化</strong>し、自動的に修正プログラムが走り始めることが分かっています。
+                        </p>
+                        <p>エジソンは言いました。<br>
+                            <strong>「失敗したのではない。うまくいかない方法を1万通り発見したのだ」</strong>
+                        </p>
+                        <p>これこそが「失敗＝データ収集」というマインドセットです。<br>
+                            では、これを子どもにどう伝えるか？ 答えはシンプルです。<strong>親自身が失敗を見せること</strong>。</p>
+                        <p>「ママ、今日お仕事でこんな失敗しちゃった。でもね、おかげで次はこうすればいいって分かったよ」</p>
+                        <p>親が失敗を笑い飛ばし、そこから学ぶ姿を見れば、子どもの脳には「失敗＝大丈夫なもの」というパターンが自然にコピーされます。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>今回のポイント（まとめ）</h4>
+                        <ul>
+                            <li><strong>失敗＝データ収集：</strong>失敗は成功の地図を描くための情報。</li>
+                            <li><strong>脳の反応は「受け止め方」で変わる：</strong>「学びのチャンス」と捉えれば、自動で修正が始まる。</li>
+                            <li><strong>親が「失敗を見せる」のが最強の教育：</strong>失敗して笑っている姿が、子どもの挑戦心を育てる。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L17</div>
+                    <div class="l-body">
+                        <div class="l-title">100点より「工夫」を愛そう</div>
+                        <div class="l-desc">褒め方で変わる「やり抜く力（GRIT）」。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Growth Mindset (Dweck) / GRIT (Duckworth)</span>
+                        <h4>導入：褒め方を間違えると、子どもは挑戦をやめる（約1分）</h4>
+                        <p>「うちの子は褒めて伸ばしたい」<br>
+                            「テストで100点取ったら、思い切り褒めてあげる！」<br>
+                            「天才だね！ すごいね！ って言ってあげてます」</p>
+                        <p>……実は、この褒め方、脳科学的にはちょっと危険なんです。<br>
+                            今日は、子どもの「やり抜く力（GRIT）」を劇的に高める、科学的に正しい褒め方のコツをお伝えします。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「頭がいいね」は、逆効果だった（約3分）</h4>
+                        <p>スタンフォード大学のキャロル・ドゥエック教授の研究によれば、「頭がいいね」と<strong>才能</strong>を褒められた子どもは、「自分は頭がいい」というラベルを守りたくて、失敗するリスクを避けるようになります。
+                        </p>
+                        <p>一方で、「よく頑張ったね」と<strong>プロセス（努力や工夫）</strong>を褒められた子どもの多くは、難しい課題に喜んで挑戦するようになります。<br>
+                            これが、能力は努力で伸びると信じる<strong>「成長マインドセット」</strong>の力です。</p>
+                        <p>アンジェラ・ダックワース教授の研究でも、才能よりも「情熱と粘り強さ（GRIT）」の方が成功を予測する力が高いことが分かっています。</p>
+                        <p>では、具体的にどう褒めればいいのか？</p>
+                        <ul>
+                            <li>「100点取ったね！」 → <strong>「この問題、どうやって解いたの？ その工夫、すごいね！」</strong></li>
+                            <li>「上手に描けたね！」 → <strong>「この色の使い方、面白いね。どうしてこの色にしたの？」</strong></li>
+                        </ul>
+                        <p>結果ではなく、<strong>思考のプロセス</strong>に光を当てるだけで、子どもの脳は「工夫することが楽しい」というモードに切り替わります。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>今回のポイント（まとめ）</h4>
+                        <ul>
+                            <li><strong>「頭がいいね」は危険な褒め方：</strong>才能を褒めると、失敗を避けるようになる。</li>
+                            <li><strong>「どう工夫したの？」が魔法の言葉：</strong>プロセスを褒めると、挑戦が楽しくなる。</li>
+                            <li><strong>GRITは「情熱×粘り強さ」：</strong>親の褒め方一つで、子どものやり抜く力は育つ。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L18</div>
+                    <div class="l-body">
+                        <div class="l-title">折れない心を育てる「魔法の言葉」リフレーミング</div>
+                        <div class="l-desc">ネガティブな感情を受け止め、「プラス」に変換する3ステップ。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Reframing (CBT) / Seligman's Optimistic Style</span>
+                        <h4>導入：「起きた出来事」は変えられなくても、「心」は変えられる（約1分）</h4>
+                        <p>テストの点数が思ったより悪かった。お友達に少しきつい言葉を言われた。一生懸命練習したのに試合で負けてしまった……。<br>
+                            お子さんがそんな「つらい出来事」に直面して落ち込んでいるとき、親としてどう声をかけていますか？</p>
+                        <p>「そんなの気にしなくて大丈夫だよ」「次は頑張ればいいじゃない」<br>
+                            励ましのつもりで言った言葉が、逆にお子さんを「分かってもらえない」と殻に閉じ込めてしまうこともあります。<br>
+                            大切なのは、起きた出来事そのものを変えようとすることではありません。<br>
+                            起こってしまったことは変えられなくても、それをどう「とらえるか」を変えることで、子どもの心は驚くほど回復力を発揮します。</p>
+                        <p>今日は、ネガティブな出来事を「プラスの力」に変換する、リフレーミングという魔法の言葉かけについてお伝えします。これも立派な「JOY活」の一つです！</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「リフレーミング」とは？ 枠組みを変えると景色が変わる（約2分半）</h4>
+                        <p>心理学で言われる「リフレーミング」とは、物事を見る「枠組み（フレーム）」を変えることで、受け取る感情や意味を違うものに変化させるテクニックです。</p>
+                        <p>たとえば、コップに水が半分入っている状態を見て、「もう半分しかない」と捉えるか、「まだ半分もある」と捉えるか。水が半分という「事実」は同じなのに、心を向ける方向で、受け取る感情は全く逆になりますよね。
+                        </p>
+                        <p>ポジティブ心理学の第一人者であるマーティン・セリグマン教授の研究でも、出来事を自分にとって「良い方向に解釈する」習慣を持つ子どもは、そうでない子どもに比べて、困難にぶつかったときの回復度合い、つまり「レジリエンス」が非常に高いことが実証されています。<br>
+                            失敗やトラブルを「世界の終わり」のように捉えるのではなく、「たまたま起きたこと」「次に生かせること」としてとらえ直す力が、未来を切り拓く強さになるんです。</p>
+                        <p>でも、注意してほしいことがあります。<br>
+                            泣いている子どもに、いきなり「大丈夫、いい勉強になったじゃない！」とポジティブな解釈を押し付けるのは、実はNGなんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>JOY活：リフレーミングの3ステップ（約1分半）</h4>
+                        <p>心を育てるリフレーミングには、大切な「順番」があります。ぜひこの3ステップで声をかけてみてください。</p>
+                        <ol>
+                            <li><strong>ステップ1：まずは「感情を受け止める」</strong> —
+                                いきなりポジティブに変換するのはやめましょう。まずは「悔しかったね」「悲しかったね」「がっかりしたよね」と、子どもが今感じているネガティブな感情に寄り添い、そのまま肯定します。「自分の気持ちを分かってもらえた」という安心感が、次のステップへ進む土台になります。
+                            </li>
+                            <li><strong>ステップ2：「実は、これって〇〇だね」と視点を変える</strong> —
+                                少し落ち着いたら、ここでリフレーミングの登場です。「転んで痛かったけど、大きなケガじゃなくてよかったね」「テストは難しかったけど、苦手なところが分かってラッキーだったね」事実の中から、ほんの少しの「プラス」を見つけてあげます。
+                            </li>
+                            <li><strong>ステップ3：「次はどうする？」と未来へ繋げる</strong> —
+                                視点を変えたら、「じゃあ、次はどうしてみようか？」と問いかけます。「次はこうしてみる」という具体的な行動を自分で考えることで、コントロール感を取り戻し、次へ向かうエネルギーが湧いてきます。
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="script-section">
+                        <h4>結び：親のリフレーミングが、子どもの「心の盾」になる（約30秒）</h4>
+                        <p>「いいところを見つけるゲーム」のように、日常の小さな困りごとからリフレーミングを取り入れてみてください。「あーあ、雨が降っちゃったね」と言ったら「でも、あじさいが喜んでるね！」と言い換えるような、ほんのささいなことで構いません。
+                        </p>
+                        <p>親が日常的に「プラスの側面」に光を当てる姿を見せることが、そのまま子どもへの最高のレジリエンス教育になります。<br>
+                            今日からの一言が、社会に出たときの大きな武器になりますよ。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Summary (Placeholder Structure) -->
+        <div class="section-block">
+            <div class="section-header">
+                <div class="section-title">🎁 セクション8：JOYの循環が、未来を創る</div>
+                <div class="section-meta">
+                    <span>⏱ 5分</span>
+                    <span>Point: 全体の振り返りと、明日からの第一歩</span>
+                </div>
+            </div>
+            <div class="lecture-item">
+                <div class="lecture-header has-script" onclick="toggleScript(this)">
+                    <div class="l-num">L19</div>
+                    <div class="l-body">
+                        <div class="l-title">あなたの子育ては、すでに素晴らしい</div>
+                        <div class="l-desc">「足るを知る」視点と、幸せの「シャンパンタワー」。</div>
+                    </div>
+                    <div class="l-time">5分</div>
+                </div>
+                <div class="script-panel">
+                    <div class="script-section">
+                        <span class="badge-research">Research: Scarcity Mindset (Princeton) / Emmons Gratitude</span>
+                        <h4>導入：最後に、一番大切なことをお伝えさせてください（約1分）</h4>
+                        <p>ここまで一緒に学んでくださって、本当にありがとうございます。<br>
+                            でも、正直に言いますね。「こんなにたくさん、全部できる気がしない……」そう思っていませんか？</p>
+                        <p>安心してください。<strong>全部やる必要なんてありません。</strong><br>
+                            最後にお伝えしたい、たった一つのメッセージがあります。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>本題：「足るを知る」が、子育ての最強の武器（約3分）</h4>
+                        <p>子育てをしていると、ついつい「足りないもの」ばかりに目が行きます。<br>
+                            でも、プリンストン大学の研究によれば、<strong>「足りない」にフォーカスしている状態（欠乏マインドセット）</strong>では、脳の能力が大幅に低下することが分かっています。
+                        </p>
+                        <p>逆に、「今あるもの」に目を向けたとき、脳はゆとりを取り戻します。<br>
+                            セクション2でお話しした「シャンパンタワー」を思い出してください。一番上のグラスは、あなた自身。あなたが「今の自分でいい」と感じられたとき、その溢れた安心が子どもに伝わっていく。これが<strong>「JOYの循環」</strong>です。
+                        </p>
+                        <p>「今日、ごはんを食べた」「笑った」。それだけで、もう十分すごいことなんです。</p>
+                    </div>
+                    <div class="script-section">
+                        <h4>結び：あなたはすでに、素晴らしい親です（約1分）</h4>
+                        <p>こうして学ぼうとしているだけで、あなたは本当に素晴らしい親です。<br>
+                            完璧じゃなくていい。今日、一つだけやってみようかなと思えることがあれば、そこから始めてみてください。</p>
+                        <p><strong>【今回のポイント（まとめ）】</strong></p>
+                        <ul>
+                            <li><strong>「足るを知る」が最強の子育て：</strong>「足りない」より「すでにある」に目を向ける。</li>
+                            <li><strong>JOYの循環：</strong>親が自分を満たすことが、子どもの能力を育てる最短ルート。</li>
+                            <li><strong>今日、一つだけ始めれば十分：</strong>小さな一歩が、大きな変化になります。</li>
+                        </ul>
+                        <p>ありがとうございました。一緒に、JOYの循環を広げていきましょう。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

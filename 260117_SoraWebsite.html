@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sora International School ウェブサイト改善資料</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary: #7c3aed;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --gray: #6b7280;
+            --light: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.8;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            color: white;
+            padding: 2rem 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 2rem 3rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin: 1.5rem 0 1rem;
+        }
+
+        h4 {
+            font-size: 1rem;
+            color: var(--gray);
+            margin: 1rem 0 0.5rem;
+        }
+
+        p {
+            margin: 0.75rem 0;
+            color: var(--dark);
+        }
+
+        .agenda {
+            background: var(--primary-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .agenda h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .agenda ol {
+            margin-left: 1.5rem;
+        }
+
+        .agenda li {
+            margin: 0.5rem 0;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card.highlight {
+            border-left: 4px solid var(--primary);
+            background: #fafafa;
+        }
+
+        .card.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .card.warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .card.danger {
+            border-left: 4px solid var(--danger);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag.blue {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag.green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tag.purple {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .tag.orange {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .tag.red {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        blockquote {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid var(--success);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+        }
+
+        ul,
+        ol {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        li {
+            margin: 0.3rem 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .proposal-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .proposal-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .proposal-card .header {
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .proposal-card .header.a {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .proposal-card .header.b {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .proposal-card .header.c {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+        }
+
+        .proposal-card .body {
+            padding: 1.5rem;
+        }
+
+        .proposal-card h4 {
+            margin: 0;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .proposal-card h3 {
+            margin: 0.5rem 0 0;
+            font-size: 1.1rem;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            margin: 3rem 0;
+        }
+
+        .decision-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fff7ed 100%);
+            border: 2px dashed var(--warning);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .decision-box h3 {
+            color: var(--warning);
+            margin-top: 0;
+        }
+
+        footer {
+            background: var(--light);
+            padding: 1.5rem 3rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .matrix-item {
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .matrix-item.strength {
+            background: #d1fae5;
+        }
+
+        .matrix-item.weakness {
+            background: #fee2e2;
+        }
+
+        .matrix-item.opportunity {
+            background: #dbeafe;
+        }
+
+        .matrix-item.threat {
+            background: #fef3c7;
+        }
+
+        .checklist {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .checklist li::before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .matrix-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🏫 Sora International School ウェブサイト改善資料</h1>
+            <p class="subtitle">次回ミーティングに向けた戦略資料（2026年1月17日作成）</p>
+        </header>
+
+        <div class="content">
+            <div class="agenda">
+                <h3>📋 本資料の構成</h3>
+                <ol>
+                    <li>つくば市の地域特性</li>
+                    <li>ターゲットペルソナ（3タイプ）</li>
+                    <li>強み・弱み・機会・脅威（SWOT）</li>
+                    <li>ポジショニング・差別化ポイント</li>
+                    <li>ウェブサイト改善ポイント</li>
+                    <li>玲子先生へのインタビュー項目</li>
+                </ol>
+            </div>
+
+            <hr>
+
+            <h2>📍 つくば市の地域特性</h2>
+            <div class="card highlight">
+                <table>
+                    <tr>
+                        <th>人口特性</th>
+                        <td>0〜14歳人口は茨城県内最多、人口増加率は全国上位</td>
+                    </tr>
+                    <tr>
+                        <th>外国人比率</th>
+                        <td><strong>約4.6%</strong>（145か国・地域から居住）、全国平均を大幅に上回る</td>
+                    </tr>
+                    <tr>
+                        <th>主要機関</th>
+                        <td>筑波大学、JAXA、産総研、<strong>TSMC</strong>、100以上の研究教育機関</td>
+                    </tr>
+                    <tr>
+                        <th>教育環境</th>
+                        <td>「教育日本一」スローガン、小中一貫教育、ICT・国際理解教育に注力</td>
+                    </tr>
+                    <tr>
+                        <th>競合状況</th>
+                        <td>TIS（IB認定校）、OWIS（2025年開校）など</td>
+                    </tr>
+                </table>
+            </div>
+
+            <hr>
+
+            <h2>👤 ターゲットペルソナ</h2>
+
+            <div class="grid-2">
+                <div class="proposal-card">
+                    <div class="header a">
+                        <h4>ペルソナ1</h4>
+                        <h3>研究者・高度専門職ファミリー</h3>
+                    </div>
+                    <div class="body">
+                        <p><strong>プロフィール:</strong> 産総研・筑波大学勤務、30代後半〜40代、夫婦で海外経験あり</p>
+                        <p><strong>ニーズ:</strong></p>
+                        <ul>
+                            <li>「世界で通用する」スキルを子どもに</li>
+                            <li>英語は「お勉強」ではなく自然に</li>
+                            <li>小学校以降の英語継続への不安</li>
+                            <li>フルのインターは費用が高すぎる</li>
+                        </ul>
+                        <p><strong>期待:</strong> シリコンバレー発の「本物」、費用対効果</p>
+                    </div>
+                </div>
+
+                <div class="proposal-card">
+                    <div class="header b">
+                        <h4>ペルソナ2</h4>
+                        <h3>外資系・駐在員ファミリー</h3>
+                    </div>
+                    <div class="body">
+                        <p><strong>プロフィール:</strong> TSMC等勤務、国際結婚家庭も多い、40代前後</p>
+                        <p><strong>ニーズ:</strong></p>
+                        <ul>
+                            <li>日英バイリンガル環境を両立したい</li>
+                            <li>フルのインターは待機児童多い</li>
+                            <li>週数回通えるプログラム希望</li>
+                            <li>多様な国籍の子どもとの交流</li>
+                        </ul>
+                        <p><strong>期待:</strong> 柔軟なプログラム、シリコンバレーへの信頼</p>
+                    </div>
+                </div>
+
+                <div class="proposal-card">
+                    <div class="header c">
+                        <h4>ペルソナ3</h4>
+                        <h3>教育移住・Uターン検討ファミリー</h3>
+                    </div>
+                    <div class="body">
+                        <p><strong>プロフィール:</strong> TX沿線から移住検討、30代、リモートワーク夫婦</p>
+                        <p><strong>ニーズ:</strong></p>
+                        <ul>
+                            <li>東京の競争環境から脱出したい</li>
+                            <li>「まずは英語に触れさせたい」ライト層</li>
+                            <li>高額インターには抵抗感</li>
+                            <li>子どもが楽しく通えるかが最優先</li>
+                        </ul>
+                        <p><strong>期待:</strong> アットホームな雰囲気、土曜日プログラム</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>📊 SWOT分析</h2>
+
+            <div class="matrix-grid">
+                <div class="matrix-item strength">
+                    <h4>💪 強み (Strengths)</h4>
+                    <ul>
+                        <li>シリコンバレーで5校運営の実績</li>
+                        <li>創業者の書籍がAmazon1位</li>
+                        <li>モンテ×レッジョ×アドラー融合メソッド</li>
+                        <li>自然豊かな環境・広い園庭</li>
+                        <li>柔軟なプログラム形態（週2〜土曜など）</li>
+                        <li>「アウトプット重視」の教育方針</li>
+                    </ul>
+                </div>
+
+                <div class="matrix-item weakness">
+                    <h4>😰 弱み (Weaknesses)</h4>
+                    <ul>
+                        <li>知名度がまだ低い（2023年開校）</li>
+                        <li>IB認定などの公的資格なし</li>
+                        <li>小学校以降の継続プログラムへの不安</li>
+                        <li>ウェブサイトの情報整理が不十分</li>
+                        <li>費用・定員情報が不明確</li>
+                    </ul>
+                </div>
+
+                <div class="matrix-item opportunity">
+                    <h4>🚀 機会 (Opportunities)</h4>
+                    <ul>
+                        <li>TSMC進出で外国人子弟増加</li>
+                        <li>つくば市の人口増加・子育て世帯流入</li>
+                        <li>「教育移住」トレンド</li>
+                        <li>バイリンガル教育への需要増</li>
+                        <li>フルのインター（TIS等）の費用高騰</li>
+                        <li>JOY活書籍との連動</li>
+                    </ul>
+                </div>
+
+                <div class="matrix-item threat">
+                    <h4>⚠️ 脅威 (Threats)</h4>
+                    <ul>
+                        <li>OWIS（2025年開校）など競合増加</li>
+                        <li>TISの知名度・IB認定</li>
+                        <li>公立小中学校の国際教育強化</li>
+                        <li>オンライン英語教育の普及</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>🎯 ポジショニング・差別化</h2>
+
+            <div class="card success">
+                <h4>💎 Soraのポジショニング</h4>
+                <blockquote>
+                    「フルのインターナショナルスクールは敷居が高い」けれど<br>
+                    「普通の英会話教室では物足りない」と感じる<br>
+                    <strong>つくばの教育意識の高い保護者</strong>に向けた<br>
+                    <strong>シリコンバレー発の"本物の"バイリンガル教育</strong>
+                </blockquote>
+            </div>
+
+            <div class="card highlight">
+                <h4>⚡ 競合との差別化ポイント</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>項目</th>
+                            <th>Sora</th>
+                            <th>TIS（競合）</th>
+                            <th>OWIS（競合）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>費用</td>
+                            <td><span class="tag green">手頃</span></td>
+                            <td><span class="tag red">高額</span></td>
+                            <td><span class="tag red">高額</span></td>
+                        </tr>
+                        <tr>
+                            <td>柔軟性</td>
+                            <td><span class="tag green">週2〜/土曜のみ可</span></td>
+                            <td><span class="tag orange">フルタイム</span></td>
+                            <td><span class="tag orange">フルタイム</span></td>
+                        </tr>
+                        <tr>
+                            <td>日本語教育</td>
+                            <td><span class="tag green">日英バランス</span></td>
+                            <td><span class="tag blue">英語中心</span></td>
+                            <td><span class="tag blue">英語中心</span></td>
+                        </tr>
+                        <tr>
+                            <td>創業者の顔</td>
+                            <td><span class="tag green">著書・メディア多数</span></td>
+                            <td><span class="tag orange">見えにくい</span></td>
+                            <td><span class="tag orange">見えにくい</span></td>
+                        </tr>
+                        <tr>
+                            <td>初心者対応</td>
+                            <td><span class="tag green">歓迎</span></td>
+                            <td><span class="tag orange">ある程度の英語力必要</span></td>
+                            <td><span class="tag orange">ある程度の英語力必要</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <hr>
+
+            <h2>🔧 ウェブサイト改善ポイント</h2>
+
+            <div class="grid-2">
+                <div class="card warning">
+                    <h4>1. 費用感の明示</h4>
+                    <p>「フルのインターとは違う、手頃な価格帯」を伝える</p>
+                    <ul class="checklist">
+                        <li>料金目安を掲載</li>
+                        <li>TIS等との比較表を作成</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>2. 柔軟性の強調</h4>
+                    <p>日本の学校との両立が可能であることを明確に</p>
+                    <ul class="checklist">
+                        <li>週何回から可能か明記</li>
+                        <li>「公立小学校と両立」の事例紹介</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>3. 初心者歓迎メッセージ</h4>
+                    <p>「初めて英語を学ぶお子さんも安心」を目立たせる</p>
+                    <ul class="checklist">
+                        <li>ファーストビューに配置</li>
+                        <li>保護者の声を追加</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>4. 地域密着メッセージ</h4>
+                    <p>つくば市の研究者・外国人家庭への親和性</p>
+                    <ul class="checklist">
+                        <li>「つくばを選んだ理由」を追加</li>
+                        <li>地域の研究機関との関係性</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>5. 創業者ストーリー強化</h4>
+                    <p>Reiko先生の経歴・想いをより深く伝える</p>
+                    <ul class="checklist">
+                        <li>動画インタビュー追加</li>
+                        <li>シリコンバレーでの経験談</li>
+                    </ul>
+                </div>
+
+                <div class="card warning">
+                    <h4>6. 成功事例・卒業生の声</h4>
+                    <p>具体的な成長エピソードで信頼感UP</p>
+                    <ul class="checklist">
+                        <li>保護者インタビュー</li>
+                        <li>ビフォーアフター事例</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>🎤 玲子先生へのインタビュー項目</h2>
+            <p>ウェブサイト改善コンテンツを作成するための質問リスト</p>
+
+            <div class="card highlight">
+                <h4>セクション1: 創業ストーリー・想い（15分）</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>質問</th>
+                            <th>狙い</th>
+                            <th>活用箇所</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>「シリコンバレーで5校を成功させた後、なぜ日本、そしてつくばを選んだのですか？」</td>
+                            <td>つくばの研究者・外資系家庭が共感できる「選んだ理由」</td>
+                            <td>Aboutページ、トップ</td>
+                        </tr>
+                        <tr>
+                            <td>「『日本は素晴らしい国なのに外に出られないのがもったいない』、具体的にどんな場面で感じましたか？」</td>
+                            <td>抽象メッセージを具体エピソードに</td>
+                            <td>トップページ、SNS</td>
+                        </tr>
+                        <tr>
+                            <td>「3人のお子さんをトリリンガルに育てた経験から、一番大切なことは？」</td>
+                            <td>「母親」としての視点を引き出す</td>
+                            <td>プロフィール、保護者向け</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card highlight">
+                <h4>セクション2: 教育メソッド・差別化（15分）</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>質問</th>
+                            <th>狙い</th>
+                            <th>活用箇所</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>「Soraの教育を一言で表すとしたら何ですか？」</td>
+                            <td>競合との差別化キャッチフレーズ</td>
+                            <td>トップUSP、Program</td>
+                        </tr>
+                        <tr>
+                            <td>「シリコンバレー本校と比べて、つくば校ならではの特徴は？」</td>
+                            <td>地域カスタマイズ感を出す</td>
+                            <td>About、差別化</td>
+                        </tr>
+                        <tr>
+                            <td>「Soraで学んだお子さんで、印象的な成長エピソードは？」</td>
+                            <td>抽象的理念を具体的成果に変換</td>
+                            <td>成功事例、SNS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card highlight">
+                <h4>セクション3: 保護者へのメッセージ（15分）</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>質問</th>
+                            <th>狙い</th>
+                            <th>活用箇所</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>「『インターは早いかも…』と迷っている保護者に何と伝えたいですか？」</td>
+                            <td>ライト層への訴求、敷居を下げる</td>
+                            <td>新入生募集、FAQ</td>
+                        </tr>
+                        <tr>
+                            <td>「日本の小学校と両立についてどうお考えですか？」</td>
+                            <td>「両立可能」への不安解消</td>
+                            <td>Program（After-school等）</td>
+                        </tr>
+                        <tr>
+                            <td>「つくばで子育てをしている保護者に、一番伝えたいことは？」</td>
+                            <td>地域密着メッセージ</td>
+                            <td>トップ、地域向けSNS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="decision-box">
+                <h3>📝 次回ミーティングの進め方</h3>
+                <ol>
+                    <li><strong>オープニング（5分）</strong>: 趣旨説明、リラックスした雰囲気づくり</li>
+                    <li><strong>セクション1（15分）</strong>: 創業ストーリー・想い</li>
+                    <li><strong>セクション2（15分）</strong>: 教育メソッド・差別化</li>
+                    <li><strong>セクション3（15分）</strong>: 保護者へのメッセージ</li>
+                    <li><strong>クロージング（10分）</strong>: JOY活との連動、今後のビジョン</li>
+                </ol>
+                <p><strong>注意:</strong> 録音許可を得る、具体的エピソードを深掘りする「例えば？」「具体的には？」</p>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>Sora International School ウェブサイト改善資料 | 2026年1月17日作成</p>
+        </footer>
+    </div>
+</body>
+
+</html>
