@@ -189,14 +189,13 @@
 
         .pipe-icon { font-size: 0.85rem; }
 
-        /* Course Content */
+        /* Course Content - display-based toggle for large content */
         .course-content {
-            max-height: 0;
+            display: none;
             overflow: hidden;
-            transition: max-height 0.4s ease;
         }
         .course-accordion.open .course-content {
-            max-height: 3000px;
+            display: block;
         }
         .course-inner {
             padding: 0 1.5rem 1.5rem;
@@ -242,17 +241,93 @@
             color: var(--orange);
             margin-bottom: 0.5rem;
         }
-        .script-preview .lecture-item {
-            padding: 4px 0;
-            border-bottom: 1px dashed #fde68a;
-        }
-        .script-preview .lecture-item:last-child { border-bottom: none; }
         .lecture-num {
             display: inline-block;
             width: 28px;
             font-weight: 700;
             color: var(--primary);
             font-size: 0.72rem;
+        }
+
+        /* Lecture Detail (expandable) */
+        .lecture-detail {
+            border-bottom: 1px dashed #fde68a;
+        }
+        .lecture-detail:last-child {
+            border-bottom: none;
+        }
+        .lecture-detail summary {
+            padding: 6px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            user-select: none;
+        }
+        .lecture-detail summary::-webkit-details-marker {
+            display: none;
+        }
+        .lecture-detail summary::before {
+            content: "\25B6";
+            display: inline-block;
+            font-size: 0.55rem;
+            margin-right: 6px;
+            transition: transform 0.2s;
+            color: var(--gray);
+            flex-shrink: 0;
+        }
+        .lecture-detail[open] summary::before {
+            transform: rotate(90deg);
+        }
+        .lecture-detail summary:hover {
+            color: var(--primary);
+        }
+        .lecture-body {
+            padding: 0.5rem 0 1rem 34px;
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: #374151;
+        }
+        .lecture-body p {
+            margin-bottom: 0.6em;
+        }
+        .lecture-body ul {
+            margin: 0.4em 0 0.6em 1.2em;
+        }
+        .lecture-body li {
+            margin-bottom: 0.2em;
+        }
+        .lecture-body .lec-h {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 1em 0 0.4em 0;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+        .lecture-body .script-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76rem;
+            margin: 0.6em 0;
+        }
+        .lecture-body .script-table th {
+            background: var(--primary-light);
+            padding: 5px 8px;
+            text-align: left;
+            font-size: 0.7rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        .lecture-body .script-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .lecture-body strong {
+            color: var(--text);
         }
 
         /* Info boxes */
@@ -287,6 +362,7 @@
             .header h1 { font-size: 1.3rem; }
             .pipeline { flex-wrap: wrap; gap: 4px; }
             .pipe-arrow { display: none; }
+            .lecture-body { padding-left: 20px; }
         }
     </style>
 </head>
@@ -296,7 +372,7 @@
 
         <!-- Header -->
         <div class="header">
-            <h1>JOY活 × Udemy 5講座シリーズ</h1>
+            <h1>JOY活 &times; Udemy 5講座シリーズ</h1>
             <div class="subtitle">中内玲子（Reiko Nakauchi）｜制作進捗ダッシュボード ― 更新：2026年3月4日</div>
         </div>
 
@@ -305,23 +381,23 @@
             <button class="course-toggle" onclick="toggleCourse(this)">
                 <div class="course-num">1</div>
                 <div class="course-toggle-text">
-                    <div class="title">非認知能力 × SMILE ― 5つの力の育て方</div>
+                    <div class="title">非認知能力 &times; SMILE ― 5つの力の育て方</div>
                     <div class="tagline">書籍 第1章・第6章・第7章｜全8セクション・19レクチャー</div>
                 </div>
                 <span class="course-badge badge-done">公開済み</span>
-                <span class="toggle-arrow">▼</span>
+                <span class="toggle-arrow">&#9660;</span>
             </button>
             <div class="course-content">
                 <div class="course-inner">
                     <div class="pipeline">
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 音声</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> スライド</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 映像</span>
                     </div>
                     <table class="section-table">
@@ -345,49 +421,891 @@
         </div>
 
         <!-- Course 2 -->
-        <div class="course-accordion c2 open">
+        <div class="course-accordion c2">
             <button class="course-toggle" onclick="toggleCourse(this)">
                 <div class="course-num">2</div>
                 <div class="course-toggle-text">
-                    <div class="title">おうちでできるSTEAM教育 ― 脳科学 × 世界の探究学習 × JOY活</div>
+                    <div class="title">おうちでできるSTEAM教育 ― 脳科学 &times; 世界の探究学習 &times; JOY活</div>
                     <div class="tagline">STEAM教育をメインに深掘り｜全8セクション・17レクチャー・約93分</div>
                 </div>
                 <span class="course-badge badge-progress">台本完了</span>
-                <span class="toggle-arrow">▼</span>
+                <span class="toggle-arrow">&#9660;</span>
             </button>
             <div class="course-content">
                 <div class="course-inner">
                     <div class="pipeline">
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">音声</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">スライド</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">映像</span>
                     </div>
 
                     <div class="script-preview">
                         <h4>台本（260304_Udemy講座2_台本_STEAM教育.md）</h4>
-                        <div class="lecture-item"><span class="lecture-num">L1</span> 「STEAM＝理系エリート教育」は誤解です</div>
-                        <div class="lecture-item"><span class="lecture-num">L2</span> AI時代に「考える力」が武器になる理由</div>
-                        <div class="lecture-item"><span class="lecture-num">L3</span> 子どもの脳は「探究」で育つ ― 神経可塑性とシナプス形成</div>
-                        <div class="lecture-item"><span class="lecture-num">L4</span> 「実行機能」― 自分をコントロールする脳の力</div>
-                        <div class="lecture-item"><span class="lecture-num">L5</span> 「教えない」のが最高の教育 ― 科学的思考のつくり方</div>
-                        <div class="lecture-item"><span class="lecture-num">L6</span> キッチンとリビングが研究室になる ― T × E の入り口</div>
-                        <div class="lecture-item"><span class="lecture-num">L7</span> なぜSTEMに「A」が必要なのか ― 創造性の科学</div>
-                        <div class="lecture-item"><span class="lecture-num">L8</span> 数学は暗記科目じゃない ― パターン認識と空間把握力</div>
-                        <div class="lecture-item"><span class="lecture-num">L9</span> フィンランド ― 宿題なし・テストなし。でも学力世界一の秘密</div>
-                        <div class="lecture-item"><span class="lecture-num">L10</span> シンガポール ― 「教えるのを減らせ」が国家戦略</div>
-                        <div class="lecture-item"><span class="lecture-num">L11</span> アメリカ ― Maker Education と「失敗を祝う文化」</div>
-                        <div class="lecture-item"><span class="lecture-num">L12</span> なぜ「楽しい」と学べるのか ― 感情と記憶の脳科学</div>
-                        <div class="lecture-item"><span class="lecture-num">L13</span> DMN ― ぼーっとする時間が創造性を育てる</div>
-                        <div class="lecture-item"><span class="lecture-num">L14</span> 感情的共調整 ― 親子で育む探究の土壌</div>
-                        <div class="lecture-item"><span class="lecture-num">L15</span> 0〜6歳：五感と「なぜ？」のSTEAMあそび</div>
-                        <div class="lecture-item"><span class="lecture-num">L16</span> 5つの非認知能力（SMILE）とSTEAMの接続</div>
-                        <div class="lecture-item"><span class="lecture-num">L17</span> 今日からの一歩 ― まとめとメッセージ</div>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L1</span> 「STEAM＝理系エリート教育」は誤解です</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入（フック）</h5>
+<p>皆さん、こんにちは。玲子です。
+</p>
+<p>講座2を受講してくださって、ありがとうございます。
+</p>
+<p>講座1では「非認知能力」と「SMILE」のお話をしました。今回はそこからさらに一歩進んで、「STEAM教育」についてお伝えしていきます。
+</p>
+<p>「STEAM教育」って聞いたことありますか？
+</p>
+<p>もしかしたら、「理系の英才教育でしょ？」「プログラミング教室に通わせること？」「うちの子、文系だから関係ないかな」……そう思った方もいるかもしれません。
+</p>
+<p>実は、それ、全部誤解なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>STEAMというのは、5つの分野の頭文字をとったものです。
+</p>
+<p><strong>S</strong> — Science（科学）
+<br><strong>T</strong> — Technology（テクノロジー）
+<br><strong>E</strong> — Engineering（工学）
+<br><strong>A</strong> — Arts（芸術・リベラルアーツ）
+<br><strong>M</strong> — Mathematics（数学）
+</p>
+<p>もともとは「STEM」として、アメリカで科学技術分野の人材を育てるために始まりました。
+</p>
+<p>でも、途中で大事なことに気づいたんです。
+</p>
+<p><strong>科学や技術だけでは、イノベーションは生まれない。</strong>
+</p>
+<p>Appleのスティーブ・ジョブズがカリグラフィー（美しい文字を書く授業）に感動して、それがMacの美しいフォントにつながった話は有名ですよね。
+</p>
+<p>つまり、<strong>サイエンスとアートが出会うところに、本当の創造性が生まれる</strong>。
+</p>
+<p>そこで「A（Arts）」が加わって、「STEAM」になったんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>ここで大事なのは、STEAMは「5つの教科を教える」ことではないということです。
+</p>
+<p>STEAMの本質は——
+</p>
+<p><strong>「なぜ？」と不思議に思う → 自分で仮説を立てる → やってみる → 発見する</strong>
+</p>
+<p>この探究のサイクルそのものなんです。
+</p>
+<p>これって、子どもが毎日やってることと同じだと思いませんか？
+</p>
+<p>水たまりに石を投げて、波紋を見てる。積み木を高く積んで、崩れるのを楽しんでる。
+</p>
+<p>それが、もうSTEAMなんです。
+</p>
+<p>特別な教材も、高いプログラミング教室も必要ありません。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>今、文部科学省もSTEAM教育を正式に推進し始めています。世界中の国がこの方向に動いています。
+</p>
+<p>でも、日本ではまだ「STEAM教育って何？」という段階。Udemyの日本語講座を見ても、STEAM教育をちゃんと解説した講座は、ほぼありません。
+</p>
+<p>だからこそ、この講座で<strong>「おうちでできるSTEAM」</strong>をしっかりお伝えしていきたいと思います。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L2</span> AI時代に「考える力」が武器になる理由</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>講座1でもお話ししましたが、ChatGPTが東大の入試問題を解ける時代になりました。
+</p>
+<p>AIが知識を持ってくれる時代に、子どもに何を残してあげられるか。
+</p>
+<p>その答えの一つが、STEAM教育なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>AIが得意なのは、「正解のある問い」に答えること。
+</p>
+<p>でも、AIが苦手なことがあります。
+</p>
+<p><strong>「問い」そのものをつくること。</strong>
+</p>
+<p>「なぜ空は青いんだろう？」「もし重力がなかったら、どんな家に住むだろう？」
+</p>
+<p>こういう「そもそも」の問いを立てる力。これこそが、STEAM教育で育つ力なんです。
+</p>
+<p>私がシリコンバレーで14年間学校を運営してきて、すごく実感していることがあります。
+</p>
+<p>Google やAppleのエンジニアのお子さんが、うちの園にたくさん通っていました。そのお父さんお母さんたちが口をそろえて言うのは——
+</p>
+<p><strong>「答えを覚える力より、問いを立てる力のほうが大事」</strong>
+</p>
+<p>ということ。
+</p>
+<p>なぜなら、テクノロジーの世界では、正解はすぐに変わるから。去年の正解が、今年の不正解になる。
+</p>
+<p>そういう世界で生き残る人は、<strong>「自分で問いを立て、自分で試し、自分で発見できる人」</strong>なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>STEAM教育は、「賢い子をつくる方法」ではありません。
+</p>
+<p><strong>「自分の頭で考える子」を育てる考え方</strong>です。
+</p>
+<p>そして、これは特別な才能がなくても、家庭の中で育てることができます。
+</p>
+<p>次のセクションでは、なぜ幼児期のSTEAM体験が脳に効くのか、科学的な根拠をお話しします。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L3</span> 子どもの脳は「探究」で育つ ― 神経可塑性とシナプス形成</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「うちの子、ずっと砂場で遊んでばかりで……もっと勉強させなきゃダメかな」
+</p>
+<p>こんな不安、感じたことありませんか？
+</p>
+<p>実は、脳科学の観点からいうと、砂場で遊んでいるあの時間、子どもの脳はものすごく活発に動いているんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>人間の脳は、生まれてから6歳くらいまでに、約90％が形成されると言われています。
+</p>
+<p>この時期の脳の特徴は、<strong>「神経可塑性（しんけいかそせい）」</strong>がとても高いこと。
+</p>
+<p>難しい言葉ですが、簡単に言うと、<strong>脳がスポンジのように柔らかくて、経験をどんどん吸収する力</strong>のことです。
+</p>
+<p>子どもが砂場で山をつくっている時、脳の中では何が起きているか。
+</p>
+<p>「どうやったら崩れないかな」（仮説を立てる）
+<br>「水をかけたら固まるかな」（実験する）
+<br>「あ、トンネルが開通した！」（発見する）
+</p>
+<p>この一連のプロセスの中で、脳のニューロン（神経細胞）同士がつながっていくんです。このつながりを<strong>「シナプス」</strong>と言います。
+</p>
+<p>ハーバード大学の「Center on the Developing Child（発達する子どもセンター）」の研究によると、乳幼児期には<strong>1秒間に100万以上の新しいシナプスが形成される</strong>と報告されています。
+</p>
+<p>そして、<strong>よく使われるシナプスは強くなり、使われないシナプスは消えていく。</strong>
+</p>
+<p>つまり、子どもが何を体験するかが、脳の配線そのものを決めるんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>ここで重要なのは、フラッシュカードやドリルのような「与えられた刺激」よりも、<strong>自分で触って、試して、発見する体験</strong>のほうが、シナプスの形成がはるかに豊かになるということ。
+</p>
+<p>なぜなら、探究体験では複数の脳の領域が同時に活性化するから。
+</p>
+<p>手で触る（感覚野）、目で観察する（視覚野）、「なぜだろう」と考える（前頭前野）、「できた！」と喜ぶ（報酬系）——これが一度に起きるんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>子どもが夢中になって砂場で遊んでいる時間は、最高の「脳トレ」の時間。
+</p>
+<p>STEAM教育の土台は、この<strong>「体験を通じた脳の成長」</strong>にあります。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L4</span> 「実行機能」― 自分をコントロールする脳の力</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>お子さんに、こんなことありませんか？
+</p>
+<p>おもちゃを片付けられない。順番を待てない。すぐに飽きてしまう。
+</p>
+<p>これ、「性格の問題」だと思っていませんか？
+</p>
+<p>実は、これらはすべて<strong>脳の「実行機能（Executive Function）」</strong>という力に関係しています。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>実行機能というのは、<strong>脳の「司令塔」のような働き</strong>をする力です。
+</p>
+<p>具体的には3つの力があります。
+</p>
+<p><strong>① ワーキングメモリ</strong> — 情報を一時的に覚えておく力
+<br>「ママが言ったこと、覚えておいて行動する」
+</p>
+<p><strong>② 抑制制御</strong> — 衝動を抑える力
+<br>「今すぐ食べたいけど、みんなが揃うまで待つ」
+</p>
+<p><strong>③ 認知的柔軟性</strong> — 考え方を切り替える力
+<br>「このやり方がダメなら、別のやり方を試してみよう」
+</p>
+<p>ハーバード大学の研究チームは、<strong>この実行機能こそが、学力よりも将来の成功を予測する最も強い指標だ</strong>と発表しています。
+</p>
+<p>つまり、テストの点数よりも、「自分をコントロールする力」のほうが、人生においてずっと大事だということ。
+</p>
+<h5 class="lec-h">STEAM教育との関連</h5>
+<p>で、ここがポイントなんですが——
+</p>
+<p><strong>STEAM的な探究体験は、この実行機能を鍛える最高のトレーニング</strong>なんです。
+</p>
+<p>たとえば、積み木で橋をつくる。
+</p>
+<p>「こうやったら強くなるかな？」（仮説＝ワーキングメモリ）
+<br>「あ、崩れた。もう一回」（抑制制御で感情をコントロール）
+<br>「じゃあ、こっちを太くしてみよう」（認知的柔軟性で戦略変更）
+</p>
+<p>遊びながら、脳の司令塔がフル稼働しているんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>子どもに「我慢しなさい」「ちゃんとしなさい」と言うよりも、<strong>探究的な遊びを通じて、実行機能を自然に鍛えていく</strong>こと。
+</p>
+<p>これが、STEAM教育が脳科学から支持される大きな理由です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L5</span> 「教えない」のが最高の教育 ― 科学的思考のつくり方</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「ママ、なんで空は青いの？」
+</p>
+<p>こう聞かれたとき、どう答えますか？
+</p>
+<p>多くの方は、「光の散乱が……」と正解を教えようとしますよね。
+</p>
+<p>でも、STEAM教育の考え方では、<strong>正解を教えるのは最後の最後</strong>なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>STEAM教育のScience（科学）の部分で一番大切なのは、<strong>「科学的思考のプロセス」を体験させること</strong>。
+</p>
+<p>プロセスはこうです。
+</p>
+<p><strong>① 観察する</strong>「あれ、不思議だな」
+<br><strong>② 問いを立てる</strong>「なんでだろう？」
+<br><strong>③ 仮説を立てる</strong>「もしかして〜かな？」
+<br><strong>④ 実験する</strong>「じゃあ、試してみよう！」
+<br><strong>⑤ 発見する</strong>「わあ、こうなった！」
+</p>
+<p>この5つのステップを、子どもが自分でたどることが大事なんです。
+</p>
+<p>「空はなんで青いの？」と聞かれたら——
+</p>
+<p><strong>「本当だね、なんでだろうね？ ○○ちゃんはどう思う？」</strong>
+</p>
+<p>こう返すだけで、子どもは自分で考え始めます。
+</p>
+<p>「太陽が黄色いから、混ざって青になるのかな？」
+</p>
+<p>間違っていても全然いいんです。むしろ、<strong>間違った仮説を立てること自体が、科学的思考の出発点</strong>です。
+</p>
+<h5 class="lec-h">玲子先生のエピソード</h5>
+<p>うちの園では、ある日子どもたちが「なんで氷は溶けるの？」と聞いてきました。
+</p>
+<p>先生たちは答えを教えません。代わりに、こう言いました。
+</p>
+<p>「じゃあ、どうしたら氷が溶けないか、実験してみよう！」
+</p>
+<p>子どもたちは、氷をタオルで包んだり、箱に入れたり、冷蔵庫の前に置いたり。
+</p>
+<p>結果、タオルで包んだ氷が一番長持ちした。「えー！タオルってあったかいのに！」と大騒ぎ。
+</p>
+<p><strong>答えは後からついてくる。でも、この「えー！」という驚きは、一生の財産になります。</strong>
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>お子さんが「なんで？」と聞いてきたら、チャンスです。
+</p>
+<p>「いい質問だね。○○ちゃんはどう思う？」
+</p>
+<p>この一言で、科学的思考の種が蒔かれます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L6</span> キッチンとリビングが研究室になる ― T（テクノロジー）× E（工学）の入り口</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>Technology（テクノロジー）と Engineering（工学）って聞くと、「パソコンとかロボットの話でしょ？」と思うかもしれません。
+</p>
+<p>確かに、高度なレベルではそうです。
+</p>
+<p>でも、子どもにとってのTとEは、もっと身近なところにあります。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>Technology の本質は「道具を使って問題を解決する」こと。</strong>
+</p>
+<p>幼い子どもにとっては、スプーン、はさみ、セロテープが「テクノロジー」です。
+</p>
+<p>「高いところのものを取りたい」→「椅子を持ってきて踏み台にする」
+</p>
+<p>これも立派なテクノロジー的思考なんです。
+</p>
+<p><strong>Engineering の本質は「つくる・組み立てる・改善する」こと。</strong>
+</p>
+<p>段ボールで秘密基地をつくる。新聞紙で剣をつくる。ペットボトルで水車をつくる。
+</p>
+<p>これがすべてEngineering。
+</p>
+<p>ここで大事なのは、<strong>「うまくいかない」体験こそが宝</strong>だということ。
+</p>
+<p>段ボールの家が崩れた。屋根が重すぎたんだ。じゃあ、柱を太くしてみよう。
+</p>
+<p>この「失敗→原因分析→改善」のサイクルが、エンジニアリング的思考の核心です。
+</p>
+<h5 class="lec-h">実践ヒント</h5>
+<p>キッチンは最高のSTEAMラボです。
+</p>
+<p><strong>【料理 × STE】</strong>
+</p>
+<ul>
+<li>「卵を割る」→ 力加減のEngineering</li>
+<li>「お湯が沸騰する」→ 温度変化のScience</li>
+<li>「タイマーを使う」→ 道具活用のTechnology</li>
+<li>「分量を量る」→ Mathematics（おまけ！）</li>
+</ul>
+<p>特別な道具は要りません。日常が実験室なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>TとEは、特別な教材やプログラミング教室がなくても、<strong>日常生活の中で自然に触れられるもの</strong>です。
+</p>
+<p>大事なのは、子どもが「つくりたい！」「直したい！」と思った時に、<strong>すぐに答えを出さず、一緒に試行錯誤する時間</strong>をつくってあげること。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L7</span> なぜSTEMに「A」が必要なのか ― 創造性の科学</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>STEAM教育の「A」、Arts。
+</p>
+<p>ここでいうArtsは、お絵かきや音楽だけのことではありません。
+</p>
+<p><strong>リベラルアーツ、つまり「人間を自由にする学問」全般</strong>を指しています。
+</p>
+<p>哲学、歴史、文学、デザイン、ダンス——人間が「感じて、表現する」すべてがArtsです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>なぜ、科学や技術の教育に、芸術が必要なのか。
+</p>
+<p>答えはシンプルです。
+</p>
+<p><strong>科学は「正しい答え」を見つける力。アートは「まだない答え」をつくる力。</strong>
+</p>
+<p>この2つが合わさって初めて、イノベーションが生まれます。
+</p>
+<p>脳科学的にも、面白いことが分かっています。
+</p>
+<p>アートの活動——たとえばお絵かき、粘土遊び、音楽——をしている時、脳の中では<strong>右脳と左脳をつなぐ「脳梁（のうりょう）」が活発に働く</strong>ことが分かっています。
+</p>
+<p>つまり、アートは<strong>創造的な右脳と論理的な左脳のブリッジ（橋渡し）</strong>の役割をしているんです。
+</p>
+<h5 class="lec-h">玲子先生のエピソード</h5>
+<p>うちの園では、毎日アートの時間があります。
+</p>
+<p>でも、「これを描きなさい」とは絶対に言いません。
+</p>
+<p>ある日、3歳の女の子が真っ黒い絵を描いたことがありました。
+</p>
+<p>先生が「これは何？」と聞いたら——
+</p>
+<p>「夜のお空。でもね、ここにちっちゃい星がいるの。見える？」
+</p>
+<p>よーく見ると、黒い絵の具の下に、かすかに白い点がある。
+</p>
+<p><strong>この子は「暗い空の中に光がある」ことを表現していたんです。</strong>
+</p>
+<p>もし「もっと明るく描いて」なんて言っていたら、この表現は生まれなかった。
+</p>
+<p>アートにおいて大人がすべきことは、<strong>ジャッジしないこと</strong>。「上手」「下手」ではなく、<strong>「どう感じた？」「何を伝えたかった？」</strong>と聞くことです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>Artsは、子どもが自分の内側にあるものを、外に表現する練習。
+</p>
+<p><strong>自分の感じたことを形にできる力は、どんな時代でも、どんな国でも、通用する力</strong>です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L8</span> 数学は暗記科目じゃない ― パターン認識と空間把握力</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「算数が苦手な子」って、本当にいると思いますか？
+</p>
+<p>私の答えは、「ほとんどの場合、苦手なんじゃなくて、出会い方が違っただけ」。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>STEAMの「M」、Mathematics。
+</p>
+<p>幼い子どもにとっての数学は、計算ドリルではありません。
+</p>
+<p><strong>パターンを見つけること</strong>です。
+</p>
+<p>落ち葉を大きい順に並べる。積み木を色ごとに分ける。「1つ、2つ、3つ」と数えながらおやつを配る。
+</p>
+<p>これがすべて数学的思考の入り口です。
+</p>
+<p>特に注目したいのが、<strong>空間認識力</strong>。
+</p>
+<p>「この箱に、このおもちゃは入るかな？」
+</p>
+<p>これを頭の中でイメージできる力は、将来の幾何学や物理学の基盤になるだけでなく、建築、デザイン、プログラミングなど、さまざまな分野で活きてきます。
+</p>
+<h5 class="lec-h">Arts × Mathsの融合</h5>
+<p>ここが、STEMではなくSTEAMである理由の核心です。
+</p>
+<p><strong>アートと数学は、見かけ以上に深いつながりがあります。</strong>
+</p>
+<p>たとえば、音楽。
+</p>
+<p>リズムは「パターンの繰り返し」であり、数学そのもの。4分の4拍子、16分音符——これは分数の体験なんです。
+</p>
+<p>絵を描くことも同じ。
+</p>
+<p>対称、比率、遠近法——絵の中には数学がいっぱい詰まっています。
+</p>
+<p>子どもがブロックで左右対称の建物をつくっているとき、その子は数学をしているんです。計算ドリルなんかよりもずっと豊かな数学を。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>数学の力は、紙の上で計算する力じゃありません。
+</p>
+<p><strong>世界の中にパターンを見つけ、それを使って新しいものをつくる力。</strong>
+</p>
+<p>アートと数学が出会う場所に、STEAM教育の一番の面白さがあります。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L9</span> フィンランド — 宿題なし・テストなし。でも学力世界一の秘密</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>世界の教育先進国を見ると、STEAM教育の取り入れ方が国によって全然違うんです。
+</p>
+<p>まず紹介したいのが、フィンランド。
+</p>
+<p>「宿題がほとんどない」「テストも少ない」のに、国際学力調査（PISA）で常にトップクラス。
+</p>
+<p>どうしてだと思いますか？
+</p>
+<h5 class="lec-h">本題</h5>
+<p>フィンランドの教育の特徴は、<strong>「現象ベース学習（Phenomenon-Based Learning）」</strong>という考え方です。
+</p>
+<p>たとえば、「水」というテーマを1ヶ月かけて探究する。
+</p>
+<p>理科の視点で「水の三態変化」を学び、社会の視点で「水資源の問題」を考え、アートの視点で「水の音楽」をつくる。
+</p>
+<p>教科の壁を超えて、<strong>一つのテーマを多角的に探究する</strong>。
+</p>
+<p>これがまさに、STEAM的な学びなんです。
+</p>
+<p>フィンランドの教育で特に素晴らしいのは、<strong>「間違えることが歓迎される文化」</strong>。
+</p>
+<p>先生が「分からない」と言っても恥ずかしくない。むしろ、「分からないことに気づいた」のが偉い、とされるんです。
+</p>
+<h5 class="lec-h">家庭への応用</h5>
+<p>フィンランドから学べるエッセンスは——
+</p>
+<p><strong>「一つのテーマを、ゆっくり、深く」。</strong>
+</p>
+<p>たとえば、今週は「虫」をテーマにしてみる。公園で虫を観察して、図鑑で調べて、虫の絵を描いて。急がず、子どものペースで。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L10</span> シンガポール — 「教えるのを減らせ」が国家戦略</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>次は、シンガポール。
+</p>
+<p>国際学力テストで常に上位のこの国が、2000年代に打ち出した国家スローガンが衝撃的でした。
+</p>
+<p><strong>「Teach Less, Learn More（教えるのを減らし、学びを増やせ）」</strong>
+</p>
+<h5 class="lec-h">本題</h5>
+<p>シンガポールは、もともと詰め込み教育の国でした。
+</p>
+<p>でも、「知識を覚えるだけでは、これからの時代に通用しない」と気づいた。
+</p>
+<p>そこで、<strong>先生が教える量を意図的に減らし、子ども自身が考える時間を増やす</strong>方向に、教育改革を行ったんです。
+</p>
+<p>具体的には——
+</p>
+<ul>
+<li>プロジェクト型学習（PBL）の導入</li>
+<li>「正解は一つじゃない」問題の出題</li>
+<li>チームで議論する授業時間の増加</li>
+</ul>
+<p>シンガポールの面白いところは、<strong>国が本気で「答えを教えない教育」に舵を切った</strong>こと。
+</p>
+<p>それで学力が下がったかというと——むしろ上がったんです。
+</p>
+<h5 class="lec-h">家庭への応用</h5>
+<p>シンガポールから学べるエッセンスは——
+</p>
+<p><strong>「教えすぎない勇気を持つ」。</strong>
+</p>
+<p>子どもが困っていても、すぐに答えを出さない。「どうすればいいと思う？」と問いかける。
+</p>
+<p>この5秒の我慢が、子どもの「考える力」を育てます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L11</span> アメリカ — Maker Education と「失敗を祝う文化」</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>最後は、私が20年以上住んでいるアメリカ。特にシリコンバレーのお話です。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>アメリカのSTEAM教育で特に面白いのが、<strong>「Maker Education（メイカー教育）」</strong>という動き。
+</p>
+<p>「Maker」というのは「つくる人」のこと。
+</p>
+<p>自分の手で、何かをつくる体験を通じて学ぶ。
+</p>
+<p>シリコンバレーには「Maker Faire（メイカーフェア）」というイベントがあって、大人も子どもも、自分がつくったものを持ち寄って見せ合うんです。ロボットから、段ボールの自動販売機まで。
+</p>
+<p>ここで大切にされているのが——
+</p>
+<p><strong>「失敗を祝う文化」。</strong>
+</p>
+<p>シリコンバレーでは、失敗したことを「Fail Forward（前向きな失敗）」と呼びます。
+</p>
+<p>うまくいかなかったということは、やってみたということ。それ自体が前進。
+</p>
+<p>うちの園でも、この考え方はすごく大事にしています。
+</p>
+<p>積み木の塔が崩れた時、「あー残念」じゃなくて、<strong>「おおー！崩れたね！なんで崩れたと思う？」</strong>と声をかける。
+</p>
+<p>失敗が学びに変わる瞬間です。
+</p>
+<h5 class="lec-h">家庭への応用</h5>
+<p>アメリカから学べるエッセンスは——
+</p>
+<p><strong>「つくって、壊して、また作る」を楽しむこと。</strong>
+</p>
+<p>完成品の美しさよりも、プロセスの豊かさ。
+</p>
+<p>段ボール、ペットボトル、テープ。家にあるもので十分です。
+</p>
+<h5 class="lec-h">3か国のまとめ</h5>
+<table class="script-table"><thead><tr><th>国</th><th>キーワード</th><th>家庭での実践</th></tr></thead><tbody><tr><td>フィンランド</td><td>深くゆっくり</td><td>一つのテーマを1週間探究</td></tr><tr><td>シンガポール</td><td>教えすぎない</td><td>答えの前に「どう思う？」</td></tr><tr><td>アメリカ</td><td>失敗を祝う</td><td>「壊れた！なぜ？」と一緒に考える</td></tr></tbody></table>
+<p>どの国にも共通しているのは、<strong>「答えを教える」のではなく「考える体験をさせる」</strong>こと。
+</p>
+<p>文化が違っても、STEAM教育の本質は同じなんです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L12</span> なぜ「楽しい」と学べるのか ― 感情と記憶の脳科学</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>ここまで、STEAM教育の5つの要素と世界各国の事例をお話ししてきました。
+</p>
+<p>でも、一つ大事なことがあるんです。
+</p>
+<p><strong>どんなに素晴らしい教育メソッドも、子どもの心が閉じていたら効かない。</strong>
+</p>
+<p>じゃあ、子どもの心が開くのはどんな時か。
+</p>
+<p><strong>安心して、楽しいと感じている時</strong>です。
+</p>
+<p>ここに、JOY活とSTEAMをつなぐカギがあります。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>脳科学で非常に面白い研究があります。
+</p>
+<p>ポジティブな感情を感じている時、脳内では<strong>ドーパミン</strong>という神経伝達物質が放出されます。
+</p>
+<p>このドーパミンには、2つの重要な効果があるんです。
+</p>
+<p><strong>① 記憶力が高まる</strong>
+<br>海馬（記憶を司る脳の部位）が活性化し、学んだことが長期記憶に定着しやすくなる。
+</p>
+<p><strong>② 好奇心が高まる</strong>
+<br>「もっと知りたい」「もっとやりたい」という探究心が自然に湧いてくる。
+</p>
+<p>つまり、<strong>「楽しい」という感情は、学びのエンジンそのもの</strong>なんです。
+</p>
+<p>逆に、不安やストレスを感じている時は、<strong>コルチゾール</strong>というストレスホルモンが分泌されて、脳の学習能力が低下します。
+</p>
+<p>「勉強しなさい！」と怒鳴りながら勉強させても、脳は学べない状態にあるということ。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>JOY活の考え方を思い出してください。
+</p>
+<p><strong>「まず親が自分を満たす → 家庭に安心感が生まれる → 子どもが安心してチャレンジできる」</strong>
+</p>
+<p>この循環は、脳科学的にも完全に理にかなっているんです。
+</p>
+<p>親がイライラしていると、子どもの脳にはコルチゾールが。
+<br>親が穏やかでいると、子どもの脳にはドーパミンが。
+</p>
+<p><strong>子どもの探究心のスイッチは、親の感情状態が握っているんです。</strong>
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L13</span> DMN（デフォルトモードネットワーク）― ぼーっとする時間が創造性を育てる</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>講座1で少し触れたDMN——デフォルトモードネットワーク。
+</p>
+<p>これがSTEAM教育と深く関わっているんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>書籍『JOY活』でも書きましたが、脳には<strong>「デフォルト・モード・ネットワーク（DMN）」</strong>と呼ばれる神経回路があります。
+</p>
+<p>DMNが活発に働くのは、<strong>ぼーっとしている時</strong>。
+</p>
+<p>何かに集中しているのではなく、意識が「あちこち漂っている」状態。
+</p>
+<p>お風呂でぼんやりしている時、散歩中に空を見上げている時。
+</p>
+<p>2024年にアメリカの医学誌『Brain』に掲載された研究では、<strong>DMNの活動が創造的思考に不可欠</strong>であることが実証されました。DMNの一部を抑制すると、創造性が著しく低下したんです。
+</p>
+<p>つまり、<strong>「何もしていないように見える時間」が、脳の創造エンジンを回している</strong>。
+</p>
+<h5 class="lec-h">STEAM教育との関連</h5>
+<p>STEAM教育で大切な「ひらめき」や「新しいアイデア」は、集中している時よりも、<strong>ぼーっとしている時に生まれやすい</strong>。
+</p>
+<p>ニュートンのリンゴも、アルキメデスのお風呂も、「ぼーっとしていた時」に浮かんだアイデアですよね。
+</p>
+<p>子どもたちも同じです。
+</p>
+<p>予定をぎっちり詰め込んで、常に何かに集中させていると、DMNが働く時間がなくなってしまう。
+</p>
+<p><strong>何もしない時間こそが、STEAM的な創造性を育てる「余白」になるんです。</strong>
+</p>
+<h5 class="lec-h">JOY活の実践として</h5>
+<p>JOY活では「ぼーっとする時間」を大切にしていますよね。
+</p>
+<ul>
+<li>朝起きた直後に外を眺める</li>
+<li>寝る前に静かに過ごす</li>
+<li>湯船の中で呼吸を整える</li>
+</ul>
+<p>これは、そのまま<strong>STEAM教育の土台</strong>になるんです。
+</p>
+<p><strong>親自身がぼーっとする時間を大切にすることで、子どもにも「何もしなくていい時間」を許せるようになる。</strong>
+</p>
+<p>JOY活とSTEAM教育は、「余白を大切にする」という点で、深くつながっています。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L14</span> 感情的共調整（Emotional Co-regulation） ― 親子で育む探究の土壌</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>最後に、JOY活とSTEAMをつなぐもう一つの科学的概念をお伝えします。
+</p>
+<p>それが<strong>「感情的共調整（Emotional Co-regulation）」</strong>です。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>感情的共調整とは、簡単に言うと——
+</p>
+<p><strong>子どもは、自分一人で感情をコントロールするのがまだ難しい。だから、近くにいる大人の感情状態を「借りて」、自分を落ち着かせる。</strong>
+</p>
+<p>という脳の仕組みです。
+</p>
+<p>赤ちゃんが泣いている時、お母さんが「大丈夫だよ」と穏やかに抱きしめると、赤ちゃんも落ち着く。
+</p>
+<p>これは単なる「なだめ」ではなく、<strong>お母さんの落ち着いた神経系のリズムが、赤ちゃんの神経系に伝わっている</strong>んです。
+</p>
+<p>講座1でお話しした「ミラーニューロン」の働きでもあります。
+</p>
+<h5 class="lec-h">STEAM教育への応用</h5>
+<p>この共調整の仕組みが、STEAM教育にどう関わるか。
+</p>
+<p>子どもが何かに挑戦して、失敗した時のことを想像してください。
+</p>
+<p>積み木が崩れた。実験がうまくいかなかった。
+</p>
+<p>その時、隣にいる親がどんな状態かで、子どもの反応が変わるんです。
+</p>
+<p><strong>親がイライラしていたら</strong> → 子どもは「失敗＝怖いこと」と学習する → 挑戦を避けるようになる
+</p>
+<p><strong>親が穏やかでいたら</strong> → 子どもは「失敗＝大丈夫なこと」と感じる → また挑戦できる
+</p>
+<p>つまり、<strong>親がJOYに満たされた状態でいること自体が、子どものSTEAM的探究力を加速させる</strong>んです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>JOY活とSTEAM教育の関係をまとめると——
+</p>
+<table class="script-table"><thead><tr><th>JOY活の実践</th><th>STEAM教育への効果</th></tr></thead><tbody><tr><td>親が自分を満たす</td><td>子どもにドーパミン環境をつくる</td></tr><tr><td>ぼーっとする時間</td><td>DMNが創造性を育てる</td></tr><tr><td>穏やかな感情状態</td><td>共調整で「挑戦OK」の土壌をつくる</td></tr></tbody></table>
+<p><strong>STEAM教育の最強の教材は、穏やかで満たされた「親自身」なんです。</strong>
+</p>
+<p>これが、玲子先生のJOY活がSTEAM教育にもたらす、世界にもない独自の視点です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L15</span> 0〜6歳：五感と「なぜ？」のSTEAMあそび</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>いよいよ実践編です！
+</p>
+<p>ここからは、0〜6歳を対象に「おうちでできるSTEAM × JOY活あそび」を紹介していきます。
+</p>
+<p>大事なのは、<strong>特別な道具や教材は一切必要ない</strong>ということ。世界のどこにいても、家にあるもので始められます。
+</p>
+<h5 class="lec-h">0〜3歳のSTEAMあそび</h5>
+<p>この年齢は、<strong>五感の探究期</strong>です。
+</p>
+<p>書籍『JOY活』でお伝えした通り、五感は思考よりも先に世界を感じるアンテナ。この時期に五感をたっぷり刺激してあげることが、STEAM教育の土台になります。
+</p>
+<p><strong>【水あそび × Science】</strong>
+<br>お風呂やたらいに水を張って、色んなものを浮かべてみる。
+<br>「スプーンは沈む。でも、お椀は浮く。なんでだろう？」
+<br>0歳でも、浮く・沈むの驚きの表情を見せてくれます。
+<br>→ 密度と浮力の原理（もちろん子どもには教えなくてOK！）
+</p>
+<p><strong>【粘土あそび × Engineering × Arts】</strong>
+<br>小麦粉粘土を一緒につくるところから始める。
+<br>粉＋水＋塩を混ぜて、こねて、色をつけて。
+<br>つくるプロセス自体がSTEAMの塊です。
+</p>
+<p><strong>【お散歩 × 全領域】</strong>
+<br>落ち葉を集めて、大きさ順に並べる（Math）。
+<br>石の表面を触って「ザラザラ」「ツルツル」を感じる（Science）。
+<br>拾ったもので何かつくる（Engineering × Arts）。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>この年齢で一番大切なのは、<strong>「ダメ！」を減らすこと</strong>。
+</p>
+<p>水をこぼす、粘土を床に落とす、葉っぱを口に入れようとする。
+</p>
+<p>危険でない限り、<strong>「おもしろいね！何が起きたかな？」</strong>と声をかけてあげてください。
+</p>
+<p>親のJOYが満たされていれば、この「ダメ」が自然と減っていきます。
+</p>
+<h5 class="lec-h">3〜6歳：「なぜ？」が花開く時期</h5>
+<p>3歳を過ぎると、いよいよ<strong>「なぜ？」の嵐</strong>がやってきます。
+</p>
+<p>この時期は、探究心の黄金期。STEAM教育がもっとも効果を発揮する年齢です。
+</p>
+<p><strong>【キッチン実験 × Science】</strong>
+</p>
+<ul>
+<li>重曹＋お酢 = 泡が出る！（化学反応の体験）</li>
+<li>氷に塩をかけると溶ける速さが変わる</li>
+<li>野菜の断面を切って、パターンを観察する</li>
+</ul>
+<p><strong>【段ボール工作 × Engineering × Technology】</strong>
+</p>
+<ul>
+<li>「自動販売機をつくりたい！」→ 一緒に設計図を描く → つくる → 改良する</li>
+<li>ビー玉転がし装置を段ボールでつくる → 傾斜角度を調整（物理学！）</li>
+</ul>
+<p><strong>【お絵かき × Arts × Math】</strong>
+</p>
+<ul>
+<li>対称（シンメトリー）の絵を描いてみる：紙を半分に折って、片面に絵の具を塗って、開くと左右対称の蝶々に！</li>
+<li>模様のパターンをつくる：○△□を繰り返すルールを考える</li>
+</ul>
+<p><strong>【自然観察 × Science × Arts】</strong>
+</p>
+<ul>
+<li>虫や植物の「観察日記」をつける</li>
+<li>「何が変わった？」を毎日記録する → 科学者と同じプロセス！</li>
+</ul>
+<h5 class="lec-h">ポイント</h5>
+<p>3〜6歳では、<strong>「正解のない問いかけ」</strong>を意識してください。
+</p>
+<p>「もし恐竜がまだ生きていたら、どうなると思う？」
+<br>「雲は何でできてると思う？」
+</p>
+<p>答えは何でもいい。「考えること」自体が学びです。
+</p>
+<h5 class="lec-h">年齢別まとめ</h5>
+<table class="script-table"><thead><tr><th>年齢</th><th>キーワード</th><th>親の関わり方</th></tr></thead><tbody><tr><td>0〜3歳</td><td>五感の探究</td><td>「おもしろいね」と共感する</td></tr><tr><td>3〜6歳</td><td>「なぜ？」の探究</td><td>「どう思う？」と問いかける</td></tr></tbody></table>
+<p>どの年齢でも共通しているのは——
+</p>
+<p><strong>答えを教えるのではなく、「考える時間」と「安心できる場所」を用意してあげること。</strong>
+</p>
+<p>これが、JOY活 × STEAMの実践の核心です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L16</span> 5つの非認知能力（SMILE）とSTEAMの接続</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>講座1でお伝えした「SMILE」——5つの非認知能力。
+</p>
+<p>実は、STEAM教育はこのSMILEと完全につながっています。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>一つずつ見ていきましょう。
+</p>
+<p><strong>S（Social Skills） × STEAM</strong>
+<br>STEAM的な探究は、友達と一緒にやるとさらに力を発揮します。一緒に実験する、一緒に作品をつくる。「協働（コラボレーション）」の力が自然に育ちます。
+</p>
+<p><strong>M（Manners） × STEAM</strong>
+<br>実験には手順があり、道具の扱い方があります。「使ったら元に戻す」「友達の作品を大切にする」。STEAM活動の中で、マナーが自然に身につきます。
+</p>
+<p><strong>I（Interests） × STEAM</strong>
+<br>これが最も直接的なつながりです。「なぜ？」「やってみたい！」という探究心＝STEAM教育の原動力そのもの。
+</p>
+<p><strong>L（Languages） × STEAM</strong>
+<br>自分の発見を言葉にする。「こうなったよ！」「なぜかというと……」。STEAM活動は、表現力とコミュニケーション力を同時に鍛えます。英語に限らず、自分の考えを他者に伝える力がここで育ちます。
+</p>
+<p><strong>E（Enthusiasm） × STEAM</strong>
+<br>うまくいかなくても「もう一回！」と挑戦する力。失敗を恐れず、夢中になってやり抜く力。STEAMの試行錯誤のプロセスが、まさにこの力を育てます。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>SMILE × STEAM、これを支える土台がJOY活。
+</p>
+<p><strong>SMILE（育てたい力） × STEAM（育て方） × JOY活（育つ環境）</strong>
+</p>
+<p>この3つが揃うことで、子どもは自分らしく、力強く成長していきます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L17</span> 今日からの一歩 ― まとめとメッセージ</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>この講座で一番お伝えしたかったこと。
+</p>
+<p>STEAMは、特別な子のための特別な教育ではありません。
+</p>
+<p><strong>すべての子どもが生まれ持っている「不思議に思う力」を、つぶさないようにする考え方</strong>です。
+</p>
+<h5 class="lec-h">講座2の全体まとめ</h5>
+<p>この講座で学んだことを振り返ります。
+</p>
+<p><strong>セクション1：</strong> STEAM教育の本質は「探究のサイクル」であること
+<br><strong>セクション2：</strong> 脳科学が裏づける探究体験の効果（シナプス形成、実行機能）
+<br><strong>セクション3：</strong> S・T・Eは日常生活の中にあること
+<br><strong>セクション4：</strong> A（アート）とM（数学）は深くつながっていること
+<br><strong>セクション5：</strong> 世界の教育先進国に学ぶ「考えさせる教育」
+<br><strong>セクション6：</strong> JOY活がSTEAMを加速する科学的メカニズム（ドーパミン、DMN、共調整）
+<br><strong>セクション7：</strong> 0〜6歳の実践ガイド
+</p>
+<h5 class="lec-h">今日からできること</h5>
+<p>最後に、今日から始められる3つのことをお伝えします。
+</p>
+<p><strong>① 「なんで？」には「どう思う？」で返す</strong>
+<br>答えを教える前に、子ども自身に考えさせる5秒を。
+</p>
+<p><strong>② 「ぼーっとする時間」を奪わない</strong>
+<br>予定を詰め込みすぎない。何もしない時間がDMNを育てる。
+</p>
+<p><strong>③ まず、あなた自身がJOYに満たされる</strong>
+<br>あなたの笑顔が、子どもの脳に「安心」と「好奇心」のスイッチを入れます。
+</p>
+<h5 class="lec-h">メッセージ</h5>
+<p>皆さん、こう思ったことありませんか？
+</p>
+<p>「私は専門家じゃないから、子どもにちゃんとした教育ができるか不安」
+</p>
+<p>大丈夫です。
+</p>
+<p>STEAM教育に必要なのは、専門知識じゃありません。
+</p>
+<p><strong>「一緒に不思議がる力」</strong>です。
+</p>
+<p>子どもが「なんでだろう？」と言った時に、「本当だね、なんでだろうね」と一緒に首をかしげる。
+</p>
+<p>それだけで、子どもの中に探究の火が灯ります。
+</p>
+<p><strong>あなたが笑顔でいること。一緒に驚いてくれること。失敗しても大丈夫だよって見守ってくれること。</strong>
+</p>
+<p>それが、世界のどこにいても通用する、最高のSTEAM教育です。
+</p>
+<p>次の講座3では、「自律・安心・生きる力」について、さらに深くお話ししていきます。
+</p>
+<p>ぜひ今日から、お子さんと一緒に、STEAM × JOY活を楽しんでみてくださいね。
+</p>
+<p>ありがとうございました。
+</p>
+</div>
+</details>
                     </div>
 
                     <table class="section-table">
@@ -398,67 +1316,841 @@
                             <tr><td class="sec-num">3</td><td>【S・T・E】科学的思考の育て方</td><td>L5-L6</td><td>約12分</td></tr>
                             <tr><td class="sec-num">4</td><td>【A・M】アートが数学脳を育てる</td><td>L7-L8</td><td>約12分</td></tr>
                             <tr><td class="sec-num">5</td><td>【世界のSTEAM最前線】フィンランド・シンガポール・アメリカ</td><td>L9-L11</td><td>約12分</td></tr>
-                            <tr><td class="sec-num">6</td><td>【JOY活 × STEAM】感情と学習の科学</td><td>L12-L14</td><td>約15分</td></tr>
-                            <tr><td class="sec-num">7</td><td>【実践】0〜6歳のSTEAM × JOY活あそび</td><td>L15</td><td>約10分</td></tr>
-                            <tr><td class="sec-num">8</td><td>【終章】STEAM × JOY活で育つ「世界で生きる力」</td><td>L16-L17</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">6</td><td>【JOY活 &times; STEAM】感情と学習の科学</td><td>L12-L14</td><td>約15分</td></tr>
+                            <tr><td class="sec-num">7</td><td>【実践】0〜6歳のSTEAM &times; JOY活あそび</td><td>L15</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】STEAM &times; JOY活で育つ「世界で生きる力」</td><td>L16-L17</td><td>約10分</td></tr>
                         </tbody>
                     </table>
 
                     <div class="info-box">
                         <strong>設計方針（玲子先生FB v4.1反映）：</strong><br>
-                        ① STEAMをメインに全8セクションで深掘り<br>
-                        ② 脳科学・世界各国事例でアカデミックな深み ＝ 有料講座の価値<br>
-                        ③ セクション6でJOY活 × STEAMの接続を科学的に解説<br>
-                        ④ 文化・言語に依存しないグローバルに通用する内容<br>
-                        ⑤ レッジョ・エミリアは講座4に集約し重複を回避
+                        &#9312; STEAMをメインに全8セクションで深掘り<br>
+                        &#9313; 脳科学・世界各国事例でアカデミックな深み ＝ 有料講座の価値<br>
+                        &#9314; セクション6でJOY活 &times; STEAMの接続を科学的に解説<br>
+                        &#9315; 文化・言語に依存しないグローバルに通用する内容<br>
+                        &#9316; レッジョ・エミリアは講座4に集約し重複を回避
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Course 3 -->
-        <div class="course-accordion c3 open">
+        <div class="course-accordion c3">
             <button class="course-toggle" onclick="toggleCourse(this)">
                 <div class="course-num">3</div>
                 <div class="course-toggle-text">
-                    <div class="title">「自分でできる子」が育つ家庭のつくり方 ― 自律 × 安心 × 生きる力</div>
+                    <div class="title">「自分でできる子」が育つ家庭のつくり方 ― 自律 &times; 安心 &times; 生きる力</div>
                     <div class="tagline">書籍 第5章・第6章｜全8セクション・16レクチャー・約90分</div>
                 </div>
                 <span class="course-badge badge-progress">台本完了</span>
-                <span class="toggle-arrow">▼</span>
+                <span class="toggle-arrow">&#9660;</span>
             </button>
             <div class="course-content">
                 <div class="course-inner">
                     <div class="pipeline">
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">音声</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">スライド</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">映像</span>
                     </div>
 
                     <div class="script-preview">
                         <h4>台本（260304_Udemy講座3_台本_自律安心生きる力.md）</h4>
-                        <div class="lecture-item"><span class="lecture-num">L1</span> 「ちゃんとしなさい」が逆効果になる理由</div>
-                        <div class="lecture-item"><span class="lecture-num">L2</span> JOY活が提案する「自律」― 心地よいリズムとしての自律</div>
-                        <div class="lecture-item"><span class="lecture-num">L3</span> 「自律」と「自立」― 似ているようで全然違う2つの力</div>
-                        <div class="lecture-item"><span class="lecture-num">L4</span> 脳科学で見る「自律」― 前頭前野と実行機能の発達</div>
-                        <div class="lecture-item"><span class="lecture-num">L5</span> 世界で通用する4つの基本的生活習慣</div>
-                        <div class="lecture-item"><span class="lecture-num">L6</span> 「構造化された自由」― やりたいことをやるための「枠」のつくり方</div>
-                        <div class="lecture-item"><span class="lecture-num">L7</span> なぜ「安心基地」がないと子どもは動けないのか</div>
-                        <div class="lecture-item"><span class="lecture-num">L8</span> 「環境が変わっても、自分の居場所をつくる力」を育てる</div>
-                        <div class="lecture-item"><span class="lecture-num">L9</span> 「怒る」と「叱る」― この2つは、まったく別物です</div>
-                        <div class="lecture-item"><span class="lecture-num">L10</span> 今日から使える「伝わる叱り方」5つのステップ</div>
-                        <div class="lecture-item"><span class="lecture-num">L11</span> 愛情は「伝わっているはず」では伝わらない</div>
-                        <div class="lecture-item"><span class="lecture-num">L12</span> 「ありがとう」は最強の愛情表現</div>
-                        <div class="lecture-item"><span class="lecture-num">L13</span> 情動感染 ― 親の感情は、想像以上に子どもに伝わっている</div>
-                        <div class="lecture-item"><span class="lecture-num">L14</span> 「心理的安全性」― Googleも注目する、最強の家庭環境</div>
-                        <div class="lecture-item"><span class="lecture-num">L15</span> カーリングペアレントにならない「見守る勇気」</div>
-                        <div class="lecture-item"><span class="lecture-num">L16</span> 講座3の全体まとめ ― 自律 × 安心 × 生きる力</div>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L1</span> 「ちゃんとしなさい」が逆効果になる理由</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入（フック）</h5>
+<p>皆さん、こんにちは。玲子です。
+</p>
+<p>講座3を受講してくださって、ありがとうございます。
+</p>
+<p>講座1では「非認知能力」と「SMILE」、講座2では「STEAM教育」についてお話ししました。
+</p>
+<p>今回のテーマは、<strong>「自律」</strong>です。
+</p>
+<p>「自律」って聞くと、どんなイメージが浮かびますか？
+</p>
+<p>「厳しくしつける」「我慢させる」「ルールを守らせる」……そんなイメージ、ありませんか？
+</p>
+<p>実は私も、日本で幼稚園の先生をしていたとき、そう思っていました。
+</p>
+<p>「ちゃんとしなさい」「早くしなさい」「静かにしなさい」
+</p>
+<p>こういう言葉、つい言っちゃいますよね。
+</p>
+<p>でも、シリコンバレーで20年以上、何百人もの子どもたちを見てきて、分かったことがあるんです。
+</p>
+<p><strong>「ちゃんとしなさい」で育った子は、「ちゃんとできる子」にはなるけど、「自分でできる子」にはならない。</strong>
+</p>
+<h5 class="lec-h">本題</h5>
+<p>どういうことかというと——
+</p>
+<p>「ちゃんとしなさい」って言われて動く子は、言われたからやってるんです。
+</p>
+<p>じゃあ、言ってくれる人がいなくなったら？
+</p>
+<p>大学に行って、社会に出て、親の手を離れたとき……自分で判断して動けなくなってしまう。
+</p>
+<p>これ、シリコンバレーでも実際に見てきました。
+</p>
+<p>超エリートの家庭で、小さい頃から完璧にスケジュール管理されて育った子が、大学に入った途端、何をしていいか分からなくなる。
+</p>
+<p>親が決めてくれないと動けない。
+</p>
+<p>逆に、「自分でやってみな」って言われて育った子は、最初は時間がかかるんです。失敗もする。でも、自分で考えて、自分で決めて、自分でやる力がついている。
+</p>
+<p>この違いが、<strong>「やらされる子」と「自分でできる子」の違い</strong>なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>今日からの講座では、この「自分でできる子」を育てるための方法をお伝えしていきます。
+</p>
+<p>キーワードは、<strong>「自律」</strong>。
+</p>
+<p>でも、それは厳しさや我慢じゃありません。
+</p>
+<p>JOY活が提案する自律は、もっとあたたかくて、心地いいものです。
+</p>
+<p>次のレクチャーで、その本当の意味をお話しします。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L2</span> JOY活が提案する「自律」— 心地よいリズムとしての自律</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「自律」って、なんだか堅いイメージがありますよね。
+</p>
+<p>「自分を律する」って書くくらいだから、自分に厳しくすることだと思われがちです。
+</p>
+<p>でも、JOY活が提案する自律は、<strong>まったく違う</strong>んです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>JOY活の自律とは——
+</p>
+<p><strong>自分の心と暮らしを整える、心地よいリズム。</strong>
+</p>
+<p>自分自身と穏やかに交わす、小さな約束事のようなものです。
+</p>
+<p>たとえば、朝起きたらベッドを整える。夜は決まった時間に寝る。食事のときはテレビを消して、じっくり味わって食べる。
+</p>
+<p>どれも当たり前のことですよね。
+</p>
+<p>でも、この「当たり前」を「気分」で左右させるんじゃなくて、<strong>「自分を大切にするための約束」</strong>として繰り返すこと。これが自律の第一歩なんです。
+</p>
+<p>ここで大事なのは、完璧にやる必要はないということ。
+</p>
+<p>「今日はできなかったな」って日があっても大丈夫。
+</p>
+<p>大切なのは、<strong>「この小さな積み重ねが、長い目で見たときに大きな違いを生む」</strong>と信じて、また明日やってみること。
+</p>
+<p>私の書籍でも書きましたが、本当の自律って、人生の自由を奪う檻じゃないんです。
+</p>
+<p><strong>膨大な情報や感情の波に飲み込まれそうになったときに、「自分はどこへ向かっているのか」を指し示してくれる、人生の羅針盤（コンパス）</strong>なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>だから、子どもの頃から「小さな自律」を繰り返して、その心地よさを体験しておくことが大事なんですね。
+</p>
+<p>これは一生の贈り物になります。
+</p>
+<p>この講座では、その具体的な育て方を、脳科学の裏付けとともにお伝えしていきます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L3</span> 「自律」と「自立」— 似ているようで全然違う2つの力</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「自律した子に育てたい」「自立した子に育てたい」
+</p>
+<p>お母さんたちから、よく聞く言葉です。
+</p>
+<p>でも、<strong>「自律」と「自立」って、実は全然違うもの</strong>なんです。
+</p>
+<p>音は同じ「じりつ」なのに、意味は大きく異なります。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>まず、<strong>「自立」は、自分の力で物事をやれること</strong>。
+</p>
+<p>一人で着替えられる、自分の部屋を片付けられる、将来的には経済的に親から独立する。これが自立です。
+</p>
+<p>つまり、<strong>生きていくための外的なスキルや基盤</strong>ですね。
+</p>
+<p>一方、<strong>「自律」は、自分の価値観やルールに従って、行動をコントロールすること</strong>。
+</p>
+<p>夜更かししたい誘惑に負けず、決めた時間に寝る。感情に任せてお菓子を食べるんじゃなくて、自分の体と相談して適切な量を選ぶ。やる気が出ない日でも、自分との約束は守る。
+</p>
+<p>これが自律です。つまり、<strong>内面のコンパス</strong>。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>この2つは、<strong>人生という車を動かす両輪</strong>のようなもの。
+</p>
+<p>どちらが欠けても、まっすぐ前に進めません。
+</p>
+<p>たとえば、どんなに経済的に自立していても、心が自律していなければ、目先の誘惑やその場の感情に流されやすい。日々の暮らしが乱れてしまう。
+</p>
+<p>逆に、どんなに自律した心を持っていても、それを社会で活かすための自立の力がなければ、その思いを実現できない。
+</p>
+<p>だから、<strong>両方をバランスよく育てることが大事</strong>なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>JOY活が目指すのは、この2つの力をバランスよく育むこと。
+</p>
+<p>日々の暮らしの中で自立の土台を築きながら、良い習慣を続けることで自律という内面のコンパスを磨いていく。
+</p>
+<p>この2つの力が育ったとき、子どもは初めて、誰かに依存することなく、自分の人生を自分の足で歩んでいけるようになるんです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L4</span> 脳科学で見る「自律」— 前頭前野と実行機能の発達</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「自律」が大事だっていうのは分かった。でも、なぜ小さいうちから育てた方がいいの？
+</p>
+<p>ここで、脳科学の視点からお話しさせてください。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>人間の脳には「前頭前野（ぜんとうぜんや）」という部分があります。
+</p>
+<p>これは脳のいちばん前にある部分で、<strong>「考える」「判断する」「感情をコントロールする」</strong>という、まさに自律に直結する機能を担っています。
+</p>
+<p>発達認知神経科学の第一人者、アデル・ダイアモンド博士はこれを<strong>「実行機能（Executive Function）」</strong>と呼んでいます。
+</p>
+<p>実行機能って何かというと——
+</p>
+<ul>
+<li><strong>感情をコントロールする力</strong>（イライラしても気持ちを落ち着ける）</li>
+<li><strong>先のことを考えて行動する力</strong>（今は遊びたいけど、宿題を先にやろう）</li>
+<li><strong>注意を切り替える力</strong>（嫌なことがあっても、次のことに集中できる）</li>
+</ul>
+<p>この3つの力です。
+</p>
+<p>そして、この実行機能が最も発達するのが、<strong>3歳から6歳の時期</strong>なんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>ここがすごく大事なポイントです。
+</p>
+<p>この時期に、小さな習慣を繰り返すことで、前頭前野のシナプス（神経回路のつながり）がどんどん強化されていく。
+</p>
+<p>逆に言うと、この時期に「全部親がやってあげる」「嫌なことはさせない」としてしまうと、実行機能を鍛えるチャンスを逃してしまうんです。
+</p>
+<p>もちろん、6歳を過ぎたら手遅れということではありません。脳には神経可塑性（しんけいかそせい）があるので、何歳からでも変われます。
+</p>
+<p>でも、3〜6歳のこの時期は、実行機能の「ゴールデンタイム」。
+</p>
+<p>だからこそ、<strong>日常の中で小さな自律を繰り返す経験</strong>が、脳の発達にとっても非常に大切なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>自律を育てることは、「厳しくすること」ではなく、<strong>脳の発達を助けること</strong>。
+</p>
+<p>小さな習慣の積み重ねが、前頭前野を育て、実行機能を鍛え、「自分で考えて動ける子」の土台をつくっていきます。
+</p>
+<p>次のセクションでは、具体的にどんな生活習慣を育てればいいのか、お話ししていきます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L5</span> 世界で通用する4つの基本的生活習慣</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「自律を育てましょう」って言われても、何から始めればいいか分からないですよね。
+</p>
+<p>ここで、私がシリコンバレーで20年以上、世界中の家庭を見てきた中で確信した、<strong>グローバルに通用する4つの基本的生活習慣</strong>をお伝えします。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>① 自分で歯みがきができること</strong>
+</p>
+<p>意外に思うかもしれませんが、これが一番大切です。
+</p>
+<p>口の中の健康を自分で守れること。虫歯が多くて治療に追われていたら、集中力は下がるし、生活の質そのものが落ちます。
+</p>
+<p>親元を離れたら、すべては自己管理。歯みがきの習慣は、子どもへの何よりのギフトです。
+</p>
+<p><strong>② 一人で眠れること</strong>
+</p>
+<p>これ、簡単そうに見えて、実は安心感や自律性が育っていないと難しいんです。
+</p>
+<p>一人で眠れるということは、「一人でも大丈夫」という自己信頼があるということ。
+</p>
+<p>これは世界中どこに行っても必要な力です。
+</p>
+<p><strong>③ 自分でシャワーを浴びて、身だしなみを整えること</strong>
+</p>
+<p>体を清潔に保つ習慣は、集団生活の中で自信を持って行動するための土台です。
+</p>
+<p><strong>④ 食べ物の好き嫌いにとらわれないこと</strong>
+</p>
+<p>いろいろな味や食材を楽しめる感覚を育てておくと、世界中どこに行っても困りません。
+</p>
+<p>ここでポイントなのは、<strong>特定の食べ物を特別扱いしないこと</strong>。
+</p>
+<p>「野菜食べられたね、えらい！」って褒めたくなりますよね。でも、褒めすぎると「野菜＝特別に頑張って食べるもの」になってしまう。食べることは当たり前のこととして、自然に接するのがコツです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>歯みがき、睡眠、身だしなみ、食事。
+</p>
+<p>この4つは、どれも特別なことじゃありません。でも、この「当たり前」を自分でできるようになることが、自律の最初の一歩であり、どんな環境でも生きていける力の土台になるんです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L6</span> 「構造化された自由」— やりたいことをやるための「枠」のつくり方</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「自由にさせてあげたい」って思いますよね。
+</p>
+<p>でも、<strong>自由にさせることと、自由奔放にさせることは、全然違う</strong>んです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>アメリカの心理学者エドワード・L・デシらが提唱した「自己決定理論」によると——
+</p>
+<p>本当の自由とは、「好きなように振る舞うこと」ではなく、<strong>明確な枠組みやルールの中で、自分の意思で選択し、行動すること</strong>。
+</p>
+<p>これを私は<strong>「構造化された自由」</strong>と呼んでいます。
+</p>
+<p>たとえば、子どもが「宿題はしたくない」「片づけは面倒」と言ったとき。
+</p>
+<p>「やりたくないならやらなくていいよ」と放任するのは、自由ではなく自由奔放。
+</p>
+<p>自分のやるべきことに責任を持たせることが、自律につながるんです。
+</p>
+<p><strong>最初は時間がかかります。</strong>
+</p>
+<p>でも、「やるべきことをやり遂げる」という小さな成功体験の積み重ねが、本当の自由を支える自信と力になっていきます。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>具体的にどうすればいいかというと——
+</p>
+<p><strong>「選択肢を与える」</strong>んです。
+</p>
+<p>「片づけなさい」じゃなくて、「先におもちゃを片づける？ それとも本を片づける？」
+</p>
+<p>「もう寝なさい」じゃなくて、「この絵本を読んでから寝る？ それとも歌を歌ってから寝る？」
+</p>
+<p>枠はあるけど、その中で自分で選べる。
+</p>
+<p>これが「構造化された自由」です。
+</p>
+<p>子どもは「自分で決めた」という感覚を持てるから、やらされ感がない。だから、自然と動ける。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>「そのまま（自由を大切にすること）」はいい。でも、「そのまま（自由奔放にさせること）」はいけない。
+</p>
+<p>枠のある自由を日々積み重ねていくことで、子どもは自分の行動に責任を持ち、本物の自律を身につけていきます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L7</span> なぜ「安心基地」がないと子どもは動けないのか</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「うちの子、新しいことを怖がるんです」
+<br>「挑戦しようとしない」
+<br>「失敗すると泣いて、もうやりたくないって言う」
+</p>
+<p>こういう相談、本当に多いんです。
+</p>
+<p>でもそれは、子どもの性格の問題じゃないかもしれません。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>子どもが挑戦できない理由の多くは、<strong>「戻ってこられる場所」がないと感じている</strong>からなんです。
+</p>
+<p>子どもにとって、外の世界は刺激と不安の連続です。新しいクラス、新しい友達、初めての場所。
+</p>
+<p>大人でも緊張しますよね。子どもならなおさらです。
+</p>
+<p>そんなとき、<strong>「失敗しても大丈夫。ここに帰ってきたら受け止めてもらえる」</strong>と思える場所がある。
+</p>
+<p>これが「心の安全基地」です。
+</p>
+<p>安全基地がある子は、思い切って外に出ていけます。
+</p>
+<p>なぜなら、「何があっても帰る場所がある」という安心感があるから。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>安全基地は、特別な場所や時間じゃなくて、<strong>日々の小さな関わり</strong>の中でつくるものです。
+</p>
+<ul>
+<li>子どもが何かに挑戦したいと言ったとき、「危ないからやめなさい」じゃなくて、「やってみたらいいよ」と背中を押してあげる</li>
+<li>うまくいかなかったときに、「大丈夫、またやればいいよ」と静かに寄り添う</li>
+<li>帰ってきたら「おかえり」と笑顔で迎える</li>
+</ul>
+<p>こういう積み重ねが、子どもにとっての安全基地になっていくんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>安全基地がしっかりある子は、やがて<strong>「私はどこにいても大丈夫」</strong>という自己信頼を持つようになります。
+</p>
+<p>これが、自律の土台です。
+</p>
+<p>自分で考え、自分で動ける子は、必ず「帰ってこられる場所」を持っている。
+</p>
+<p>だからこそ、私たち大人が、その場所を丁寧につくってあげることが大切なんです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L8</span> 「環境が変わっても、自分の居場所をつくる力」を育てる</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>シリコンバレーって、世界中から人が集まる場所です。
+</p>
+<p>だから、転校も引っ越しも日常茶飯事。
+</p>
+<p>そんな環境で育つ子どもたちを見ていて、強く感じたことがあります。
+</p>
+<p><strong>環境が変わっても、すぐに自分の居場所をつくれる子がいる。</strong>
+</p>
+<p>その子たちに共通していたのは、ある力でした。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>それは、<strong>「自分の空間を、自分で整える力」</strong>です。
+</p>
+<p>新しい場所に行ったとき、たとえ与えられたのがベッド一つだったとしても、自分なりにほっとできるように工夫する。
+</p>
+<p>お気に入りのぬいぐるみを置いたり、好きな本を並べたり。
+</p>
+<p>こういう小さな工夫が、<strong>「ここは自分の場所だ」</strong>という安心感につながるんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>この力は、自然に身につくものじゃありません。日常の中で育てていく必要があります。
+</p>
+<p><strong>今日からできること：</strong>
+</p>
+<ul>
+<li>子どもが自分で荷物を整理する時間をつくる</li>
+<li>寝る前に一緒に部屋を整える</li>
+<li>「何があれば自分は落ち着ける？」を一緒に考えてみる</li>
+</ul>
+<p>お気に入りの本、ぬいぐるみ、香り、音楽——どんな小さなものでも、自分の安心感につながる手がかりを見つけておく。
+</p>
+<p>これが、新しい環境に順応する助けになります。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>整える力は、安心感を生み出すだけでなく、自律の土台にもなります。
+</p>
+<p><strong>どんな場所でも、自分の手で「心地よさ」をつくり出せる子は、どこでも生きていける。</strong>
+</p>
+<p>これこそが、グローバルに通用する本当の力だと、私は確信しています。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L9</span> 「怒る」と「叱る」— この2つは、まったく別物です</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「また怒っちゃった……」
+</p>
+<p>寝顔を見ながら、自己嫌悪したこと、ありませんか？
+</p>
+<p>私もあります。3人の子どもを育ててきて、何度もありました。
+</p>
+<p>でも、ここではっきりさせておきたいことがあるんです。
+</p>
+<p><strong>「怒ること」は悪いこと。でも、「叱ること」は、子どもへの愛情表現です。</strong>
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>「怒る」</strong>とは——
+</p>
+<p>大人のイライラや焦りを子どもにぶつける行為。
+</p>
+<p>予定通りに支度ができない、何度言っても片づけない、兄弟げんかが止まらない。
+</p>
+<p>つい大きな声を出してしまう。「なんでこんなことしたの！」と感情のままに責めてしまう。
+</p>
+<p>これは、子どもにとっては<strong>指導ではなく、攻撃</strong>として伝わってしまいます。
+</p>
+<p>一方、<strong>「叱る」</strong>とは——
+</p>
+<p>子どもの成長を思って、その行動に対して<strong>冷静に伝えること</strong>。
+</p>
+<p>感情をぶつけるのではなく、「その行動はどうだったか？」に焦点をあてて、穏やかに、でもしっかりと伝える。
+</p>
+<p>そこには、子どもを一人の人格として尊重する姿勢があります。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>最近は、「どんな子でも受け入れましょう」「褒めて育てましょう」という風潮がありますよね。
+</p>
+<p>でも、それが「叱ることはいけないこと」と誤解されている場面も増えています。
+</p>
+<p>私はそうは思いません。
+</p>
+<p><strong>叱られる場所があることも、子どもにとっての幸せ</strong>じゃないでしょうか。
+</p>
+<p>家庭は、間違えてもやり直せる場所であってほしい。
+</p>
+<p>「あなたを信じているからこそ、伝える」——これが叱ることの本質です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>叱ることは、子どもを否定することではありません。
+</p>
+<p>子どもの成長のための、大人にしかできない関わり方です。
+</p>
+<p>次のレクチャーでは、感情的にならない具体的な方法をお伝えします。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L10</span> 今日から使える「伝わる叱り方」5つのステップ</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「怒る」と「叱る」の違いは分かった。でも、実際にどうすればいいの？
+</p>
+<p>ここで、私が現場で実践してきた<strong>「伝わる叱り方」5つのステップ</strong>をご紹介します。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>ステップ1：まず、深呼吸する</strong>
+</p>
+<p>カッとなったら、3秒だけ待ってください。その3秒で、「これは感情？ それとも伝えたいこと？」と自分に問いかける。
+</p>
+<p>これだけで、「怒り」が「叱り」に変わります。
+</p>
+<p><strong>ステップ2：感情と行動を分けて受け止める</strong>
+</p>
+<p>子どもが泣き叫んでいるとき、「泣かないの！」と感情を否定するのではなく、まず<strong>「悔しかったんだね」「悲しかったんだね」</strong>と感情を受け止める。
+</p>
+<p>そのうえで、「でも、お友達を叩くのではなく、ほかの伝え方を一緒に考えようか」と行動について冷静に話す。
+</p>
+<p><strong>「感情はいつでも受け入れる。でも、行動にはルールがある。」</strong>
+</p>
+<p>この一貫した関わり方が、子どもに絶対的な安心感を与えるんです。
+</p>
+<p><strong>ステップ3：行動に焦点をあてて、1つだけ伝える</strong>
+</p>
+<p>あれもこれも一度に言わない。「今、伝えるべきこと」を1つだけ、シンプルに。
+</p>
+<p><strong>ステップ4：目を見て、静かに話す</strong>
+</p>
+<p>大きな声は必要ありません。目を見て、静かに、短く。これが一番伝わります。
+</p>
+<p><strong>ステップ5：叱ったあとに「でも、大好きだよ」と伝える</strong>
+</p>
+<p>これが最も大切。叱ったあとに愛情を伝えることで、子どもは「怒られたんじゃない、大切にされているんだ」と感じることができます。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>5つのステップ、全部一度にできなくても大丈夫です。
+</p>
+<p>まずは<strong>ステップ1の「3秒深呼吸」</strong>だけでも始めてみてください。
+</p>
+<p>それだけで、子どもとの関わり方がガラッと変わりますよ。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L11</span> 愛情は「伝わっているはず」では伝わらない</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「Love you」「かわいいね」「大好きだよ」
+</p>
+<p>こうした愛情の言葉を、日常でどれくらい口にしていますか？
+</p>
+<p>日本では、「言わなくても伝わるはず」「態度で示しているから大丈夫」と思いがちですよね。
+</p>
+<p>でも、子どもはまだ「空気を読む力」を育てている途中なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>私はトリリンガルで、日本語・英語・中国語の3つの文化の中で生きてきました。
+</p>
+<p>それぞれの言語で、愛情表現がまったく違うんです。
+</p>
+<p><strong>アメリカの幼稚園</strong>では、先生が子どもたちに「Hi, sweeties」「Lovely」「Honey」と、いろんな表現で愛情を込めて呼びかけます。
+</p>
+<p><strong>中国語</strong>でも同じ。娘が通う学校の中国人の先生は、「親愛的（親愛なる子）」「乖（良い子）」「宝貝（大切な子）」と、たっぷりの愛情で呼びかけてくれます。
+</p>
+<p>こうした言葉を受け取ると、子どもは<strong>「私は愛されている」と自然に感じ取れる</strong>んです。
+</p>
+<p>たとえ注意されていても、根底には愛があると分かるから、素直に耳を傾ける。
+</p>
+<p><strong>日本語には、英語や中国語のような直接的な愛情表現は少ないかもしれません。</strong>
+</p>
+<p>でも、「かわいいね」「大好きだよ」で十分なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>愛情は、思っているだけでは伝わりません。
+</p>
+<p><strong>言葉にして、わかりやすく届けること。</strong>
+</p>
+<p>慣れていない方は、まずは1日3回、子どもの良いところを見つけて言葉にすることから始めてみてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L12</span> 「ありがとう」は最強の愛情表現</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>愛情を伝える言葉の中で、いちばんシンプルで、いちばん力強いもの。
+</p>
+<p>それが、<strong>「ありがとう」</strong>です。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>子どもが何かしてくれたときに「ありがとう」と伝える。
+</p>
+<p>その一言が、子どもに<strong>「自分が誰かの役に立てた」「ちゃんと見てもらえていた」</strong>という感覚を残します。
+</p>
+<p>私の教室で片付けを手伝ってくれた子に「ありがとう」と声をかけると、得意そうににっこりするんです。
+</p>
+<p>「もっと手伝おう」「またやってみよう」——そう思っている顔をしている。
+</p>
+<p>そして、「ありがとう」は<strong>行動だけではなく、存在そのものにも伝えていい言葉</strong>です。
+</p>
+<p>「いてくれてありがとう」「生まれてきてくれてありがとう」
+</p>
+<p>何か特別なことをしたわけじゃなくても、ただそこにいるだけで愛されている。
+</p>
+<p>この経験が、自己肯定感を育てる上でとても大切です。
+</p>
+<h5 class="lec-h">エピソード</h5>
+<p>私の書籍の「おわりに」でも書いたんですが——
+</p>
+<p>今年の夏、日本で子どもたちと過ごしたとき、こんなことがありました。
+</p>
+<p>楽しい場所に出かけたら、「ママ、素敵な場所に連れてきてくれてありがとう」。
+</p>
+<p>レストランで食事をしたら、「美味しいものを食べさせてくれてありがとう」。
+</p>
+<p>そして、子どもたちがアメリカに帰る日、娘が部屋に絵を残してくれていたんです。
+</p>
+<p>そこに書かれていた言葉——<strong>「Thank you for life」</strong>。
+</p>
+<p>「産んでくれてありがとう」という意味です。
+</p>
+<p>これは私にとって、最高の宝物です。
+</p>
+<p>日々の「ありがとう」の積み重ねが、子どもの心に確かに根付いて、あたたかな実を結んでいる。そう実感した瞬間でした。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>「ありがとう」は、特別な道具も準備もいりません。
+</p>
+<p>今日から、今この瞬間から、子どもに届けることができます。
+</p>
+<p>ぜひ、実践してみてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L13</span> 情動感染 — 親の感情は、想像以上に子どもに伝わっている</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「子どものために頑張らなきゃ」
+</p>
+<p>そう思って、自分のことは後回しにしていませんか？
+</p>
+<p>でも実は、<strong>親が自分を大切にすることが、子どもの自律を育てる最大の近道</strong>なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>心理学には<strong>「情動感染（エモーショナル・コンテイジョン）」</strong>という概念があります。
+</p>
+<p>これは、相手の表情や声のトーン、しぐさを通して、感情が無意識に伝わる現象のこと。
+</p>
+<p>隣にいる人がイライラしていると、自分まで落ち着かなくなる。そんな経験ありますよね。
+</p>
+<p>とくに親と子のように密接な関係では、この影響がとても強く表れます。
+</p>
+<p><strong>親が穏やかに笑っていれば、子どもも自然と安心する。</strong>
+</p>
+<p><strong>親がピリピリしていれば、子どもも不安や緊張を感じ取る。</strong>
+</p>
+<p>とくに小さな子どもにとっては、言葉よりも<strong>親の表情やしぐさ、声のトーン</strong>のほうが、何倍もリアルに伝わるんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>だから、「子どものために」と無理をして笑顔をつくるんじゃなくて、<strong>親自身が本当にリラックスして、満たされている状態</strong>でいることが大事。
+</p>
+<p>毎日笑顔で過ごすのは簡単じゃありません。忙しい日もあれば、気持ちが沈む日もある。
+</p>
+<p>それでも、できるときだけでいいんです。
+</p>
+<p>一緒に料理をしたり、近所を散歩したり、ほんの少し笑い合える時間を持つだけで、子どもは十分に「大丈夫」と感じることができます。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>親自身がリラックスして過ごすことで、子どもに「大丈夫だよ」という空気が届く。
+</p>
+<p><strong>親が安心している姿も、立派な愛情表現。</strong>
+</p>
+<p>まずは、自分自身のJOYを大切にしてください。それが、子どもの自律を支える一番の力になります。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L14</span> 「心理的安全性」— Googleも注目する、最強の家庭環境</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「心理的安全性」という言葉、聞いたことありますか？
+</p>
+<p>これ、実はGoogleが「最高のチームに必要な要素」として発表して、ビジネスの世界で一躍注目されたものなんです。
+</p>
+<p>でも、この概念は<strong>家庭にこそ当てはまる</strong>と、私は思っています。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>心理的安全性とは——
+</p>
+<p><strong>「どんな意見を言っても、どんな気持ちを表現しても、失敗しても、この関係性が損なわれることはない」</strong>と信じられる状態。
+</p>
+<p>家庭に置き換えると、<strong>「この家では、どんな自分でいても大丈夫」</strong>という安心感のことです。
+</p>
+<p>では、それを育むために、親はどうあればいいのか？
+</p>
+<p><strong>「穏やかで、予測可能な存在」でいること</strong>です。
+</p>
+<p>子どもの感情の波に一緒になって揺さぶられるのではなく、どっしりとした大樹のようにそこにいる。
+</p>
+<p>その安定感が、子どもにとっての「安全な港」になります。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>ここで最も大切なのが、先ほどもお話しした<strong>「感情と行動を分けて捉えること」</strong>です。
+</p>
+<p>感情はいつでも受け入れる。
+</p>
+<p>「悔しかったんだね」「悲しかったんだね」と、まず言葉にして受け止める。
+</p>
+<p>でも、行動にはルールがある。
+</p>
+<p>「お友達を叩くのではなく、ほかの伝え方を一緒に考えよう」と、冷静に線を引く。
+</p>
+<p>この一貫した関わり方が、<strong>「何があっても、自分の存在は揺るがない」</strong>という絶対的な安心感を子どもに与えるんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>心理的安全性が確保されている子どもは——
+</p>
+<ul>
+<li>人の顔色を過度にうかがわない</li>
+<li>自分の思いや考えを言葉にできる</li>
+<li>失敗を恐れずに挑戦できる</li>
+</ul>
+<p>家庭という最初の社会で「私は私でいい」と思える経験を重ねた子どもは、やがてどんな場所でも自分らしく生きていく力を身につけます。
+</p>
+<p><strong>それこそが、心理的安全性がもたらす最高のギフトです。</strong>
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L15</span> カーリングペアレントにならない「見守る勇気」</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「カーリングペアレント」って聞いたことありますか？
+</p>
+<p>カーリングって、氷の上でストーンを滑らせるスポーツですよね。
+</p>
+<p>選手がストーンの前をブラシで必死に掃くじゃないですか。
+</p>
+<p>カーリングペアレントっていうのは、<strong>子どもの前のあらゆる障害を親が先回りして取り除いてしまう</strong>こと。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>これ、親の愛情から来てるんですよね。
+</p>
+<p>「子どもに辛い思いをさせたくない」「失敗させたくない」
+</p>
+<p>その気持ちは、すごくよく分かります。
+</p>
+<p>でも、社会に出たとき、親が掃いた氷の上を歩き続けることはできません。
+</p>
+<p>自分の意思を言葉にして行動しない限り、誰も助けてはくれない。
+</p>
+<p>シリコンバレーでも見てきました。
+</p>
+<p>あらゆる困難を親が取り除いてきた子が、一人になった途端、何もできなくなる。
+</p>
+<p>逆に、小さな失敗をたくさん経験してきた子は、<strong>「失敗しても大丈夫」「また立ち上がればいい」</strong>って知っている。
+</p>
+<p>だから、何があっても自分で乗り越えていける。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>「見守る」って、何もしないことじゃないんです。
+</p>
+<p><strong>「手は出さないけど、目は離さない」。</strong>
+</p>
+<p>転びそうになったら声をかける。でも、転ぶ前に抱き上げない。
+</p>
+<p>転んだら、「大丈夫？」と声をかける。でも、泣き止ませようと焦らない。
+</p>
+<p>自分で立ち上がるのを、信じて待つ。
+</p>
+<p>これが、「見守る勇気」です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>カーリングペアレントにならないために大切なのは——
+</p>
+<p><strong>「失敗は、成長のチャンス」</strong>と親自身が信じること。
+</p>
+<p>子どもの力を信じること。
+</p>
+<p>そして、「安全基地」として帰ってこられる場所を用意しておくこと。
+</p>
+<p>この講座で学んだ自律と安心の2つの力があれば、子どもはどこでも生きていけます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L16</span> 講座3の全体まとめ — 自律 × 安心 × 生きる力</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>講座3、最後のレクチャーです。
+</p>
+<p>ここまでたくさんのことをお伝えしてきたので、全体を振り返りましょう。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p><strong>セクション1：「自分でできる子」と「やらされる子」</strong>
+<br>→ 「ちゃんとしなさい」ではなく、自分で考えて動ける子を育てよう
+</p>
+<p><strong>セクション2：自律の本質</strong>
+<br>→ 自律＝厳しさではなく、心地よいリズム。自律と自立の両輪を育てよう
+<br>→ 脳科学的にも、3〜6歳が実行機能のゴールデンタイム
+</p>
+<p><strong>セクション3：4つの基本ライフスキル</strong>
+<br>→ 歯みがき、睡眠、身だしなみ、食事。この「当たり前」を自分でできることが自律の第一歩
+<br>→ 「構造化された自由」で、選択肢を与えながら枠をつくる
+</p>
+<p><strong>セクション4：安全基地</strong>
+<br>→ 「戻ってこられる場所」が挑戦する心を支える
+<br>→ 自分の居場所を整える力が、どこでも生きていける力になる
+</p>
+<p><strong>セクション5：怒る vs 叱る</strong>
+<br>→ 怒るは攻撃、叱るは愛情表現。感情と行動を分けて伝える
+<br>→ 「伝わる叱り方」5つのステップを実践しよう
+</p>
+<p><strong>セクション6：愛情表現</strong>
+<br>→ 愛情は思っているだけでは伝わらない。言葉にして届けよう
+<br>→ 「ありがとう」は最強の愛情表現
+</p>
+<p><strong>セクション7：JOY活 × 自律</strong>
+<br>→ 情動感染——親の感情は子どもに無意識に伝わる
+<br>→ 心理的安全性が「自分らしく生きる力」の土台になる
+</p>
+<p><strong>セクション8：見守る勇気</strong>
+<br>→ カーリングペアレントにならない。手は出さないけど、目は離さない
+</p>
+<h5 class="lec-h">今日からのアクション</h5>
+<p>3つだけ、お伝えします。
+</p>
+<p><strong>① 1日1回、「ありがとう」を子どもに伝える</strong>
+<br>行動に対してでも、存在そのものに対してでも。
+</p>
+<p><strong>② 叱るときは「3秒深呼吸」してから</strong>
+<br>「これは感情？ 伝えたいこと？」と自問する習慣をつける。
+</p>
+<p><strong>③ 1つだけ、子どもに「自分でやってもらう」ことを決める</strong>
+<br>靴を揃える、明日の服を選ぶ、お皿を運ぶ——なんでもいい。小さな自律の一歩を。
+</p>
+<h5 class="lec-h">最後に</h5>
+<p>この講座のタイトルは「自分でできる子が育つ家庭のつくり方」でした。
+</p>
+<p>でも本当は、<strong>「自分でできる子」を育てるんじゃなくて、「自分でできる子」が自然に育つ環境をつくる</strong>んです。
+</p>
+<p>そのために必要なのは、自律というコンパスと、安心基地というあたたかい港。
+</p>
+<p>この2つがあれば、子どもは自分の力で、どこへでも行ける。
+</p>
+<p>そして、どこにいても、自分らしく生きていける。
+</p>
+<p>次の講座4では、モンテッソーリとレッジョ・エミリアの教育メソッドから、具体的な「環境づくり」についてお話しします。
+</p>
+<p>ここまでお付き合いくださって、ありがとうございました。
+</p>
+</div>
+</details>
                     </div>
 
                     <table class="section-table">
@@ -470,25 +2162,25 @@
                             <tr><td class="sec-num">4</td><td>【安全基地】「戻ってこられる場所」が子どもを強くする</td><td>L7-L8</td><td>約12分</td></tr>
                             <tr><td class="sec-num">5</td><td>【怒る vs 叱る】感情を分離して「伝わる叱り方」をマスターする</td><td>L9-L10</td><td>約12分</td></tr>
                             <tr><td class="sec-num">6</td><td>【愛情表現】直接的に愛を伝える技術</td><td>L11-L12</td><td>約10分</td></tr>
-                            <tr><td class="sec-num">7</td><td>【JOY活 × 自律】親のJOYが子どもの自律を支えるメカニズム</td><td>L13-L14</td><td>約12分</td></tr>
-                            <tr><td class="sec-num">8</td><td>【終章】自律 × 安心で育つ「どこでも生きていける力」</td><td>L15-L16</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">7</td><td>【JOY活 &times; 自律】親のJOYが子どもの自律を支えるメカニズム</td><td>L13-L14</td><td>約12分</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】自律 &times; 安心で育つ「どこでも生きていける力」</td><td>L15-L16</td><td>約10分</td></tr>
                         </tbody>
                     </table>
 
                     <div class="info-box">
                         <strong>設計方針：</strong><br>
-                        ① 書籍第5章「自律」＋第6章「あたたかな土壌」をベースに構成<br>
-                        ② 「自律＝厳しさではなく心地よさ」という再定義が競合にない切り口<br>
-                        ③ 脳科学（前頭前野・実行機能）、心理学（自己決定理論・情動感染・心理的安全性）で裏付け<br>
-                        ④ 日米中の愛情表現比較はトリリンガル経験ならではのUSP<br>
-                        ⑤ 「伝わる叱り方5ステップ」等、すぐ実践できるフレームワークを多数提供
+                        &#9312; 書籍第5章「自律」＋第6章「あたたかな土壌」をベースに構成<br>
+                        &#9313; 「自律＝厳しさではなく心地よさ」という再定義が競合にない切り口<br>
+                        &#9314; 脳科学（前頭前野・実行機能）、心理学（自己決定理論・情動感染・心理的安全性）で裏付け<br>
+                        &#9315; 日米中の愛情表現比較はトリリンガル経験ならではのUSP<br>
+                        &#9316; 「伝わる叱り方5ステップ」等、すぐ実践できるフレームワークを多数提供
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Course 4 -->
-        <div class="course-accordion c4 open">
+        <div class="course-accordion c4">
             <button class="course-toggle" onclick="toggleCourse(this)">
                 <div class="course-num">4</div>
                 <div class="course-toggle-text">
@@ -496,40 +2188,830 @@
                     <div class="tagline">書籍コラム・第2章・玲子先生の実践知｜全8セクション・16レクチャー・約90分</div>
                 </div>
                 <span class="course-badge badge-progress">台本完了</span>
-                <span class="toggle-arrow">▼</span>
+                <span class="toggle-arrow">&#9660;</span>
             </button>
             <div class="course-content">
                 <div class="course-inner">
                     <div class="pipeline">
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">音声</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">スライド</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">映像</span>
                     </div>
 
                     <div class="script-preview">
                         <h4>台本（260304_Udemy講座4_台本_モンテレッジョ環境づくり.md）</h4>
-                        <div class="lecture-item"><span class="lecture-num">L1</span> なぜ今「おうちモンテ＆レッジョ」なのか</div>
-                        <div class="lecture-item"><span class="lecture-num">L2</span> モンテッソーリとレッジョ・エミリア ― それぞれの成り立ちと哲学</div>
-                        <div class="lecture-item"><span class="lecture-num">L3</span> モンテッソーリの3つの柱 ― 環境・教具・大人の役割</div>
-                        <div class="lecture-item"><span class="lecture-num">L4</span> おうちモンテの始め方 ― 今日からできる5つの環境変化</div>
-                        <div class="lecture-item"><span class="lecture-num">L5</span> 「敏感期」とは ― モンテッソーリが発見した子どもの成長の窓</div>
-                        <div class="lecture-item"><span class="lecture-num">L6</span> 年齢別・敏感期ガイド ― 0〜6歳の発達マップ</div>
-                        <div class="lecture-item"><span class="lecture-num">L7</span> 「子どもには100の言葉がある」― ロリス・マラグッツィの革命</div>
-                        <div class="lecture-item"><span class="lecture-num">L8</span> ドキュメンテーション ― 子どもの成長を「見える化」する技術</div>
-                        <div class="lecture-item"><span class="lecture-num">L9</span> なぜAI時代に「五感」が大切なのか</div>
-                        <div class="lecture-item"><span class="lecture-num">L10</span> 五感を育てる「感覚あそび」アイデア集</div>
-                        <div class="lecture-item"><span class="lecture-num">L11</span> モンテ × レッジョ × JOY活 ― 3つが交わるところに何が生まれるか</div>
-                        <div class="lecture-item"><span class="lecture-num">L12</span> 「ぼーっとする時間」が創造性を育てる ― DMNの科学</div>
-                        <div class="lecture-item"><span class="lecture-num">L13</span> 3つの環境を整える ― 部屋・時間・まなざし</div>
-                        <div class="lecture-item"><span class="lecture-num">L14</span> 年齢別・おうち環境づくりのポイント</div>
-                        <div class="lecture-item"><span class="lecture-num">L15</span> メソッドに正解はない ― 大切なのは「この子を見ること」</div>
-                        <div class="lecture-item"><span class="lecture-num">L16</span> 講座4の全体まとめ ― おうちモンテ＆レッジョで変わる毎日</div>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L1</span> なぜ今「おうちモンテ＆レッジョ」なのか</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入（フック）</h5>
+<p>皆さん、こんにちは。玲子です。
+</p>
+<p>講座4を受講してくださって、ありがとうございます。
+</p>
+<p>講座1では「非認知能力」と「SMILE」、講座2では「STEAM教育」、講座3では「自律と安心基地」についてお話ししてきました。
+</p>
+<p>今回は、私の教育のルーツとも言える、<strong>モンテッソーリ教育</strong>と<strong>レッジョ・エミリア教育</strong>についてお伝えします。
+</p>
+<p>「モンテッソーリ」って聞いたことありますか？
+</p>
+<p>最近は日本でも「おうちモンテ」って言葉をよく見かけますよね。
+</p>
+<p>でも、「何か特別な教具を買わなきゃいけないんでしょ？」「専門的すぎて、うちには無理」……そう思っている方も多いかもしれません。
+</p>
+<p>一方、「レッジョ・エミリア」は、まだあまり知られていないかもしれません。
+</p>
+<p>実は、<strong>GoogleやDisneyの社内保育園</strong>で採用されている教育法なんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>私は24歳で単身渡米して、AMI（国際モンテッソーリ協会）の国際免許を取得しました。
+</p>
+<p>そして2011年に、シリコンバレーで初めてのカリフォルニア州認可の日英バイリンガル幼稚園「Sora International Preschool」を開園しました。
+</p>
+<p>そこで14年以上、モンテッソーリとレッジョ・エミリアの2つの教育法を組み合わせた独自の「Soraメソッド」を実践してきたんです。
+</p>
+<p>Google、Amazon、Apple、NASAにお勤めのご家庭からもお子さんを預けていただいています。
+</p>
+<p>だから今日お話しすることは、理論だけじゃなくて、<strong>14年間の現場で検証してきた実践知</strong>です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>この講座では、その2つの教育法の本質を分かりやすくお伝えして、<strong>「おうちでできること」</strong>に落とし込んでいきます。
+</p>
+<p>特別な教材は必要ありません。
+</p>
+<p>大切なのは、<strong>「子どもに何を教えるか」ではなく、「どんな環境を用意するか」</strong>。
+</p>
+<p>この視点が変わるだけで、子どもとの毎日がガラッと変わります。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L2</span> モンテッソーリとレッジョ・エミリア ― それぞれの成り立ちと哲学</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>2つの教育法、名前は聞いたことがあっても、何がどう違うのか分からない方が多いと思います。
+</p>
+<p>ここで、それぞれの成り立ちと哲学を簡単にご紹介しますね。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>モンテッソーリ教育</strong>は、イタリア初の女性医師<strong>マリア・モンテッソーリ</strong>によって提唱されました。
+</p>
+<p>基本理念は、<strong>「子どもには自ら成長する力が備わっている」</strong>。
+</p>
+<p>大人が一方的に教えるのではなく、子どもが自ら選び、主体的に学べるよう<strong>環境を整え、見守る</strong>。必要なときだけサポートする。
+</p>
+<p>Facebookのマーク・ザッカーバーグ、Amazonのジェフ・ベゾス、日本では将棋の藤井聡太さん。幼少期にモンテッソーリ教育を受けた著名人は多いんです。
+</p>
+<p><strong>レッジョ・エミリア教育</strong>は、第二次世界大戦後のイタリア・レッジョ・エミリア市で始まりました。
+</p>
+<p>「新しい時代を生きるために、もっと自由で創造的な教育を」——そんな地域の人たちの想いから生まれた教育法です。
+</p>
+<p>特徴は、子どもを<strong>「能動的な学び手」</strong>として尊重すること。仲間との対話や共同作業の中で探究を深めるプロセスを大切にします。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>2つの教育法は、アプローチは違いますが、<strong>根底にある考え方は同じ</strong>です。
+</p>
+<p><strong>「大人が与えるべきものは、知識ではなく、環境やきっかけである」</strong>
+</p>
+<p>モンテッソーリは、<strong>整えられた環境の中で、一人ひとりが自分のペースで学ぶ自由</strong>を重視。
+</p>
+<p>レッジョ・エミリアは、<strong>仲間との対話や協働の中で、探究を深めていくプロセス</strong>を重視。
+</p>
+<p>前者は<strong>個の自立心</strong>を、後者は<strong>社会性や創造性</strong>を育むと言えるでしょう。
+</p>
+<p>私のSoraメソッドは、この2つのいいところを融合させたものなんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>どちらも共通しているのは、<strong>「子どもを信じる」</strong>ということ。
+</p>
+<p>大人が上から教え込むのではなく、子どもが自分の力で学んでいく環境をつくること。
+</p>
+<p>この講座では、その具体的な方法を、おうちで実践できる形でお伝えしていきます。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L3</span> モンテッソーリの3つの柱 ― 環境・教具・大人の役割</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>モンテッソーリ教育って、「教具」のイメージが強いですよね。
+</p>
+<p>色とりどりの木製のおもちゃ、ビーズの数え棒、ピンクタワー……。
+</p>
+<p>でも、教具はモンテッソーリの一部でしかないんです。
+</p>
+<p>本当に大切なのは、<strong>3つの柱</strong>のバランスです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>① 整えられた環境（Prepared Environment）</strong>
+</p>
+<p>モンテッソーリ教育で最も大切なのは、実は環境です。
+</p>
+<p>子どもサイズの家具、手が届く高さの棚、自分で選べるように並べられた道具たち。
+</p>
+<p>「自分でやりたい」と思ったときに、<strong>自分の力でできる環境</strong>があるかどうか。
+</p>
+<p>これが、すべての出発点です。
+</p>
+<p><strong>② 教具（Materials）</strong>
+</p>
+<p>モンテッソーリの教具には、ちゃんと意味があります。
+</p>
+<p>たとえば、「ピンクタワー」という10個の立方体を大きい順に積み上げる教具。
+</p>
+<p>これは単に積み木遊びではなく、<strong>大きさの概念、順序性、手先の調整力、集中力</strong>を同時に育てているんです。
+</p>
+<p>でも、おうちモンテでは、専用教具を買う必要はありません。
+</p>
+<p>台所にあるボウルを大きい順に並べる。洗濯バサミで挟む練習をする。
+</p>
+<p>日常の中に、教具の代わりはたくさんあります。
+</p>
+<p><strong>③ 大人の役割（Guide）</strong>
+</p>
+<p>モンテッソーリでは、先生のことを「ガイド」と呼びます。
+</p>
+<p>教える人ではなく、<strong>導く人</strong>。
+</p>
+<p>子どもが何かに集中しているとき、邪魔をしない。
+</p>
+<p>困っているとき、すぐに答えを教えるのではなく、「こうしてみたら？」とヒントだけ渡す。
+</p>
+<p><strong>「手を出すのは、子どもが求めたときだけ」。</strong>
+</p>
+<p>これが、モンテッソーリの大人の役割です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>環境・教具・大人の役割。この3つが揃ったとき、子どもは<strong>「自分でできた！」</strong>という体験を積み重ねていきます。
+</p>
+<p>その小さな成功体験が、自信と自律の土台になるんです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L4</span> おうちモンテの始め方 ― 今日からできる5つの環境変化</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>「モンテッソーリの考え方は分かったけど、具体的に何をすればいいの？」
+</p>
+<p>ここで、おうちで今日からできる5つの変化をお伝えします。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>① 子どもの目線に棚を下げる</strong>
+</p>
+<p>おもちゃや絵本を、子どもが自分で取れる高さに置く。
+</p>
+<p>「ママ、取って」と言わなくても、自分で選べる。これだけで「自分でできた」が増えます。
+</p>
+<p><strong>② 「やりたい」と思ったときにできる道具を用意する</strong>
+</p>
+<p>お手伝い用の小さなほうき、踏み台、子ども用の包丁。
+</p>
+<p>私のSora幼稚園では、2歳の子がバナナを自分で切っています。
+</p>
+<p>大人が思っている以上に、子どもはできるんです。
+</p>
+<p><strong>③ 選択肢を「3つまで」に絞る</strong>
+</p>
+<p>モンテッソーリでは、棚に出す教具の数を制限します。
+</p>
+<p>多すぎると選べない。少なすぎると飽きる。
+</p>
+<p>おうちでも、おもちゃを全部出しっぱなしにせず、<strong>3〜5個だけ棚に並べて、定期的に入れ替える</strong>。
+</p>
+<p>これだけで、子どもの集中力がガラッと変わります。
+</p>
+<p><strong>④ 「お仕事の場所」をつくる</strong>
+</p>
+<p>モンテッソーリでは、遊びのことを「お仕事」と呼びます。
+</p>
+<p>リビングの一角に、子ども専用の小さなテーブルと椅子を置く。
+</p>
+<p>「ここが私の場所」と思えるスペースがあるだけで、子どもの取り組み方が変わります。
+</p>
+<p><strong>⑤ 片づけまでが「お仕事」にする</strong>
+</p>
+<p>使ったものは元の場所に戻す。
+</p>
+<p>これを「ルール」として押し付けるのではなく、<strong>「お仕事の最後のステップ」</strong>として自然に取り入れる。
+</p>
+<p>「次にこの場所を使う人のために、きれいにしておこうね」と伝えると、社会性も育ちます。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>5つ全部を一度にやらなくて大丈夫です。
+</p>
+<p>まずは<strong>1つだけ</strong>、今日から変えてみてください。
+</p>
+<p>子どもの「自分でできた！」の表情が、きっと変わりますよ。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L5</span> 「敏感期」とは ― モンテッソーリが発見した子どもの成長の窓</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>子どもが何度も同じことを繰り返す。
+</p>
+<p>ティッシュを全部引っ張り出す。水を何度もこぼす。扉を開けたり閉めたり。
+</p>
+<p>「もう！ やめて！」って思いますよね。
+</p>
+<p>でも、モンテッソーリ教育では、これを<strong>「敏感期」</strong>と呼んで、とても大切にするんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>敏感期とは、<strong>子どもがある特定の能力を身につけるために、特に強い興味と集中力を発揮する時期</strong>のこと。
+</p>
+<p>マリア・モンテッソーリが、子どもを長年観察する中で発見しました。
+</p>
+<p>ティッシュを引っ張り出すのは、<strong>「つまむ・引く」という手先の動きを習得したい</strong>から。
+</p>
+<p>水をこぼすのは、<strong>「注ぐ」という動作に夢中になっている</strong>から。
+</p>
+<p>扉を開け閉めするのは、<strong>「手首の回転運動」を練習している</strong>から。
+</p>
+<p>子どもは「いたずら」をしているわけじゃないんです。
+</p>
+<p><strong>今まさに、その力を伸ばそうとしている最中</strong>なんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>脳科学的に言うと、敏感期は<strong>シナプス形成が特に活発になる時期</strong>です。
+</p>
+<p>この時期に適切な環境と経験を与えると、その能力のための神経回路がぐんぐん強化される。
+</p>
+<p>逆に、「やめなさい！」と止めてしまうと、せっかくの発達のチャンスを逃してしまう。
+</p>
+<p>もちろん、危険なことは止めなければいけません。
+</p>
+<p>でも、「なぜこの子は今これに夢中なのか？」と<strong>行動の裏にある発達のサインを読み取る目</strong>を持つことが大切です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>「いたずら」ではなく「敏感期」。
+</p>
+<p>この視点を持つだけで、子どもの行動の見え方がガラッと変わります。
+</p>
+<p>次のレクチャーでは、年齢ごとにどんな敏感期が訪れるのかをお伝えします。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L6</span> 年齢別・敏感期ガイド ― 0〜6歳の発達マップ</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>敏感期は、年齢によって変わっていきます。
+</p>
+<p>ここでは大まかな目安をお伝えしますが、個人差があるので、<strong>目の前のお子さんの「今」を見ることが何より大切</strong>です。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>0〜1歳：感覚の敏感期</strong>
+</p>
+<p>見る、聞く、触る、舐める——五感のすべてを使って世界を探索する時期。
+</p>
+<p>何でも口に入れるのは、「味覚と触覚で確かめたい」から。
+</p>
+<p><strong>やってあげたいこと：</strong> いろいろな素材（布、木、金属、水）に触れる体験を増やす。
+</p>
+<p><strong>1〜2歳：運動の敏感期</strong>
+</p>
+<p>歩く、登る、運ぶ、引っ張る。とにかく体を動かしたい時期。
+</p>
+<p>重いものを持ちたがるのは、「自分の力を試したい」から。
+</p>
+<p><strong>やってあげたいこと：</strong> 安全に動き回れる環境をつくる。小さな荷物を運ぶお手伝いをさせる。
+</p>
+<p><strong>2〜3歳：秩序の敏感期</strong>
+</p>
+<p>「いつもと同じ」にこだわる時期。道順が違うと泣く、コップの位置が変わると怒る。
+</p>
+<p>これは、<strong>「世界の秩序を理解したい」</strong>という知性の発達です。
+</p>
+<p><strong>やってあげたいこと：</strong> 生活のルーティンを大切にする。ものの定位置を決める。
+</p>
+<p><strong>3〜4歳：言語と社会性の敏感期</strong>
+</p>
+<p>言葉が爆発的に増え、友達との関わりに興味を持つ時期。
+</p>
+<p>「なんで？」「どうして？」が止まらなくなります。
+</p>
+<p><strong>やってあげたいこと：</strong> 質問にできるだけ丁寧に答える。「一緒に調べてみよう」と探究に誘う。
+</p>
+<p><strong>4〜6歳：文化と知識の敏感期</strong>
+</p>
+<p>文字、数字、地図、宇宙、恐竜——知識への欲求が爆発する時期。
+</p>
+<p><strong>やってあげたいこと：</strong> 図鑑を与える、博物館に行く、「本物」に触れる体験を増やす。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>この年齢ガイドはあくまで目安です。
+</p>
+<p>大事なのは、<strong>「今、この子は何に夢中なんだろう？」と観察すること</strong>。
+</p>
+<p>その「夢中」に応える環境を用意してあげることが、モンテッソーリの本質です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L7</span> 「子どもには100の言葉がある」― ロリス・マラグッツィの革命</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>レッジョ・エミリア教育には、とても有名な詩があります。
+</p>
+<p>その最初の一節は——
+</p>
+<p><strong>「子どもには100の言葉がある」</strong>
+</p>
+<p>これはレッジョ・エミリア教育の創始者、<strong>ロリス・マラグッツィ</strong>の言葉です。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>「100の言葉」とは、子どもが世界を理解し、自分を表現するための<strong>100通りの方法</strong>のこと。
+</p>
+<p>言葉だけじゃない。
+</p>
+<p>絵を描く、粘土をこねる、歌を歌う、踊る、積み木で何かをつくる、砂場でトンネルを掘る。
+</p>
+<p><strong>子どもは、全身を使って「考えている」んです。</strong>
+</p>
+<p>でも、大人はそのうちの多くを奪ってしまう。
+</p>
+<p>「お絵かきはいいから、文字の練習しなさい」
+<br>「そんなことしてないで、座りなさい」
+<br>「もっとちゃんと描きなさい」
+</p>
+<p>そうやって、子どもの100の言葉を、1つ、2つ……と減らしてしまう。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>レッジョ・エミリア教育で大切にされているのは——
+</p>
+<p><strong>子どもの表現を、「正解・不正解」で評価しないこと。</strong>
+</p>
+<p>3歳の子が描いた絵を見て、「これ何？ ちゃんと描けてないじゃん」と言うのではなく、
+</p>
+<p><strong>「どんな気持ちで描いたの？」「何を考えてたの？」</strong>と聞いてあげる。
+</p>
+<p>子どもの表現には、すべて意味があるんです。
+</p>
+<p>それを受け止めてもらえた子は、もっと表現したくなる。
+</p>
+<p>もっと考えたくなる。もっと探究したくなる。
+</p>
+<p><strong>表現を受け止めることが、知性を育てる</strong>。
+</p>
+<p>これが、レッジョ・エミリアの革命的な考え方なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>子どもの「100の言葉」を守ること。
+</p>
+<p>上手か下手かではなく、その子が何を感じ、何を考えているのかに目を向けること。
+</p>
+<p>それが、レッジョ・エミリア教育の出発点です。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L8</span> ドキュメンテーション ― 子どもの成長を「見える化」する技術</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>レッジョ・エミリア教育のもう一つの大きな特徴が、<strong>「ドキュメンテーション」</strong>です。
+</p>
+<p>聞き慣れない言葉かもしれませんが、実はとてもシンプルで、おうちでもすぐにできるものです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>ドキュメンテーションとは、<strong>子どもの活動や成長のプロセスを、写真・メモ・作品で記録し、振り返ること</strong>。
+</p>
+<p>Sora幼稚園でも、毎日やっています。
+</p>
+<p>たとえば、子どもたちが園庭でダンゴムシを観察していたとき。
+</p>
+<p>私たちは、子どもたちがどんな会話をしていたか、どんな表情だったか、どんな発見をしたかを、写真とメモで記録します。
+</p>
+<p>そして後から、それを子どもたちと一緒に振り返るんです。
+</p>
+<p>「あのとき、何を見つけたんだっけ？」
+</p>
+<p>子どもは写真を見て思い出し、もう一度考え、もっと知りたくなる。
+</p>
+<p><strong>ドキュメンテーションは、学びを深め、広げるためのツール</strong>なんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>おうちでのドキュメンテーション、こんなに簡単にできます。
+</p>
+<p><strong>方法①：スマホで写真を撮る</strong>
+</p>
+<p>子どもが何かに夢中になっている瞬間を撮る。完成作品だけでなく、<strong>プロセス</strong>を撮るのがポイント。
+</p>
+<p><strong>方法②：子どもの言葉をメモする</strong>
+</p>
+<p>「この虫、足が何本あるんだろう？」「この色、混ぜたらどうなるかな？」
+</p>
+<p>子どものつぶやきには、思考のプロセスが詰まっています。
+</p>
+<p><strong>方法③：1週間に1回、一緒に振り返る</strong>
+</p>
+<p>「今週、どんなことが楽しかった？」と写真を見ながら話す。
+</p>
+<p>子どもは「自分の成長」を実感でき、自己肯定感につながります。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>ドキュメンテーションは、子どもの成長を「見える化」する技術。
+</p>
+<p>特別なノートや道具はいりません。スマホ1台で始められます。
+</p>
+<p>大事なのは、<strong>結果ではなくプロセスを記録すること</strong>。
+</p>
+<p>「何ができたか」より、<strong>「どう考えたか」「何を感じたか」</strong>を大切にしてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L9</span> なぜAI時代に「五感」が大切なのか</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>AIが絵を描き、文章を書き、音楽をつくる時代。
+</p>
+<p>じゃあ、人間にしかできないことって何でしょう？
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>「感じること」です。</strong>
+</p>
+<p>どれだけテクノロジーが発達しても、風の気持ちよさを感じること、花の香りに心が動くこと、赤ちゃんのほっぺの柔らかさに幸せを感じること——
+</p>
+<p>これは、AIにはできません。
+</p>
+<p>私の書籍でも書きましたが、<strong>五感で世界を味わう力は、人間にしか備わっていない最大の財産</strong>です。
+</p>
+<p>子どもたちは本来、<strong>五感の達人</strong>なんですよね。
+</p>
+<p>泥をさわり、音に反応し、風に吹かれて笑う。
+</p>
+<p>大人が忘れがちな「感じる力」を、毎日全身で生きている。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>でも問題は、<strong>大人がそれを奪ってしまう</strong>こと。
+</p>
+<p>「汚いからさわらないで」「静かにしなさい」「早くしなさい」
+</p>
+<p>過度なスケジュール管理や効率優先の生活が、子どもの五感にひたる時間を奪っている。
+</p>
+<p>脳科学的にも、<strong>思考優位の状態</strong>と<strong>五感優位の状態</strong>は反対のベクトルを持っています。
+</p>
+<table class="script-table"><thead><tr><th></th><th>思考優位</th><th>五感優位</th></tr></thead><tbody><tr><td>意識</td><td>過去の後悔・未来の不安</td><td>今ここの音・光・香り</td></tr><tr><td>感情</td><td>不安・焦り・緊張</td><td>安心・喜び・感謝</td></tr><tr><td>行動</td><td>マルチタスク・予定に追われる</td><td>観察・共感・自然なやりとり</td></tr></tbody></table>
+<p>五感を育てることは、<strong>「今ここ」を生きる力を育てること</strong>でもあるんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>AI時代だからこそ、五感で世界を感じる力がますます大切。
+</p>
+<p>子どもの五感を育てるために、まずは<strong>大人が五感にひたる時間を奪わないこと</strong>。
+</p>
+<p>次のレクチャーでは、五感を育てる具体的なあそびをご紹介します。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L10</span> 五感を育てる「感覚あそび」アイデア集</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>五感を育てるあそびは、特別なものじゃありません。
+</p>
+<p>日常の中にある素材と環境で、いくらでもできるんです。
+</p>
+<p>Sora幼稚園で実際にやっているアイデアを、おうちでもできる形でご紹介しますね。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>【視覚】— 「見る」を楽しむ</strong>
+</p>
+<ul>
+<li>自然の中で「色集め」。赤いもの、黄色いものを探す散歩</li>
+<li>影遊び。太陽の光と体で形をつくる</li>
+<li>「今日の空は何色？」を毎日観察する</li>
+</ul>
+<p><strong>【聴覚】— 「聞く」を楽しむ</strong>
+</p>
+<ul>
+<li>目を閉じて「30秒間」で聞こえた音を数える</li>
+<li>自然の中の音探し（鳥の声、風の音、水の音）</li>
+<li>コップに水を入れて、量を変えて叩くと音が変わる実験</li>
+</ul>
+<p><strong>【触覚】— 「さわる」を楽しむ</strong>
+</p>
+<ul>
+<li>いろいろな素材を触ってみる（布、木、石、砂、水、氷）</li>
+<li>目隠しして、触っただけで何か当てるゲーム</li>
+<li>粘土、泥、小麦粉ねんど——手がぐちゃぐちゃになるあそび</li>
+</ul>
+<p><strong>【嗅覚】— 「嗅ぐ」を楽しむ</strong>
+</p>
+<ul>
+<li>お料理のスパイスの匂い比べ</li>
+<li>花の匂い、土の匂い、雨の匂い</li>
+<li>「好きな匂い」と「苦手な匂い」を見つけるあそび</li>
+</ul>
+<p><strong>【味覚】— 「味わう」を楽しむ</strong>
+</p>
+<ul>
+<li>甘い・酸っぱい・しょっぱい・苦い——4つの味比べ</li>
+<li>同じ果物でも、品種で味が違うことを体験する</li>
+<li>一緒に料理して、途中で味見しながらつくる</li>
+</ul>
+<h5 class="lec-h">まとめ</h5>
+<p>ポイントは、<strong>「正解を求めない」</strong>こと。
+</p>
+<p>「これは何の匂い？」と聞いて、子どもが「カレー」って答えても「シナモン」って答えても、どちらも正解。
+</p>
+<p>大事なのは、<strong>「感じること」そのものを楽しむ</strong>ことです。
+</p>
+<p>1日1つ、五感を使うあそびを取り入れてみてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L11</span> モンテ × レッジョ × JOY活 ― 3つが交わるところに何が生まれるか</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>この講座では、モンテッソーリとレッジョ・エミリア、そしてJOY活をお伝えしてきました。
+</p>
+<p>「でも、3つもあったら、何をすればいいか分からない！」
+</p>
+<p>そう思いますよね。大丈夫です。
+</p>
+<p>実はこの3つ、<strong>すべて同じ方向を向いている</strong>んです。
+</p>
+<h5 class="lec-h">本題</h5>
+<table class="script-table"><thead><tr><th></th><th>モンテッソーリ</th><th>レッジョ・エミリア</th><th>JOY活</th></tr></thead><tbody><tr><td>大切にするもの</td><td>自立・自律</td><td>表現・協働</td><td>悦び・安心</td></tr><tr><td>環境の考え方</td><td>整えられた環境</td><td>環境は「第三の教師」</td><td>家庭が最高の教室</td></tr><tr><td>大人の役割</td><td>ガイド（見守る）</td><td>共同研究者</td><td>満たされた存在</td></tr><tr><td>子どもの見方</td><td>自ら育つ力がある</td><td>能動的な学び手</td><td>JOYを感じる存在</td></tr></tbody></table>
+<p>3つに共通しているのは——
+</p>
+<p><strong>「子どもを信じて、環境を整え、大人は見守る」</strong>
+</p>
+<p>アプローチは違っても、ゴールは同じ。
+</p>
+<p><strong>子どもが自分らしく、笑顔で生きていく力を育てること</strong>です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>どれか1つだけを完璧にやる必要はありません。
+</p>
+<p>モンテッソーリの「環境設計」の考え方で部屋を整え、レッジョの「ドキュメンテーション」で成長を記録し、JOY活の「親のJOY」で家庭の雰囲気を温める。
+</p>
+<p><strong>いいとこ取りでいい</strong>んです。
+</p>
+<p>これが、私がSora幼稚園で14年間かけてたどり着いた答えです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L12</span> 「ぼーっとする時間」が創造性を育てる ― DMNの科学</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>子どもの予定、びっちり埋まっていませんか？
+</p>
+<p>月曜ピアノ、火曜水泳、水曜塾、木曜サッカー……。
+</p>
+<p>「空白の時間」って、なんだか不安になりますよね。
+</p>
+<p>でも、脳科学は<strong>正反対のこと</strong>を言っているんです。
+</p>
+<h5 class="lec-h">本題</h5>
+<p>脳には<strong>「デフォルト・モード・ネットワーク（DMN）」</strong>と呼ばれる神経回路があります。
+</p>
+<p>これは、何かに集中しているときではなく、<strong>ぼーっとしているときに活発に働く脳の回路</strong>。
+</p>
+<p>窓の外をぼんやり眺めているとき。お風呂でゆったりしているとき。
+</p>
+<p>一見「何もしていない」ように見えるこの時間に、脳はとても重要な仕事をしています。
+</p>
+<ul>
+<li><strong>過去の経験を整理する</strong></li>
+<li><strong>ひらめきやアイデアを生み出す</strong></li>
+<li><strong>自分を見つめ直す</strong></li>
+</ul>
+<p>2024年のアメリカの大学の研究で、<strong>DMNの活動を抑制すると、創造性が著しく低下する</strong>ことが実証されました。
+</p>
+<p>つまり、「ぼーっとする時間」は怠けじゃなくて、<strong>脳が創造的に働いている時間</strong>なんです。
+</p>
+<h5 class="lec-h">ポイント</h5>
+<p>だからこそ、子どものスケジュールに<strong>「何もしない時間」を意図的に残す</strong>ことが大切。
+</p>
+<p>予定を詰め込みすぎると、DMNが働く余地がなくなる。
+</p>
+<p>子どもが「暇〜」って言ったら、チャンスです。
+</p>
+<p>その退屈から、自分で遊びを見つける。自分で考え始める。
+</p>
+<p><strong>退屈は、創造性の入り口</strong>なんです。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>「何もしない時間」を確保する勇気を持つこと。
+</p>
+<p>これは、モンテッソーリの「環境を整える」にも、レッジョの「子どもの探究を待つ」にも、JOY活の「JOYを感じる余白」にも通じています。
+</p>
+<p>ぜひ、お子さんのスケジュールに「空白」を残してあげてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L13</span> 3つの環境を整える ― 部屋・時間・まなざし</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>環境づくりと聞くと、「部屋のレイアウトを変える」だけだと思うかもしれません。
+</p>
+<p>でも、モンテッソーリとレッジョの知恵を統合すると、<strong>環境には3つの層がある</strong>ことが分かります。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>① 物理的環境 ― 部屋</strong>
+</p>
+<p>これまでお話しした通り、子どもの目線に合わせた家具、手が届く棚、自分で選べる道具。
+</p>
+<p><strong>チェックリスト：</strong>
+</p>
+<ul>
+<li>子どもが自分で取り出せる場所におもちゃや絵本がありますか？</li>
+<li>子ども専用の「お仕事スペース」がありますか？</li>
+<li>おもちゃの数は多すぎませんか？（3〜5個ずつ入れ替え）</li>
+</ul>
+<p><strong>② 時間的環境 ― スケジュール</strong>
+</p>
+<p>予定を詰め込みすぎていないか。「ぼーっとする時間」はあるか。
+</p>
+<p><strong>チェックリスト：</strong>
+</p>
+<ul>
+<li>子どもの1日に「何もしない時間」が15分以上ありますか？</li>
+<li>朝の支度に「自分でやる時間」を確保していますか？</li>
+<li>夜寝る前に、静かに過ごす時間がありますか？</li>
+</ul>
+<p><strong>③ 心理的環境 ― 大人のまなざし</strong>
+</p>
+<p>これが実は一番大事。
+</p>
+<p>子どもが何かに取り組んでいるとき、「上手・下手」で評価していないか。
+</p>
+<p>「早くしなさい」と急かしていないか。
+</p>
+<p><strong>チェックリスト：</strong>
+</p>
+<ul>
+<li>子どもが集中しているときに、話しかけずに待っていますか？</li>
+<li>「上手だね」より「どんな気持ちで描いたの？」と聞いていますか？</li>
+<li>失敗したとき「大丈夫、もう一回やってみよう」と言えていますか？</li>
+</ul>
+<h5 class="lec-h">まとめ</h5>
+<p>部屋・時間・まなざし。
+</p>
+<p>この3つのどれか1つを整えるだけでも、子どもの行動は変わります。
+</p>
+<p>まずは、<strong>チェックリストで1つだけ「できていないもの」を見つけて、今週から改善してみてください</strong>。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L14</span> 年齢別・おうち環境づくりのポイント</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>環境づくりのポイントは、子どもの年齢によって変わります。
+</p>
+<p>ここでは、年齢別のおうち環境のヒントをまとめてお伝えします。
+</p>
+<h5 class="lec-h">本題</h5>
+<p><strong>0〜1歳：「安全で自由に動ける空間」</strong>
+</p>
+<ul>
+<li>床にマットを敷いて、自由にハイハイ・つかまり立ちできるスペースをつくる</li>
+<li>口に入れても安全な素材の感覚おもちゃを用意する</li>
+<li>鏡を目線の高さに設置して、自分を認識する体験をつくる</li>
+</ul>
+<p><strong>1〜2歳：「自分でやりたい！を叶える空間」</strong>
+</p>
+<ul>
+<li>踏み台を用意して、洗面台に自分で届けるようにする</li>
+<li>コート掛けを低い位置につけて、自分で掛け外しできるように</li>
+<li>引き出しの1つを「この子の引き出し」にして、自分で出し入れできるように</li>
+</ul>
+<p><strong>2〜4歳：「選んで集中できる空間」</strong>
+</p>
+<ul>
+<li>おもちゃを棚に少数だけ並べて、定期的に入れ替える</li>
+<li>子ども用のテーブルと椅子で「お仕事スペース」をつくる</li>
+<li>お絵かき道具、はさみ、のり——自分で取り出せる場所に</li>
+</ul>
+<p><strong>4〜6歳：「探究と創造の空間」</strong>
+</p>
+<ul>
+<li>図鑑や地図を自由に見られる場所に置く</li>
+<li>工作コーナーをつくる（紙、テープ、空き箱、段ボール）</li>
+<li>植物を育てる、料理を手伝う——「本物の体験」を日常に</li>
+</ul>
+<h5 class="lec-h">まとめ</h5>
+<p>大切なのは、<strong>「完璧な環境」をつくることではなく、「子どもの今」に合わせて少しずつ調整していく</strong>こと。
+</p>
+<p>1つだけ、今日から変えてみてください。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L15</span> メソッドに正解はない ― 大切なのは「この子を見ること」</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>ここまで、モンテッソーリ、レッジョ・エミリア、五感、DMN——たくさんのことをお伝えしてきました。
+</p>
+<p>でも、最後に一番大事なことをお話しさせてください。
+</p>
+<p><strong>教育メソッドに、正解はありません。</strong>
+</p>
+<h5 class="lec-h">本題</h5>
+<p>「モンテッソーリが最高」「レッジョが最新」「STEAM教育が主流」
+</p>
+<p>情報を集めれば集めるほど、何が正解か分からなくなりますよね。
+</p>
+<p>私も、14年間で何百人もの子どもを見てきましたが、<strong>同じ方法がすべての子に当てはまることは、一度もありませんでした。</strong>
+</p>
+<p>ある子には積み木が最高の教材になり、別の子にはお絵かきが、また別の子には泥遊びが。
+</p>
+<p>大切なのは、メソッドを子どもに当てはめることではなく、<strong>「この子は今、何に夢中なんだろう？」と観察すること</strong>。
+</p>
+<p>メソッドは道具です。
+</p>
+<p>道具に使われるのではなく、<strong>この子に合う道具を選ぶ</strong>。
+</p>
+<p>それが、親にしかできない仕事です。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p>子どもを「見る目」を育てること。
+</p>
+<p>これこそが、すべての教育メソッドの先にある、<strong>親として最も大切な力</strong>です。
+</p>
+<p>情報に振り回されず、目の前の子どもと向き合い、その子のJOYを見つけること。
+</p>
+<p>それが、SORAメソッドの最終的な答えです。
+</p>
+</div>
+</details>
+<details class="lecture-detail">
+<summary><span class="lecture-num">L16</span> 講座4の全体まとめ ― おうちモンテ＆レッジョで変わる毎日</summary>
+<div class="lecture-body">
+<h5 class="lec-h">導入</h5>
+<p>講座4、最後のまとめです。全体を振り返りましょう。
+</p>
+<h5 class="lec-h">まとめ</h5>
+<p><strong>セクション1：モンテッソーリとレッジョ・エミリアの基本</strong>
+<br>→ 2つの教育法の共通点は「知識ではなく環境を与える」
+<br>→ 玲子先生のSoraメソッドは2つのいいとこ取り
+</p>
+<p><strong>セクション2：モンテッソーリの環境設計</strong>
+<br>→ 3つの柱：環境・教具・大人の役割
+<br>→ おうちモンテは今日から5つの変化で始められる
+</p>
+<p><strong>セクション3：敏感期</strong>
+<br>→ 子どもの「困った行動」は「成長のサイン」
+<br>→ 年齢別の敏感期を知ると、子どもの見方が変わる
+</p>
+<p><strong>セクション4：レッジョ・エミリアの「100の言葉」</strong>
+<br>→ 子どもの表現を「上手・下手」で評価しない
+<br>→ ドキュメンテーションで成長を「見える化」する
+</p>
+<p><strong>セクション5：五感</strong>
+<br>→ AI時代に「感じる力」がますます大切
+<br>→ 日常の中で五感を使うあそびを取り入れる
+</p>
+<p><strong>セクション6：統合と余白</strong>
+<br>→ モンテ × レッジョ × JOY活のいいとこ取りでOK
+<br>→ 「ぼーっとする時間」が創造性を育てる（DMN）
+</p>
+<p><strong>セクション7：実践</strong>
+<br>→ 環境には3つの層がある：部屋・時間・まなざし
+<br>→ 年齢に合わせて少しずつ調整していく
+</p>
+<p><strong>セクション8：子どもを見る目</strong>
+<br>→ メソッドに正解はない。大切なのは「この子を見ること」
+</p>
+<h5 class="lec-h">今日からのアクション</h5>
+<p>3つだけ、お伝えします。
+</p>
+<p><strong>① おもちゃを3〜5個だけ棚に出して、残りはしまう</strong>
+<br>選択肢を減らすだけで、子どもの集中力が変わります。
+</p>
+<p><strong>② 子どもが夢中になっている瞬間をスマホで撮る</strong>
+<br>完成品ではなく、プロセスを記録するドキュメンテーションの第一歩です。
+</p>
+<p><strong>③ 1日15分、「何もしない時間」をスケジュールに入れる</strong>
+<br>親子でぼーっとする。その退屈の先に、子どもの創造性が待っています。
+</p>
+<h5 class="lec-h">最後に</h5>
+<p>この講座のテーマは「環境づくり」でした。
+</p>
+<p>でも本当にお伝えしたかったのは、<strong>「子どもを見る目を育てること」</strong>。
+</p>
+<p>どんなメソッドも、どんな教具も、目の前の子どもを見つめるあなたのまなざしにはかないません。
+</p>
+<p>子どもを信じて、環境を整え、あとは見守る。
+</p>
+<p>それが、私が14年間の現場で学んだ、最高の教育です。
+</p>
+<p>4つの講座を通して学んでくださって、本当にありがとうございました。
+</p>
+</div>
+</details>
                     </div>
 
                     <table class="section-table">
@@ -540,7 +3022,7 @@
                             <tr><td class="sec-num">3</td><td>【敏感期】子どもの「今」を見逃さない ― 発達のサインを読み取る</td><td>L5-L6</td><td>約12分</td></tr>
                             <tr><td class="sec-num">4</td><td>【レッジョ・エミリア】「100の言葉」― 表現が知性を育てる</td><td>L7-L8</td><td>約12分</td></tr>
                             <tr><td class="sec-num">5</td><td>【五感】AI時代こそ「感じる力」― 五感を育てる日常のあそび</td><td>L9-L10</td><td>約12分</td></tr>
-                            <tr><td class="sec-num">6</td><td>【統合】Soraメソッド ― モンテ × レッジョ × JOY活の相乗効果</td><td>L11-L12</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">6</td><td>【統合】Soraメソッド ― モンテ &times; レッジョ &times; JOY活の相乗効果</td><td>L11-L12</td><td>約10分</td></tr>
                             <tr><td class="sec-num">7</td><td>【実践】おうちの環境づくり ― 今日からできる具体的な変化</td><td>L13-L14</td><td>約10分</td></tr>
                             <tr><td class="sec-num">8</td><td>【終章】教育メソッドを超えて ― 子どもを「見る目」を育てる</td><td>L15-L16</td><td>約10分</td></tr>
                         </tbody>
@@ -548,43 +3030,43 @@
 
                     <div class="info-box">
                         <strong>設計方針：</strong><br>
-                        ① 玲子先生のAMI国際免許＋14年のSora幼稚園運営実績が最大のUSP<br>
-                        ② モンテッソーリ（自立・環境設計）× レッジョ・エミリア（表現・ドキュメンテーション）を統合<br>
-                        ③ 書籍第2章「五感アプローチ」「DMN」を活用し脳科学的裏付け<br>
-                        ④ 年齢別の敏感期ガイドと環境チェックリストで即実践可能<br>
-                        ⑤ 「おうちモンテ」Udemy競合ゼロの市場を狙う
+                        &#9312; 玲子先生のAMI国際免許＋14年のSora幼稚園運営実績が最大のUSP<br>
+                        &#9313; モンテッソーリ（自立・環境設計）&times; レッジョ・エミリア（表現・ドキュメンテーション）を統合<br>
+                        &#9314; 書籍第2章「五感アプローチ」「DMN」を活用し脳科学的裏付け<br>
+                        &#9315; 年齢別の敏感期ガイドと環境チェックリストで即実践可能<br>
+                        &#9316; 「おうちモンテ」Udemy競合ゼロの市場を狙う
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Course 5 -->
-        <div class="course-accordion c5 open">
+        <div class="course-accordion c5">
             <button class="course-toggle" onclick="toggleCourse(this)">
                 <div class="course-num">5</div>
                 <div class="course-toggle-text">
                     <div class="title">（未定 ― 今後検討）</div>
-                    <div class="tagline">候補：書籍 第3章「思考分離」× 第4章「足るを知る」× 金継ぎマインド</div>
+                    <div class="tagline">候補：書籍 第3章「思考分離」&times; 第4章「足るを知る」&times; 金継ぎマインド</div>
                 </div>
                 <span class="course-badge badge-tbd">未定</span>
-                <span class="toggle-arrow">▼</span>
+                <span class="toggle-arrow">&#9660;</span>
             </button>
             <div class="course-content">
                 <div class="course-inner">
                     <div class="pipeline">
                         <span class="pipe-step pipe-pending">計画</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">台本</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">音声</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">スライド</span>
-                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-arrow">&rarr;</span>
                         <span class="pipe-step pipe-pending">映像</span>
                     </div>
                     <div class="tbd-box">
                         テーマは今後検討。まずは講座2〜4を構築。<br>
-                        <span style="font-size:0.75rem;">候補：v3の講座2「思考分離 × 足るを知る × 金継ぎマインド」（書籍第3・4章ベース）</span>
+                        <span style="font-size:0.75rem;">候補：v3の講座2「思考分離 &times; 足るを知る &times; 金継ぎマインド」（書籍第3・4章ベース）</span>
                     </div>
                 </div>
             </div>
@@ -592,7 +3074,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            JOY活 × Udemy 5講座シリーズ ― Producer: きぬきぬ ｜ Instructor: 中内玲子（Reiko Nakauchi）<br>
+            JOY活 &times; Udemy 5講座シリーズ ― Producer: きぬきぬ ｜ Instructor: 中内玲子（Reiko Nakauchi）<br>
             Last updated: 2026-03-04
         </div>
 
