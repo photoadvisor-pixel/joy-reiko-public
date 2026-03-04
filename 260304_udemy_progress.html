@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy 5講座シリーズ 進捗ダッシュボード</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-light: #fce7f3;
+            --primary-dark: #be185d;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            --white: #ffffff;
+            --border: #ffe4e6;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --gray: #9ca3af;
+            --gray-light: #f3f4f6;
+            --orange: #f59e0b;
+            --orange-light: #fef3c7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+        }
+        .header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Summary Cards */
+        .summary-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .summary-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .summary-card .num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .summary-card .label {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Course Accordion */
+        .course-accordion {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+        }
+
+        .course-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+        .course-toggle:hover { background: var(--primary-light); }
+
+        .course-num {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        .c1 .course-num { background: var(--green); }
+        .c2 .course-num { background: var(--primary); }
+        .c3 .course-num { background: var(--secondary); }
+        .c4 .course-num { background: var(--blue); }
+        .c5 .course-num { background: var(--gray); }
+
+        .course-toggle-text {
+            flex: 1;
+        }
+        .course-toggle-text .title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .course-toggle-text .tagline {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .toggle-arrow {
+            font-size: 1.2rem;
+            color: var(--gray);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .course-accordion.open .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .course-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .badge-done { background: var(--green-light); color: var(--green); }
+        .badge-progress { background: var(--orange-light); color: var(--orange); }
+        .badge-plan { background: var(--blue-light); color: var(--blue); }
+        .badge-tbd { background: var(--gray-light); color: var(--gray); }
+
+        /* Progress Pipeline */
+        .pipeline {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin: 0.8rem 0;
+            font-size: 0.7rem;
+        }
+        .pipe-step {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .pipe-arrow {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin: 0 2px;
+        }
+        .pipe-done { background: var(--green-light); color: var(--green); }
+        .pipe-active { background: var(--orange-light); color: var(--orange); border: 1.5px solid var(--orange); }
+        .pipe-pending { background: var(--gray-light); color: var(--gray); }
+
+        .pipe-icon { font-size: 0.85rem; }
+
+        /* Course Content */
+        .course-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .course-accordion.open .course-content {
+            max-height: 3000px;
+        }
+        .course-inner {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Section Table */
+        .section-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            margin-top: 1rem;
+        }
+        .section-table th {
+            background: var(--primary-light);
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.72rem;
+            color: var(--primary-dark);
+        }
+        .section-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section-table .sec-num {
+            width: 30px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Script Preview */
+        .script-preview {
+            background: #fdf8f0;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            border: 1px solid #fde68a;
+            font-size: 0.8rem;
+        }
+        .script-preview h4 {
+            font-size: 0.8rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+        .script-preview .lecture-item {
+            padding: 4px 0;
+            border-bottom: 1px dashed #fde68a;
+        }
+        .script-preview .lecture-item:last-child { border-bottom: none; }
+        .lecture-num {
+            display: inline-block;
+            width: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.72rem;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        .tbd-box {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            .header { padding: 1.5rem; }
+            .header h1 { font-size: 1.3rem; }
+            .pipeline { flex-wrap: wrap; gap: 4px; }
+            .pipe-arrow { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>JOY活 × Udemy 5講座シリーズ</h1>
+            <div class="subtitle">中内玲子（Reiko Nakauchi）｜制作進捗ダッシュボード ― 更新：2026年3月4日</div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary-row">
+            <div class="summary-card">
+                <div class="num">5</div>
+                <div class="label">講座シリーズ</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" style="color:var(--green);">1</div>
+                <div class="label">公開済み</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" style="color:var(--orange);">1</div>
+                <div class="label">台本完了</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" style="color:var(--blue);">2</div>
+                <div class="label">企画済み</div>
+            </div>
+            <div class="summary-card">
+                <div class="num" style="color:var(--gray);">1</div>
+                <div class="label">未定</div>
+            </div>
+        </div>
+
+        <!-- Course 1 -->
+        <div class="course-accordion c1">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">1</div>
+                <div class="course-toggle-text">
+                    <div class="title">非認知能力 × SMILE ― 5つの力の育て方</div>
+                    <div class="tagline">書籍 第1章・第6章・第7章｜全8セクション・19レクチャー</div>
+                </div>
+                <span class="course-badge badge-done">公開済み</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="pipeline">
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 音声</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> スライド</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 映像</span>
+                    </div>
+                    <table class="section-table">
+                        <thead><tr><th>#</th><th>セクション</th><th>レクチャー</th></tr></thead>
+                        <tbody>
+                            <tr><td class="sec-num">1</td><td>【序章】AI時代に「本当に」必要な力とは</td><td>L1-L3（約10分）</td></tr>
+                            <tr><td class="sec-num">2</td><td>【土台】すべての能力は「親のJOY」から始まる</td><td>L4-L6（約15分）</td></tr>
+                            <tr><td class="sec-num">3</td><td>【S】Social Skills ― 思いやりの心を育てる</td><td>L7-L8（約10分）</td></tr>
+                            <tr><td class="sec-num">4</td><td>【M】Manners ― 自律のマナーを身につける</td><td>L9-L10（約10分）</td></tr>
+                            <tr><td class="sec-num">5</td><td>【I】Interests ― 探究心を伸ばす</td><td>L11-L12（約10分）</td></tr>
+                            <tr><td class="sec-num">6</td><td>【L】Languages ― 対話力と多言語感覚</td><td>L13-L14（約10分）</td></tr>
+                            <tr><td class="sec-num">7</td><td>【E】Enthusiasm ― やり抜く情熱を育てる</td><td>L15-L16（約10分）</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】SMILEで変わる家庭の未来</td><td>L17-L19（約15分）</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="info-box">
+                        <strong>ステータス：</strong>Udemy公開済み。全セクションの音声収録・スライド作成・映像レンダリング完了。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-accordion c2 open">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">2</div>
+                <div class="course-toggle-text">
+                    <div class="title">おうちでできるSTEAM教育 ― 脳科学 × 世界の探究学習 × JOY活</div>
+                    <div class="tagline">STEAM教育をメインに深掘り｜全8セクション・17レクチャー・約93分</div>
+                </div>
+                <span class="course-badge badge-progress">台本完了</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="pipeline">
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 台本</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">音声</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">スライド</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">映像</span>
+                    </div>
+
+                    <div class="script-preview">
+                        <h4>台本（260304_Udemy講座2_台本_STEAM教育.md）</h4>
+                        <div class="lecture-item"><span class="lecture-num">L1</span> 「STEAM＝理系エリート教育」は誤解です</div>
+                        <div class="lecture-item"><span class="lecture-num">L2</span> AI時代に「考える力」が武器になる理由</div>
+                        <div class="lecture-item"><span class="lecture-num">L3</span> 子どもの脳は「探究」で育つ ― 神経可塑性とシナプス形成</div>
+                        <div class="lecture-item"><span class="lecture-num">L4</span> 「実行機能」― 自分をコントロールする脳の力</div>
+                        <div class="lecture-item"><span class="lecture-num">L5</span> 「教えない」のが最高の教育 ― 科学的思考のつくり方</div>
+                        <div class="lecture-item"><span class="lecture-num">L6</span> キッチンとリビングが研究室になる ― T × E の入り口</div>
+                        <div class="lecture-item"><span class="lecture-num">L7</span> なぜSTEMに「A」が必要なのか ― 創造性の科学</div>
+                        <div class="lecture-item"><span class="lecture-num">L8</span> 数学は暗記科目じゃない ― パターン認識と空間把握力</div>
+                        <div class="lecture-item"><span class="lecture-num">L9</span> フィンランド ― 宿題なし・テストなし。でも学力世界一の秘密</div>
+                        <div class="lecture-item"><span class="lecture-num">L10</span> シンガポール ― 「教えるのを減らせ」が国家戦略</div>
+                        <div class="lecture-item"><span class="lecture-num">L11</span> アメリカ ― Maker Education と「失敗を祝う文化」</div>
+                        <div class="lecture-item"><span class="lecture-num">L12</span> なぜ「楽しい」と学べるのか ― 感情と記憶の脳科学</div>
+                        <div class="lecture-item"><span class="lecture-num">L13</span> DMN ― ぼーっとする時間が創造性を育てる</div>
+                        <div class="lecture-item"><span class="lecture-num">L14</span> 感情的共調整 ― 親子で育む探究の土壌</div>
+                        <div class="lecture-item"><span class="lecture-num">L15</span> 0〜6歳：五感と「なぜ？」のSTEAMあそび</div>
+                        <div class="lecture-item"><span class="lecture-num">L16</span> 5つの非認知能力（SMILE）とSTEAMの接続</div>
+                        <div class="lecture-item"><span class="lecture-num">L17</span> 今日からの一歩 ― まとめとメッセージ</div>
+                    </div>
+
+                    <table class="section-table">
+                        <thead><tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr></thead>
+                        <tbody>
+                            <tr><td class="sec-num">1</td><td>【序章】STEAM教育とは何か ― なぜ今、世界が注目するのか</td><td>L1-L2</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">2</td><td>【脳科学】発達心理学と脳科学で裏づけるSTEAM教育</td><td>L3-L4</td><td>約12分</td></tr>
+                            <tr><td class="sec-num">3</td><td>【S・T・E】科学的思考の育て方</td><td>L5-L6</td><td>約12分</td></tr>
+                            <tr><td class="sec-num">4</td><td>【A・M】アートが数学脳を育てる</td><td>L7-L8</td><td>約12分</td></tr>
+                            <tr><td class="sec-num">5</td><td>【世界のSTEAM最前線】フィンランド・シンガポール・アメリカ</td><td>L9-L11</td><td>約12分</td></tr>
+                            <tr><td class="sec-num">6</td><td>【JOY活 × STEAM】感情と学習の科学</td><td>L12-L14</td><td>約15分</td></tr>
+                            <tr><td class="sec-num">7</td><td>【実践】0〜6歳のSTEAM × JOY活あそび</td><td>L15</td><td>約10分</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】STEAM × JOY活で育つ「世界で生きる力」</td><td>L16-L17</td><td>約10分</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="info-box">
+                        <strong>設計方針（玲子先生FB v4.1反映）：</strong><br>
+                        ① STEAMをメインに全8セクションで深掘り<br>
+                        ② 脳科学・世界各国事例でアカデミックな深み ＝ 有料講座の価値<br>
+                        ③ セクション6でJOY活 × STEAMの接続を科学的に解説<br>
+                        ④ 文化・言語に依存しないグローバルに通用する内容<br>
+                        ⑤ レッジョ・エミリアは講座4に集約し重複を回避
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-accordion c3">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">3</div>
+                <div class="course-toggle-text">
+                    <div class="title">自律 × 安心 × 生きる力 ― 子どもが自分で立つための土壌づくり</div>
+                    <div class="tagline">書籍 第5章・第6章｜全8セクション（予定）</div>
+                </div>
+                <span class="course-badge badge-plan">企画済み</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="pipeline">
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">台本</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">音声</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">スライド</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">映像</span>
+                    </div>
+                    <table class="section-table">
+                        <thead><tr><th>#</th><th>セクション（計画）</th></tr></thead>
+                        <tbody>
+                            <tr><td class="sec-num">1</td><td>【序章】「自律」と「自立」はここが違う</td></tr>
+                            <tr><td class="sec-num">2</td><td>【脳科学】自律の脳 ― 前頭前野と実行機能の発達</td></tr>
+                            <tr><td class="sec-num">3</td><td>【生活習慣】グローバルに通用する4つの基本習慣</td></tr>
+                            <tr><td class="sec-num">4</td><td>【安心基地】「戻ってこられる場所」が子どもを強くする</td></tr>
+                            <tr><td class="sec-num">5</td><td>【心理的安全性】怒ると叱るの明確な線引き</td></tr>
+                            <tr><td class="sec-num">6</td><td>【JOY活 × 自律】親のJOYが子どもの自律を支えるメカニズム</td></tr>
+                            <tr><td class="sec-num">7</td><td>【実践】年齢別・自律を育てる声かけと環境づくり</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】自律 × 安心で育つ「どこでも生きていける力」</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="info-box">
+                        <strong>次のステップ：</strong>台本作成 → 玲子先生レビュー → 音声収録
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-accordion c4">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">4</div>
+                <div class="course-toggle-text">
+                    <div class="title">モンテッソーリ × レッジョ・エミリア × 環境づくり</div>
+                    <div class="tagline">書籍コラム・玲子先生の実践知｜全8セクション（予定）</div>
+                </div>
+                <span class="course-badge badge-plan">企画済み</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="pipeline">
+                        <span class="pipe-step pipe-done"><span class="pipe-icon">&#10003;</span> 計画</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">台本</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">音声</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">スライド</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">映像</span>
+                    </div>
+                    <table class="section-table">
+                        <thead><tr><th>#</th><th>セクション（計画）</th></tr></thead>
+                        <tbody>
+                            <tr><td class="sec-num">1</td><td>【序章】なぜ今「おうちモンテ」「おうちレッジョ」なのか</td></tr>
+                            <tr><td class="sec-num">2</td><td>【モンテッソーリ】「自分でできた！」を育てる環境設計</td></tr>
+                            <tr><td class="sec-num">3</td><td>【モンテッソーリ】敏感期を見逃さない ― 年齢別の発達サイン</td></tr>
+                            <tr><td class="sec-num">4</td><td>【レッジョ・エミリア】「100の言葉」― 表現が知性を育てる</td></tr>
+                            <tr><td class="sec-num">5</td><td>【レッジョ・エミリア】プロジェクト型学習 × ドキュメンテーション</td></tr>
+                            <tr><td class="sec-num">6</td><td>【統合】モンテ × レッジョ × JOY活の相乗効果</td></tr>
+                            <tr><td class="sec-num">7</td><td>【実践】おうちの環境づくり ― 今日からできる具体的な変化</td></tr>
+                            <tr><td class="sec-num">8</td><td>【終章】教育メソッドを超えて ― 子どもを「見る目」を育てる</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="info-box">
+                        <strong>ポイント：</strong>レッジョ・エミリアの詳細はこの講座4に集約（講座2との重複回避）。玲子先生の14年の園運営の実践知が最大のUSP。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-accordion c5">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">5</div>
+                <div class="course-toggle-text">
+                    <div class="title">（未定 ― 今後検討）</div>
+                    <div class="tagline">候補：書籍 第3章「思考分離」× 第4章「足るを知る」× 金継ぎマインド</div>
+                </div>
+                <span class="course-badge badge-tbd">未定</span>
+                <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="pipeline">
+                        <span class="pipe-step pipe-pending">計画</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">台本</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">音声</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">スライド</span>
+                        <span class="pipe-arrow">→</span>
+                        <span class="pipe-step pipe-pending">映像</span>
+                    </div>
+                    <div class="tbd-box">
+                        テーマは今後検討。まずは講座2〜4を構築。<br>
+                        <span style="font-size:0.75rem;">候補：v3の講座2「思考分離 × 足るを知る × 金継ぎマインド」（書籍第3・4章ベース）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            JOY活 × Udemy 5講座シリーズ ― Producer: きぬきぬ ｜ Instructor: 中内玲子（Reiko Nakauchi）<br>
+            Last updated: 2026-03-04
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCourse(btn) {
+            const accordion = btn.closest('.course-accordion');
+            accordion.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
