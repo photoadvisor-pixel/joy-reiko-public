@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保育士向けJOY活 Udemyコンテンツ企画案</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-light: #fce7f3;
+            --primary-dark: #be185d;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            --white: #ffffff;
+            --border: #ffe4e6;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --orange: #f59e0b;
+            --orange-light: #fef3c7;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Section */
+        .section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .section h2 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section h2 .num {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .section h3 {
+            font-size: 1rem;
+            color: var(--secondary);
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        /* List */
+        ul.points {
+            list-style: none;
+            padding: 0;
+        }
+        ul.points li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            font-size: 0.92rem;
+        }
+        ul.points li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        ul.points.green li::before { background: var(--green); }
+        ul.points.blue li::before { background: var(--blue); }
+        ul.points.orange li::before { background: var(--orange); }
+
+        /* Highlight box */
+        .highlight {
+            background: linear-gradient(135deg, var(--primary-light), #ede9fe);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--primary);
+        }
+        .highlight.blue {
+            background: linear-gradient(135deg, var(--blue-light), #ede9fe);
+            border-left-color: var(--blue);
+        }
+        .highlight.green {
+            background: linear-gradient(135deg, var(--green-light), #ecfdf5);
+            border-left-color: var(--green);
+        }
+        .highlight.orange {
+            background: linear-gradient(135deg, var(--orange-light), #fffbeb);
+            border-left-color: var(--orange);
+        }
+        .highlight strong {
+            color: var(--primary-dark);
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.88rem;
+        }
+        thead th {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+        tbody td {
+            padding: 0.55rem 0.8rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tbody tr:hover { background: #fef2f2; }
+
+        table.compare thead th {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+        table.compare tbody tr:hover { background: #eff6ff; }
+
+        /* Pattern tabs */
+        .pattern-header {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .pattern-tab {
+            flex: 1;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--border);
+            background: var(--white);
+        }
+        .pattern-tab.active-a {
+            background: linear-gradient(135deg, var(--primary-light), #fce7f3);
+            border-color: var(--primary);
+        }
+        .pattern-tab.active-b {
+            background: linear-gradient(135deg, var(--blue-light), #dbeafe);
+            border-color: var(--blue);
+        }
+        .pattern-tab h3 {
+            margin: 0 0 0.2rem;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .pattern-tab .desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Course card */
+        .course-card {
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+        }
+        .course-card.pink { border-color: #f9a8d4; }
+        .course-card.purple { border-color: #c4b5fd; }
+        .course-card.teal { border-color: #5eead4; }
+        .course-card.blue { border-color: #93c5fd; }
+
+        .course-card-header {
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .course-card.pink .course-card-header { background: #fce7f3; color: var(--primary-dark); }
+        .course-card.purple .course-card-header { background: #ede9fe; color: #6d28d9; }
+        .course-card.teal .course-card-header { background: #ccfbf1; color: #0d9488; }
+        .course-card.blue .course-card-header { background: var(--blue-light); color: #1d4ed8; }
+
+        .course-card-body {
+            padding: 1rem 1.5rem;
+            background: var(--white);
+        }
+        .course-card-body .udemy-title {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            background: var(--gray-light);
+            border-radius: 8px;
+        }
+
+        .course-card-body table {
+            font-size: 0.82rem;
+        }
+        .course-card-body thead th {
+            background: var(--gray-light);
+            color: var(--text);
+            font-size: 0.8rem;
+            padding: 0.4rem 0.6rem;
+        }
+        .course-card-body tbody td {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.82rem;
+        }
+        .course-card-footer {
+            padding: 0.6rem 1.5rem;
+            background: var(--gray-light);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: right;
+            color: var(--gray);
+        }
+
+        /* Tag */
+        .tag {
+            display: inline-block;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .tag.pink { background: #fce7f3; color: var(--primary-dark); }
+        .tag.blue { background: var(--blue-light); color: #1d4ed8; }
+        .tag.green { background: var(--green-light); color: #047857; }
+        .tag.orange { background: var(--orange-light); color: #b45309; }
+
+        /* Strategy box */
+        .strategy-box {
+            border: 2px solid var(--green);
+            border-radius: 14px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+        }
+        .strategy-box h3 {
+            color: #047857;
+            margin: 0 0 0.8rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        /* USP table */
+        table.usp thead th {
+            background: linear-gradient(135deg, #fce7f3, #ede9fe);
+            color: var(--primary-dark);
+        }
+        table.usp tbody td:first-child {
+            font-weight: 600;
+            color: var(--gray);
+        }
+        table.usp tbody td:last-child {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            .header { padding: 1.5rem; }
+            .header h1 { font-size: 1.2rem; }
+            .section { padding: 1.2rem; }
+            .pattern-header { flex-direction: column; }
+            table { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>保育士向け JOY活 Udemyコンテンツ企画案</h1>
+            <div class="subtitle">2026年3月6日 作成</div>
+        </div>
+
+        <!-- 1. 目的 -->
+        <div class="section">
+            <h2><span class="num">1</span> 目的</h2>
+            <div class="highlight">
+                <strong>既存の親向け5講座シリーズに加え、「日本の保育士（プロの保育者）」をターゲットにした新しいUdemyコンテンツを企画する。</strong>
+            </div>
+            <ul class="points">
+                <li>書籍『JOY活』の第3章「思考分離」・第4章「足るを知る」は親向け講座で<strong>未使用</strong> → 保育士向けのメインコンテンツとして最大活用</li>
+                <li>保育者自身のウェルビーイングを起点にした講座は業界内で<strong>ほぼ未開拓</strong>の領域</li>
+                <li>玲子先生の強み（AMI国際免許 / 4園経営14年 / シリコンバレー20年）を最大限に活かせるターゲット</li>
+            </ul>
+        </div>
+
+        <!-- 2. リサーチ結果 -->
+        <div class="section">
+            <h2><span class="num">2</span> リサーチ結果</h2>
+
+            <h3>保育士を取り巻く現状</h3>
+            <ul class="points blue">
+                <li>保育士の離職理由 No.1 は「職場の人間関係」、No.2 は「保護者対応」</li>
+                <li>2023年〜 キャリアアップ研修の義務化により、eラーニング需要が急増中</li>
+                <li>保育士の約7割が「仕事にやりがいはあるが、心身の余裕がない」と回答（厚労省調査）</li>
+            </ul>
+
+            <h3>Udemy保育士向け講座の現状</h3>
+            <ul class="points orange">
+                <li>保育士向け講座の大半は「保育士試験対策」（筆記・実技）</li>
+                <li>実務スキルアップ型の講座は極めて少ない</li>
+                <li>「保育者のメンタルケア × 実践スキル」を統合した講座は<strong>皆無</strong></li>
+            </ul>
+
+            <h3>競合との差別化ポイント</h3>
+            <table class="usp">
+                <thead>
+                    <tr><th>観点</th><th>既存の保育研修</th><th>JOY活 保育者版</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>主語</td><td>子ども / 保育技術</td><td>保育者自身のウェルビーイング</td></tr>
+                    <tr><td>アプローチ</td><td>「こうすべき」指導型</td><td>「まず自分を満たす」肯定型</td></tr>
+                    <tr><td>根拠</td><td>保育指針・ガイドライン</td><td>脳科学 + 心理学 + 20年の国際現場</td></tr>
+                    <tr><td>人間関係</td><td>「連携しましょう」で終わり</td><td>思考分離・課題の分離で具体的に解決</td></tr>
+                    <tr><td>教育法</td><td>モンテッソーリ or レッジョ単体</td><td>モンテ × レッジョ × JOY活 の融合</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. 見解 -->
+        <div class="section">
+            <h2><span class="num">3</span> 見解</h2>
+            <div class="highlight green">
+                <strong>「保育研修の99%は "子どもへのスキル" を教える。JOY活は "保育者の心" から変える。」</strong><br>
+                この切り口はブルーオーシャンであり、JOY活の最大の強みを活かせるポジションです。
+            </div>
+            <ul class="points green">
+                <li><strong>書籍コンテンツの最大活用：</strong>親向け講座で未使用の「思考分離」「足るを知る」が保育者の最大の悩み（人間関係・自己肯定感）に直結する</li>
+                <li><strong>権威性の最大化：</strong>AMI免許 + 4園経営の実績は「保育者に教える」資格として圧倒的。親向け講座よりもさらに権威が活きるターゲット</li>
+                <li><strong>市場タイミング：</strong>キャリアアップ研修義務化によるeラーニング需要と、保育者のメンタルヘルスへの社会的関心の高まりが追い風</li>
+                <li><strong>親向け講座との相乗効果：</strong>保育士受講者が親向け講座を保護者に推薦する導線が生まれる（逆も然り）</li>
+            </ul>
+        </div>
+
+        <!-- 4. 方針 -->
+        <div class="section">
+            <h2><span class="num">4</span> 方針</h2>
+
+            <h3>コンテンツの3つの柱</h3>
+            <table>
+                <thead>
+                    <tr><th>柱</th><th>内容</th><th>書籍の対応章</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag pink">マインドセット</span></td>
+                        <td>JOY活の土台 -- 思考分離・足るを知る・情動感染</td>
+                        <td>第2章・<strong>第3章</strong>・<strong>第4章</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag blue">保育実践</span></td>
+                        <td>Soraメソッド -- モンテ × レッジョ × 非認知能力</td>
+                        <td>第6章 + 既存講座2・4の再構成</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag green">人間関係</span></td>
+                        <td>職場チーム・保護者対応 -- 課題の分離・心理的安全性</td>
+                        <td>第3章・第5章・第6章</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight blue">
+                この3つの柱を<strong>「3講座に分ける」か「1講座に集約する」か</strong>の2パターンを以下にご提案します。
+            </div>
+
+            <h3>書籍コンテンツの活用マップ</h3>
+            <table class="compare">
+                <thead>
+                    <tr><th>書籍の章</th><th>親向け5講座</th><th>3講座版</th><th>1講座版</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1章: 愛情の再定義</td><td>講座1で使用</td><td>講座A S1</td><td>S1</td></tr>
+                    <tr><td>2章: 自動思考・五感</td><td>講座2で使用</td><td>講座A S3</td><td>S2</td></tr>
+                    <tr><td style="color: var(--primary-dark); font-weight:700;">3章: 思考分離</td><td style="color: var(--primary);">未使用</td><td>講座A S4・S6</td><td>S3</td></tr>
+                    <tr><td style="color: var(--primary-dark); font-weight:700;">4章: 足るを知る</td><td style="color: var(--primary);">未使用</td><td>講座A S5</td><td>S4</td></tr>
+                    <tr><td>5章: 自律</td><td>講座3で使用</td><td>講座C S7</td><td>--</td></tr>
+                    <tr><td>6章: あたたかな土壌</td><td>講座3で使用</td><td>講座B S4</td><td>S6</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. 講座案 -->
+        <div class="section">
+            <h2><span class="num">5</span> 講座案（2パターン）</h2>
+
+            <!-- 比較サマリー -->
+            <div class="pattern-header">
+                <div class="pattern-tab active-a">
+                    <h3>パターンA</h3>
+                    <div class="desc">3講座シリーズ（各90分・計270分）</div>
+                </div>
+                <div class="pattern-tab active-b">
+                    <h3>パターンB</h3>
+                    <div class="desc">1講座集約（90分）</div>
+                </div>
+            </div>
+
+            <table class="compare">
+                <thead>
+                    <tr><th>観点</th><th>パターンA: 3講座</th><th>パターンB: 1講座</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>総時間</td><td>約270分（各90分×3）</td><td>約90分</td></tr>
+                    <tr><td>レクチャー数</td><td>48（各16×3）</td><td>16</td></tr>
+                    <tr><td>制作コスト</td><td>高い（台本×3、撮影×3）</td><td>低い（台本×1）</td></tr>
+                    <tr><td>収益ポテンシャル</td><td>高い（3講座分の売上）</td><td>単体では低い</td></tr>
+                    <tr><td>深さ</td><td>各テーマを深く掘り下げ</td><td>各テーマはエッセンスのみ</td></tr>
+                    <tr><td>市場投入スピード</td><td>遅い</td><td>速い</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- パターンA -->
+        <div class="section">
+            <h2 style="color: var(--primary-dark); border-bottom-color: #f9a8d4;">パターンA: 3講座シリーズ</h2>
+
+            <!-- 講座A -->
+            <div class="course-card pink">
+                <div class="course-card-header">講座A: 保育者のためのJOY活 -- 自分を満たせば保育が変わる</div>
+                <div class="course-card-body">
+                    <div class="udemy-title">Udemyタイトル案: 保育士の心が整うと、子どもが変わる。シリコンバレー幼稚園経営者が教える「保育者JOY活」実践講座</div>
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>【序章】なぜ「保育者の心」が保育の質を決めるのか</td><td>L1: 「子どものために頑張る」が逆効果になる理由<br>L2: シリコンバレーで20年見てきた「最高の保育者」の共通点</td><td>10分</td></tr>
+                            <tr><td>2</td><td>JOY活とは -- 保育者版「悦びの循環」</td><td>L3: 「悦び(JOY)」と「一般的な幸せ」は違う<br>L4: 情動感染の科学 -- あなたの笑顔が子どもの脳を育てる</td><td>12分</td></tr>
+                            <tr><td>3</td><td>保育者の「自動思考」を手放す</td><td>L5: 保育者を疲れさせる「無意識の思考パターン」<br>L6: 【ワーク】五感で「今、ここ」に戻る -- 保育中の3分リセット法</td><td>12分</td></tr>
+                            <tr><td>4</td><td>「思考分離」で保育のストレスを半分にする</td><td>L7: 事実・感情・解釈・不安を分ける実践<br>L8: 【ワーク】「課題の分離」で人間関係が楽になる</td><td>12分</td></tr>
+                            <tr><td>5</td><td>「足るを知る」-- 保育者の自己肯定感</td><td>L9: 「もっといい保育者にならなきゃ」の呪縛から解放される<br>L10: 【ワーク】保育者の「うれしいこと3つ」習慣</td><td>12分</td></tr>
+                            <tr><td>6</td><td>保護者対応のストレスを「思考分離」で乗り越える</td><td>L11: クレーム・要望にも動じない「心の構え」<br>L12: 【ケーススタディ】3つの場面で実践する保護者との思考分離</td><td>10分</td></tr>
+                            <tr><td>7</td><td>職場の人間関係に「JOY活」を取り入れる</td><td>L13: 「みんな仲良く」は保育士同士にも不要<br>L14: 【ワーク】「安心できるチーム」を1人からつくる方法</td><td>12分</td></tr>
+                            <tr><td>8</td><td>【終章】あなたの保育は、すでに素晴らしい</td><td>L15: 保育者の「悦びの循環」が園を変える<br>L16: 明日から始める「保育者JOY活」3つの習慣</td><td>10分</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
+            </div>
+
+            <!-- 講座B -->
+            <div class="course-card purple">
+                <div class="course-card-header">講座B: Soraメソッドで保育が変わる -- モンテッソーリ×レッジョ×非認知能力</div>
+                <div class="course-card-body">
+                    <div class="udemy-title">Udemyタイトル案: シリコンバレー式「Soraメソッド」保育実践講座: モンテッソーリ×レッジョ×JOY活で育む非認知能力</div>
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>【序章】非認知能力とは何か</td><td>L1: AI時代に保育者が育てるべき「本当の力」<br>L2: SMILEメソッドの全体像</td><td>10分</td></tr>
+                            <tr><td>2</td><td>モンテッソーリ教育の本質</td><td>L3: AMI免許保持者が語る本質<br>L4: 【実践】保育室で今日からできる環境設定3つ</td><td>12分</td></tr>
+                            <tr><td>3</td><td>レッジョ・エミリア教育</td><td>L5: Google/Disneyが採用した教育法の核心<br>L6: 【実践】保育現場でのプロジェクト活動の始め方</td><td>12分</td></tr>
+                            <tr><td>4</td><td>【S×M】社会性とマナーを安心の土壌で育てる</td><td>L7: 「みんな仲良く」を超えた社会性の育て方<br>L8: 「怒る」と「叱る」の違い -- マナーを誇りとして伝える</td><td>12分</td></tr>
+                            <tr><td>5</td><td>【I】探究心を爆発させる環境と声かけ</td><td>L9: 「教えない」ことが最高の教育 -- DMNと余白の力<br>L10: 【実践】STEAM×五感あそび -- 保育室でできる探究活動10選</td><td>12分</td></tr>
+                            <tr><td>6</td><td>【L×E】表現力と情熱の育て方</td><td>L11: 「伝えたい気持ち」が言語力を育てる<br>L12: 「失敗はただのデータ収集」-- 挑戦する心を育てる</td><td>10分</td></tr>
+                            <tr><td>7</td><td>保育者のJOY活が非認知能力を最大化する</td><td>L13: 保育者が満たされていると子どもの非認知能力が伸びる理由<br>L14: 【ケーススタディ】Sora幼稚園の1日</td><td>12分</td></tr>
+                            <tr><td>8</td><td>【終章】あなたの保育室を「世界最高の学びの場」に</td><td>L15: 非認知能力を育てる保育の全体マップ<br>L16: 子どもに残せる最高のギフト</td><td>10分</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
+            </div>
+
+            <!-- 講座C -->
+            <div class="course-card teal">
+                <div class="course-card-header">講座C: JOY活で築くチームと保護者の信頼 -- 保育現場の人間関係改革</div>
+                <div class="course-card-body">
+                    <div class="udemy-title">Udemyタイトル案: 保育士の人間関係がラクになる! JOY活式「思考分離」で築く職場チーム×保護者信頼 実践講座</div>
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>【序章】保育現場の人間関係はなぜ難しいのか</td><td>L1: 離職理由No.1「人間関係」の構造<br>L2: 4園を経営してわかった「チームの本質」</td><td>10分</td></tr>
+                            <tr><td>2</td><td>職場の人間関係を「思考分離」で整理する</td><td>L3: 先輩の一言に傷つかなくなる「課題の分離」<br>L4: 【ワーク】職場のモヤモヤを4つに分離する</td><td>12分</td></tr>
+                            <tr><td>3</td><td>「心地よい関係」にエネルギーを注ぐチームづくり</td><td>L5: 全員と仲良くする必要はない<br>L6: 心理的安全性を1人の行動から始める</td><td>12分</td></tr>
+                            <tr><td>4</td><td>保護者対応の「Pain」を「Trust」に変える</td><td>L7: 保護者の「不安」を理解する -- 情動感染の逆利用<br>L8: 【ケーススタディ】5つの保護者対応場面</td><td>12分</td></tr>
+                            <tr><td>5</td><td>園長・主任のためのJOY活マネジメント</td><td>L9: 若手が辞めない園をつくるリーダーのJOY活<br>L10: 「足るを知る」を育てるフィードバックの技術</td><td>12分</td></tr>
+                            <tr><td>6</td><td>「怒る」と「叱る」のマネジメント</td><td>L11: 後輩を育てる「叱り方」と潰す「怒り方」<br>L12: JOY活式メンタリング</td><td>10分</td></tr>
+                            <tr><td>7</td><td>保育者の自律 -- バーンアウトしない生活習慣</td><td>L13: 心地よいリズムで長く続ける技術<br>L14: 【ワーク】帰宅後の「JOY活ルーティン」設計</td><td>12分</td></tr>
+                            <tr><td>8</td><td>【終章】「悦びの循環」を園全体に広げる</td><td>L15: 保育者→子ども→保護者→地域の循環モデル<br>L16: あなたは子どもたちにとって最高のギフト</td><td>10分</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
+            </div>
+        </div>
+
+        <!-- パターンB -->
+        <div class="section">
+            <h2 style="color: #1d4ed8; border-bottom-color: #93c5fd;">パターンB: 1講座集約版</h2>
+
+            <div class="highlight blue">
+                3講座の核心を<strong>1本90分に凝縮</strong>。「JOY活マインドセット」「保育実践」「人間関係」を1つの流れで学べるオールインワン講座。
+            </div>
+
+            <div class="course-card blue">
+                <div class="course-card-header">保育者JOY活 完全講座 -- マインドセット × 保育実践 × 人間関係</div>
+                <div class="course-card-body">
+                    <div class="udemy-title">Udemyタイトル案: 保育士の心が整うと、保育が変わる。シリコンバレー園経営者が教える「保育者JOY活」完全講座</div>
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th><th>3講座版<br>対応</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>【序章】なぜ「保育者の心」が保育の質を決めるのか</td><td>L1: 「子どものために頑張る」が逆効果になる理由<br>L2: 情動感染の科学 -- あなたの感情が子どもの脳を育てる</td><td>10分</td><td>A-S1,S2</td></tr>
+                            <tr><td>2</td><td>JOY活の土台 -- 自動思考を手放す</td><td>L3: 保育者を疲れさせる「無意識の思考パターン」<br>L4: 【ワーク】五感で「今、ここ」に戻る -- 保育中の3分リセット法</td><td>12分</td><td>A-S3</td></tr>
+                            <tr><td>3</td><td>「思考分離」で保育のストレスを半分にする</td><td>L5: 事実・感情・解釈・不安を4つに分ける実践<br>L6: 【ワーク】保護者対応・職場の人間関係に思考分離を使う</td><td>12分</td><td>A-S4,S6</td></tr>
+                            <tr><td>4</td><td>「足るを知る」-- 保育者の自己肯定感を育てる</td><td>L7: 「もっといい保育者にならなきゃ」の呪縛から解放される<br>L8: 【ワーク】「うれしいこと3つ」習慣と自分軸の確立</td><td>12分</td><td>A-S5</td></tr>
+                            <tr><td>5</td><td>Soraメソッド実践 -- モンテ×レッジョ×非認知能力</td><td>L9: モンテッソーリ×レッジョ・エミリアのいいとこ取り<br>L10: 【実践】保育室の環境設定と探究活動の始め方</td><td>12分</td><td>B-S2,S3,S5</td></tr>
+                            <tr><td>6</td><td>SMILEメソッドで非認知能力を育てる</td><td>L11: 社会性・マナー・探究心・表現力・情熱の5つの力<br>L12: 「教えない」保育と「失敗はデータ収集」の声かけ</td><td>10分</td><td>B-S4,S5,S6</td></tr>
+                            <tr><td>7</td><td>職場と保護者 -- 人間関係を「課題の分離」で楽にする</td><td>L13: 全員と仲良くする必要はない -- 心理的安全性の始め方<br>L14: 【ケーススタディ】保護者・同僚・上司、3つの場面で実践</td><td>12分</td><td>C-S2,S3,S4</td></tr>
+                            <tr><td>8</td><td>【終章】あなたの保育は、すでに素晴らしい</td><td>L15: 保育者→子ども→保護者→地域「悦びの循環」モデル<br>L16: 明日から始める「保育者JOY活」3つの習慣</td><td>10分</td><td>A-S8,C-S8</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
+            </div>
+
+            <h3>1講座版のカバー範囲</h3>
+            <table>
+                <thead>
+                    <tr><th>テーマ</th><th>カバー率</th><th>取捨選択の内容</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="tag pink">マインドセット</span></td><td><strong>90%</strong></td><td>思考分離・足るを知るをしっかりカバー</td></tr>
+                    <tr><td><span class="tag blue">保育実践</span></td><td><strong>50%</strong></td><td>モンテ×レッジョの概要とSMILEのエッセンス。個別ワーク・実践例は割愛</td></tr>
+                    <tr><td><span class="tag green">人間関係</span></td><td><strong>40%</strong></td><td>課題の分離で保護者・同僚対応。マネジメント・メンタリング・自律は割愛</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 推奨戦略 -->
+        <div class="section">
+            <h2><span class="num" style="background: var(--green);">+</span> 推奨戦略</h2>
+            <div class="strategy-box">
+                <h3>パターンB → A 段階展開（推奨）</h3>
+                <ul class="points green">
+                    <li><strong>Step 1:</strong> まずパターンB（1講座）で最速リリースし、市場の反応を検証</li>
+                    <li><strong>Step 2:</strong> 受講者フィードバックを反映し、パターンA（3講座）に拡大展開</li>
+                    <li><strong>メリット:</strong> 低リスクで市場検証 → 実データに基づいて3講座を最適化できる</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            JOY活 保育者版 Udemyコンテンツ企画案 &copy; 2026
+        </div>
+
+    </div>
+</body>
+
+</html>
