@@ -186,8 +186,6 @@
             padding: 1rem;
             border-radius: 12px;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
             border: 2px solid var(--border);
             background: var(--white);
         }
@@ -244,6 +242,20 @@
             background: var(--gray-light);
             border-radius: 8px;
         }
+        .course-card-body .target {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+        }
+        .course-card-body .target.general {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .course-card-body .target.sora {
+            background: #ccfbf1;
+            color: #065f46;
+        }
 
         .course-card-body table {
             font-size: 0.82rem;
@@ -279,6 +291,8 @@
         .tag.blue { background: var(--blue-light); color: #1d4ed8; }
         .tag.green { background: var(--green-light); color: #047857; }
         .tag.orange { background: var(--orange-light); color: #b45309; }
+        .tag.purple { background: #ede9fe; color: #6d28d9; }
+        .tag.teal { background: #ccfbf1; color: #0d9488; }
 
         /* Strategy box */
         .strategy-box {
@@ -315,6 +329,14 @@
             font-weight: 600;
         }
 
+        /* Flow arrow */
+        .flow-arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             body { padding: 10px; }
@@ -343,7 +365,7 @@
                 <strong>既存の親向け5講座シリーズに加え、「日本の保育士（プロの保育者）」をターゲットにした新しいUdemyコンテンツを企画する。</strong>
             </div>
             <ul class="points">
-                <li>書籍『JOY活』の第3章「思考分離」・第4章「足るを知る」は親向け講座で<strong>未使用</strong> → 保育士向けのメインコンテンツとして最大活用</li>
+                <li>書籍『JOY活』の第3章「思考分離」・第4章「足るを知る」は親向け講座では<strong>一部触れているが深掘りしていない</strong> → 保育士向けのメインコンテンツとして最大活用</li>
                 <li>保育者自身のウェルビーイングを起点にした講座は業界内で<strong>ほぼ未開拓</strong>の領域</li>
                 <li>玲子先生の強み（AMI国際免許 / 4園経営14年 / シリコンバレー20年）を最大限に活かせるターゲット</li>
             </ul>
@@ -390,7 +412,7 @@
                 この切り口はブルーオーシャンであり、JOY活の最大の強みを活かせるポジションです。
             </div>
             <ul class="points green">
-                <li><strong>書籍コンテンツの最大活用：</strong>親向け講座で未使用の「思考分離」「足るを知る」が保育者の最大の悩み（人間関係・自己肯定感）に直結する</li>
+                <li><strong>書籍コンテンツの最大活用：</strong>親向け講座で一部触れている「思考分離」「足るを知る」を保育者向けに深掘りし、保育者の最大の悩み（人間関係・自己肯定感）に直結させる</li>
                 <li><strong>権威性の最大化：</strong>AMI免許 + 4園経営の実績は「保育者に教える」資格として圧倒的。親向け講座よりもさらに権威が活きるターゲット</li>
                 <li><strong>市場タイミング：</strong>キャリアアップ研修義務化によるeラーニング需要と、保育者のメンタルヘルスへの社会的関心の高まりが追い風</li>
                 <li><strong>親向け講座との相乗効果：</strong>保育士受講者が親向け講座を保護者に推薦する導線が生まれる（逆も然り）</li>
@@ -426,21 +448,21 @@
             </table>
 
             <div class="highlight blue">
-                この3つの柱を<strong>「3講座に分ける」か「1講座に集約する」か</strong>の2パターンを以下にご提案します。
+                この3つの柱を<strong>「3講座シリーズ」</strong>にするか<strong>「2講座（目的別）」</strong>にするかの2パターンを以下にご提案します。
             </div>
 
             <h3>書籍コンテンツの活用マップ</h3>
             <table class="compare">
                 <thead>
-                    <tr><th>書籍の章</th><th>親向け5講座</th><th>3講座版</th><th>1講座版</th></tr>
+                    <tr><th>書籍の章</th><th>親向け5講座</th><th>3講座版</th><th>2講座版</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>1章: 愛情の再定義</td><td>講座1で使用</td><td>講座A S1</td><td>S1</td></tr>
-                    <tr><td>2章: 自動思考・五感</td><td>講座2で使用</td><td>講座A S3</td><td>S2</td></tr>
-                    <tr><td style="color: var(--primary-dark); font-weight:700;">3章: 思考分離</td><td style="color: var(--primary);">未使用</td><td>講座A S4・S6</td><td>S3</td></tr>
-                    <tr><td style="color: var(--primary-dark); font-weight:700;">4章: 足るを知る</td><td style="color: var(--primary);">未使用</td><td>講座A S5</td><td>S4</td></tr>
+                    <tr><td>1章: 愛情の再定義</td><td>講座1で使用</td><td>講座A S1</td><td>講座① S1</td></tr>
+                    <tr><td>2章: 自動思考・五感</td><td>講座2で使用</td><td>講座A S3</td><td>講座① S3</td></tr>
+                    <tr><td style="color: var(--primary-dark); font-weight:700;">3章: 思考分離</td><td>一部触れている</td><td>講座A S4・S6</td><td>講座① S4・S6</td></tr>
+                    <tr><td style="color: var(--primary-dark); font-weight:700;">4章: 足るを知る</td><td>一部触れている</td><td>講座A S5</td><td>講座① S5</td></tr>
                     <tr><td>5章: 自律</td><td>講座3で使用</td><td>講座C S7</td><td>--</td></tr>
-                    <tr><td>6章: あたたかな土壌</td><td>講座3で使用</td><td>講座B S4</td><td>S6</td></tr>
+                    <tr><td>6章: あたたかな土壌</td><td>講座3で使用</td><td>講座B S4</td><td>講座② S4</td></tr>
                 </tbody>
             </table>
         </div>
@@ -457,21 +479,21 @@
                 </div>
                 <div class="pattern-tab active-b">
                     <h3>パターンB</h3>
-                    <div class="desc">1講座集約（90分）</div>
+                    <div class="desc">2講座・目的別（各90分・計180分）</div>
                 </div>
             </div>
 
             <table class="compare">
                 <thead>
-                    <tr><th>観点</th><th>パターンA: 3講座</th><th>パターンB: 1講座</th></tr>
+                    <tr><th>観点</th><th>パターンA: 3講座</th><th>パターンB: 2講座</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>総時間</td><td>約270分（各90分×3）</td><td>約90分</td></tr>
-                    <tr><td>レクチャー数</td><td>48（各16×3）</td><td>16</td></tr>
-                    <tr><td>制作コスト</td><td>高い（台本×3、撮影×3）</td><td>低い（台本×1）</td></tr>
-                    <tr><td>収益ポテンシャル</td><td>高い（3講座分の売上）</td><td>単体では低い</td></tr>
-                    <tr><td>深さ</td><td>各テーマを深く掘り下げ</td><td>各テーマはエッセンスのみ</td></tr>
-                    <tr><td>市場投入スピード</td><td>遅い</td><td>速い</td></tr>
+                    <tr><td>総時間</td><td>約270分（各90分×3）</td><td>約180分（各90分×2）</td></tr>
+                    <tr><td>レクチャー数</td><td>48（各16×3）</td><td>32（各16×2）</td></tr>
+                    <tr><td>ターゲット</td><td>一般保育士（3講座とも同じ層）</td><td>講座ごとに明確に異なる層</td></tr>
+                    <tr><td>制作コスト</td><td>高い（台本×3、撮影×3）</td><td>中程度（台本×2、撮影×2）</td></tr>
+                    <tr><td>コンテンツの深さ</td><td>各テーマを深く掘り下げ</td><td>目的に特化して濃縮</td></tr>
+                    <tr><td>ビジネス導線</td><td>シリーズ購入を促進</td><td>講座①→Soraへの関心→講座②/ライセンスへの導線</td></tr>
                 </tbody>
             </table>
         </div>
@@ -553,59 +575,114 @@
             </div>
         </div>
 
-        <!-- パターンB -->
+        <!-- パターンB: 2講座 -->
         <div class="section">
-            <h2 style="color: #1d4ed8; border-bottom-color: #93c5fd;">パターンB: 1講座集約版</h2>
+            <h2 style="color: #1d4ed8; border-bottom-color: #93c5fd;">パターンB: 2講座・目的別</h2>
 
             <div class="highlight blue">
-                3講座の核心を<strong>1本90分に凝縮</strong>。「JOY活マインドセット」「保育実践」「人間関係」を1つの流れで学べるオールインワン講座。
+                <strong>ターゲットと目的を明確に分けた2講座</strong>。講座①でJOY活の魅力を広く伝え、Soraメソッドへの興味を喚起。講座②でSoraの先生・ライセンスの先生がSora幼稚園の教育を深く理解する。
             </div>
 
-            <div class="course-card blue">
-                <div class="course-card-header">保育者JOY活 完全講座 -- マインドセット × 保育実践 × 人間関係</div>
+            <!-- 導線の図 -->
+            <div style="background: var(--gray-light); border-radius: 12px; padding: 1.2rem; margin: 1rem 0; text-align: center; font-size: 0.9rem;">
+                <span class="tag orange" style="font-size: 0.85rem;">一般保育士</span>
+                &nbsp; → &nbsp;
+                <strong>講座① JOY活の魅力を知る</strong>
+                &nbsp; → &nbsp;
+                <span style="color: var(--primary);">Soraメソッドに興味!</span>
+                &nbsp; → &nbsp;
+                <span class="tag teal" style="font-size: 0.85rem;">Sora先生 / ライセンス先生</span>
+                &nbsp; → &nbsp;
+                <strong>講座② Soraを深く理解する</strong>
+            </div>
+
+            <!-- 講座① -->
+            <div class="course-card pink">
+                <div class="course-card-header">講座①: JOY活で保育が変わる -- 保育者のための「悦びの循環」入門</div>
                 <div class="course-card-body">
-                    <div class="udemy-title">Udemyタイトル案: 保育士の心が整うと、保育が変わる。シリコンバレー園経営者が教える「保育者JOY活」完全講座</div>
+                    <div class="target general">
+                        <strong>対象:</strong> 一般の保育士（保育に疲れている / 人間関係にストレス / もっと良い保育がしたい）<br>
+                        <strong>目的:</strong> JOY活の魅力を知り、Soraメソッドに興味を持ってもらう
+                    </div>
+                    <div class="udemy-title">Udemyタイトル案: 保育士の心が整うと、子どもが変わる。シリコンバレー幼稚園経営者が教える「保育者JOY活」実践講座</div>
                     <table>
                         <thead>
-                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th><th>3講座版<br>対応</th></tr>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>1</td><td>【序章】なぜ「保育者の心」が保育の質を決めるのか</td><td>L1: 「子どものために頑張る」が逆効果になる理由<br>L2: 情動感染の科学 -- あなたの感情が子どもの脳を育てる</td><td>10分</td><td>A-S1,S2</td></tr>
-                            <tr><td>2</td><td>JOY活の土台 -- 自動思考を手放す</td><td>L3: 保育者を疲れさせる「無意識の思考パターン」<br>L4: 【ワーク】五感で「今、ここ」に戻る -- 保育中の3分リセット法</td><td>12分</td><td>A-S3</td></tr>
-                            <tr><td>3</td><td>「思考分離」で保育のストレスを半分にする</td><td>L5: 事実・感情・解釈・不安を4つに分ける実践<br>L6: 【ワーク】保護者対応・職場の人間関係に思考分離を使う</td><td>12分</td><td>A-S4,S6</td></tr>
-                            <tr><td>4</td><td>「足るを知る」-- 保育者の自己肯定感を育てる</td><td>L7: 「もっといい保育者にならなきゃ」の呪縛から解放される<br>L8: 【ワーク】「うれしいこと3つ」習慣と自分軸の確立</td><td>12分</td><td>A-S5</td></tr>
-                            <tr><td>5</td><td>Soraメソッド実践 -- モンテ×レッジョ×非認知能力</td><td>L9: モンテッソーリ×レッジョ・エミリアのいいとこ取り<br>L10: 【実践】保育室の環境設定と探究活動の始め方</td><td>12分</td><td>B-S2,S3,S5</td></tr>
-                            <tr><td>6</td><td>SMILEメソッドで非認知能力を育てる</td><td>L11: 社会性・マナー・探究心・表現力・情熱の5つの力<br>L12: 「教えない」保育と「失敗はデータ収集」の声かけ</td><td>10分</td><td>B-S4,S5,S6</td></tr>
-                            <tr><td>7</td><td>職場と保護者 -- 人間関係を「課題の分離」で楽にする</td><td>L13: 全員と仲良くする必要はない -- 心理的安全性の始め方<br>L14: 【ケーススタディ】保護者・同僚・上司、3つの場面で実践</td><td>12分</td><td>C-S2,S3,S4</td></tr>
-                            <tr><td>8</td><td>【終章】あなたの保育は、すでに素晴らしい</td><td>L15: 保育者→子ども→保護者→地域「悦びの循環」モデル<br>L16: 明日から始める「保育者JOY活」3つの習慣</td><td>10分</td><td>A-S8,C-S8</td></tr>
+                            <tr><td>1</td><td>【序章】なぜ「保育者の心」が保育の質を決めるのか</td><td>L1: 「子どものために頑張る」が逆効果になる理由<br>L2: 情動感染の科学 -- あなたの感情が子どもの脳を育てる</td><td>10分</td></tr>
+                            <tr><td>2</td><td>JOY活とは -- 保育者版「悦びの循環」</td><td>L3: 「悦び(JOY)」と「一般的な幸せ」は違う<br>L4: 保育者が満たされると子どもが変わる科学的根拠</td><td>12分</td></tr>
+                            <tr><td>3</td><td>保育者の「自動思考」を手放す</td><td>L5: 保育者を疲れさせる「無意識の思考パターン」<br>L6: 【ワーク】五感で「今、ここ」に戻る -- 保育中の3分リセット法</td><td>12分</td></tr>
+                            <tr><td>4</td><td>「思考分離」で保育のストレスを半分にする</td><td>L7: 事実・感情・解釈・不安を4つに分ける実践<br>L8: 【ワーク】保護者対応・職場の人間関係に思考分離を使う</td><td>12分</td></tr>
+                            <tr><td>5</td><td>「足るを知る」-- 保育者の自己肯定感を育てる</td><td>L9: 「もっといい保育者にならなきゃ」の呪縛から解放される<br>L10: 【ワーク】「うれしいこと3つ」習慣と自分軸の確立</td><td>12分</td></tr>
+                            <tr><td>6</td><td>職場と保護者 -- 人間関係を「課題の分離」で楽にする</td><td>L11: 全員と仲良くする必要はない -- 心理的安全性の始め方<br>L12: 【ケーススタディ】保護者・同僚・上司、3つの場面で実践</td><td>10分</td></tr>
+                            <tr><td>7</td><td>Soraメソッドへの招待 -- モンテ×レッジョ×JOY活の可能性</td><td>L13: シリコンバレーで生まれた教育法の全体像<br>L14: 非認知能力を育てる保育の新しいかたち -- SMILEメソッド紹介</td><td>12分</td></tr>
+                            <tr><td>8</td><td>【終章】あなたの保育は、すでに素晴らしい</td><td>L15: 保育者→子ども→保護者→地域「悦びの循環」モデル<br>L16: 明日から始める「保育者JOY活」3つの習慣</td><td>10分</td></tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
             </div>
 
-            <h3>1講座版のカバー範囲</h3>
-            <table>
-                <thead>
-                    <tr><th>テーマ</th><th>カバー率</th><th>取捨選択の内容</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><span class="tag pink">マインドセット</span></td><td><strong>90%</strong></td><td>思考分離・足るを知るをしっかりカバー</td></tr>
-                    <tr><td><span class="tag blue">保育実践</span></td><td><strong>50%</strong></td><td>モンテ×レッジョの概要とSMILEのエッセンス。個別ワーク・実践例は割愛</td></tr>
-                    <tr><td><span class="tag green">人間関係</span></td><td><strong>40%</strong></td><td>課題の分離で保護者・同僚対応。マネジメント・メンタリング・自律は割愛</td></tr>
-                </tbody>
-            </table>
+            <div class="flow-arrow">▼ Soraに興味を持った保育者・Sora/ライセンスの先生向け ▼</div>
+
+            <!-- 講座② -->
+            <div class="course-card teal">
+                <div class="course-card-header">講座②: Sora幼稚園の教育を知る -- モンテッソーリ×レッジョ×JOY活の融合実践</div>
+                <div class="course-card-body">
+                    <div class="target sora">
+                        <strong>対象:</strong> Soraの先生 / ライセンスの先生 / Soraメソッドに興味を持った保育者<br>
+                        <strong>目的:</strong> Sora幼稚園の教育哲学と実践を深く理解してもらう
+                    </div>
+                    <div class="udemy-title">Udemyタイトル案: Sora幼稚園の教育がわかる! シリコンバレー発「モンテッソーリ×レッジョ×JOY活」融合メソッド完全講座</div>
+                    <table>
+                        <thead>
+                            <tr><th>#</th><th>セクション</th><th>レクチャー</th><th>時間</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>【序章】Sora幼稚園が目指す教育とは</td><td>L1: シリコンバレーで「本当に通わせたい園」をつくった理由<br>L2: Soraの教育哲学 -- 3つの柱（モンテッソーリ × レッジョ × JOY活）</td><td>10分</td></tr>
+                            <tr><td>2</td><td>モンテッソーリ教育の本質 -- Soraでの実践</td><td>L3: AMI国際免許保持者が語る「モンテッソーリの本質」<br>L4: Soraの環境設定 -- 子どもが自ら選び、集中できる空間づくり</td><td>12分</td></tr>
+                            <tr><td>3</td><td>レッジョ・エミリア教育 -- Soraでの実践</td><td>L5: Google/Disneyが採用した教育法をSoraではどう活かすか<br>L6: プロジェクト活動・ドキュメンテーションの実践</td><td>12分</td></tr>
+                            <tr><td>4</td><td>SMILEメソッド -- 非認知能力を育てる5つの力</td><td>L7: S(社会性)×M(マナー) -- 安心の土壌で育てる<br>L8: I(探究心)×L(表現力)×E(情熱) -- 「教えない」保育の実践</td><td>12分</td></tr>
+                            <tr><td>5</td><td>JOY活がSoraメソッドの土台になる理由</td><td>L9: 保育者のJOY活が子どもの非認知能力を最大化する<br>L10: 情動感染と心理的安全性 -- Soraの保育室で起きていること</td><td>12分</td></tr>
+                            <tr><td>6</td><td>Sora幼稚園の1日 -- 実践ケーススタディ</td><td>L11: 朝の会からお迎えまで -- Soraメソッドが息づく1日の流れ<br>L12: 保育者の関わり方 -- 「見守る」と「導く」のバランス</td><td>10分</td></tr>
+                            <tr><td>7</td><td>Soraの保育者に求められること</td><td>L13: 「教える人」ではなく「環境をデザインする人」<br>L14: 保育者自身のJOY活実践 -- チームとしての成長</td><td>12分</td></tr>
+                            <tr><td>8</td><td>【終章】Soraメソッドを自分の保育に活かす</td><td>L15: Soraの教育哲学を日々の実践に落とし込む<br>L16: 子どもに残せる最高のギフト</td><td>10分</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="course-card-footer">合計: 8セクション・16レクチャー・約90分</div>
+            </div>
         </div>
 
         <!-- 推奨戦略 -->
         <div class="section">
-            <h2><span class="num" style="background: var(--green);">+</span> 推奨戦略</h2>
-            <div class="strategy-box">
-                <h3>パターンB → A 段階展開（推奨）</h3>
+            <h2><span class="num" style="background: var(--green);">+</span> 推奨戦略の比較</h2>
+
+            <table>
+                <thead>
+                    <tr><th>アプローチ</th><th>メリット</th><th>おすすめの場面</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>パターンA<br>3講座シリーズ</strong></td>
+                        <td>各テーマを深掘りでき、シリーズ購入でブランド確立</td>
+                        <td>一般保育士市場を幅広く取りたい場合</td>
+                    </tr>
+                    <tr>
+                        <td><strong>パターンB<br>2講座・目的別</strong></td>
+                        <td>ターゲットが明確で、講座①→Soraへの導線が自然に生まれる</td>
+                        <td>Soraのブランディング・ライセンス展開と連動させたい場合</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="strategy-box" style="margin-top: 1rem;">
+                <h3>どちらを選んでも共通の強み</h3>
                 <ul class="points green">
-                    <li><strong>Step 1:</strong> まずパターンB（1講座）で最速リリースし、市場の反応を検証</li>
-                    <li><strong>Step 2:</strong> 受講者フィードバックを反映し、パターンA（3講座）に拡大展開</li>
-                    <li><strong>メリット:</strong> 低リスクで市場検証 → 実データに基づいて3講座を最適化できる</li>
+                    <li>書籍3・4章（思考分離・足るを知る）を保育者向けに<strong>深掘り</strong>して最大活用</li>
+                    <li>「保育者の心から変える」という<strong>ブルーオーシャン</strong>のポジション</li>
+                    <li>親向け講座との<strong>相乗効果</strong>（保育士→保護者への推薦導線）</li>
                 </ul>
             </div>
         </div>
