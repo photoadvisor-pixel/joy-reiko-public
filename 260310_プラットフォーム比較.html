@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玲子先生のオンラインスクール移設プラン｜プラットフォーム比較レポート</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #faf9f6;
+            --surface: #ffffff;
+            --border: #e8e4dd;
+            --text: #2c2923;
+            --text-secondary: #6b6560;
+            --accent: #b8860b;
+            --accent-light: #f5eed9;
+            --accent-dark: #8b6508;
+            --emerald: #0d7377;
+            --emerald-light: #e0f2f1;
+            --rose: #9e3b52;
+            --rose-light: #fce4ec;
+            --indigo: #3f4080;
+            --indigo-light: #e8eaf6;
+            --warm-gray: #f5f3f0;
+            --shadow-sm: 0 1px 3px rgba(44, 41, 35, .06), 0 1px 2px rgba(44, 41, 35, .04);
+            --shadow-md: 0 4px 16px rgba(44, 41, 35, .08);
+            --shadow-lg: 0 12px 40px rgba(44, 41, 35, .12);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(135deg, #2c2923 0%, #4a3f2f 50%, #6b5a3e 100%);
+            color: #fff;
+            padding: 80px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(184, 134, 11, .25) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 134, 11, .15) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            letter-spacing: .02em;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.05rem;
+            font-weight: 300;
+            opacity: .85;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero .date {
+            display: inline-block;
+            margin-top: 24px;
+            font-size: .8rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            opacity: .5;
+            position: relative;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Section ── */
+        .section {
+            padding: 64px 0;
+        }
+
+        .section+.section {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: .85rem;
+            color: var(--accent);
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .section-lead {
+            color: var(--text-secondary);
+            font-size: .95rem;
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+
+        /* ── Requirement Cards ── */
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .req-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .req-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .req-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+
+        .req-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .req-card p {
+            font-size: .85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ── Priority Badge ── */
+        .priority {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            padding: 3px 10px;
+            border-radius: 100px;
+        }
+
+        .priority--must {
+            background: #fde8ec;
+            color: #9e3b52;
+        }
+
+        .priority--want {
+            background: var(--accent-light);
+            color: var(--accent-dark);
+        }
+
+        .priority--nice {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* ── Comparison Table ── */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .85rem;
+            min-width: 860px;
+        }
+
+        thead th {
+            background: var(--warm-gray);
+            padding: 16px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: .75rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        thead th:first-child {
+            border-radius: var(--radius) 0 0 0;
+        }
+
+        thead th:last-child {
+            border-radius: 0 var(--radius) 0 0;
+        }
+
+        tbody td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #f0ede8;
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: #fdfcfa;
+        }
+
+        .cell-platform {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 600;
+        }
+
+        .badge--best {
+            background: #e0f2f1;
+            color: var(--emerald);
+        }
+
+        .badge--good {
+            background: var(--accent-light);
+            color: var(--accent-dark);
+        }
+
+        .badge--fair {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .badge--poor {
+            background: #fce4ec;
+            color: var(--rose);
+        }
+
+        .icon-check {
+            color: var(--emerald);
+            font-weight: 700;
+        }
+
+        .icon-cross {
+            color: #ccc;
+        }
+
+        .icon-triangle {
+            color: #e6a817;
+        }
+
+        /* ── Recommendation ── */
+        .rec-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .rec-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .rec-card--recommended {
+            border: 2px solid var(--accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .rec-card--recommended .rec-label {
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        }
+
+        .rec-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .rec-label .rec-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .rec-label .rec-tag {
+            font-size: .7rem;
+            margin-top: 8px;
+            opacity: .85;
+            letter-spacing: .08em;
+        }
+
+        .rec-body {
+            padding: 28px 32px;
+        }
+
+        .rec-body h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .rec-body p {
+            font-size: .85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .rec-pros {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .rec-pros li {
+            font-size: .75rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: var(--warm-gray);
+            color: var(--text-secondary);
+        }
+
+        .rec-pros li::before {
+            content: '✓ ';
+            color: var(--emerald);
+            font-weight: 700;
+        }
+
+        /* ── Roadmap ── */
+        .roadmap {
+            display: flex;
+            gap: 0;
+            position: relative;
+            counter-reset: step;
+        }
+
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            top: 34px;
+            left: 34px;
+            right: 34px;
+            height: 2px;
+            background: var(--border);
+        }
+
+        .road-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .road-step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 0 auto 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .road-step h4 {
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .road-step p {
+            font-size: .78rem;
+            color: var(--text-secondary);
+            padding: 0 8px;
+        }
+
+        /* ── Cost Simulation ── */
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .cost-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .cost-card h4 {
+            font-size: .85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .cost-card .cost-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-dark);
+        }
+
+        .cost-card .cost-sub {
+            font-size: .78rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .cost-card .cost-detail {
+            font-size: .8rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            line-height: 1.7;
+        }
+
+        /* ── Callout ── */
+        .callout {
+            background: linear-gradient(135deg, #2c2923, #4a3f2f);
+            color: #fff;
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .callout h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .callout p {
+            font-size: .9rem;
+            opacity: .85;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            font-size: .78rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 700px) {
+            .hero {
+                padding: 56px 20px;
+            }
+
+            .section {
+                padding: 48px 0;
+            }
+
+            .rec-card {
+                grid-template-columns: 1fr;
+            }
+
+            .rec-label {
+                padding: 24px;
+            }
+
+            .roadmap {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .roadmap::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ━━ Hero ━━ -->
+    <header class="hero">
+        <h1>Platform Migration Plan</h1>
+        <p class="subtitle">玲子先生のUdemy動画を自社プラットフォームへ移設するための候補比較レポート</p>
+        <span class="date">2026.03.10 — Joy Reiko Project</span>
+    </header>
+
+    <div class="container">
+
+        <!-- ━━ Section 1: 要件整理 ━━ -->
+        <section class="section">
+            <div class="section-number">Section 01</div>
+            <h2 class="section-title">玲子先生に必要な要件</h2>
+            <p class="section-lead">
+                Udemyから自社プラットフォームへ移設する際に求められる要件を、優先度別に整理しました。
+                特に海外展開（英語バージョン）を見据えた多言語対応・国際決済は必須要件です。
+            </p>
+
+            <div class="req-grid">
+                <!-- Must Have -->
+                <div class="req-card">
+                    <div class="req-icon" style="background:#fde8ec;">🎥</div>
+                    <span class="priority priority--must">MUST</span>
+                    <h3>安定した動画配信</h3>
+                    <p>Udemyと同等以上の動画品質。広告なし・ストリーミング再生。CDNによる高速配信で海外からのアクセスにも対応。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:#fde8ec;">🌐</div>
+                    <span class="priority priority--must">MUST</span>
+                    <h3>自社ドメイン・ブランディング</h3>
+                    <p>reiko-academy.com のような独自ドメインで運営。玲子先生の世界観を反映したデザイン。Udemyブランドからの脱却。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:#fde8ec;">🔐</div>
+                    <span class="priority priority--must">MUST</span>
+                    <h3>ログイン・アクセス制御</h3>
+                    <p>購入者のみがコンテンツにアクセスできるログイン機能。コースごとの受講権限管理。不正共有の防止。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:#fde8ec;">💳</div>
+                    <span class="priority priority--must">MUST</span>
+                    <h3>国際決済対応</h3>
+                    <p>Stripe/PayPal等によるクレジットカード決済。日本円・米ドル・ユーロなど多通貨対応。海外からの購入がスムーズに完結。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:var(--accent-light);">🌍</div>
+                    <span class="priority priority--want">WANT</span>
+                    <h3>多言語サイト対応</h3>
+                    <p>日本語サイトと英語サイトを同一プラットフォーム上で展開。UIの翻訳切り替え、コンテンツの言語別管理。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:var(--accent-light);">📊</div>
+                    <span class="priority priority--want">WANT</span>
+                    <h3>国際税務の自動処理</h3>
+                    <p>EU VAT・米国州税など、海外販売に伴う複雑な消費税の自動計算と納付代行（Merchant of Record機能）。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:#e8f5e9;">🛠️</div>
+                    <span class="priority priority--nice">NICE</span>
+                    <h3>メンテナンスフリー運用</h3>
+                    <p>サーバー管理・セキュリティ更新・バックアップが不要。コンテンツ制作とマーケティングに集中できる環境。</p>
+                </div>
+                <div class="req-card">
+                    <div class="req-icon" style="background:#e8f5e9;">📧</div>
+                    <span class="priority priority--nice">NICE</span>
+                    <h3>マーケティング統合</h3>
+                    <p>メルマガ配信・セールスファネル・アフィリエイト管理が組み込まれていると、外部ツール契約を減らせる。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ━━ Section 2: 比較表 ━━ -->
+        <section class="section">
+            <div class="section-number">Section 02</div>
+            <h2 class="section-title">プラットフォーム比較表</h2>
+            <p class="section-lead">
+                SaaS型4社 + WordPress型の5つの選択肢を、玲子先生の要件に沿って評価しました。
+                海外展開を前提とした場合の適性に注目してください。
+            </p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>プラットフォーム</th>
+                            <th>タイプ</th>
+                            <th>月額目安</th>
+                            <th>取引手数料</th>
+                            <th>動画配信</th>
+                            <th>多言語</th>
+                            <th>国際税務<br>(MoR)</th>
+                            <th>保守負担</th>
+                            <th>海外展開<br>適性</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cell-platform">Teachable</td>
+                            <td>SaaS</td>
+                            <td>$39〜159</td>
+                            <td>0〜7.5%</td>
+                            <td><span class="icon-check">✔</span> 無制限</td>
+                            <td><span class="icon-triangle">△</span> 一部手動</td>
+                            <td><span class="icon-check">✔</span> 対応</td>
+                            <td><span class="badge badge--best">不要</span></td>
+                            <td><span class="badge badge--best">◎ 最適</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-platform">Thinkific</td>
+                            <td>SaaS</td>
+                            <td>$36〜149</td>
+                            <td>0%<sup>※1</sup></td>
+                            <td><span class="icon-check">✔</span> 無制限</td>
+                            <td><span class="icon-check">✔</span> 高い</td>
+                            <td><span class="icon-cross">—</span></td>
+                            <td><span class="badge badge--best">不要</span></td>
+                            <td><span class="badge badge--good">○ 良好</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-platform">Kajabi</td>
+                            <td>SaaS</td>
+                            <td>$71〜399</td>
+                            <td>0%</td>
+                            <td><span class="icon-check">✔</span> 無制限</td>
+                            <td><span class="icon-triangle">△</span> 標準的</td>
+                            <td><span class="icon-cross">—</span></td>
+                            <td><span class="badge badge--best">不要</span></td>
+                            <td><span class="badge badge--good">○ 良好</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-platform">LearnWorlds</td>
+                            <td>SaaS</td>
+                            <td>$24〜249</td>
+                            <td>$5/販売<sup>※2</sup></td>
+                            <td><span class="icon-check">✔</span> 無制限</td>
+                            <td><span class="icon-check">✔</span> 最高</td>
+                            <td><span class="icon-cross">—</span></td>
+                            <td><span class="badge badge--best">不要</span></td>
+                            <td><span class="badge badge--best">◎ 最適</span></td>
+                        </tr>
+                        <tr style="background:#faf8f4;">
+                            <td class="cell-platform">WordPress<br><span
+                                    style="font-size:.75rem;color:var(--text-secondary);">+ LearnDash等</span></td>
+                            <td>自己構築</td>
+                            <td>$40〜150+</td>
+                            <td>Stripe分のみ<br>(≈2.9%)</td>
+                            <td><span class="icon-triangle">△</span> 別途契約</td>
+                            <td><span class="icon-check">✔</span> プラグイン次第</td>
+                            <td><span class="icon-cross">✘</span> 自己対応</td>
+                            <td><span class="badge badge--poor">月5〜10h</span></td>
+                            <td><span class="badge badge--fair">△ 上級者向け</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:.75rem;color:var(--text-secondary);margin-top:12px;">
+                ※1 Thinkific Payments非対応地域では外部決済に5%のペナルティ手数料 &nbsp;
+                ※2 Starterプランのみ。上位プランでは0%
+            </p>
+        </section>
+
+        <!-- ━━ Section 3: 詳細比較 ━━ -->
+        <section class="section">
+            <div class="section-number">Section 03</div>
+            <h2 class="section-title">各プラットフォームの詳細評価</h2>
+            <p class="section-lead">
+                玲子先生のビジネスフェーズ（Udemyからの移設期→海外展開期）に合わせた観点で評価します。
+            </p>
+
+            <div class="table-wrapper" style="margin-bottom:32px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:140px;">観点</th>
+                            <th>Teachable</th>
+                            <th>Thinkific</th>
+                            <th>Kajabi</th>
+                            <th>LearnWorlds</th>
+                            <th>WordPress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight:600;">初期構築の<br>手軽さ</td>
+                            <td><span class="badge badge--best">◎ 最も簡単</span><br>直感的なUI。数時間で公開可能</td>
+                            <td><span class="badge badge--good">○ 簡単</span><br>柔軟なコースビルダー</td>
+                            <td><span class="badge badge--good">○ 簡単</span><br>テンプレート豊富</td>
+                            <td><span class="badge badge--fair">△ やや複雑</span><br>高機能ゆえ設定項目多い</td>
+                            <td><span class="badge badge--poor">✘ 困難</span><br>エンジニア必須</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600;">デザイン<br>自由度</td>
+                            <td><span class="badge badge--fair">△</span><br>固定テンプレート。色・フォント変更のみ</td>
+                            <td><span class="badge badge--good">○</span><br>HTML/CSS編集可。ブランド構築向き</td>
+                            <td><span class="badge badge--good">○</span><br>ページビルダーが充実</td>
+                            <td><span class="badge badge--best">◎</span><br>高度なカスタマイズ</td>
+                            <td><span class="badge badge--best">◎</span><br>完全自由</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600;">海外決済<br>& 税務</td>
+                            <td><span class="badge badge--best">◎ 唯一のMoR</span><br>EU VAT自動処理。確定申告不要</td>
+                            <td><span class="badge badge--fair">△</span><br>Thinkific Payments圏外は5%加算</td>
+                            <td><span class="badge badge--good">○</span><br>手数料0%。税務は自己対応</td>
+                            <td><span class="badge badge--good">○</span><br>手数料は上位プランで0%</td>
+                            <td><span class="badge badge--poor">✘</span><br>Quaderno等の別途契約必須</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600;">英語版<br>展開</td>
+                            <td><span class="badge badge--fair">△</span><br>UIの翻訳は手動設定。コース複製で対応</td>
+                            <td><span class="badge badge--good">○</span><br>サイトの多言語対応あり</td>
+                            <td><span class="badge badge--fair">△</span><br>別サイトでの運用が現実的</td>
+                            <td><span class="badge badge--best">◎ 最強</span><br>全テキストを言語別に完全編集</td>
+                            <td><span class="badge badge--good">○</span><br>WPML等のプラグインで対応</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600;">マーケ<br>ティング</td>
+                            <td><span class="badge badge--good">○</span><br>アフィリエイト管理あり。メール連携可</td>
+                            <td><span class="badge badge--fair">△</span><br>外部ツール連携が前提</td>
+                            <td><span class="badge badge--best">◎ 最強</span><br>LP・メルマガ・ファネル全内蔵</td>
+                            <td><span class="badge badge--good">○</span><br>基本機能は内蔵</td>
+                            <td><span class="badge badge--good">○</span><br>プラグイン次第で自由</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:600;">スケール時<br>コスト</td>
+                            <td><span class="badge badge--fair">△</span><br>低プランは7.5%の手数料。上位で回避</td>
+                            <td><span class="badge badge--best">◎</span><br>手数料0%で利益率最大化</td>
+                            <td><span class="badge badge--fair">△</span><br>会員増で$149→399に跳ね上がり</td>
+                            <td><span class="badge badge--good">○</span><br>上位プラン$79で手数料0%</td>
+                            <td><span class="badge badge--best">◎</span><br>コスト増は緩やか</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ━━ Section 4: コストシミュレーション ━━ -->
+        <section class="section">
+            <div class="section-number">Section 04</div>
+            <h2 class="section-title">コストシミュレーション</h2>
+            <p class="section-lead">
+                月商50万円（約$3,300）を想定した場合の、年間ランニングコスト概算です。
+            </p>
+
+            <div class="cost-grid">
+                <div class="cost-card">
+                    <h4>Teachable（Basicプラン）</h4>
+                    <div class="cost-amount">約 $588/年</div>
+                    <div class="cost-sub">≈ 約88,200円/年（月額 $49 × 12）</div>
+                    <div class="cost-detail">
+                        Basicプランなら取引手数料0%。動画配信・決済・MoR税務処理すべて込み。別途ツール契約不要。
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <h4>Thinkific（Basicプラン）</h4>
+                    <div class="cost-amount">約 $432/年</div>
+                    <div class="cost-sub">≈ 約64,800円/年（年払い $36/月）</div>
+                    <div class="cost-detail">
+                        手数料0%で最安水準。ただし国際税務は自己責任。海外販売が少ないうちは問題なし。
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <h4>Kajabi（Kickstarterプラン）</h4>
+                    <div class="cost-amount">約 $852/年</div>
+                    <div class="cost-sub">≈ 約127,800円/年（年払い $71/月）</div>
+                    <div class="cost-detail">
+                        メルマガ・ファネル込みなので外部ツール費を相殺。すでにConvertKit等を使っているなら要比較。
+                    </div>
+                </div>
+                <div class="cost-card">
+                    <h4>LearnWorlds（Pro Trainerプラン）</h4>
+                    <div class="cost-amount">約 $948/年</div>
+                    <div class="cost-sub">≈ 約142,200円/年（年払い $79/月）</div>
+                    <div class="cost-detail">
+                        Pro Trainerで取引手数料0%。多言語対応が最強。海外展開を本格化するなら最有力候補。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ━━ Section 5: 推奨プラン ━━ -->
+        <section class="section">
+            <div class="section-number">Section 05</div>
+            <h2 class="section-title">推奨する選択肢</h2>
+            <p class="section-lead">
+                玲子先生の「Udemyからの移設 → 将来の海外展開」という2段階のロードマップに最適なプラットフォームを提案します。
+            </p>
+
+            <div class="rec-cards">
+                <!-- 第1推奨 -->
+                <div class="rec-card rec-card--recommended">
+                    <div class="rec-label"
+                        style="background:linear-gradient(135deg, var(--accent), var(--accent-dark));">
+                        <div class="rec-tag">⭐ 第1推奨</div>
+                        <div class="rec-name">Teachable</div>
+                        <div class="rec-tag">+ 将来 LearnWorlds へ移行</div>
+                    </div>
+                    <div class="rec-body">
+                        <h3>2段階戦略：まずTeachableで移設、海外展開時にLearnWorldsへ</h3>
+                        <p>
+                            <strong>フェーズ1（移設期）：</strong>Teachable Basicプランで素早く移設。
+                            Udemyの動画をそのままアップロードし、自社ドメインで即日公開。
+                            <strong>MoR機能</strong>があるため、海外からの購入があっても国際税務を自動処理。
+                            技術的な知識ゼロで運用開始できます。<br>
+                            <strong>フェーズ2（海外展開期）：</strong>英語版コースの本格展開時にLearnWorldsへ移行。
+                            全テキストの言語別完全編集機能で、日英バイリンガルのオンラインアカデミーを構築。
+                        </p>
+                        <ul class="rec-pros">
+                            <li>最短で移設完了</li>
+                            <li>MoR税務自動処理</li>
+                            <li>初期コスト最安級</li>
+                            <li>段階的にスケール</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第2推奨 -->
+                <div class="rec-card">
+                    <div class="rec-label" style="background:var(--emerald);">
+                        <div class="rec-tag">第2推奨</div>
+                        <div class="rec-name" style="font-size:1.2rem;">LearnWorlds</div>
+                        <div class="rec-tag">最初から海外対応</div>
+                    </div>
+                    <div class="rec-body">
+                        <h3>最初から海外展開を見据えて一本化</h3>
+                        <p>
+                            移設と同時に日英2言語のサイトを構築。LearnWorldsの多言語ローカライズ機能は
+                            他のSaaSを圧倒しており、UIの全テキストを言語ごとに完全編集可能。
+                            インタラクティブ動画機能で、玲子先生のエネルギーワークの実践指導も効果的に提供。
+                            初期の設定に時間はかかるが、移行作業が一度で済むメリット。
+                        </p>
+                        <ul class="rec-pros">
+                            <li>多言語対応が最強</li>
+                            <li>移行作業が一度で済む</li>
+                            <li>インタラクティブ動画</li>
+                            <li>Pro Trainerで手数料0%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 第3推奨 -->
+                <div class="rec-card">
+                    <div class="rec-label" style="background:var(--indigo);">
+                        <div class="rec-tag">第3推奨</div>
+                        <div class="rec-name" style="font-size:1.2rem;">Thinkific</div>
+                        <div class="rec-tag">コスパ重視</div>
+                    </div>
+                    <div class="rec-body">
+                        <h3>最小コストで移設し、利益率を最大化</h3>
+                        <p>
+                            月額$36〜で取引手数料0%（Thinkific Payments利用時）。
+                            コスト効率は全SaaS中トップクラス。カスタマイズ性も高く、
+                            玲子先生のブランドの世界観をHTML/CSS編集で表現可能。
+                            ただし国際税務のMoR機能がないため、海外売上が大きくなった場合は
+                            税務ソフト（Quaderno等）の追加契約が必要に。
+                        </p>
+                        <ul class="rec-pros">
+                            <li>最安コスト</li>
+                            <li>手数料0%</li>
+                            <li>デザイン自由度が高い</li>
+                            <li>モバイルアプリ提供</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ━━ Section 6: ロードマップ ━━ -->
+        <section class="section">
+            <div class="section-number">Section 06</div>
+            <h2 class="section-title">推奨ロードマップ（第1推奨の場合）</h2>
+            <p class="section-lead">
+                Teachableでの移設開始から、LearnWorldsでの海外展開までの段階的なステップです。
+            </p>
+
+            <div class="roadmap">
+                <div class="road-step">
+                    <h4>Teachable開設</h4>
+                    <p>Basicプランで自社ドメイン接続。Udemy動画をアップロード</p>
+                </div>
+                <div class="road-step">
+                    <h4>日本語版公開</h4>
+                    <p>既存受講生への案内。決済フロー・進捗管理のテスト運用</p>
+                </div>
+                <div class="road-step">
+                    <h4>英語コンテンツ準備</h4>
+                    <p>動画の字幕・吹替制作。英語版カリキュラム設計</p>
+                </div>
+                <div class="road-step">
+                    <h4>LearnWorlds移行</h4>
+                    <p>多言語サイト構築。日英同時展開のオンラインアカデミー完成</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ━━ Section 7: まとめ ━━ -->
+        <section class="section">
+            <div class="callout">
+                <h3>まとめ：SaaSを活用してコンテンツ制作に集中</h3>
+                <p>
+                    WordPress構築は月5〜10時間のメンテナンスが必要で、エンジニア不在の体制にはリスクが大きすぎます。
+                    SaaSなら月額数千円〜1万円程度で、サーバー管理・セキュリティ・バックアップのすべてが自動化。
+                    玲子先生は教育コンテンツの制作と受講生との関係構築に100%集中できます。<br><br>
+                    <strong>「技術を手放して、本質に集中する」</strong>— これが最も賢い選択です。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>※ 各プランの料金・仕様は2026年3月時点の情報です。最新の詳細は各公式サイトをご確認ください。</p>
+        <p style="margin-top:6px;">Joy Reiko Project — Platform Migration Plan v1.0</p>
+    </footer>
+</body>
+
+</html>
