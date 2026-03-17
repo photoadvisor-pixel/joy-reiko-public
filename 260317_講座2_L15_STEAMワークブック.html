@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>おうちでできる STEAM × JOY活あそびワークブック</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 18mm 15mm 18mm 15mm;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            color: #1f2937;
+            line-height: 1.8;
+            font-size: 10.5pt;
+            background: #fff;
+        }
+
+        /* Cover Page */
+        .cover {
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+            text-align: center;
+            padding: 40px;
+        }
+        .cover-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            font-size: 11pt;
+            font-weight: 700;
+            padding: 6px 24px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            letter-spacing: 0.08em;
+        }
+        .cover h1 {
+            font-size: 26pt;
+            font-weight: 900;
+            color: #1f2937;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+        .cover h1 span {
+            color: #ec4899;
+        }
+        .cover .subtitle {
+            font-size: 13pt;
+            color: #6b7280;
+            margin-bottom: 40px;
+        }
+        .cover-meta {
+            font-size: 10pt;
+            color: #9ca3af;
+            margin-top: 32px;
+            line-height: 1.8;
+        }
+        .cover-meta strong {
+            color: #6b7280;
+        }
+        .cover-deco {
+            font-size: 48pt;
+            margin: 20px 0;
+        }
+
+        /* Section Header */
+        .section-header {
+            background: linear-gradient(135deg, #fce7f3, #ede9fe);
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin: 28px 0 16px;
+            border-left: 4px solid #ec4899;
+        }
+        .section-header h2 {
+            font-size: 14pt;
+            font-weight: 800;
+            color: #be185d;
+            margin: 0;
+        }
+        .section-header .age {
+            font-size: 9pt;
+            color: #8b5cf6;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Activity Card */
+        .activity {
+            border: 1px solid #fce7f3;
+            border-radius: 10px;
+            margin: 14px 0;
+            page-break-inside: avoid;
+            overflow: hidden;
+        }
+        .activity-header {
+            background: #fff1f2;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .activity-icon {
+            font-size: 20pt;
+            flex-shrink: 0;
+        }
+        .activity-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #be185d;
+        }
+        .activity-tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+        }
+        .tag {
+            font-size: 7.5pt;
+            padding: 1px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .tag-s { background: #dbeafe; color: #1d4ed8; }
+        .tag-t { background: #d1fae5; color: #047857; }
+        .tag-e { background: #fef3c7; color: #b45309; }
+        .tag-a { background: #ede9fe; color: #6d28d9; }
+        .tag-m { background: #fce7f3; color: #be185d; }
+
+        .activity-body {
+            padding: 12px 16px;
+        }
+        .activity-body p {
+            margin-bottom: 8px;
+        }
+        .how-to {
+            background: #f0fdf4;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 1px solid #bbf7d0;
+        }
+        .how-to-title {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #047857;
+            margin-bottom: 4px;
+        }
+        .how-to ul {
+            margin-left: 1.2em;
+            font-size: 10pt;
+        }
+        .how-to li {
+            margin-bottom: 3px;
+        }
+
+        .science-note {
+            background: #eff6ff;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 8px 0;
+            border: 1px solid #bfdbfe;
+            font-size: 9.5pt;
+        }
+        .science-note-label {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #1d4ed8;
+            margin-bottom: 2px;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 10pt;
+        }
+        .summary-table th {
+            background: linear-gradient(135deg, #fce7f3, #ede9fe);
+            padding: 8px 12px;
+            text-align: left;
+            font-size: 9pt;
+            color: #be185d;
+            font-weight: 700;
+            border-bottom: 2px solid #ec4899;
+        }
+        .summary-table td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #fce7f3;
+            vertical-align: top;
+        }
+
+        /* Tips Box */
+        .tips-box {
+            background: #fefce8;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            border: 1px solid #fde68a;
+            page-break-inside: avoid;
+        }
+        .tips-box h3 {
+            font-size: 11pt;
+            color: #b45309;
+            margin-bottom: 8px;
+        }
+        .tips-box p, .tips-box li {
+            font-size: 10pt;
+        }
+        .tips-box ul {
+            margin-left: 1.2em;
+        }
+        .tips-box li {
+            margin-bottom: 4px;
+        }
+
+        /* Checklist */
+        .checklist {
+            margin: 16px 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px dashed #e5e7eb;
+            font-size: 10pt;
+        }
+        .checklist-box {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ec4899;
+            border-radius: 3px;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 8.5pt;
+            color: #9ca3af;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 16px;
+        }
+
+        /* Page break utility */
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Page -->
+    <div class="cover">
+
+        <div class="cover-deco">🧪🎨🔢</div>
+        <h1>おうちでできる<br><span>STEAM × JOY活</span><br>あそびワークブック</h1>
+        <div class="subtitle">0〜6歳 年齢別アクティビティガイド</div>
+        <div class="cover-meta">
+            中内玲子（Reiko Nakauchi）
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <h2 style="font-size: 14pt; color: #be185d; margin-bottom: 12px;">📖 このワークブックの使い方</h2>
+    <p style="margin-bottom: 12px;">
+        このワークブックには、レクチャーで紹介した「おうちでできるSTEAM × JOY活あそび」の全アクティビティを、年齢別にまとめています。
+    </p>
+    <div class="tips-box">
+        <h3>💡 3つのポイント</h3>
+        <ul>
+            <li><strong>特別な道具や教材は一切必要ありません。</strong>家にあるもので始められます。</li>
+            <li><strong>「親も一緒に楽しむ」</strong>ことが最大の秘訣。「子どものために」ではなく、「一緒に面白がる」姿勢が大切です。</li>
+            <li><strong>毎日やらなくてOK！</strong>週に1回でも、気が向いた時に楽しめればそれで十分です。</li>
+        </ul>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 0-3歳 SECTION -->
+    <!-- ========================================== -->
+    <div class="section-header">
+        <h2>🍼 0〜3歳：五感の探究期</h2>
+        <div class="age">この時期は五感で世界を感じるアンテナが最も敏感。たっぷり刺激してあげることがSTEAM教育の土台になります。</div>
+    </div>
+
+    <!-- Activity 1: 水あそび -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">💧</span>
+            <div>
+                <div class="activity-title">水あそび</div>
+                <div class="activity-tags">
+                    <span class="tag tag-s">Science</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>お風呂やたらいに水を張って、色んなものを浮かべてみる</li>
+                    <li>「スプーンは沈む。でも、お椀は浮く。なんでだろう？」と声をかける</li>
+                    <li>ペットボトルに水を入れて穴を開けてみる → 穴の位置で水の出方が変わる！</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">🔬 育つ力</div>
+                密度と浮力の原理、水圧の概念（もちろん子どもには教えなくてOK！体験することが大切です）
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 2: 粘土あそび -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🏺</span>
+            <div>
+                <div class="activity-title">粘土あそび（小麦粉粘土）</div>
+                <div class="activity-tags">
+                    <span class="tag tag-e">Engineering</span>
+                    <span class="tag tag-a">Arts</span>
+                    <span class="tag tag-s">Science</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>小麦粉 + 水 + 塩を混ぜて、一緒に粘土をつくるところからスタート</li>
+                    <li>こねて、色をつけて、好きな形にしてみる</li>
+                    <li>水の量を変えると粘土の硬さが変わることを一緒に発見！</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">🔬 育つ力</div>
+                「ちょうどいい」を探す過程が科学実験そのもの。つくるプロセス自体がSTEAMの塊です。
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 3: お散歩 -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🌿</span>
+            <div>
+                <div class="activity-title">お散歩 STEAM フィールドワーク</div>
+                <div class="activity-tags">
+                    <span class="tag tag-s">Science</span>
+                    <span class="tag tag-e">Engineering</span>
+                    <span class="tag tag-a">Arts</span>
+                    <span class="tag tag-m">Math</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>落ち葉を集めて、大きさ順に並べる（<strong>Math</strong>）</li>
+                    <li>石の表面を触って「ザラザラ」「ツルツル」を感じる（<strong>Science</strong>）</li>
+                    <li>拾ったもので何かつくる（<strong>Engineering × Arts</strong>）</li>
+                    <li>どんぐりを集めて数えたり、大きい順に並べたり（<strong>パターン認識</strong>）</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">💡 コツ</div>
+                「今日はどんぐりを集めよう」と一つテーマを決めるだけで、お散歩がSTEAM活動に変わります。
+            </div>
+        </div>
+    </div>
+
+    <div class="tips-box">
+        <h3>✨ 0〜3歳で一番大切なこと：「ダメ！」を減らす</h3>
+        <p>水をこぼす、粘土を床に落とす、葉っぱを口に入れようとする。<br>
+        危険でない限り、<strong>「おもしろいね！何が起きたかな？」</strong>と声をかけてあげてください。</p>
+        <p style="margin-top: 8px;">コップの水をテーブルにこぼした → 「水がこぼれたね。テーブルの上で水はどう動くかな？」<br>
+        これだけで「ダメ」が「学び」に変わります。</p>
+        <p style="margin-top: 8px; font-size: 9.5pt; color: #92400e;">
+        💛 親のJOYが満たされていれば「ダメ！」は自然と減ります。だからこそ、JOY活で親自身を整えることが大切。
+        </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3-6歳 SECTION -->
+    <!-- ========================================== -->
+    <div class="page-break"></div>
+
+    <div class="section-header">
+        <h2>🌟 3〜6歳：「なぜ？」が花開く時期</h2>
+        <div class="age">探究心の黄金期。STEAM教育がもっとも効果を発揮する年齢です。</div>
+    </div>
+
+    <p style="margin: 12px 0;">3歳を過ぎると「なぜ？」の嵐がやってきます。一日に何十回も「なんで？」と聞かれることも。でも、この<strong>「なんで？」こそがSTEAM教育の黄金の入り口</strong>です。</p>
+
+    <!-- Activity 4: キッチン実験 -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🧪</span>
+            <div>
+                <div class="activity-title">キッチン実験</div>
+                <div class="activity-tags">
+                    <span class="tag tag-s">Science</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li><strong>重曹 + お酢 = 泡が出る！</strong>（化学反応の体験）</li>
+                    <li>氷に塩をかけると溶ける速さが変わる</li>
+                    <li>野菜の断面を切って、パターンを観察する</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">💡 コツ</div>
+                「結果を教えない」こと。「重曹にお酢をかけるとどうなると思う？」と聞いてから実際にやってみる。驚きの顔がSTEAM教育の醍醐味です。
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 5: 段ボール工作 -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">📦</span>
+            <div>
+                <div class="activity-title">段ボール工作</div>
+                <div class="activity-tags">
+                    <span class="tag tag-e">Engineering</span>
+                    <span class="tag tag-t">Technology</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>「自動販売機をつくりたい！」→ 一緒に設計図を描く → つくる → 改良する</li>
+                    <li>ビー玉転がし装置を段ボールでつくる → 傾斜角度を調整（物理学！）</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">💡 コツ</div>
+                「完成品」よりも「プロセス」が大切。途中でうまくいかなくても、「じゃあ、どうする？」と一緒に考える時間がSTEAMの学びそのものです。
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 6: お絵かき -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🎨</span>
+            <div>
+                <div class="activity-title">お絵かき × 数学</div>
+                <div class="activity-tags">
+                    <span class="tag tag-a">Arts</span>
+                    <span class="tag tag-m">Math</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li><strong>対称（シンメトリー）の絵：</strong>紙を半分に折って、片面に絵の具を塗って開くと左右対称の蝶々に！</li>
+                    <li><strong>パターンづくり：</strong>○△□を繰り返すルールを考える</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 7: 自然観察 -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🌱</span>
+            <div>
+                <div class="activity-title">自然観察 × 観察日記</div>
+                <div class="activity-tags">
+                    <span class="tag tag-s">Science</span>
+                    <span class="tag tag-a">Arts</span>
+                    <span class="tag tag-m">Math</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>虫や植物の「観察日記」をつける</li>
+                    <li>「何が変わった？」を毎日記録する → 科学者と同じプロセス！</li>
+                    <li>庭やベランダで植物を育てて、毎日水をあげて変化を観察</li>
+                    <li>「種を植えてから何日で芽が出たかな？」と数える（Math）</li>
+                    <li>植物の成長を絵に描いて記録する（Arts）</li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">🔬 育つ力</div>
+                Science × Arts × Mathが一度に体験できるオールインワン活動です。
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity 8: 音楽 -->
+    <div class="activity">
+        <div class="activity-header">
+            <span class="activity-icon">🎵</span>
+            <div>
+                <div class="activity-title">手づくり楽器 × 音楽あそび</div>
+                <div class="activity-tags">
+                    <span class="tag tag-s">Science</span>
+                    <span class="tag tag-e">Engineering</span>
+                    <span class="tag tag-a">Arts</span>
+                    <span class="tag tag-m">Math</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-body">
+            <div class="how-to">
+                <div class="how-to-title">🎯 やり方</div>
+                <ul>
+                    <li>ペットボトルに米や豆を入れてマラカスにする</li>
+                    <li>箱にゴムをかけてギターにする</li>
+                    <li>つくること自体が<strong>Engineering</strong>、鳴らしてみるのが<strong>Science</strong>、リズムを刻むのが<strong>Math</strong>、好きなように演奏するのが<strong>Arts</strong></li>
+                </ul>
+            </div>
+            <div class="science-note">
+                <div class="science-note-label">🔬 育つ力</div>
+                一つのあそびの中にSTEAMが全部詰まっている、最高のアクティビティです。
+            </div>
+        </div>
+    </div>
+
+    <div class="tips-box">
+        <h3>✨ 3〜6歳で意識すること：「正解のない問いかけ」</h3>
+        <p>こんな問いかけを試してみましょう：</p>
+        <ul>
+            <li>「もし恐竜がまだ生きていたら、どうなると思う？」</li>
+            <li>「雲は何でできてると思う？」</li>
+            <li>「もしお魚が空を飛べたら、どうなるかな？」</li>
+        </ul>
+        <p style="margin-top: 8px;">答えは何でもいい。<strong>「考えること」自体が学び</strong>です。</p>
+        <p style="margin-top: 8px; font-size: 9.5pt; color: #92400e;">
+        💛 「教えよう」「学ばせよう」と思わないで。「ママも知らなかった！」「パパもびっくり！」が一番嬉しい反応です。
+        </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- Summary Table -->
+    <!-- ========================================== -->
+    <div class="page-break"></div>
+
+    <div class="section-header">
+        <h2>📊 年齢別まとめ</h2>
+    </div>
+
+    <table class="summary-table">
+        <thead>
+            <tr>
+                <th style="width: 80px;">年齢</th>
+                <th style="width: 110px;">キーワード</th>
+                <th>親の関わり方</th>
+                <th>おすすめの声かけ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>0〜3歳</strong></td>
+                <td>五感の探究</td>
+                <td>「おもしろいね」と共感する</td>
+                <td>「何が起きたかな？」</td>
+            </tr>
+            <tr>
+                <td><strong>3〜6歳</strong></td>
+                <td>「なぜ？」の探究</td>
+                <td>「どう思う？」と問いかける</td>
+                <td>「○○ちゃんはどう思う？」</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="tips-box" style="background: #fdf2f8; border-color: #fbcfe8;">
+        <h3>🌸 すべての年齢に共通する大切なこと</h3>
+        <p><strong>答えを教えるのではなく、「考える時間」と「安心できる場所」を用意してあげること。</strong></p>
+        <p style="margin-top: 8px;">これが、JOY活 × STEAMの実践の核心です。</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- Checklist -->
+    <!-- ========================================== -->
+
+    <div class="section-header" style="margin-top: 32px;">
+        <h2>✅ 今週のSTEAMチャレンジ</h2>
+        <div class="age">お子さんと一緒に、1つ選んでやってみましょう！</div>
+    </div>
+
+    <div class="checklist">
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>💧 <strong>水あそび</strong> — お風呂で「浮く・沈む」実験</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🏺 <strong>粘土あそび</strong> — 小麦粉粘土を一緒につくる</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🌿 <strong>お散歩</strong> — テーマを決めてフィールドワーク</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🧪 <strong>キッチン実験</strong> — 重曹 + お酢の泡実験</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>📦 <strong>段ボール工作</strong> — 好きなものを設計→制作</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🎨 <strong>お絵かき</strong> — シンメトリーの蝶々づくり</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🌱 <strong>自然観察</strong> — 植物を育てて観察日記</div>
+        </div>
+        <div class="checklist-item">
+            <div class="checklist-box"></div>
+            <div>🎵 <strong>音楽</strong> — 手づくり楽器で演奏会</div>
+        </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #fce7f3, #ede9fe); border-radius: 12px; padding: 18px 20px; margin-top: 24px; text-align: center;">
+        <p style="font-size: 11pt; font-weight: 700; color: #be185d; margin-bottom: 6px;">
+            🌈 忘れないでください
+        </p>
+        <p style="font-size: 10.5pt; color: #4b5563;">
+            子どもの「なんで？」は、うるさいものではなく、<strong>考える力の芽</strong>です。<br>
+            その芽を大切に育てていくことが、AI時代を生きる最高の準備になります。
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        五感と「なぜ？」のSTEAMあそび ワークブック<br>
+        © 2026 中内玲子（Reiko Nakauchi）
+    </div>
+
+</body>
+</html>
