@@ -6824,53 +6824,65 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.c6 .lecture-detail, .c7 .lecture-detail').forEach(detail => {
                 const summary = detail.querySelector('summary');
-                if (!summary) return;
+                const body = detail.querySelector('.lecture-body');
+                if (!summary || !body) return;
 
-                const btn = document.createElement('button');
-                btn.className = 'copy-btn';
-                btn.innerHTML = '📋';
-                
-                btn.onclick = (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+                const clone = body.cloneNode(true);
+                clone.querySelectorAll('script').forEach(s => s.remove());
 
-                    const body = detail.querySelector('.lecture-body');
-                    if (!body) return;
+                let chunks = [];
+                let currentChunk = [];
 
-                    const clone = body.cloneNode(true);
-                    
-                    clone.querySelectorAll('h5').forEach(h5 => {
-                        const breakNode = document.createElement('p');
-                        breakNode.textContent = '<break time="1s"/>';
-                        h5.replaceWith(breakNode);
-                    });
-                    clone.querySelectorAll('script').forEach(s => s.remove());
-
-                    let textBlocks = [];
-                    for (let child of clone.children) {
+                for (let child of clone.children) {
+                    if (child.tagName === 'H5') {
+                        if (currentChunk.length > 0) {
+                            chunks.push([...currentChunk]);
+                            currentChunk = [];
+                        }
+                        currentChunk.push('<break time="1s"/>');
+                    } else {
                         let text = child.textContent || child.innerText || '';
                         text = text.replace(/[\r\n\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
                         if (text) {
-                            textBlocks.push(text);
+                            currentChunk.push(text);
                         }
                     }
-                    let textToCopy = textBlocks.join('\n\n');
+                }
+                if (currentChunk.length > 0) {
+                    chunks.push([...currentChunk]);
+                }
 
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        const originalHtml = btn.innerHTML;
-                        btn.innerHTML = '✅';
-                        btn.classList.add('copied');
-                        setTimeout(() => {
-                            btn.innerHTML = originalHtml;
-                            btn.classList.remove('copied');
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('Copy failed:', err);
-                        alert('コピーに失敗しました。');
-                    });
-                };
+                chunks = chunks.filter(chunk => {
+                    const txt = chunk.join('');
+                    return txt.trim() !== '' && txt.trim() !== '<break time="1s"/>';
+                });
 
-                summary.appendChild(btn);
+                // Generate a copy button for each chunk of text
+                chunks.forEach((chunk, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'copy-btn';
+                    btn.innerHTML = `📋 copy${index + 1}`;
+                    
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        let textToCopy = chunk.join('\n\n');
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            const originalHtml = btn.innerHTML;
+                            btn.innerHTML = '✅';
+                            btn.classList.add('copied');
+                            setTimeout(() => {
+                                btn.innerHTML = originalHtml;
+                                btn.classList.remove('copied');
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Copy failed:', err);
+                            alert('コピーに失敗しました。');
+                        });
+                    };
+                    summary.appendChild(btn);
+                });
             });
         });
         function toggleCourse(btn) {
