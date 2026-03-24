@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy台本 - セクション1：【序章】AI時代に「本当に」必要な力とは</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8BA7;
+            --primary-light: #FFC6C6;
+            --accent: #FFD56F;
+            --text: #555555;
+            --text-light: #888888;
+            --bg: #FFFFFF;
+            --bg-card: #FAFAFA;
+            --border: #F0F0F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(120deg, #fff0f3 0%, #fff 100%);
+            border-radius: 20px;
+            border: 2px solid #ffeef1;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .concept {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(255, 139, 167, 0.08);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .concept blockquote {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .concept p {
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #d16d86;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .smile-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .smile-item {
+            background: #fff;
+            padding: 1.2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid #ffeef1;
+            transition: transform 0.2s;
+        }
+
+        .smile-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 139, 167, 0.15);
+        }
+
+        .smile-item .letter {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+            line-height: 1;
+        }
+
+        .smile-item .label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .table-wrap {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .target-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .target-table th {
+            background: #fff9fa;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 700;
+            color: #d16d86;
+            width: 25%;
+            vertical-align: top;
+            border-bottom: 1px solid #ffeef1;
+        }
+
+        .target-table td {
+            padding: 1rem 1.5rem;
+            color: var(--text);
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .target-table tr:last-child th,
+        .target-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Section Styles */
+        .section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.2rem 1.5rem;
+            background: #fff9fa;
+            border-bottom: 1px solid #ffeef1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-icon {
+            font-size: 1.4rem;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .section-benefit {
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            color: #777;
+            background: #ffffff;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .section-benefit strong {
+            color: var(--primary);
+            background: #fff0f3;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .lecture-list {
+            padding: 0.5rem 0;
+        }
+
+        .lecture-item {
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-header {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lecture-header:hover {
+            background: #fff9fa;
+        }
+
+        .lecture-header.has-script::after {
+            content: '▼';
+            font-size: 0.7rem;
+            color: #ccc;
+            margin-left: auto;
+            padding-left: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .lecture-header.has-script.open::after {
+            transform: rotate(180deg);
+        }
+
+        .l-num {
+            font-weight: 700;
+            color: #FF8BA7;
+            width: 40px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .l-body {
+            flex-grow: 1;
+        }
+
+        .l-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: #555;
+        }
+
+        .l-desc {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .l-time {
+            font-size: 0.8rem;
+            color: #aaa;
+            background: #f5f5f5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* Script Panel */
+        .script-panel {
+            display: none;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fffbfc 0%, #fff 100%);
+            border-top: 1px solid #ffeef1;
+            animation: slideDown 0.3s ease;
+        }
+
+        .script-panel.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .script-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .script-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .script-section h4 {
+            font-size: 0.9rem;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #ffeef1;
+        }
+
+        .script-section p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.8rem;
+            line-height: 1.9;
+        }
+
+        .script-section .highlight {
+            background: linear-gradient(transparent 60%, #fff0f3 60%);
+            font-weight: 700;
+        }
+
+        .script-section ul {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .script-section li {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
+
+        .script-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+
+        .total-time-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #8a6c1e;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .smile-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>セクション1：【序章】AI時代に「本当に」必要な力とは</h1>
+            <p class="subtitle">SORAメソッド × SMILE の全体像を掴む</p>
+            <br>
+            <span class="total-time-badge">⏱️ 目標時間：約10分</span>
+        </header>
+
+        <section class="concept">
+            <blockquote>「2週間後には、子どもの『好き』を見つけるまなざしが変わります」</blockquote>
+            <p><strong>得られること：</strong>親の不安を「明確な目標」に変え、5つの非認知能力(SMILE)の全体像を掴む。</p>
+            <p><strong>SORAメソッド：</strong>「空」のように無限に広がる可能性を持つ子どもたちが、自分らしく輝くためのメソッド。</p>
+        </section>
+
+        <div class="smile-grid">
+            <div class="smile-item">
+                <div class="letter">S</div>
+                <div class="label">Social Skills<br>社会性</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">M</div>
+                <div class="label">Manners<br>マナー・自律</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">I</div>
+                <div class="label">Interests<br>探究心</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">L</div>
+                <div class="label">Languages<br>語学・対話力</div>
+            </div>
+            <div class="smile-item">
+                <div class="letter">E</div>
+                <div class="label">Enthusiasm<br>情熱・やり抜く力</div>
+            </div>
+        </div>
+
+        <h2>📚 セクション1 台本・詳細</h2>
+
+        <!-- Section 1 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h3>セクション1：AI時代に「本当に」必要な力とは（約10分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> 親の不安を「明確な目標」に変え、SMILEメソッドの全体像を掴む</div>
+            <div class="lecture-list">
+                <!-- L1 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L1</div>
+                        <div class="l-body">
+                            <div class="l-title">10年後の未来予測と、シリコンバレー流・能力の定義<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">AI時代に親が残せる「非認知能力」とは。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入（フック）</h4>
+                            <p>皆さん、こんにちは。玲子です。</p>
+                            <p>この講座を手に取ってくださって、ありがとうございます。</p>
+                            <p>きっと皆さんは、お子さんの将来のことを真剣に考えていらっしゃる方だと思います。</p>
+                            <p>「グローバルに活躍できる子に育てたいけど、何をすればいいの？」<br>
+                                「周りのママはみんな習い事をたくさんさせてる……うちはこれで大丈夫かな？」<br>
+                                「つい感情的に怒っちゃって、寝顔を見ながら自己嫌悪してしまう……」<br>
+                                「私のしつけって、合ってるのかな……」</p>
+                            <p>そんなふうに、いろいろ考えて、悩んで、調べて——この講座にたどり着いてくださったんじゃないかな、と思います。</p>
+                            <p>その気持ち、すごくよく分かります。</p>
+                            <p>私も3人の子どもを育ててきた母親です。同じように悩んできました。</p>
+                            <p>だからこそ、最初に一つだけ考えてみてほしいことがあるんです。</p>
+                            <p>ChatGPTって、使ったことありますか？</p>
+                            <p>ここ数年で一気に広がったAIが、東大の入試問題を普通に解けるって知ってましたか？</p>
+                            <p>これ、衝撃的なんですよね。</p>
+                            <p>私たちが「頭がいい」と思っていたこと——計算ができる、暗記ができる、テストで高得点が取れる——そういう「認知能力」は、もうAIがやってくれる時代になったんです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>じゃあ、親として子どもに本当に残せるものって、何でしょうか？</p>
+                            <p>私はシリコンバレーで20年以上、幼稚園を経営してきました。</p>
+                            <p>シリコンバレーって、GoogleやAppleの本社があって、世界中から超優秀な人たちが集まる場所です。</p>
+                            <p>そこで何百人もの子どもたちを見てきて、気づいたことがあるんです。</p>
+                            <p><span class="highlight">勉強ができることと、幸せになることは、イコールじゃない。</span></p>
+                            <p>実際に、こういう子を見てきました。</p>
+                            <p>両親がすごく優秀で、大きい会社の社長さん。子どもも「勉強しなさい」と言われなくても、暗黙の了解でエリートコースを歩んで、いい大学に入った。</p>
+                            <p>でも、30歳を過ぎた今も、ちゃんとした職につけていないんです。</p>
+                            <p>なぜか？</p>
+                            <p><span class="highlight">「自分が何をやりたいか」が分からないまま、大人になってしまったから。</span></p>
+                            <p>勉強は「できた」んじゃなくて、「させられた」んです。</p>
+                            <p>自分らしい生き方をしてこなかったから、途中でふと「あれ？本当は何やりたいんだろう」ってなってしまう。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>これからの時代、テストの点数だけでは通用しません。</p>
+                            <p>必要なのは、<span class="highlight">自分で考え、自分で感じ、自分らしく生きる力</span>。</p>
+                            <p>これを「非認知能力」と呼びます。</p>
+                            <p>そして、この講座でお伝えするのが、私がシリコンバレーで20年以上かけて体系化した<span
+                                    class="highlight">「SORAメソッド」</span>——5つの非認知能力「SMILE」の育て方です。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L2 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L2</div>
+                        <div class="l-body">
+                            <div class="l-title">人生を切り拓く「SORAメソッド」とは<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">SMILEの5つの力と、具体的な成長の目安。</div>
+                        </div>
+                        <div class="l-time">3分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>SORAメソッドって、何だと思いますか？</p>
+                            <p>「空」のように無限に広がる可能性を持つ子どもたちが、自分らしく輝くための5つの非認知能力を育てる方法です。</p>
+                            <p>この5つの力を、私は<span class="highlight">「SMILE」</span>と名付けました。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>一つずつ紹介しますね。</p>
+                            <p><strong>S — Social Skills（社会性）</strong><br>他者と真心で関わり、自分の思いを伝えながらも相手を尊重する力。<br><span
+                                    class="highlight">→ 3ヶ月後の目安：お友達との関わりが増え、「今日○○ちゃんとこんなことしたよ」という報告が増えます</span></p>
+                            <p><strong>M — Manners（マナー・自律）</strong><br>あいさつや食事など、日常を通じて自然と身につける「人としての基本」。<br><span
+                                    class="highlight">→ 2週間後の目安：朝の支度など、自分でできることが1つ増えます</span></p>
+                            <p><strong>I — Interests（探究心）</strong><br>「なぜ？」「やってみたい！」という好奇心を学びの原動力に変える力。<br><span
+                                    class="highlight">→ 2週間後の目安：子どもの「これ何？」に付き合う時間が増え、質問の質が変わってきます</span></p>
+                            <p><strong>L — Languages（語学・対話力）</strong><br>英語や異文化にふれる中で、世界との接点を広げる柔軟な感性。<br><span
+                                    class="highlight">→ 1ヶ月後の目安：自分の気持ちを言葉で伝える回数が増えます</span></p>
+                            <p><strong>E — Enthusiasm（情熱・やり抜く力）</strong><br>自分の選んだことに夢中になり、あきらめずにやり抜く心の強さ。<br><span
+                                    class="highlight">→ 1ヶ月後の目安：「できない」から「どうしたらできる？」への言葉の変化が見られます</span></p>
+                            <p>この5つ、頭文字を並べると<span class="highlight">「SMILE」</span>になります。</p>
+                            <p>子どもが笑顔で生きていくために必要な力。覚えやすいですよね。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>💡 ポイント</h4>
+                            <p>ここで大事なことを一つ。</p>
+                            <p>この5つの力って、塾に行かせたら身につくものじゃないんです。</p>
+                            <p>一斉に何かをやらせたって、本当の意味では育たない。</p>
+                            <p>5歳前の子どもって、何をやらせてもできちゃうんですよ。フラッシュカードでも、計算でも。</p>
+                            <p>でも、好きでやってる子が伸びるのと、「やらされてる」子が同じことをするのは、全然違うんです。</p>
+                            <p>10人いたら、1〜2人はその道に行く子がいるかもしれない。でも、8人は本当はやりたくないかもしれない。</p>
+                            <p>研究によれば、<span
+                                    class="highlight">早期教育のメリットは3年程度で消えてしまいます</span>が、遊びを通じて培った語彙力や探究心は、一生の財産になります。</p>
+                            <p><span class="highlight">一番幸せな状態って、魂が自分らしく生きる状態なんです。</span></p>
+                            <p>SORAメソッドは、子どもが自分らしく輝くための力。これを家庭で育てていきましょう。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L3 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L3</div>
+                        <div class="l-body">
+                            <div class="l-title">家庭こそが最高の教室である理由<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">1日15分の「JOY活」が未来をつくる。</div>
+                        </div>
+                        <div class="l-time">3分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>「うちの子、習い事いくつ通わせればいいですか？」</p>
+                            <p>よく聞かれる質問です。</p>
+                            <p>でも私の答えは、いつも同じ。</p>
+                            <p><span class="highlight">「習い事より、日常のJOYの方が大事ですよ」</span></p>
+                            <p>JOY——悦びっていうのは、単なる「楽しい」「嬉しい」っていう一時的な感情じゃないんです。</p>
+                            <p>本当の自分とつながった時に、内側からじわっと湧き上がってくる、深い喜びのこと。</p>
+                            <p>子どもが「楽しい！」「もっとやりたい！」って目を輝かせている瞬間——それがJOYです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>シリコンバレーのエリート家庭を見ていると、子どもの予定がびっちり埋まってることが多いんです。</p>
+                            <p>月曜はピアノ、火曜は水泳、水曜は塾、木曜はサッカー……。</p>
+                            <p>でも、本当にその子はそれを「やりたい」のでしょうか？</p>
+                            <p>私が見てきた中で、「この子は幸せになるだろうな」と確信した子たちには、共通点がありました。</p>
+                            <p>それは、<span class="highlight">自分が何が好きか、クリアに分かっている</span>こと。</p>
+                            <p>ある先生の子どもは、塾に行かせる余裕もなく、ある意味「野放し」で育てられたんです。</p>
+                            <p>でも、圧がない分、自分が何が好きかすごくクリアだった。</p>
+                            <p>その子は今、ライターになって、本当に自分らしく生きています。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>🌟 JOY活とは</h4>
+                            <p>JOY活っていうのは、日常の中でJOY（喜び）を感じる瞬間を大切にする習慣のことです。</p>
+                            <p>特別なことじゃなくていいんです。</p>
+                            <p><strong>今日からできる具体的なJOY活（1日15分でOK）：</strong></p>
+                            <ul>
+                                <li>一緒にごはんを作る（話しながら5分でも）</li>
+                                <li>寝る前に「今日うれしかったこと」を3つ話す<br><span class="highlight">→ 1週間続けると、子どもが自分から話し始めます</span>
+                                </li>
+                                <li>落ち葉で遊ぶ</li>
+                                <li>お絵かきをじっくりさせてあげる<br><span class="highlight">→ 「上手だね」より「どんな気持ちで描いたの？」と聞く</span></li>
+                            </ul>
+                            <p>そういう何気ない日常の中に、SMILEを育てるチャンスがたくさんあるんです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>習い事を増やす前に、まず考えてほしいのは——</p>
+                            <p><span class="highlight">「うちの子は今、JOYを感じているかな？」</span></p>
+                            <p>まずは<span class="highlight">今週1週間、1日15分だけ</span>お子さんと向き合う時間を作ってみてください。</p>
+                            <p>家庭こそが、最高の教室。</p>
+                            <p>親の関わり方ひとつで、子どもの非認知能力は育っていきます。</p>
+                            <p>次のセクションからは、SMILEを育てる土台となる「親のマインドセット」についてお話しします。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: right; margin: 2rem 0;">
+            <a href="260217_udemy_course_structure_section2.html"
+                style="color: #d16d86; text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 1rem; border-radius: 10px; background: #fff9fa; border: 1px solid #ffeef1;">
+                セクション2：親のJOY →
+            </a>
+        </div>
+
+        <footer>
+            <p>セクション1 終了（計約10分）</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleScript(header) {
+            const panel = header.nextElementSibling;
+            const isOpen = panel.classList.contains('open');
+
+            // Toggle current panel
+            if (isOpen) {
+                panel.classList.remove('open');
+                header.classList.remove('open');
+            } else {
+                panel.classList.add('open');
+                header.classList.add('open');
+            }
+        }
+    </script>
+</body>
+
+</html>

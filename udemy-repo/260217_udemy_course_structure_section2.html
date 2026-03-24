@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udemy台本 - セクション2：すべての能力は「親のJOY」から始まる</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF8BA7;
+            --primary-light: #FFC6C6;
+            --accent: #FFD56F;
+            --text: #555555;
+            --text-light: #888888;
+            --bg: #FFFFFF;
+            --bg-card: #FAFAFA;
+            --border: #F0F0F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(120deg, #fff0f3 0%, #fff 100%);
+            border-radius: 20px;
+            border: 2px solid #ffeef1;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+        }
+
+        header .subtitle {
+            font-size: 1rem;
+            color: var(--text-light);
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+        }
+
+        .concept {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(255, 139, 167, 0.08);
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .concept blockquote {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #d16d86;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .concept p {
+            color: var(--text);
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: #d16d86;
+            margin: 3rem 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Section Styles */
+        .section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 1.2rem 1.5rem;
+            background: #fff9fa;
+            border-bottom: 1px solid #ffeef1;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-icon {
+            font-size: 1.4rem;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .section-benefit {
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            color: #777;
+            background: #ffffff;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .section-benefit strong {
+            color: var(--primary);
+            background: #fff0f3;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .lecture-list {
+            padding: 0.5rem 0;
+        }
+
+        .lecture-item {
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .lecture-item:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-header {
+            display: flex;
+            align-items: flex-start;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .lecture-header:hover {
+            background: #fff9fa;
+        }
+
+        .lecture-header.has-script::after {
+            content: '▼';
+            font-size: 0.7rem;
+            color: #ccc;
+            margin-left: auto;
+            padding-left: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .lecture-header.has-script.open::after {
+            transform: rotate(180deg);
+        }
+
+        .l-num {
+            font-weight: 700;
+            color: #FF8BA7;
+            width: 40px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .l-body {
+            flex-grow: 1;
+        }
+
+        .l-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            color: #555;
+        }
+
+        .l-desc {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .l-time {
+            font-size: 0.8rem;
+            color: #aaa;
+            background: #f5f5f5;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        /* Script Panel */
+        .script-panel {
+            display: none;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #fffbfc 0%, #fff 100%);
+            border-top: 1px solid #ffeef1;
+            animation: slideDown 0.3s ease;
+        }
+
+        .script-panel.open {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .script-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .script-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .script-section h4 {
+            font-size: 0.9rem;
+            color: #d16d86;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #ffeef1;
+        }
+
+        .script-section p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.8rem;
+            line-height: 1.9;
+        }
+
+        .script-section .highlight {
+            background: linear-gradient(transparent 60%, #fff0f3 60%);
+            font-weight: 700;
+        }
+
+        .script-section ul,
+        .script-section ol {
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .script-section li {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 0.3rem;
+        }
+
+        .script-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .work-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #8a6c1e;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #ccc;
+            font-size: 0.85rem;
+        }
+
+        .total-time-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: #8a6c1e;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: #d16d86;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            background: #fff9fa;
+            border: 1px solid #ffeef1;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #ffeef1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>セクション2：すべての能力は「親のJOY」から始まる</h1>
+            <p class="subtitle">SMILEを育てる土壌 ＝ 親のマインドセット</p>
+            <br>
+            <span class="total-time-badge">⏱️ 目標時間：約15分</span>
+        </header>
+
+        <section class="concept">
+            <blockquote>「子どもの非認知能力を育てる、一番の近道。<br>それは、お母さん自身が"JOY"に満たされることです」</blockquote>
+            <p><strong>得られること：</strong>テクニックの前に不可欠な「親のマインドセット」を整える。不安・イライラの正体を知り、自分を満たすことで、子どもへの関わりが変わる。</p>
+            <p><strong>受講後の変化：</strong>子どもへの声がけが変わり、家庭の空気が軽くなります。</p>
+        </section>
+
+        <h2>📚 セクション2 台本・詳細</h2>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💎</span>
+                <h3>セクション2：すべての能力は「親のJOY」から始まる（約15分）</h3>
+            </div>
+            <div class="section-benefit"><strong>Point</strong> テクニックの前に不可欠な「親のマインドセット」を整える</div>
+            <div class="lecture-list">
+                <!-- L4 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L4</div>
+                        <div class="l-body">
+                            <div class="l-title">あなたの不安は、子どもに伝染する<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">ミラーニューロンの科学と「心配」の弊害。</div>
+                        </div>
+                        <div class="l-time">4分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入（フック）</h4>
+                            <p>前のセクションで、「家庭こそが最高の教室」というお話をしました。</p>
+                            <p>じゃあ、その教室の「先生」である親が、毎日不安やイライラでいっぱいだったら……どうなると思いますか？</p>
+                            <p>実は、私自身がそれを痛いほど経験しているんです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>長男が2歳半の頃のことです。</p>
+                            <p>私はちょうど、シリコンバレーで一軒目の幼稚園を立ち上げたばかりでした。30代半ばで突然「園長先生」になって、自分のスタッフはみんな年上。学校に来ているすべてのお子さんの命を預かっている。いろんな意味で、ものすごいプレッシャーでした。
+                            </p>
+                            <p>私の夢は、自分の理想の学校に自分の子どもを通わせること。ようやく長男を入れることができて「やった！」と思ったのも束の間——<span
+                                    class="highlight">彼がしょっちゅうお友達に手を出すようになった</span>んです。</p>
+                            <p>喧嘩して手を出すならまだ分かるんですけど、突然なんです。脈絡なく、急にパッと。毎日誰かしらが怪我する。</p>
+                            <p>自分の子どもが、自分のお客さんの子どもに傷をつけている——園長としても母親としても、これほど辛いことはありませんでした。</p>
+                            <p>フルタイムで通っていたのが半日になり、半日でもダメで週2回だけになった。「なんで自分の学校に、自分の子どもが通えない状況になってるんだろう」って、本当に悲しかった。</p>
+                            <p>ありとあらゆる原因を分析しました。3か国語やってるから頭が混乱してるのかな？血糖値の問題かな？耳がセンシティブだから、ガヤガヤすると機嫌が悪くなるのかな？ でも、どれも違う。
+                            </p>
+                            <p>最終的に、問題行動を起こす子どもの親子向けワークショップに参加して、気づいたんです。</p>
+                            <p><span class="highlight">子どもの問題行動の原因の8割は、親にある。</span></p>
+                            <p>何が問題だったか？</p>
+                            <p>私は経営のプレッシャーで、毎日車の中や家の中で、夫とずーっと仕事の話——討論をしていたんです。2歳3歳の子どもには分からないだろうと思っていた。</p>
+                            <p>でも、大人は喋ることで発散できるけど、<span class="highlight">そばで聞いている子どもには、3倍のストレス</span>がかかっていた。</p>
+                            <p>これが「ミラーニューロン」の力です。</p>
+                            <p>脳科学の研究で「ミラーニューロン」というものが知られています。簡単に言うと、<span
+                                    class="highlight">人は周りの人の感情を「まるで自分のことのように」感じてしまう脳の仕組み</span>を持っているんです。</p>
+                            <p>ママがイライラしていたら、赤ちゃんも不機嫌になる。パパが緊張していたら、子どもも落ち着かなくなる。言葉にしなくても、空気で伝わってしまうんです。</p>
+                            <p>つまり、<span class="highlight">「心配すること」は、愛情のように見えて、実は子どもにストレスを注いでいることがある</span>んです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>じゃあ、私はどうしたか。</p>
+                            <p>2つのことを変えました。</p>
+                            <p>まず、<span class="highlight">長男がいるときは、仕事の話を一切しないことにした。</span></p>
+                            <p>そして、彼がイライラして手を出しそうなとき、叱る前に<span class="highlight">まず彼の感情を言葉にした</span>んです。</p>
+                            <p>「今これが嫌だったんだね」「こうしたかったんだね」</p>
+                            <p>そうすると、一回フッと落ち着くんです。「分かってくれた」っていう安心感と、「こういうふうに言葉にすればいいんだ」っていう学びを、同時に受け取るんですね。</p>
+                            <p>落ち着いてから「でも、手を出しちゃだめよ」と伝えるようにしました。</p>
+                            <p>夏休みに1ヶ月休んだ後、学校に戻った彼を見て、先生がびっくりしました。</p>
+                            <p><span class="highlight">「別人になったみたい」って。</span></p>
+                            <p>それ以降、彼は一切手を出さなくなりました。</p>
+                            <p>親が変われば、子どもは変わる。<span class="highlight">本当に、親の問題だったんです。</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L5 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L5</div>
+                        <div class="l-body">
+                            <div class="l-title">イライラ激減！「思考分離」の魔法<span class="script-badge">台本あり</span></div>
+                            <div class="l-desc">アドラー心理学に学ぶ、親と子の課題の分け方。</div>
+                        </div>
+                        <div class="l-time">5分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>子どもが食べ物をひっくり返した。宿題をいつまでもやらない。朝、何度言っても起きない。</p>
+                            <p>……「もうーーー！」ってなること、ありませんか？</p>
+                            <p>私もありました。</p>
+                            <p>でも、ある考え方を知ってから、このイライラが劇的に減ったんです。</p>
+                            <p>それが<span class="highlight">「思考分離」</span>という考え方です。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>アドラー心理学で「課題の分離」という有名な概念があります。</p>
+                            <p>ざっくり言うと、<span class="highlight">「これは誰の課題（問題）か？」を分けて考える</span>こと。</p>
+                            <p>例えば——</p>
+                            <p>お子さんが宿題をやらない。</p>
+                            <p>イライラしますよね。「やりなさい！」って何度も言いたくなる。</p>
+                            <p>でも、ちょっと立ち止まって考えてみてください。</p>
+                            <p><span class="highlight">宿題をやるかやらないかは、誰の課題ですか？</span></p>
+                            <p>……子どもの課題ですよね。</p>
+                            <p>やらなかったら先生に言われる。それも、子どもの学びです。</p>
+                            <p>私自身、「宿題やりなさい」って言わないんです。娘は勝手にやるし、やらない日があってもいい。やらなかったら学校で先生に言われるだけ。</p>
+                            <p><span class="highlight">宿題って、自己管理の練習なんです。</span></p>
+                            <p>親が管理するものじゃない。2年生くらいからは、「自分で計画して、自分でやる」という体験のチャンス。</p>
+                            <p>親が毎日チェックしていると、子どもは「ママが管理してくれるから、自分でやらなくていい」と学習してしまう。</p>
+                            <p>もちろん、まだ一人でやる力がない年齢の子には、手助けは必要です。でもその時も、私は必ずこう言います。</p>
+                            <p><span class="highlight">「ママの大事な時間を今、これを教えてるんだよ」</span></p>
+                            <p>そうすると、子どもはちょっとシャキッとするんです。「ああ、ママの時間をもらってるんだ」って。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>💡 実践：イライラを「変換」する</h4>
+                            <p>じゃあ、具体的にどうすればいいか。</p>
+                            <p>イライラしたときに、3つのステップで考えてみてください。</p>
+                            <p><strong>① 「これは誰の課題？」と自分に聞く</strong></p>
+                            <ul>
+                                <li>子どもが靴を揃えない → 子どもの課題</li>
+                                <li>子どもが友達とケンカした → 子どもの課題</li>
+                                <li>子どもが寒いのに上着を着ない → 子どもの課題</li>
+                            </ul>
+                            <p><strong>② 自分の課題でなければ、「見守る」に切り替える</strong></p>
+                            <p>「ちゃんとしなさい」ではなく、「あなたはどうしたい？」と聞く。</p>
+                            <p>子どもは自分で考えるスペースをもらうことで、初めて自分で判断できるようになります。</p>
+                            <p><strong>③ 自分の課題には、ちゃんと向き合う</strong></p>
+                            <p>イライラしている原因が、実は仕事のストレスとか、寝不足とか、自分自身の問題であることも多いんです。</p>
+                            <p>子どもにぶつけて発散していないか？ 一度立ち止まってみてください。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>✨ まとめ</h4>
+                            <p>思考分離ができると、<span class="highlight">子どもに対して「怒る」のではなく「伝える」</span>ことができるようになります。</p>
+                            <p>そのためには、まず「これは誰の課題？」と立ち止まること。</p>
+                            <p>実はこの「思考分離」ができるようになると、子育てだけじゃなく、夫婦関係も、仕事の人間関係も、すごく楽になります。</p>
+                            <p>大事なのは、<span class="highlight">自分の感情と子どもの行動を、ゴチャゴチャにしない</span>こと。</p>
+                            <p>最初は難しいです。でも、意識するだけで、声のトーンが変わります。</p>
+                            <p>声のトーンが変われば、子どもの反応も変わりますよ。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L6 -->
+                <div class="lecture-item">
+                    <div class="lecture-header has-script open" onclick="toggleScript(this)">
+                        <div class="l-num">L6</div>
+                        <div class="l-body">
+                            <div class="l-title">【ワーク】今日から自分を満たす「親のJOY」習慣<span class="script-badge">台本あり</span><span
+                                    class="work-badge">ワーク付き</span></div>
+                            <div class="l-desc">1日5分でできる、親自身の自己肯定感アップ術。</div>
+                        </div>
+                        <div class="l-time">6分</div>
+                    </div>
+                    <div class="script-panel open">
+                        <div class="script-section">
+                            <h4>🎬 導入</h4>
+                            <p>ここまで、「親の不安は子どもに伝染する」「思考分離でイライラを減らす」というお話をしてきました。</p>
+                            <p>じゃあ、結局のところ一番大事なのは何か？</p>
+                            <p><span class="highlight">まず、お母さん自身が満たされること</span>です。</p>
+                            <p>空っぽのコップから水は注げません。自分のコップが満たされて、初めて溢れた分で子どもを満たせるんです。</p>
+                            <p>「子どものために」って頑張る前に、<span class="highlight">「自分のために」</span>何かしていますか？</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📖 本題</h4>
+                            <p>「でも先生、子育て中は自分の時間なんてないです」</p>
+                            <p>そう言いたくなる気持ち、よーく分かります。</p>
+                            <p>でも、JOY——深い喜びって、特別なことじゃなくていいんです。</p>
+                            <p>一杯のコーヒーを、座って、味わって飲む。それだけでもJOY。</p>
+                            <p>お風呂に少しだけ長く浸かる。それもJOY。</p>
+                            <p>好きな音楽を、イヤホンで5分聴く。それもJOY。</p>
+                            <p>大事なのは、<span class="highlight">「あー、幸せだな」って感じる瞬間を、1日に1回でも意識的に作る</span>こと。</p>
+                            <p>うちの書籍でも書いたんですが、<span class="highlight">「常に満足できる状態をつくる」</span>——これが、子育ての土台なんです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>🙏 「足るを知る」マインド</h4>
+                            <p>日本には「足るを知る」という素晴らしい言葉がありますよね。</p>
+                            <p>今あるもので十分幸せだと気づくこと。</p>
+                            <p>SNSを見ると、キラキラしたママがたくさんいます。「あの家はこんなことさせてる」「英語もピアノもプログラミングも」——比較のループにハマると、永遠に足りない気持ちが続きます。
+                            </p>
+                            <p>でも、あなたのお子さんは、今日も元気に朝ごはんを食べて、笑って、寝ている。</p>
+                            <p><span class="highlight">それって、とてつもなく幸せなことじゃないですか？</span></p>
+                            <p>この「足りてる」感覚が、ママの中にあるだけで、子どもは安心するんです。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>📝 ワーク：親のJOYリスト</h4>
+                            <p>ここで、一つワークをやってみましょう。</p>
+                            <p><span class="highlight">「自分が心からJOYを感じること」を5つ書いてみてください。</span></p>
+                            <p>何でもいいんです。</p>
+                            <ul>
+                                <li>朝一番のコーヒー</li>
+                                <li>子どもの寝顔を見ること</li>
+                                <li>お気に入りのドラマを観ること</li>
+                                <li>友達とくだらない話をすること</li>
+                                <li>新しいカフェに行くこと</li>
+                            </ul>
+                            <p>ここで大切なのは、<span class="highlight">「子どものため」じゃなくて「自分のため」の項目を入れる</span>こと。</p>
+                            <p>ママがJOYに満ちていると、自然と笑顔が増えます。笑顔が増えると、さっきのミラーニューロンの話で——子どもにも伝染するんです。今度はポジティブなエネルギーとして。</p>
+                        </div>
+
+                        <div class="script-section">
+                            <h4>✨ 今日からの一歩 &amp; セクション2まとめ</h4>
+                            <p>今日からできることをお伝えしますね。</p>
+                            <p><span class="highlight">「1日5分、自分のためだけの時間をつくる」</span></p>
+                            <p>朝の5分でも、寝る前の5分でも。</p>
+                            <p>その5分間は、ママの時間。子どもの課題からも、家事からも、完全に離れていい。</p>
+                            <p>好きなことをするでもいいし、何もしないでもいい。ぼーっとするだけでもいい。</p>
+                            <p>その5分が、あなたのコップに水を注いでくれます。</p>
+                            <p>セクション2をまとめます。</p>
+                            <p>子どもの非認知能力（SMILE）を育てるために、最初にやるべきことは——<span
+                                    class="highlight">特別な教材を買うことでも、習い事を増やすことでもありません。</span></p>
+                            <p><span class="highlight">親のあなた自身が、JOYに満たされること。</span></p>
+                            <p>あなたが安心していれば、子どもも安心する。<br>
+                                あなたが笑っていれば、子どもも笑う。<br>
+                                あなたが「今日も幸せだな」と感じていれば、子どもはその空気の中で、自分らしく育っていきます。</p>
+                            <p>次のセクションからは、いよいよSMILEの最初の力「S（社会性）」について、具体的にお話ししていきます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="260205_udemy_course_structure_v2.html">← セクション1：序章</a>
+            <span style="color: #ccc; font-size: 0.9rem;">セクション3（準備中）→</span>
+        </div>
+
+        <footer>
+            <p>セクション2 終了（計約15分）</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleScript(header) {
+            const panel = header.nextElementSibling;
+            const isOpen = panel.classList.contains('open');
+
+            // Toggle current panel
+            if (isOpen) {
+                panel.classList.remove('open');
+                header.classList.remove('open');
+            } else {
+                panel.classList.add('open');
+                header.classList.add('open');
+            }
+        }
+    </script>
+</body>
+
+</html>
