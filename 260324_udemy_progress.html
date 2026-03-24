@@ -6832,12 +6832,17 @@
 
                 let chunks = [];
                 let currentChunk = [];
+                let currentLength = 0;
+                // 音声1分間あたり約300〜400文字。400文字を超えた際、次の <h5> で分割します。
+                const MIN_LENGTH = 400;
 
                 for (let child of clone.children) {
                     if (child.tagName === 'H5') {
-                        if (currentChunk.length > 0) {
+                        // 一定の文字数を超過していたら分割する
+                        if (currentLength >= MIN_LENGTH) {
                             chunks.push([...currentChunk]);
                             currentChunk = [];
+                            currentLength = 0;
                         }
                         currentChunk.push('<break time="1s"/>');
                     } else {
@@ -6845,6 +6850,7 @@
                         text = text.replace(/[\r\n\t]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
                         if (text) {
                             currentChunk.push(text);
+                            currentLength += text.length; // 文字数を加算
                         }
                     }
                 }
