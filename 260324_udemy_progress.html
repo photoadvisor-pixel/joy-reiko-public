@@ -6833,8 +6833,8 @@
                 let chunks = [];
                 let currentChunk = [];
                 let currentLength = 0;
-                // 音声1分間あたり約300〜400文字。400文字を超えた際、次の <h5> で分割します。
-                const MIN_LENGTH = 400;
+                // 音声約2分間（800文字）を超えた際、次の <h5> で分割します。
+                const MIN_LENGTH = 800;
 
                 for (let child of clone.children) {
                     if (child.tagName === 'H5') {
@@ -6873,7 +6873,12 @@
                         e.preventDefault();
                         e.stopPropagation();
 
-                        let textToCopy = chunk.join('\n\n');
+                        // 冒頭のポーズ指示を削除
+                        let cleaned = [...chunk];
+                        while (cleaned.length > 0 && cleaned[0] === '<break time="1s"/>') {
+                            cleaned.shift();
+                        }
+                        let textToCopy = cleaned.join('\n\n');
                         navigator.clipboard.writeText(textToCopy).then(() => {
                             const originalHtml = btn.innerHTML;
                             btn.innerHTML = '✅';
