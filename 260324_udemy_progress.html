@@ -6833,8 +6833,8 @@
                 let chunks = [];
                 let currentChunk = [];
                 let currentLength = 0;
-                // 音声約2分間（800文字）を超えた際、次の <h5> で分割します。
-                const MIN_LENGTH = 800;
+                // 音声生成の安定性のため、約650文字で次の <h5> で分割します。
+                const MIN_LENGTH = 650;
 
                 for (let child of clone.children) {
                     if (child.tagName === 'H5') {
