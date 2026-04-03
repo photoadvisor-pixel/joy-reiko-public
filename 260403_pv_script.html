@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3分PV トークスクリプト v4</title>
+    <title>3分PV トークスクリプト</title>
     <style>
         :root {
             --primary: #ec4899;
@@ -14,13 +14,17 @@
             --secondary: #8b5cf6;
             --accent: #f59e0b;
             --text: #1f2937;
-            --bg: #fefce8;
+            --bg: #fff1f2;
             --white: #ffffff;
-            --border: #fde68a;
+            --border: #ffe4e6;
             --green: #10b981;
             --green-light: #d1fae5;
-            --warm: #fdf8f0;
-            --warm-border: #fed7aa;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --gray: #9ca3af;
+            --gray-light: #f3f4f6;
+            --orange: #f59e0b;
+            --orange-light: #fef3c7;
         }
 
         * {
@@ -30,15 +34,15 @@
         }
 
         body {
-            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
-            background-color: #fffbf0;
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
             color: var(--text);
-            line-height: 2.0;
+            line-height: 1.7;
             padding: 20px;
         }
 
         .container {
-            max-width: 720px;
+            max-width: 960px;
             margin: 0 auto;
         }
 
@@ -48,379 +52,247 @@
             color: white;
             padding: 2rem 2.5rem;
             border-radius: 20px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
         }
 
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 0.3rem;
         }
 
         .header .subtitle {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             opacity: 0.85;
-            line-height: 1.6;
         }
 
-        /* Meta info */
-        .meta {
-            background: var(--white);
-            border-radius: 14px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.82rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            line-height: 1.8;
-            color: #6b7280;
-        }
-
-        .meta strong {
-            color: var(--text);
-        }
-
-        /* Goal banner */
-        .goal-banner {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .goal-banner .label {
-            font-size: 0.75rem;
-            color: #92400e;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-
-        .goal-banner .goal-text {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #92400e;
-            line-height: 1.8;
-        }
-
-        .goal-banner .goal-text em {
-            font-style: normal;
-            background: linear-gradient(transparent 60%, #fbbf24 60%);
-        }
-
-        /* Structure diagram */
-        .structure-diagram {
+        /* Course Accordion */
+        .course-accordion {
             background: var(--white);
             border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
         }
 
-        .structure-diagram h3 {
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .tree-flow {
+        .course-toggle {
+            width: 100%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 0;
-        }
-
-        .tree-node {
-            border-radius: 12px;
-            padding: 0.7rem 1.5rem;
-            text-align: center;
-            font-size: 0.82rem;
-            font-weight: 600;
-            width: 90%;
-            max-width: 400px;
-        }
-
-        .tree-arrow {
-            font-size: 1.2rem;
-            color: #d1d5db;
-            line-height: 1.2;
-        }
-
-        .node-joy {
-            background: #fef3c7;
-            color: #92400e;
-            border: 1.5px solid #f59e0b;
-        }
-
-        .node-steam {
-            background: #dbeafe;
-            color: #1e40af;
-            border: 1.5px solid #3b82f6;
-        }
-
-        .node-lang {
-            background: #d1fae5;
-            color: #065f46;
-            border: 1.5px solid #10b981;
-        }
-
-        .node-smile {
-            background: #fce7f3;
-            color: var(--primary-dark);
-            border: 1.5px solid var(--primary);
-        }
-
-        .node-goal {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            font-size: 0.85rem;
-        }
-
-        /* Recording tips */
-        .tips-box {
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            border-radius: 14px;
+            gap: 1rem;
             padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            font-size: 0.82rem;
-        }
-
-        .tips-box h3 {
-            font-size: 0.85rem;
-            color: var(--green);
-            margin-bottom: 0.5rem;
-        }
-
-        .tips-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .tips-box li {
-            padding: 0.2rem 0;
-        }
-
-        /* Version tabs */
-        .version-tabs {
-            display: flex;
-            gap: 0;
-            margin-bottom: 0;
-        }
-
-        .version-tab {
-            padding: 0.7rem 1.5rem;
             border: none;
-            background: #e5e7eb;
-            color: #6b7280;
-            font-size: 0.88rem;
-            font-weight: 600;
+            background: none;
             cursor: pointer;
-            transition: all 0.2s;
+            text-align: left;
             font-family: inherit;
+            transition: background 0.2s;
         }
 
-        .version-tab:first-child {
-            border-radius: 14px 0 0 0;
+        .course-toggle:hover {
+            background: var(--primary-light);
         }
 
-        .version-tab:last-child {
-            border-radius: 0 14px 0 0;
-        }
-
-        .version-tab.active {
-            background: var(--white);
-            color: var(--primary-dark);
-            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        /* Script container */
-        .script-container {
-            background: var(--white);
-            border-radius: 0 0 16px 16px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            margin-bottom: 2rem;
-        }
-
-        .script-version {
-            display: none;
-        }
-
-        .script-version.active {
-            display: block;
-        }
-
-        /* Section */
-        .section {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .section:last-child {
-            border-bottom: none;
-        }
-
-        .section-header {
+        .course-num {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            justify-content: center;
             font-weight: 700;
-            white-space: nowrap;
+            font-size: 1rem;
+            color: white;
             flex-shrink: 0;
         }
 
-        .badge-sec1 {
-            background: #fef3c7;
-            color: #92400e;
+        .c1 .course-num { background: var(--green); }
+        .c2 .course-num { background: var(--primary); }
+        .c3 .course-num { background: var(--secondary); }
+        .c4 .course-num { background: var(--blue); }
+
+        .course-toggle-text {
+            flex: 1;
         }
 
-        .badge-sec2 {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-sec3 {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .badge-end {
-            background: #fce7f3;
-            color: var(--primary-dark);
-        }
-
-        .section-title {
+        .course-toggle-text .title {
             font-size: 0.95rem;
             font-weight: 700;
             color: var(--text);
         }
 
-        .section-time {
-            font-size: 0.72rem;
-            color: #9ca3af;
-            margin-left: auto;
+        .course-toggle-text .tagline {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .toggle-arrow {
+            font-size: 1.2rem;
+            color: var(--gray);
+            transition: transform 0.3s;
             flex-shrink: 0;
         }
 
-        /* Script text */
-        .script-text {
-            font-size: 1.05rem;
-            line-height: 2.2;
-            color: #374151;
+        .course-accordion.open .toggle-arrow {
+            transform: rotate(180deg);
         }
 
-        .script-text p {
-            margin-bottom: 0.8em;
+        .course-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
         }
 
-        .script-text .pause {
+        .badge-done {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        /* Course Content */
+        .course-content {
+            display: none;
+            overflow: hidden;
+        }
+
+        .course-accordion.open .course-content {
             display: block;
-            height: 0.6em;
         }
 
-        .script-text strong {
-            color: var(--primary-dark);
-            font-weight: 700;
+        .course-inner {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--border);
         }
 
-        .script-text .highlight {
-            background: linear-gradient(transparent 60%, #fde68a 60%);
-            font-weight: 700;
-            color: var(--text);
+        /* Script Preview */
+        .script-preview {
+            background: #fdf8f0;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            border: 1px solid #fde68a;
+            font-size: 0.8rem;
         }
 
-        .script-text .smile-list {
-            list-style: none;
-            padding: 0;
-            margin: 0.5em 0 0.8em;
+        .script-preview h4 {
+            font-size: 0.8rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
         }
 
-        .script-text .smile-list li {
-            padding: 0.15em 0;
-        }
-
-        .script-text .smile-letter {
+        .lecture-num {
             display: inline-block;
-            width: 1.8em;
+            width: 28px;
             font-weight: 700;
+            color: var(--primary);
+            font-size: 0.72rem;
+        }
+
+        /* Lecture Detail (expandable) */
+        .lecture-detail {
+            border-bottom: 1px dashed #fde68a;
+        }
+
+        .lecture-detail:last-child {
+            border-bottom: none;
+        }
+
+        .lecture-detail summary {
+            padding: 6px 0;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            user-select: none;
+        }
+
+        .lecture-detail summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .lecture-detail summary::before {
+            content: "\25B6";
+            display: inline-block;
+            font-size: 0.55rem;
+            margin-right: 6px;
+            transition: transform 0.2s;
+            color: var(--gray);
+            flex-shrink: 0;
+        }
+
+        .lecture-detail[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .lecture-detail summary:hover {
             color: var(--primary);
         }
 
-        /* Connection callout */
-        .connection-callout {
-            background: #fffbeb;
-            border-left: 3px solid #f59e0b;
-            border-radius: 0 8px 8px 0;
-            padding: 0.6rem 1rem;
-            margin: 0.8em 0;
-            font-size: 0.88rem;
-            color: #92400e;
-            font-weight: 600;
+        .lecture-body {
+            padding: 0.5rem 0 1rem 34px;
+            font-size: 0.78rem;
+            line-height: 1.8;
+            color: #374151;
         }
 
-        .connection-callout::before {
-            content: "🔗 ";
+        .lecture-body p {
+            margin-bottom: 0.6em;
         }
 
-        /* Same-as note */
-        .same-as {
-            text-align: center;
-            padding: 2rem;
-            color: #9ca3af;
-            font-size: 0.88rem;
+        .lecture-body ul {
+            margin: 0.4em 0 0.6em 1.2em;
+        }
+
+        .lecture-body li {
+            margin-bottom: 0.2em;
+        }
+
+        .lecture-body .lec-h {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 1em 0 0.4em 0;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--primary-light);
+        }
+
+        .lecture-body strong {
+            color: var(--text);
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        .tips-box {
+            background: var(--light-yellow); /* Not strictly in root, but using fallback */
+            background-color: #fef3c7;
+            border-left: 4px solid var(--orange);
+            border-radius: 4px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            line-height: 1.6;
         }
 
         /* Footer */
         .footer {
             text-align: center;
             font-size: 0.7rem;
-            color: #9ca3af;
+            color: var(--gray);
             margin-top: 2rem;
             padding: 1rem;
-        }
-
-        /* Print styles */
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-
-            .header {
-                box-shadow: none;
-                border-radius: 0;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .version-tabs {
-                display: none;
-            }
-
-            .script-version {
-                display: block !important;
-            }
-
-            .script-version+.script-version {
-                page-break-before: always;
-            }
-
-            .section {
-                page-break-inside: avoid;
-            }
         }
 
         @media (max-width: 640px) {
@@ -433,30 +305,11 @@
             }
 
             .header h1 {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
-            .section {
-                padding: 1.2rem 1rem;
-            }
-
-            .script-text {
-                font-size: 0.98rem;
-            }
-
-            .section-header {
-                flex-wrap: wrap;
-                gap: 0.4rem;
-            }
-
-            .section-time {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .tree-node {
-                font-size: 0.75rem;
-                padding: 0.5rem 1rem;
+            .lecture-body {
+                padding-left: 20px;
             }
         }
     </style>
@@ -468,302 +321,207 @@
         <!-- Header -->
         <div class="header">
             <h1>🎬 3分PV トークスクリプト</h1>
-            <div class="subtitle">プロンプター収録用 ― v4（2026年4月3日改訂）</div>
+            <div class="subtitle">プロンプター収録用台本 ― v4（2026年4月3日）</div>
         </div>
 
-        <!-- Meta -->
-        <div class="meta">
-            <strong>読み手：</strong>中内玲子先生<br>
-            <strong>用途：</strong>音声収録・プロンプター表示用<br>
-            <strong>構成：</strong>3分（0:20〜3:00 ※冒頭20秒は映像メイン）
+        <div class="info-box">
+            <strong>読み手：</strong> 中内玲子先生<br>
+            <strong>構成：</strong> 約3分（※冒頭20秒は映像メインのため、0:20からナレーションスタート）
         </div>
 
-        <!-- Goal Banner -->
-        <div class="goal-banner">
-            <div class="label">🎯 このPVが届けるメッセージ</div>
-            <div class="goal-text">
-                子どもに残せる最高のギフトは、<br>
-                <em>世界のどこにいても、自ら悦びを感じられる力</em>
-            </div>
-        </div>
-
-        <!-- Structure Diagram -->
-        <div class="structure-diagram">
-            <h3>📐 ゴール → 各施策の接続構造</h3>
-            <div class="tree-flow">
-                <div class="tree-node node-joy">💛 JOY活（土壌）── 悦びの中にいる子は安心して挑戦できる</div>
-                <div class="tree-arrow">↓</div>
-                <div class="tree-node node-steam">🔬 STEAM（水と太陽）── 問いを立て、自分で発見する力</div>
-                <div class="tree-arrow">↓</div>
-                <div class="tree-node node-lang">🗣️ バイリンガル（ことば）── ふたつの世界を持つ力</div>
-                <div class="tree-arrow">↓</div>
-                <div class="tree-node node-smile">🌸 SMILE（花）── 5つの非認知能力が自然と花開く</div>
-                <div class="tree-arrow">↓</div>
-                <div class="tree-node node-goal">🎯 世界のどこにいても、自ら悦びを感じられる力</div>
-            </div>
-        </div>
-
-        <!-- Recording Tips -->
         <div class="tips-box">
-            <h3>💡 収録のアドバイス</h3>
-            <ul>
-                <li>💡 <strong>改行</strong>ごとに区切って、自然な息継ぎをすると話しやすくなります。</li>
-                <li>💡 <strong>太字</strong>になっている部分は、少し感情をこめて（パッションを持って）強調すると伝わりやすいです。</li>
-                <li>💡 全体的に、目の前に保護者の方がいるつもりで、語りかけるように笑顔ベースでお願いします！</li>
+            <strong>🎯 このPVが届けるコアメッセージ</strong><br>
+            「子どもに残せる最高のギフトは、世界のどこにいても、自ら悦びを感じられる力」
+        </div>
+
+        <div class="info-box" style="background-color: var(--blue-light); margin-bottom: 1rem;">
+            <strong>💡 収録のアドバイス</strong>
+            <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                <li><strong>改行</strong>ごとに区切って、自然な息継ぎをすると話しやすくなります。</li>
+                <li><strong>太字</strong>になっている部分は、少し感情をこめて（パッションを持って）強調すると伝わりやすいです。</li>
+                <li>全体的に、目の前に保護者の方がいるつもりで、語りかけるように笑顔ベースでお願いします！</li>
             </ul>
         </div>
 
-        <!-- Version Tabs -->
-        <div class="version-tabs">
-            <button class="version-tab active" onclick="switchVersion('us')">🇺🇸 アメリカ・トーランス版</button>
-            <button class="version-tab" onclick="switchVersion('jp')">🇯🇵 つくば版</button>
+        <!-- US Version Accordion -->
+        <div class="course-accordion c2 open">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">🇺🇸</div>
+                <div class="course-toggle-text">
+                    <div class="title">アメリカ・トーランス版 プロンプター用原稿</div>
+                    <div class="tagline">世界のどこにいても自ら悦びを感じられる力へつなげる構成</div>
+                </div>
+                <span class="course-badge badge-done">Main</span>
+                <span class="toggle-arrow">&#9660;</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="script-preview">
+                        <h4>台本（260403_PVトークスクリプト_プロンプター用.md）</h4>
+
+                        <details class="lecture-detail" open>
+                            <summary><span class="lecture-num">S1</span> ソラとは (0:20〜1:00)</summary>
+                            <div class="lecture-body">
+                                <p>Sora International School は、<br>
+                                シリコンバレーで生まれた、<br>
+                                日英バイリンガルの幼稚園です。</p>
+                                
+                                <p>2011年に、<br>
+                                カリフォルニア州で初の<br>
+                                「認可・日英バイリンガル幼稚園」として開園しました。</p>
+                                
+                                <p>私が、18年以上にわたる教育現場で確信したこと——<br>
+                                それは、<br>
+                                子どもに残せる最高のギフトは、<br>
+                                <strong>世界のどこにいても、自ら悦びを感じられる力</strong><br>
+                                だということです。</p>
+                                
+                                <p>ソラのすべての教育は、<br>
+                                この <strong>「一生のギフト」</strong> を届けるためにあります。</p>
+                            </div>
+                        </details>
+
+                        <details class="lecture-detail" open>
+                            <summary><span class="lecture-num">S2</span> 自然に言葉が身につく (1:00〜1:40)</summary>
+                            <div class="lecture-body">
+                                <p>世界のどこでも生きていくために、<br>
+                                まず必要なのは <strong>「ことば」</strong> です。</p>
+                                
+                                <p>ソラでは、英語も日本語も<br>
+                                "教科"として教え込むのではありません。</p>
+                                
+                                <p>朝のお集まり、お昼ごはん、お外遊び——<br>
+                                毎日の生活すべてが、英語と日本語で行われる。<br>
+                                だから <strong>言葉が自然に身についていく</strong>んです。</p>
+                                
+                                <p>子どもたちの姿を見てください。<br>
+                                この子はアメリカ生まれですが、<br>
+                                日本語で、自分の気持ちをしっかり伝えられます。</p>
+                                
+                                <p>ふたつの言葉を持つということは、<br>
+                                <strong>ふたつの世界を持つ</strong>ということ。<br>
+                                それが、世界のどこでも自分を表現できる力になるんです。</p>
+                            </div>
+                        </details>
+
+                        <details class="lecture-detail" open>
+                            <summary><span class="lecture-num">S3</span> 教育メソッド (1:40〜2:30)</summary>
+                            <div class="lecture-body">
+                                <p>では、ことばの力だけで十分でしょうか。<br>
+                                ソラが大切にしているのは、もっと深い部分です。</p>
+                                
+                                <p>ソラの教育は、一本の"木"で表すことができます。</p>
+                                
+                                <h5 class="lec-h">JOY活（土壌）</h5>
+                                <p>根っこにある、あたたかい土壌が <strong>「JOY活」</strong>。<br>
+                                悦びを人生の中心に置く習慣のことです。<br>
+                                お子さまだけでなく、お母さんお父さん自身も<br>
+                                まず心を満たすこと——<br>
+                                <strong>悦びの中にいる子どもは、安心して挑戦できる</strong>んです。</p>
+                                
+                                <h5 class="lec-h">STEAM（水と太陽）</h5>
+                                <p>木に注がれる水と太陽の光が <strong>「STEAM」</strong>。<br>
+                                「なぜ？」「やってみたい！」という好奇心を、<br>
+                                自分で考え、発見する力に変えていく——<br>
+                                <strong>世界のどこにいても、問いを立てられる力</strong> です。</p>
+                                
+                                <h5 class="lec-h">SMILE（花と実）</h5>
+                                <p>そして、枝先に咲く花が <strong>「SMILE」</strong> です。</p>
+                                
+                                <ul>
+                                    <li><strong>S</strong> ── Social Skills、相手を思いやり、自分も伝える力。</li>
+                                    <li><strong>M</strong> ── Manners、自分のことは自分でやる力。</li>
+                                    <li><strong>I</strong> ── Interests、探究し続ける心。</li>
+                                    <li><strong>L</strong> ── Languages、ふたつの言葉で世界を広げる力。</li>
+                                    <li><strong>E</strong> ── Enthusiasm、夢中になり、やり抜く力。</li>
+                                </ul>
+                                
+                                <p>この5つは、大人が教え込むものではなく、<br>
+                                あたたかい土壌と探究の刺激を受けて、<br>
+                                <strong>子どもの内側から自然と花開く力</strong> なんです。</p>
+                            </div>
+                        </details>
+
+                        <details class="lecture-detail" open>
+                            <summary><span class="lecture-num">S4</span> エンディング (2:30〜3:00)</summary>
+                            <div class="lecture-body">
+                                <p>悦びを感じる心、問いを立てる力、<br>
+                                ふたつの言葉、そして5つの花——</p>
+                                
+                                <p>そのすべてが重なったとき、子どもたちは、<br>
+                                <strong>世界のどこにいても、自分の力で悦びを見つけられる</strong><br>
+                                ようになります。</p>
+                                
+                                <p>Soraは、その<strong>一生のギフト</strong>を届ける場所です。</p>
+                                
+                                <p>ぜひ一度、見学にいらしてください！</p>
+                            </div>
+                        </details>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Script Container -->
-        <div class="script-container">
+        <!-- JP Version Accordion -->
+        <div class="course-accordion c1">
+            <button class="course-toggle" onclick="toggleCourse(this)">
+                <div class="course-num">🇯🇵</div>
+                <div class="course-toggle-text">
+                    <div class="title">つくば版 プロンプター用原稿</div>
+                    <div class="tagline">※ セクション2の「自然にことばが身につく」部分のみアメリカ版と異なります。</div>
+                </div>
+                <span class="toggle-arrow">&#9660;</span>
+            </button>
+            <div class="course-content">
+                <div class="course-inner">
+                    <div class="script-preview">
+                        <h4>台本（セクション2 差分のみ）</h4>
 
-            <!-- US Version -->
-            <div id="version-us" class="script-version active">
+                        <details class="lecture-detail" open>
+                            <summary><span class="lecture-num">S2</span> 自然に言葉が身につく【つくば版】 (1:00〜1:40)</summary>
+                            <div class="lecture-body">
+                                <p>世界のどこでも生きていくために、<br>
+                                まず必要なのは <strong>「ことば」</strong> です。</p>
 
-                <!-- Section 1 -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec1">セクション1</span>
-                        <span class="section-title">ソラとは</span>
-                        <span class="section-time">0:20〜1:00</span>
-                    </div>
-                    <div class="script-text">
-                        <p>
-                            Sora International School は、<br>
-                            シリコンバレーで生まれた、<br>
-                            日英バイリンガルの幼稚園です。
-                        </p>
-                        <p>
-                            2011年に、<br>
-                            カリフォルニア州で初の<br>
-                            「認可・日英バイリンガル幼稚園」として開園しました。
-                        </p>
-                        <p>
-                            私が、18年以上にわたる教育現場で確信したこと——<br>
-                            それは、<br>
-                            子どもに残せる最高のギフトは、<br>
-                            <strong>世界のどこにいても、自ら悦びを感じられる力</strong><br>
-                            だということです。
-                        </p>
-                        <p>
-                            ソラのすべての教育は、<br>
-                            この <strong>「一生のギフト」</strong> を届けるためにあります。
-                        </p>
-                        <div class="connection-callout">ゴール宣言 → 以降のセクションで「そのために何をしているか」を語る</div>
+                                <p>ソラつくば園では、<br>
+                                日本にいながら、本格的なバイリンガル教育を受けることができます。</p>
+
+                                <p>シリコンバレーで培った「ソラメソッド」を、<br>
+                                そのまま、つくばにお届けしているんです。</p>
+
+                                <p>お子さまが、英語も日本語も、<br>
+                                遊びの中で<strong>自然に使いこなせるようになる</strong>。</p>
+
+                                <p>「幼稚園を卒園したら、英語を忘れてしまった」<br>
+                                ——そんな心配のいらない、<br>
+                                <strong>本物のバイリンガル環境</strong> が、ここにはあります。</p>
+
+                                <p>ふたつの言葉を持つということは、<br>
+                                <strong>ふたつの世界を持つ</strong>ということ。<br>
+                                それが、世界のどこでも自分を表現できる力になるんです。</p>
+                                
+                                <div class="info-box">
+                                    ※ セクション1、3、エンディングはアメリカ版と共通です。
+                                </div>
+                            </div>
+                        </details>
                     </div>
                 </div>
-
-                <!-- Section 2 -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec2">セクション2</span>
-                        <span class="section-title">自然に言葉が身につく</span>
-                        <span class="section-time">1:00〜1:40</span>
-                    </div>
-                    <div class="script-text">
-                        <p>
-                            世界のどこでも生きていくために、<br>
-                            まず必要なのは <strong>「ことば」</strong> です。
-                        </p>
-                        <p>
-                            ソラでは、英語も日本語も<br>
-                            "教科"として教え込むのではありません。
-                        </p>
-                        <p>
-                            朝のお集まり、お昼ごはん、お外遊び——<br>
-                            毎日の生活すべてが、英語と日本語で行われる。<br>
-                            だから <strong>言葉が自然に身についていく</strong>んです。
-                        </p>
-                        <p>
-                            子どもたちの姿を見てください。<br>
-                            この子はアメリカ生まれですが、<br>
-                            日本語で、自分の気持ちをしっかり伝えられます。
-                        </p>
-                        <p>
-                            ふたつの言葉を持つということは、<br>
-                            <strong>ふたつの世界を持つ</strong>ということ。<br>
-                            それが、世界のどこでも自分を表現できる力になるんです。
-                        </p>
-                        <div class="connection-callout">バイリンガル → 「世界のどこでも」を可能にする言葉の力</div>
-                    </div>
-                </div>
-
-                <!-- Section 3 -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec3">セクション3</span>
-                        <span class="section-title">教育メソッド</span>
-                        <span class="section-time">1:40〜2:30</span>
-                    </div>
-                    <div class="script-text">
-                        <p>
-                            では、ことばの力だけで十分でしょうか。<br>
-                            ソラが大切にしているのは、もっと深い部分です。
-                        </p>
-                        <p>
-                            ソラの教育は、一本の"木"で表すことができます。
-                        </p>
-                        <p>
-                            根っこにある、あたたかい土壌が <strong>「JOY活」</strong>。<br>
-                            悦びを人生の中心に置く習慣のことです。<br>
-                            お子さまだけでなく、お母さんお父さん自身も<br>
-                            まず心を満たすこと——<br>
-                            <strong>悦びの中にいる子どもは、安心して挑戦できる</strong>んです。
-                        </p>
-                        <div class="connection-callout">JOY活（土壌）→ 安心が挑戦を生み、成長の基盤になる</div>
-                        <p>
-                            木に注がれる水と太陽の光が <strong>「STEAM」</strong>。<br>
-                            「なぜ？」「やってみたい！」という好奇心を、<br>
-                            自分で考え、発見する力に変えていく——<br>
-                            <strong>世界のどこにいても、問いを立てられる力</strong> です。
-                        </p>
-                        <div class="connection-callout">STEAM（水と太陽）→ どこでも通用する「考える力」を育てる</div>
-                        <p>
-                            そして、枝先に咲く花が <strong>「SMILE」</strong> です。
-                        </p>
-                        <ul class="smile-list">
-                            <li><span class="smile-letter">S</span> ── Social Skills、相手を思いやり、自分も伝える力。</li>
-                            <li><span class="smile-letter">M</span> ── Manners、自分のことは自分でやる力。</li>
-                            <li><span class="smile-letter">I</span> ── Interests、探究し続ける心。</li>
-                            <li><span class="smile-letter">L</span> ── Languages、ふたつの言葉で世界を広げる力。</li>
-                            <li><span class="smile-letter">E</span> ── Enthusiasm、夢中になり、やり抜く力。</li>
-                        </ul>
-                        <p>
-                            この5つは、大人が教え込むものではなく、<br>
-                            あたたかい土壌と探究の刺激を受けて、<br>
-                            <strong>子どもの内側から自然と花開く力</strong> なんです。
-                        </p>
-                        <div class="connection-callout">SMILE（花）→ 土壌＋刺激の結果として「自然と」育つ非認知能力</div>
-                    </div>
-                </div>
-
-                <!-- Ending -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-end">エンディング</span>
-                        <span class="section-title">一生のギフト</span>
-                        <span class="section-time">2:30〜3:00</span>
-                    </div>
-                    <div class="script-text">
-                        <p>
-                            悦びを感じる心、問いを立てる力、<br>
-                            ふたつの言葉、そして5つの花——
-                        </p>
-                        <p>
-                            そのすべてが重なったとき、子どもたちは、<br>
-                            <strong>世界のどこにいても、自分の力で悦びを見つけられる</strong><br>
-                            ようになります。
-                        </p>
-                        <p>
-                            Soraは、その<strong>一生のギフト</strong>を届ける場所です。
-                        </p>
-                        <p>
-                            ぜひ一度、見学にいらしてください！
-                        </p>
-                        <div class="connection-callout">全施策を回収 → ゴールメッセージで締め</div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- JP Version -->
-            <div id="version-jp" class="script-version">
-
-                <!-- Section 1 -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec1">セクション1</span>
-                        <span class="section-title">ソラとは</span>
-                        <span class="section-time">0:20〜1:00</span>
-                    </div>
-                    <div class="same-as">※ アメリカ版と同じ</div>
-                </div>
-
-                <!-- Section 2 (Tsukuba) -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec2">セクション2</span>
-                        <span class="section-title">自然に言葉が身につく（つくば版）</span>
-                        <span class="section-time">1:00〜1:40</span>
-                    </div>
-                    <div class="script-text">
-                        <p>
-                            世界のどこでも生きていくために、<br>
-                            まず必要なのは <strong>「ことば」</strong> です。
-                        </p>
-                        <p>
-                            ソラつくば園では、<br>
-                            日本にいながら、本格的なバイリンガル教育を受けることができます。
-                        </p>
-                        <p>
-                            シリコンバレーで培った「ソラメソッド」を、<br>
-                            そのまま、つくばにお届けしているんです。
-                        </p>
-                        <p>
-                            お子さまが、英語も日本語も、<br>
-                            遊びの中で<strong>自然に使いこなせるようになる</strong>。
-                        </p>
-                        <p>
-                            「幼稚園を卒園したら、英語を忘れてしまった」<br>
-                            ——そんな心配のいらない、<br>
-                            <strong>本物のバイリンガル環境</strong> が、ここにはあります。
-                        </p>
-                        <p>
-                            ふたつの言葉を持つということは、<br>
-                            <strong>ふたつの世界を持つ</strong>ということ。<br>
-                            それが、世界のどこでも自分を表現できる力になるんです。
-                        </p>
-                        <div class="connection-callout">バイリンガル → 「世界のどこでも」を可能にする言葉の力</div>
-                    </div>
-                </div>
-
-                <!-- Section 3 -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-sec3">セクション3</span>
-                        <span class="section-title">教育メソッド</span>
-                        <span class="section-time">1:40〜2:30</span>
-                    </div>
-                    <div class="same-as">※ アメリカ版と同じ</div>
-                </div>
-
-                <!-- Ending -->
-                <div class="section">
-                    <div class="section-header">
-                        <span class="section-badge badge-end">エンディング</span>
-                        <span class="section-title">一生のギフト</span>
-                        <span class="section-time">2:30〜3:00</span>
-                    </div>
-                    <div class="same-as">※ アメリカ版と同じ</div>
-                </div>
-
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            Sora International School ― PV制作用資料 ― 2026年4月3日（v4）
+            Sora International School ― PV制作用資料
         </div>
 
     </div>
 
     <script>
-        function switchVersion(version) {
-            document.querySelectorAll('.version-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.script-version').forEach(v => v.classList.remove('active'));
-
-            if (version === 'us') {
-                document.querySelectorAll('.version-tab')[0].classList.add('active');
-                document.getElementById('version-us').classList.add('active');
-            } else {
-                document.querySelectorAll('.version-tab')[1].classList.add('active');
-                document.getElementById('version-jp').classList.add('active');
-            }
+        function toggleCourse(btn) {
+            const accordion = btn.closest('.course-accordion');
+            accordion.classList.toggle('open');
         }
     </script>
 </body>
