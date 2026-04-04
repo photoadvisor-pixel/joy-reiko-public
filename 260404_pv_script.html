@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3分PV トークスクリプト &amp; 撮影指示書</title>
+    <style>
+        :root {
+            --primary: #ec4899;
+            --primary-light: #fce7f3;
+            --primary-dark: #be185d;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --bg: #fff1f2;
+            --white: #ffffff;
+            --border: #ffe4e6;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --gray: #9ca3af;
+            --gray-light: #f3f4f6;
+            --orange: #f59e0b;
+            --orange-light: #fef3c7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.25);
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            background: var(--white);
+            color: var(--primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Course Accordion */
+        .course-accordion {
+            background: var(--white);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .course-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            transition: background 0.2s;
+        }
+
+        .course-toggle:hover {
+            background: var(--primary-light);
+        }
+
+        .course-num {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .c1 .course-num { background: var(--primary); }
+        .c2 .course-num { background: var(--secondary); }
+        .c3 .course-num { background: var(--blue); }
+        .c4 .course-num { background: var(--green); }
+
+        .course-toggle-text {
+            flex: 1;
+        }
+
+        .course-toggle-text .title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .course-toggle-text .tagline {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .toggle-arrow {
+            font-size: 1.2rem;
+            color: var(--gray);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .course-accordion.open .toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .course-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .badge-time {
+            background: var(--orange-light);
+            color: #92400e;
+        }
+
+        /* Course Content */
+        .course-content {
+            display: none;
+            overflow: hidden;
+        }
+
+        .course-accordion.open .course-content {
+            display: block;
+        }
+
+        .course-inner {
+            padding: 0 1.5rem 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Script lines */
+        .script-area {
+            margin-top: 1rem;
+        }
+
+        .script-line {
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 4px;
+        }
+
+        .script-line.break {
+            margin-bottom: 16px;
+        }
+
+        .script-line strong {
+            color: var(--primary-dark);
+        }
+
+        .script-note {
+            background: var(--blue-light);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.8rem;
+            color: var(--blue);
+            margin: 12px 0;
+        }
+
+        /* SMILE items */
+        .smile-item {
+            margin-bottom: 16px;
+            padding-left: 14px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .smile-letter {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .smile-name {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .smile-power {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .smile-desc {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-top: 2px;
+        }
+
+        /* Info boxes */
+        .info-box {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        .tips-box {
+            background-color: #fef3c7;
+            border-left: 4px solid var(--orange);
+            border-radius: 4px;
+            padding: 0.8rem 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.78rem;
+            line-height: 1.6;
+        }
+
+        /* ── Filming instruction styles ── */
+        .rule-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+        }
+
+        .rule-card h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rule-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rule-card li {
+            padding: 3px 0;
+            padding-left: 18px;
+            position: relative;
+            font-size: 0.85rem;
+        }
+
+        .rule-card li::before {
+            content: "・";
+            position: absolute;
+            left: 4px;
+            color: var(--gray);
+        }
+
+        .rule-card li strong {
+            color: var(--primary-dark);
+        }
+
+        .rule-warn {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .voice-block {
+            background: var(--green-light);
+            border-left: 4px solid var(--green);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 16px 0;
+        }
+
+        .voice-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 4px;
+        }
+
+        .voice-block blockquote {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .example-group {
+            margin: 14px 0;
+        }
+
+        .example-group h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+
+        .example-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .example-list li {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+
+        .note-box {
+            background: #fef3c7;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.8rem;
+            color: #92400e;
+            margin: 14px 0;
+        }
+
+        .after-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: after;
+        }
+
+        .after-list li {
+            padding: 6px 0 6px 36px;
+            position: relative;
+            font-size: 0.85rem;
+            counter-increment: after;
+        }
+
+        .after-list li::before {
+            content: counter(after);
+            position: absolute;
+            left: 0;
+            top: 6px;
+            background: var(--primary);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        .checklist-box {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+        }
+
+        .checklist-box h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .checklist-box label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checklist-box label:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-box input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .section-divider {
+            margin: 20px 0 16px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            padding-bottom: 4px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
+            .header {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .script-line {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Sora PV 制作資料</h1>
+            <div class="subtitle">トークスクリプト v19 &amp; 撮影指示書 ― 2026年4月4日</div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('script')">トークスクリプト</button>
+            <button class="tab-btn" onclick="switchTab('filming')">撮影指示書</button>
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- TAB 1: トークスクリプト                   -->
+        <!-- ═══════════════════════════════════════ -->
+        <div id="tab-script" class="tab-content active">
+
+            <div class="info-box">
+                <strong>読み手：</strong> 中内玲子先生<br>
+                <strong>構成：</strong> 約3分（※冒頭15秒は映像メインのため、0:15からナレーションスタート）
+            </div>
+
+            <div class="info-box" style="background-color: var(--blue-light); margin-bottom: 1rem;">
+                <strong>収録のアドバイス</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li><strong>改行</strong>ごとに区切って、自然な息継ぎをすると話しやすくなります。</li>
+                    <li>カメラの向こうにいる「お母さん・お父さん」に直接話しかけるような、柔らかいトーンで。</li>
+                </ul>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="course-accordion c1 open">
+                <button class="course-toggle" onclick="toggleCourse(this)">
+                    <div class="course-num">1</div>
+                    <div class="course-toggle-text">
+                        <div class="title">Soraの紹介</div>
+                    </div>
+                    <span class="course-badge badge-time">0:15〜0:45</span>
+                    <span class="toggle-arrow">&#9660;</span>
+                </button>
+                <div class="course-content">
+                    <div class="course-inner">
+                        <div class="script-area">
+                            <p class="script-line">こんにちは。Sora International Schoolの中内玲子です。</p>
+                            <p class="script-line break">「Sora」は、<strong>無限の可能性</strong>という意味。</p>
+                            <p class="script-line">世界へ羽ばたける子どもを育てる。それがSoraの願いです。</p>
+                            <p class="script-line">そのためにソラが大切にしている5つの力、<strong>「SMILE」</strong>をご紹介します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="course-accordion c2 open">
+                <button class="course-toggle" onclick="toggleCourse(this)">
+                    <div class="course-num">2</div>
+                    <div class="course-toggle-text">
+                        <div class="title">SMILEの5つの力</div>
+                    </div>
+                    <span class="course-badge badge-time">0:45〜1:35</span>
+                    <span class="toggle-arrow">&#9660;</span>
+                </button>
+                <div class="course-content">
+                    <div class="course-inner">
+                        <div class="script-area">
+                            <div class="smile-item">
+                                <div><span class="smile-letter">S</span> — <span class="smile-name">Social Skills</span></div>
+                                <div class="smile-power">思いやりと自己表現の力</div>
+                                <p class="smile-desc">相手を大切にしながら、自分の気持ちもちゃんと伝えられる子。</p>
+                            </div>
+                            <div class="smile-item">
+                                <div><span class="smile-letter">M</span> — <span class="smile-name">Manners</span></div>
+                                <div class="smile-power">自律の力</div>
+                                <p class="smile-desc">挨拶やお片づけ。「こうしたほうがいいな」と自分で気づける子。</p>
+                            </div>
+                            <div class="smile-item">
+                                <div><span class="smile-letter">I</span> — <span class="smile-name">Interests</span></div>
+                                <div class="smile-power">探究の力</div>
+                                <p class="smile-desc">「なんで？」「やってみたい！」——その好奇心が学びの原動力になる子。</p>
+                            </div>
+                            <div class="smile-item">
+                                <div><span class="smile-letter">L</span> — <span class="smile-name">Languages</span></div>
+                                <div class="smile-power">ことばと国際感覚の力</div>
+                                <p class="smile-desc">英語と日本語。二つの言葉を通じて、異なる文化や価値観にも自然とふれていきます。</p>
+                            </div>
+                            <div class="smile-item">
+                                <div><span class="smile-letter">E</span> — <span class="smile-name">Enthusiasm</span></div>
+                                <div class="smile-power">やり抜く力</div>
+                                <p class="smile-desc">自分で決めたことに夢中になって、最後まであきらめない子。</p>
+                            </div>
+                            <p class="script-line" style="margin-top: 16px;">この5つが、お子さんの「翼」になっていきます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="course-accordion c3 open">
+                <button class="course-toggle" onclick="toggleCourse(this)">
+                    <div class="course-num">3</div>
+                    <div class="course-toggle-text">
+                        <div class="title">お子さんが伸びる環境</div>
+                    </div>
+                    <span class="course-badge badge-time">1:35〜2:20</span>
+                    <span class="toggle-arrow">&#9660;</span>
+                </button>
+                <div class="course-content">
+                    <div class="course-inner">
+                        <div class="script-area">
+                            <p class="script-line">でもこの5つは、ドリルや教科書では身につかないんですね。</p>
+                            <p class="script-line break">毎日の生活の中で、お子さん自身が自然と身につけていくもの。</p>
+                            <p class="script-line">だからソラでは、<strong>「バランス教育」</strong>を大切にしています。</p>
+                            <p class="script-line">英語と日本語。遊びと学び。自己表現と社会のルール。</p>
+                            <p class="script-line break">どれかに偏らないから、どんなお子さんも自分らしくいられる。</p>
+                            <p class="script-line">「ここなら大丈夫」——そう思える場所で、子どもは驚くほど伸びていきます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="course-accordion c4 open">
+                <button class="course-toggle" onclick="toggleCourse(this)">
+                    <div class="course-num">4</div>
+                    <div class="course-toggle-text">
+                        <div class="title">保護者の声＋締めくくり</div>
+                    </div>
+                    <span class="course-badge badge-time">2:20〜3:00</span>
+                    <span class="toggle-arrow">&#9660;</span>
+                </button>
+                <div class="course-content">
+                    <div class="course-inner">
+                        <div class="script-area">
+                            <p class="script-line break">実際にソラに通う保護者の声をお聞きください。</p>
+                            <div class="script-note">ここに保護者インタビュー映像（10秒 x 2〜3名）が入ります</div>
+                            <p class="script-line">小学校に上がったとき、新しい環境にも自分から飛び込んでいける。</p>
+                            <p class="script-line">知らない世界にも「おもしろそう！」とワクワクできる。</p>
+                            <p class="script-line break">そんなお子さんの姿を、一緒に見届けませんか。</p>
+                            <p class="script-line">無限の可能性を育む場所、Sora。</p>
+                            <p class="script-line">ぜひ一度、遊びにいらしてください。お待ちしています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ═══════════════════════════════════════ -->
+        <!-- TAB 2: 撮影指示書                        -->
+        <!-- ═══════════════════════════════════════ -->
+        <div id="tab-filming" class="tab-content">
+
+            <div class="info-box" style="margin-bottom: 1rem;">
+                <strong>目的：</strong> PV用の保護者・お子さんの声を集める<br>
+                <strong>撮影者：</strong> 現地スタッフ（スマートフォンでOK）<br>
+                <strong>必要数：</strong> 3〜5名分（保護者2〜3名 ＋ お子さん1〜2名）
+            </div>
+
+            <!-- Rules -->
+            <div class="section-divider">撮影のルール（これだけ守ってください）</div>
+
+            <div class="rule-card">
+                <h3>📱 スマホの向き</h3>
+                <ul>
+                    <li><strong>必ず横向き（landscape）</strong>で撮影してください</li>
+                    <li class="rule-warn">縦撮りは動画に使えま���ん</li>
+                </ul>
+            </div>
+
+            <div class="rule-card">
+                <h3>📐 画角</h3>
+                <ul>
+                    <li><strong>胸から上</strong>が映るくらいの距離（バストアップ）</li>
+                    <li>背景にソラの教室や園庭が少し見えるとベスト</li>
+                    <li>逆光にならない位置で（窓を背にしない）</li>
+                </ul>
+            </div>
+
+            <div class="rule-card">
+                <h3>⏱ 長さ</h3>
+                <ul>
+                    <li>1人あたり <strong>10〜15秒</strong> でOK</li>
+                    <li>長く話していただいても大丈夫です（編集でカットします）</li>
+                </ul>
+            </div>
+
+            <div class="rule-card">
+                <h3>🎤 音声</h3>
+                <ul>
+                    <li><strong>できるだけ静かな場所</strong>で撮ってください</li>
+                    <li>子どもたちの遊び声が少し聞こえる程度ならOK</li>
+                </ul>
+            </div>
+
+            <!-- Parents -->
+            <div class="section-divider">保護者への声かけ</div>
+
+            <div class="voice-block">
+                <div class="voice-label">このまま読んでください</div>
+                <blockquote>「Soraの紹介動画を作っています。ソラに通わせてよかったなと思うことを、一言だけいただけませんか？10秒くらいで大丈夫です！」</blockquote>
+            </div>
+
+            <p style="font-size:0.8rem; color:var(--gray); margin: 14px 0 6px;">「何を言えばいいですか？」と聞かれたら、以下を参考に伝えてください。</p>
+
+            <div class="example-group">
+                <h4>日本語の場合</h4>
+                <ul class="example-list">
+                    <li>「毎日楽しく通っています」</li>
+                    <li>「子どもが自分からお片づけするようになりました」</li>
+                    <li>「英語だけじゃなくて、礼儀も身についてびっくりしています」</li>
+                    <li>「どんな性格の子でも居場所がある園だと思います」</li>
+                </ul>
+            </div>
+
+            <div class="example-group">
+                <h4>英語の場合</h4>
+                <ul class="example-list">
+                    <li>"My child loves coming to Sora every day!"</li>
+                    <li>"I love it!" / "We love Sora!"</li>
+                    <li>"My child has grown so much since starting here."</li>
+                    <li>"Sora feels like a second home for our family."</li>
+                </ul>
+            </div>
+
+            <!-- Children -->
+            <div class="section-divider">お子さんへの声かけ</div>
+
+            <div class="voice-block">
+                <div class="voice-label">このまま聞いてみてください</div>
+                <blockquote>「ソラは好き？ ソラのどこが好き？」</blockquote>
+            </div>
+
+            <div class="example-group">
+                <h4>こんな一言がほしいです</h4>
+                <ul class="example-list">
+                    <li>「ソラ大好き！」</li>
+                    <li>「お友だちと遊ぶのが楽しい！」</li>
+                    <li>"I love Sora!"</li>
+                    <li>"My friends!" / "Playing outside!"</li>
+                </ul>
+            </div>
+
+            <div class="note-box">お子さんは無理に言わせなくてOKです。自然な笑顔が撮れればそれだけで十分です。</div>
+
+            <!-- After filming -->
+            <div class="section-divider">撮影後のお願い</div>
+
+            <ol class="after-list">
+                <li>出演の許可は<strong>撮影前に必ず口頭で確認</strong>してください</li>
+                <li>撮影した動画を<strong>玲子先生に共有</strong>してください</li>
+            </ol>
+
+            <!-- Checklist -->
+            <div class="checklist-box">
+                <h3>送る前のチェックリスト</h3>
+                <label><input type="checkbox"> スマホ横向きで撮った</label>
+                <label><input type="checkbox"> 顔が明るく映っている（逆光でない）</label>
+                <label><input type="checkbox"> 声がちゃんと聞こえる</label>
+                <label><input type="checkbox"> 保護者 最低3名分ある</label>
+                <label><input type="checkbox"> お子さん 1〜2名分ある</label>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Sora International School ― PV制作用資料
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCourse(btn) {
+            const accordion = btn.closest('.course-accordion');
+            accordion.classList.toggle('open');
+        }
+
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelector(`.tab-btn[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
